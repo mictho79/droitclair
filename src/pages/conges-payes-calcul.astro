@@ -1,0 +1,396 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'acquisition', label: 'Acquisition des congés payés'                     },
+  { id: 'periode',     label: 'Période de référence et prise'                    },
+  { id: 'calcul',      label: "Calcul de l'indemnité"                            },
+  { id: 'maladie',     label: 'Congés payés et arrêt maladie — nouveauté 2024'   },
+  { id: 'depart',      label: 'Congés payés en cas de départ'                    },
+  { id: 'faq',         label: 'Questions fréquentes'                             },
+];
+
+const summary = [
+  "Tout salarié acquiert 2,5 jours ouvrables de congés payés par mois travaillé, soit 30 jours (5 semaines) par an.",
+  "Depuis 2024, les arrêts maladie ouvrent droit à l'acquisition de congés payés, y compris pour maladie non professionnelle.",
+  "L'indemnité de congés payés est calculée selon la méthode la plus favorable : 1/10e de la rémunération annuelle ou maintien du salaire.",
+];
+
+const faq = [
+  {
+    question: "Mon employeur peut-il refuser mes congés ?",
+    answer:   "L'employeur peut refuser ou reporter vos dates de congés pour des raisons d'organisation du service, mais il ne peut pas supprimer vos congés acquis. Il fixe les dates en tenant compte des demandes des salariés, des nécessités du service et des règles applicables dans l'entreprise (accord collectif, usage, décision unilatérale). Si votre employeur refuse systématiquement vos demandes de congés sans motif valable, vous pouvez saisir l'inspection du travail ou le Conseil de prud'hommes.",
+  },
+  {
+    question: "Les congés payés expirent-ils en fin d'année ?",
+    answer:   "Pas automatiquement. Les congés doivent en principe être pris dans la période légale (ou la période fixée par accord d'entreprise ou CCN), mais ils ne disparaissent pas du jour au lendemain. En l'absence d'accord ou de report expressément accordé, des congés non pris peuvent être perdus à la fin de la période de prise. Cependant, si l'employeur n'a pas mis le salarié en mesure de prendre ses congés (pas d'information, refus réitérés), les congés ne sont pas perdus et doivent être indemnisés.",
+  },
+  {
+    question: "Puis-je être payé à la place de prendre mes congés ?",
+    answer:   "En règle générale non. Le congé payé doit être pris effectivement — il n'est pas possible de le monétiser en cours de contrat, sauf pour les jours de fractionnement ou via un accord de compte épargne-temps (CET). En revanche, lors de la rupture du contrat (quelle qu'en soit la cause), tous les congés acquis et non pris sont obligatoirement payés sous forme d'indemnité compensatrice dans le solde de tout compte.",
+  },
+  {
+    question: "Que se passe-t-il si je tombe malade pendant mes congés ?",
+    answer:   "Depuis la loi du 22 avril 2024 (transposant la jurisprudence de la CJUE), si vous tombez malade pendant vos congés, vous pouvez demander à reporter les jours de congés coïncidant avec votre arrêt maladie. Ces jours de congés non pris doivent vous être restitués. Vous devez informer rapidement votre employeur de l'arrêt maladie. Les jours reportés peuvent être pris à une date ultérieure, dans un délai de 15 mois après la reprise du travail.",
+  },
+  {
+    question: "Les jours fériés comptent-ils comme jours de congés ?",
+    answer:   "Non, si le jour férié tombe pendant vos congés et que ce jour est habituellement chômé dans votre entreprise, il ne compte pas comme un jour de congé. Par exemple, si vous posez une semaine de congés incluant le 14 juillet (jour férié chômé dans votre entreprise), vous ne consommez que 4 jours ouvrables de congés et non 5. En revanche, si le jour férié n'est pas chômé dans votre entreprise, il est compté comme un jour ordinaire de congé.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Préavis de démission CDI : durée et calcul',
+    href:         '/preavis-demission/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Arrêt maladie et salaire : IJ et maintien',
+    href:         '/arret-maladie-salaire/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-contrat',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Calculer ses CP',        href: 'https://code.travail.gouv.fr/outils/conges-payes' },
+  { title: 'Convention collective',  href: '/convention-collective/'                           },
+  { title: 'Bulletin de paie',       href: '/bulletin-paie/'                                   },
+  { title: 'Rupture conventionnelle', href: '/rupture-conventionnelle/'                        },
+];
+---
+
+<ArticleLayout
+  title="Congés payés : calcul, acquisition et droits en 2026"
+  description="Congés payés en 2026 : règles d'acquisition (2,5 jours/mois), calcul de l'indemnité (méthode 1/10e ou maintien), nouveauté 2024 sur les arrêts maladie et droits en cas de départ."
+  publishedDate="2026-04-13"
+  modifiedDate="2026-03-22"
+  category="Droits en cours de contrat"
+  categorySlug="droits-contrat"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Acquisition
+       ═══════════════════════════════════════════ -->
+  <h2 id="acquisition">Acquisition des congés payés</h2>
+
+  <p>
+    Tout salarié acquiert des congés payés dès le <strong>premier jour de travail</strong>,
+    sans condition d'ancienneté (règle issue de la loi du 20 août 2008). Le taux
+    d'acquisition légal est de <strong>2,5 jours ouvrables par mois de travail effectif</strong>,
+    soit 30 jours ouvrables (5 semaines) par an pour une année complète.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Temps travaillé</th>
+        <th>Jours CP acquis par mois</th>
+        <th>Total annuel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Temps plein (toute l'année)</td>
+        <td>2,5 jours ouvrables</td>
+        <td><strong>30 jours ouvrables (5 semaines)</strong></td>
+      </tr>
+      <tr>
+        <td>Temps partiel 80 %</td>
+        <td>2,5 jours ouvrables</td>
+        <td><strong>30 jours ouvrables</strong> (même règle)</td>
+      </tr>
+      <tr>
+        <td>Arrivée en cours d'année (ex. 1er juillet)</td>
+        <td>2,5 jours ouvrables</td>
+        <td><strong>15 jours ouvrables</strong> (6 mois × 2,5)</td>
+      </tr>
+      <tr>
+        <td>CDD de 3 mois</td>
+        <td>2,5 jours ouvrables</td>
+        <td><strong>7,5 jours ouvrables</strong> (arrondi à 8 si fraction)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Pour les salariés à <strong>temps partiel</strong>, le taux d'acquisition de 2,5 jours
+    par mois s'applique identiquement — les CP ne sont pas proratisés par rapport
+    au temps de travail. En revanche, l'indemnité versée est calculée sur la
+    rémunération effectivement perçue (plus basse qu'à temps plein).
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2258"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Congés payés
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902405"
+       target="_blank" rel="noopener">
+      Légifrance — art. L3141-3 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Période de référence
+       ═══════════════════════════════════════════ -->
+  <h2 id="periode">Période de référence et prise des congés</h2>
+
+  <h3>La période de référence légale</h3>
+
+  <p>
+    La période légale d'acquisition des congés court du <strong>1er juin de l'année N-1
+    au 31 mai de l'année N</strong>. Les congés acquis sur cette période doivent en
+    principe être pris avant le 31 mai de l'année suivante. De nombreuses conventions
+    collectives (CCN) retiennent une période différente, souvent du 1er janvier au
+    31 décembre — vérifiez votre CCN (code IDCC sur votre bulletin de paie).
+  </p>
+
+  <h3>Prise des congés</h3>
+
+  <ul>
+    <li>
+      <strong>Accord de l'employeur obligatoire</strong> — vous ne pouvez pas partir
+      en congés sans que les dates soient validées. L'employeur fixe l'ordre des départs
+      en tenant compte des souhaits des salariés, de la situation familiale et des
+      nécessités du service.
+    </li>
+    <li>
+      <strong>Délai de prévenance minimum : 1 mois</strong> avant le départ en congés
+      (sauf usage ou accord plus favorable dans l'entreprise).
+    </li>
+    <li>
+      <strong>Congé principal</strong> — la tranche principale du congé (au moins
+      12 jours ouvrables consécutifs) doit être prise entre le <strong>1er mai et
+      le 31 octobre</strong> de chaque année.
+    </li>
+    <li>
+      <strong>Jours supplémentaires de fractionnement</strong> — si le congé principal
+      est pris en dehors de la période légale (1er mai – 31 octobre), le salarié
+      peut bénéficier de 1 à 2 jours de congés supplémentaires, sauf renonciation
+      expresse.
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902417"
+       target="_blank" rel="noopener">
+      Légifrance — art. L3141-13 à L3141-20 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Calcul
+       ═══════════════════════════════════════════ -->
+  <h2 id="calcul">Calcul de l'indemnité de congés payés</h2>
+
+  <p>
+    L'indemnité versée pendant les congés est calculée selon
+    <strong>deux méthodes</strong>, et l'employeur doit retenir
+    <strong>la plus favorable au salarié</strong>.
+  </p>
+
+  <h3>Méthode du 1/10<sup>e</sup></h3>
+
+  <p>
+    L'indemnité est égale au <strong>dixième de la rémunération brute totale</strong>
+    perçue par le salarié au cours de la période de référence :
+  </p>
+
+  <p>
+    <strong>Indemnité = 1/10 × rémunération brute totale de la période de référence</strong>
+  </p>
+
+  <p>
+    La rémunération brute comprend les salaires, les heures supplémentaires, les primes
+    ayant le caractère de salaire (prime d'ancienneté, 13e mois…) et les indemnités
+    de congés payés versées l'année précédente.
+  </p>
+
+  <h3>Méthode du maintien de salaire</h3>
+
+  <p>
+    L'indemnité est égale au <strong>salaire que le salarié aurait perçu s'il avait
+    continué à travailler</strong> pendant la période de congés.
+  </p>
+
+  <h3>Exemple chiffré</h3>
+
+  <p>
+    Salarié avec un salaire fixe de <strong>2 500 € bruts/mois</strong>,
+    prenant <strong>5 semaines de congés</strong> :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Méthode du 1/10<sup>e</sup></strong> : (2 500 € × 12) ÷ 10 = <strong>3 000 €</strong>
+      pour 30 jours, soit <strong>100 € par jour</strong>
+    </li>
+    <li>
+      <strong>Méthode du maintien</strong> : 2 500 € × 5/4,33 ≈ <strong>2 886 €</strong>
+      pour 5 semaines — résultat similaire pour un salaire fixe sans primes
+    </li>
+    <li>
+      <strong>Si primes variables importantes</strong> (ex. commissions) :
+      la méthode du 1/10<sup>e</sup> intègre les primes dans la base de calcul
+      et devient souvent plus favorable
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902421"
+       target="_blank" rel="noopener">
+      Légifrance — art. L3141-24 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Maladie / nouveauté 2024
+       ═══════════════════════════════════════════ -->
+  <h2 id="maladie">Congés payés et arrêt maladie — nouveauté 2024</h2>
+
+  <p>
+    La <strong>loi n°2024-364 du 22 avril 2024</strong> a profondément modifié les
+    droits à congés payés pendant les arrêts maladie, en transposant la jurisprudence
+    de la Cour de Justice de l'Union Européenne (CJUE).
+  </p>
+
+  <h3>Avant la loi de 2024</h3>
+
+  <p>
+    Un arrêt maladie ordinaire (non professionnel) <strong>n'ouvrait pas droit</strong>
+    à l'acquisition de congés payés. Seuls les accidents du travail et les maladies
+    professionnelles (AT/MP) permettaient d'acquérir des CP pendant l'absence.
+  </p>
+
+  <h3>Depuis la loi du 22 avril 2024</h3>
+
+  <p>
+    <strong>Tout arrêt maladie ouvre désormais droit à l'acquisition de congés payés</strong>,
+    quelle que soit l'origine de la maladie (ordinaire ou professionnelle).
+    Le taux d'acquisition varie selon la nature de l'arrêt :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nature de l'arrêt</th>
+        <th>Acquisition CP pendant l'absence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Maladie non professionnelle (ordinaire)</td>
+        <td><strong>2 jours ouvrables par mois</strong> (vs 2,5 en période normale)</td>
+      </tr>
+      <tr>
+        <td>Accident du travail ou maladie professionnelle (AT/MP)</td>
+        <td><strong>2,5 jours ouvrables par mois</strong> (taux plein, inchangé)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Rétroactivité : les droits acquis depuis 2020</h3>
+
+  <p>
+    La loi prévoit un mécanisme de rattrapage pour les salariés ayant été en arrêt
+    maladie ordinaire entre 2009 et la date d'entrée en vigueur de la loi.
+    Ces salariés peuvent réclamer les congés payés non acquis pendant leurs arrêts
+    passés, dans un <strong>délai de 2 ans</strong> à compter de la publication
+    de la loi (soit jusqu'au <strong>23 avril 2026 minuit</strong>).
+  </p>
+
+  <div class="alert alert--success">
+    <div class="alert__icon">✅</div>
+    <div class="alert__body">
+      <strong>Vous avez été en arrêt maladie entre 2020 et 2024 ?</strong>
+      Vous pouvez réclamer à votre employeur les congés payés non acquis pendant
+      cette période. Ce droit rétroactif court jusqu'à <strong>fin avril 2026</strong>.
+      Rapprochez-vous de votre service RH ou, en cas de refus, saisissez le
+      Conseil de prud'hommes.<br>
+      <strong>Note :</strong> les salariés ayant quitté l'entreprise disposent
+      d'un délai de <strong>3 ans à compter de la rupture du contrat</strong>
+      pour réclamer une indemnité compensatrice.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049436662"
+       target="_blank" rel="noopener">
+      Légifrance — Loi n°2024-364 du 22 avril 2024
+    </a> et
+    <a href="https://www.service-public.fr/particuliers/actualites/A17148"
+       target="_blank" rel="noopener">
+      Service-Public.fr — CP et arrêt maladie 2024
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Départ
+       ═══════════════════════════════════════════ -->
+  <h2 id="depart">Congés payés en cas de départ</h2>
+
+  <p>
+    Lors de tout départ de l'entreprise — quelle qu'en soit la cause —,
+    les congés payés acquis et non pris doivent être intégralement payés
+    sous forme d'<strong>indemnité compensatrice de congés payés</strong>
+    dans le solde de tout compte.
+  </p>
+
+  <ul>
+    <li>
+      <strong>Démission</strong> → indemnité compensatrice obligatoire
+    </li>
+    <li>
+      <strong>Licenciement</strong> (quelle que soit la cause, y compris faute grave)
+      → indemnité compensatrice obligatoire
+    </li>
+    <li>
+      <strong>Rupture conventionnelle</strong> → indemnité compensatrice obligatoire
+    </li>
+    <li>
+      <strong>Fin de CDD</strong> → indemnité compensatrice obligatoire
+    </li>
+  </ul>
+
+  <p>
+    Depuis la loi de 2024, ce droit s'applique <strong>même en cas de faute lourde</strong>
+    (alignement sur le droit européen — voir
+    <a href="/licenciement-faute-grave/">licenciement pour faute grave</a>).
+    L'employeur ne peut plus utiliser la faute lourde pour supprimer l'indemnité
+    compensatrice de congés payés.
+  </p>
+
+  <p>
+    L'indemnité est calculée selon les mêmes méthodes (1/10<sup>e</sup> ou maintien
+    de salaire), en retenant la plus favorable.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902429"
+       target="_blank" rel="noopener">
+      Légifrance — art. L3141-28 C. trav.
+    </a>
+  </p>
+
+</ArticleLayout>

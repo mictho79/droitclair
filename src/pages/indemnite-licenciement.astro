@@ -1,0 +1,386 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'conditions',       label: 'Conditions pour en bénéficier'    },
+  { id: 'calcul',           label: 'Comment calculer ?'               },
+  { id: 'salaire-reference', label: 'Le salaire de référence'         },
+  { id: 'exemples',         label: 'Exemples chiffrés complets'       },
+  { id: 'convention',       label: 'Et la convention collective ?'    },
+  { id: 'faq',              label: 'Questions fréquentes'             },
+];
+
+const summary = [
+  "L'indemnité légale de licenciement est due à tout salarié CDI licencié avec au moins 8 mois d'ancienneté (sauf faute grave ou lourde).",
+  "Le calcul : 1/4 de mois de salaire par année pour les 10 premières années, puis 1/3 au-delà — sur le salaire de référence le plus favorable.",
+  "La convention collective peut prévoir une indemnité plus favorable — vérifiez toujours avant d'accepter le montant proposé par votre employeur.",
+];
+
+const faq = [
+  {
+    question: "L'indemnité de licenciement est-elle imposable ?",
+    answer:   "L'indemnité légale de licenciement est exonérée d'impôt sur le revenu dans sa totalité. L'indemnité conventionnelle (prévue par la CCN) est également exonérée dans la limite du montant légal ou de la moitié du montant total reçu si plus élevé, plafonné à 6 fois le plafond annuel de la Sécurité sociale (soit 288 360 € en 2026). Au-delà, la fraction excédentaire est imposable. En pratique, la quasi-totalité des licenciements reste en dessous de ces plafonds. Note : le plafond à 2 PASS (96 120 € en 2026) concerne l'exonération de cotisations sociales, pas l'impôt sur le revenu.",
+  },
+  {
+    question: "L'ancienneté est-elle calculée jusqu'à la fin du préavis ou la notification ?",
+    answer:   "L'ancienneté est calculée jusqu'à la date de fin du contrat, c'est-à-dire à la fin du préavis effectué ou dispensé. Si votre employeur vous dispense de préavis, le préavis est tout de même payé et l'ancienneté court jusqu'à la date théorique de fin du préavis. Exemple : vous êtes notifié le 1er mars avec un préavis de 3 mois — votre ancienneté est calculée jusqu'au 1er juin.",
+  },
+  {
+    question: "Peut-on cumuler indemnité légale et indemnité conventionnelle ?",
+    answer:   "Non, on ne cumule pas les deux — on retient le montant le plus favorable. Si votre convention collective prévoit une indemnité supérieure au légal, vous percevez l'indemnité conventionnelle (qui est plus haute). Si l'indemnité légale est supérieure à la conventionnelle, vous percevez l'indemnité légale. Les deux ne s'additionnent pas.",
+  },
+  {
+    question: "Que se passe-t-il si l'employeur ne verse pas l'indemnité ?",
+    answer:   "Le non-versement de l'indemnité de licenciement constitue une faute de l'employeur. Vous pouvez saisir le Conseil de prud'hommes dans un délai de 3 ans à compter de la rupture du contrat (délai de prescription des créances salariales). Le juge pourra condamner l'employeur à verser l'indemnité due, majorée d'intérêts légaux. En cas d'urgence ou de situation précaire, la procédure de référé prud'homal permet d'obtenir une décision rapide.",
+  },
+  {
+    question: "L'indemnité de licenciement est-elle soumise aux cotisations sociales ?",
+    answer:   "Non, pour la part exonérée d'impôt (voir ci-dessus). La fraction exonérée d'IR est également exonérée de cotisations sociales, dans la limite de 2 fois le plafond annuel de la Sécurité sociale. En revanche, elle est assujettie à la CSG/CRDS pour la part exonérée d'impôt (CSG à 9,7 % et CRDS à 0,5 % sur 98,25 % du montant). La part imposable est soumise à l'ensemble des cotisations sociales.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Licenciement économique : procédure et droits',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Licenciement pour inaptitude : procédure et indemnités',
+    href:         '/licenciement-pour-inaptitude/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Simulateur indemnité',   href: 'https://code.travail.gouv.fr/outils/indemnite-licenciement' },
+  { title: 'Barème Macron',          href: '/bareme-macron/'          },
+  { title: 'Contester licenciement', href: '/contester-licenciement/' },
+  { title: 'Rupture conventionnelle', href: '/rupture-conventionnelle/' },
+];
+---
+
+<ArticleLayout
+  title="Indemnité légale de licenciement : calcul, conditions et exemples en 2026"
+  description="Indemnité légale de licenciement en 2026 : conditions (8 mois d'ancienneté, CDI), formule de calcul (1/4 puis 1/3 de mois), salaire de référence, exemples chiffrés et comparaison avec la convention collective."
+  publishedDate="2026-04-20"
+  modifiedDate="2026-03-23"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Conditions
+       ═══════════════════════════════════════════ -->
+  <h2 id="conditions">Conditions pour bénéficier de l'indemnité légale</h2>
+
+  <p>
+    L'indemnité légale de licenciement est versée automatiquement dès lors que
+    les conditions suivantes sont réunies — sans qu'il soit nécessaire de la réclamer
+    explicitement (elle doit figurer dans le solde de tout compte).
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Droit à l'indemnité légale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Licenciement pour motif personnel (hors faute)</td>
+        <td>✅ Oui — si ancienneté ≥ 8 mois</td>
+      </tr>
+      <tr>
+        <td>Licenciement économique</td>
+        <td>✅ Oui — si ancienneté ≥ 8 mois</td>
+      </tr>
+      <tr>
+        <td>Licenciement pour faute grave</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>Licenciement pour faute lourde</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>Rupture conventionnelle</td>
+        <td>✅ Oui — indemnité spécifique (≥ montant légal)</td>
+      </tr>
+      <tr>
+        <td>Démission</td>
+        <td>❌ Non (sauf démission légitime assimilée à licenciement)</td>
+      </tr>
+      <tr>
+        <td>Fin de CDD</td>
+        <td>❌ Non — prime de précarité (10 % du salaire brut) à la place</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Les conditions cumulatives sont donc : contrat à durée indéterminée (CDI),
+    ancienneté d'au moins <strong>8 mois ininterrompus</strong> à la date de
+    notification du licenciement, et absence de faute grave ou lourde.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F987"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Indemnité de licenciement
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037387162"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1234-9 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Calcul
+       ═══════════════════════════════════════════ -->
+  <h2 id="calcul">Comment calculer l'indemnité légale ?</h2>
+
+  <p>
+    La formule est fixée par l'article <strong>R1234-2 du Code du travail</strong> :
+  </p>
+
+  <ul>
+    <li>
+      <strong>1/4 de mois de salaire</strong> par année d'ancienneté
+      pour les <strong>10 premières années</strong>
+    </li>
+    <li>
+      <strong>1/3 de mois de salaire</strong> par année d'ancienneté
+      <strong>au-delà de 10 ans</strong>
+    </li>
+    <li>
+      Les <strong>années incomplètes</strong> sont calculées au prorata
+      des mois complets travaillés
+    </li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ancienneté</th>
+        <th>Formule</th>
+        <th>Résultat (salaire ref. 2 000 €)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 an</td>
+        <td>2 000 × 1/4 × 1</td>
+        <td><strong>500 €</strong></td>
+      </tr>
+      <tr>
+        <td>5 ans</td>
+        <td>2 000 × 1/4 × 5</td>
+        <td><strong>2 500 €</strong></td>
+      </tr>
+      <tr>
+        <td>10 ans</td>
+        <td>2 000 × 1/4 × 10</td>
+        <td><strong>5 000 €</strong></td>
+      </tr>
+      <tr>
+        <td>12 ans</td>
+        <td>(2 000 × 1/4 × 10) + (2 000 × 1/3 × 2)</td>
+        <td><strong>6 333 €</strong> (5 000 + 1 333)</td>
+      </tr>
+      <tr>
+        <td>15 ans</td>
+        <td>(2 000 × 1/4 × 10) + (2 000 × 1/3 × 5)</td>
+        <td><strong>8 333 €</strong> (5 000 + 3 333)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018537236"
+       target="_blank" rel="noopener">
+      Légifrance — art. R1234-2 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Salaire de référence
+       ═══════════════════════════════════════════ -->
+  <h2 id="salaire-reference">Le salaire de référence</h2>
+
+  <p>
+    L'indemnité est calculée sur le <strong>salaire de référence le plus favorable</strong>
+    entre les deux méthodes suivantes :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Moyenne mensuelle des 12 derniers mois</strong> précédant la notification
+      du licenciement (ou de la mise à pied conservatoire si applicable)
+    </li>
+    <li>
+      <strong>1/3 de la rémunération des 3 derniers mois</strong> — les primes
+      et gratifications annuelles sont intégrées au prorata (1/12 par mois)
+    </li>
+  </ul>
+
+  <h3>Éléments inclus dans le salaire de référence</h3>
+
+  <ul>
+    <li>Salaire fixe brut</li>
+    <li>Primes contractuelles (ancienneté, 13e mois, objectifs réguliers)</li>
+    <li>Avantages en nature (voiture, logement…)</li>
+    <li>Heures supplémentaires habituelles et régulières</li>
+  </ul>
+
+  <h3>Éléments exclus</h3>
+
+  <ul>
+    <li>Remboursements de frais professionnels</li>
+    <li>Primes exceptionnelles sans caractère contractuel</li>
+    <li>Indemnités liées aux conditions de travail non contractuelles</li>
+  </ul>
+
+  <p>
+    En cas d'<strong>arrêt maladie récent</strong> ayant réduit les salaires,
+    l'employeur doit prendre en compte les salaires perçus avant l'arrêt pour
+    reconstituer un salaire de référence représentatif.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>L'erreur classique à éviter.</strong> L'employeur calcule souvent
+      sur les 3 derniers mois, même lorsque la moyenne des 12 derniers mois est
+      plus élevée (cas fréquent si vous avez eu des primes en cours d'année).
+      Vérifiez vous-même les deux méthodes et revendiquez la plus favorable
+      avant de signer le solde de tout compte.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018537238"
+       target="_blank" rel="noopener">
+      Légifrance — art. R1234-4 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Exemples chiffrés
+       ═══════════════════════════════════════════ -->
+  <h2 id="exemples">Exemples chiffrés complets</h2>
+
+  <h3>Exemple 1 — Cadre, 8 ans d'ancienneté, avec prime annuelle</h3>
+
+  <ul>
+    <li>Salaire fixe : <strong>4 000 € bruts/mois</strong></li>
+    <li>Prime annuelle : <strong>6 000 €</strong></li>
+    <li>
+      Salaire de référence (méthode 12 mois) :
+      (4 000 × 12 + 6 000) ÷ 12 = <strong>4 500 €</strong>
+    </li>
+    <li>
+      Indemnité = 4 500 × 1/4 × 8 = <strong>9 000 €</strong>
+    </li>
+  </ul>
+
+  <h3>Exemple 2 — Employé, 15 ans d'ancienneté</h3>
+
+  <ul>
+    <li>Salaire de référence : <strong>2 200 € bruts/mois</strong></li>
+    <li>
+      Indemnité = (2 200 × 1/4 × 10) + (2 200 × 1/3 × 5)
+      = 5 500 + 3 667 = <strong>9 167 €</strong>
+    </li>
+  </ul>
+
+  <h3>Exemple 3 — Salarié, 22 ans d'ancienneté</h3>
+
+  <ul>
+    <li>Salaire de référence : <strong>3 000 € bruts/mois</strong></li>
+    <li>
+      Indemnité = (3 000 × 1/4 × 10) + (3 000 × 1/3 × 12)
+      = 7 500 + 12 000 = <strong>19 500 €</strong>
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Calcul basé sur
+    <a href="https://code.travail.gouv.fr/outils/indemnite-licenciement"
+       target="_blank" rel="noopener">
+      code.travail.gouv.fr — simulateur indemnité de licenciement
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Convention collective
+       ═══════════════════════════════════════════ -->
+  <h2 id="convention">Convention collective — vérifiez toujours</h2>
+
+  <p>
+    L'indemnité légale est un <strong>plancher minimum</strong>. Si votre convention
+    collective (CCN) prévoit une indemnité plus favorable, c'est celle-ci qui
+    s'applique. On retient toujours le montant le plus avantageux pour le salarié —
+    les deux ne se cumulent pas.
+  </p>
+
+  <p>
+    Parmi les conventions collectives historiquement généreuses :
+    <strong>Métallurgie</strong>, <strong>BTP</strong>, <strong>Syntec</strong>
+    (informatique et conseil), <strong>Commerce de détail</strong>. Dans ces branches,
+    l'indemnité conventionnelle peut être sensiblement supérieure au légal,
+    notamment pour les longues anciennetés.
+  </p>
+
+  <h3>Comment trouver sa convention collective ?</h3>
+
+  <p>
+    Votre code IDCC (Identifiant de Convention Collective) figure sur votre bulletin
+    de paie. Saisissez-le sur
+    <a href="https://www.legifrance.gouv.fr/conv_coll/search"
+       target="_blank" rel="noopener">
+      legifrance.fr
+    </a>
+    pour accéder au texte complet de votre CCN et à ses dispositions sur
+    les indemnités de licenciement.
+  </p>
+
+  <div class="alert alert--success">
+    <div class="alert__icon">✅</div>
+    <div class="alert__body">
+      <strong>Ne signez jamais le solde de tout compte sans avoir vérifié votre
+      convention collective.</strong> La différence entre l'indemnité légale et
+      l'indemnité conventionnelle peut représenter plusieurs mois de salaire —
+      et une fois le solde signé, il est très difficile de contester.
+      Prenez le temps de comparer les deux montants avant toute signature.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F987"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Indemnité conventionnelle
+    </a>
+  </p>
+
+</ArticleLayout>

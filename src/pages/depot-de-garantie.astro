@@ -1,0 +1,420 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+/* ── Modèle de lettre de mise en demeure ────────────────── */
+const miseEnDemeureModel = `[Prénom Nom]
+[Adresse actuelle]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom du propriétaire / Bailleur]
+[Adresse du propriétaire]
+[Code postal – Ville]
+
+Objet : Mise en demeure de restituer le dépôt de garantie
+        — Lettre recommandée avec accusé de réception
+
+Madame, Monsieur,
+
+J'ai quitté le logement situé au [adresse du logement]
+le [date de remise des clés], date à laquelle je vous
+ai remis les clés contre [récépissé signé / remis en main
+propre — précisez le mode].
+
+L'état des lieux de sortie réalisé le [date] n'a révélé
+[aucune dégradation / les dégradations suivantes : …].
+
+En application de l'article 22 de la loi du 6 juillet 1989,
+vous disposiez d'un délai de [1 mois / 2 mois] pour me
+restituer le dépôt de garantie d'un montant de [montant] €,
+soit au plus tard le [date limite légale].
+
+À ce jour, je n'ai pas reçu restitution de ce dépôt.
+
+Je vous mets en demeure de me restituer la somme de
+[montant] €, augmentée des pénalités de retard légales
+de 10 % du loyer mensuel hors charges ([montant pénalités] €)
+par mois de retard commencé, soit à ce jour [montant total] €.
+
+À défaut de règlement dans un délai de 8 jours à compter
+de la réception de la présente, je me verrai contraint(e) de
+saisir la Commission Départementale de Conciliation puis,
+le cas échéant, le tribunal judiciaire compétent.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'montant',     label: 'Montant et versement'            },
+  { id: 'restitution', label: 'Délais de restitution'           },
+  { id: 'retenues',    label: 'Quelles retenues sont légales ?' },
+  { id: 'penalites',   label: 'Pénalités de retard'             },
+  { id: 'recours',     label: 'Comment récupérer son dépôt ?'   },
+  { id: 'faq',         label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "Le dépôt de garantie est plafonné à 1 mois de loyer hors charges pour un logement vide, 2 mois pour un meublé.",
+  "Le propriétaire doit restituer le dépôt dans 1 mois si l'état des lieux est conforme, 2 mois si des dégradations sont constatées.",
+  "En cas de retard de restitution, des pénalités de 10 % du loyer mensuel hors charges par mois de retard commencé s'appliquent automatiquement.",
+];
+
+const faq = [
+  {
+    question: "Le propriétaire peut-il garder tout le dépôt sans état des lieux de sortie ?",
+    answer:   "Non. Si aucun état des lieux de sortie n'a été réalisé, le logement est présumé avoir été rendu en bon état. Le propriétaire ne peut pas retenir le dépôt pour des dégradations qu'il n'a pas constatées contradictoirement. De même, si l'état des lieux d'entrée n'a pas été fait (à l'initiative du propriétaire), le logement est présumé avoir été remis en bon état à l'entrée, ce qui empêche toute retenue au titre de dégradations.",
+  },
+  {
+    question: "Puis-je utiliser le dépôt de garantie pour payer le dernier mois de loyer ?",
+    answer:   "Non, c'est illégal. Le dépôt de garantie ne peut pas être imputé sur le loyer — ni par le locataire de son propre chef, ni même avec l'accord du propriétaire (la clause du bail qui l'autoriserait serait nulle). Si vous ne payez pas votre dernier mois de loyer en l'imputant sur le dépôt, le propriétaire peut vous poursuivre pour loyer impayé et conserver le dépôt en compensation. Payez votre dernier loyer normalement et attendez la restitution du dépôt.",
+  },
+  {
+    question: "Que faire si le propriétaire est injoignable ?",
+    answer:   "Envoyez votre mise en demeure à la dernière adresse connue par lettre recommandée avec AR. Si le propriétaire reste injoignable, saisissez la Commission Départementale de Conciliation (CDC) — elle peut convoquer les parties et faciliter une résolution sans procès. En dernier recours, saisissez le tribunal judiciaire. Pour les litiges inférieurs à 5 000 €, la procédure est simplifiée et ne nécessite pas d'avocat. Vous pouvez consigner votre mise en demeure chez un huissier pour sécuriser la date.",
+  },
+  {
+    question: "Le dépôt de garantie est-il revalorisé pendant la durée du bail ?",
+    answer:   "Non. Le dépôt de garantie ne produit pas d'intérêts et n'est pas revalorisé pendant la durée du bail — même si le loyer a été augmenté entre la signature du bail et le départ. Le propriétaire ne peut pas demander un complément de dépôt en cours de bail, sauf en cas de renouvellement avec augmentation de loyer expressément prévue. Le montant restitué est donc celui versé à l'origine.",
+  },
+  {
+    question: "Comment prouver l'état du logement à l'entrée ?",
+    answer:   "L'état des lieux d'entrée est le document de référence : il doit être établi contradictoirement (les deux parties présentes ou représentées) et signé. En complément, il est fortement recommandé de prendre des photos datées lors de l'entrée et de les conserver (idéalement sur un support dont la date est vérifiable : envoi par e-mail à soi-même, stockage cloud avec horodatage). En cas de litige, l'état des lieux signé prime — les photos peuvent renforcer la preuve mais pas remplacer un état des lieux.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    href:         '/preavis-location/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Lettre de mise en demeure',
+    href:         '/lettre-mise-en-demeure/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Expulsion locataire',
+    href:         '/expulsion-locataire/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Commission départementale de conciliation', href: 'https://www.service-public.fr/particuliers/vosdroits/F1730' },
+  { title: 'État des lieux',                           href: '/etat-des-lieux/'   },
+  { title: 'Résiliation de bail',                      href: '/resiliation-bail/' },
+  { title: 'Caution locative',                         href: '/caution-locative/' },
+];
+---
+
+<ArticleLayout
+  title="Dépôt de garantie : montant, restitution et recours en 2026"
+  description="Dépôt de garantie en 2026 : plafonds légaux (1 ou 2 mois), délais de restitution (1 ou 2 mois), retenues légales et illégales, pénalités de 10 % par mois de retard et recours disponibles."
+  publishedDate="2026-04-27"
+  modifiedDate="2026-03-24"
+  category="Logement & contrats"
+  categorySlug="logement"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Montant
+       ═══════════════════════════════════════════ -->
+  <h2 id="montant">Montant et versement</h2>
+
+  <p>
+    Le montant du dépôt de garantie est strictement encadré par la loi du
+    6 juillet 1989. Il est versé à la signature du bail et ne peut pas être
+    réclamé en cours de contrat.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type de location</th>
+        <th>Plafond légal</th>
+        <th>Versé à</th>
+        <th>Augmentable en cours de bail ?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Location vide (loi 1989)</td>
+        <td><strong>1 mois</strong> de loyer hors charges</td>
+        <td>Signature du bail</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>Location meublée</td>
+        <td><strong>2 mois</strong> de loyer hors charges</td>
+        <td>Signature du bail</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>HLM / logement social</td>
+        <td>Interdit en principe</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Bail mobilité</td>
+        <td>Interdit</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    L'augmentation du dépôt en cours de bail est <strong>interdite</strong>,
+    même si le loyer a été révisé. Seul le renouvellement du bail avec augmentation
+    expressément négociée peut donner lieu à un complément, et uniquement si
+    le nouveau montant respecte toujours le plafond légal.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F31269"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Dépôt de garantie
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028779082"
+       target="_blank" rel="noopener">
+      Légifrance — art. 22 loi du 6 juillet 1989
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Restitution
+       ═══════════════════════════════════════════ -->
+  <h2 id="restitution">Délais de restitution</h2>
+
+  <p>
+    Le délai de restitution du dépôt court à compter de la
+    <strong>date de remise des clés</strong> au propriétaire — pas de la date
+    de fin de bail, ni de la date de fin du préavis.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Délai de restitution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>État des lieux de sortie <strong>conforme</strong> à l'état des lieux d'entrée</td>
+        <td><strong>1 mois</strong> à compter de la remise des clés</td>
+      </tr>
+      <tr>
+        <td>Dégradations constatées à l'état des lieux de sortie</td>
+        <td><strong>2 mois</strong> à compter de la remise des clés</td>
+      </tr>
+      <tr>
+        <td>Absence d'état des lieux d'entrée (fait par le propriétaire)</td>
+        <td><strong>1 mois</strong> obligatoire — logement présumé bon état</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--success">
+    <div class="alert__icon">✅</div>
+    <div class="alert__body">
+      <strong>Remettez les clés en main propre contre récépissé ou par remise
+      à un huissier.</strong> C'est la date de remise des clés qui fait démarrer
+      le délai légal de restitution. Conservez une preuve de cette date
+      (récépissé signé, constat d'huissier, ou LRAR si remise par courrier)
+      — elle sera déterminante en cas de litige sur les pénalités de retard.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028779082"
+       target="_blank" rel="noopener">
+      Légifrance — art. 22 loi du 6 juillet 1989
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Retenues
+       ═══════════════════════════════════════════ -->
+  <h2 id="retenues">Quelles retenues sont légales ?</h2>
+
+  <h3>Retenues légitimes</h3>
+
+  <ul>
+    <li>
+      <strong>Dégradations au-delà de la vétusté normale</strong> — avec devis
+      ou factures à l'appui (une estimation sans justificatif ne suffit pas)
+    </li>
+    <li>
+      <strong>Loyers impayés</strong> constatés et non contestés
+    </li>
+    <li>
+      <strong>Charges locatives impayées</strong> régularisées
+    </li>
+    <li>
+      <strong>Remplacement de clés ou d'équipements perdus</strong>
+      (sur justificatif)
+    </li>
+  </ul>
+
+  <h3>Retenues illégales</h3>
+
+  <ul>
+    <li>
+      <strong>Vétusté normale</strong> — une peinture défraîchie après 7 ans,
+      une moquette usée par l'usage ordinaire, un joint de silicone noirci
+      ne constituent pas des dégradations imputables au locataire
+    </li>
+    <li>
+      <strong>Travaux de remise en état incombant au propriétaire</strong>
+      (ex. : remplacement d'une chaudière vétuste, réfection de plomberie)
+    </li>
+    <li>
+      <strong>Frais de nettoyage</strong> si le logement a été rendu propre
+      et en état normal d'entretien
+    </li>
+    <li>
+      <strong>Travaux d'amélioration</strong> — le propriétaire ne peut pas
+      profiter du départ du locataire pour faire financer des améliorations
+    </li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Chaque retenue doit être justifiée par un devis ou une facture.</strong>
+      Une simple estimation chiffrée par le propriétaire, sans document professionnel
+      à l'appui, ne constitue pas une justification suffisante. En cas de litige,
+      le juge écartera les retenues non documentées.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F31269"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Retenues sur dépôt de garantie
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Pénalités
+       ═══════════════════════════════════════════ -->
+  <h2 id="penalites">Pénalités de retard</h2>
+
+  <p>
+    Depuis la <strong>loi ALUR du 24 mars 2014</strong>, si le propriétaire
+    ne restitue pas le dépôt dans les délais légaux, des
+    <strong>pénalités automatiques</strong> s'appliquent — sans qu'il soit
+    nécessaire d'envoyer une mise en demeure préalable.
+  </p>
+
+  <p>
+    <strong>Pénalité : 10 % du loyer mensuel hors charges par mois de retard commencé.</strong>
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Exception :</strong> les pénalités de 10 % ne s'appliquent pas si le retard
+      est causé par le locataire lui-même, notamment s'il n'a pas communiqué
+      sa nouvelle adresse au propriétaire lors de la remise des clés.
+      Indiquez toujours votre nouvelle adresse par écrit au moment du départ.
+    </div>
+  </div>
+
+  <h3>Exemple chiffré</h3>
+
+  <ul>
+    <li>Loyer mensuel hors charges : <strong>800 €</strong></li>
+    <li>Dépôt de garantie : <strong>800 €</strong> (1 mois)</li>
+    <li>Retard de <strong>2 mois</strong> complets</li>
+    <li>Pénalités : 800 € × 10 % × 2 = <strong>160 €</strong></li>
+    <li>Total dû : 800 € + 160 € = <strong>960 €</strong></li>
+  </ul>
+
+  <p>
+    Le "mois de retard commencé" signifie que même un retard d'un jour
+    au-delà du délai légal déclenche la pénalité d'un mois entier.
+    Ces pénalités se cumulent mois après mois jusqu'à la restitution effective.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028779082"
+       target="_blank" rel="noopener">
+      Légifrance — art. 22 loi du 6 juillet 1989 (mod. loi ALUR 2014)
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Recours
+       ═══════════════════════════════════════════ -->
+  <h2 id="recours">Comment récupérer son dépôt de garantie ?</h2>
+
+  <p>
+    En cas de non-restitution ou de retenues contestées, suivez ces étapes
+    dans l'ordre — en escaladant seulement si l'étape précédente échoue.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Lettre de mise en demeure par LRAR</strong><br>
+      Rappel des délais légaux, montant réclamé, pénalités calculées,
+      délai de 8 jours pour régulariser. C'est le point de départ
+      de toute procédure ultérieure.
+    </li>
+    <li>
+      <strong>Commission Départementale de Conciliation (CDC)</strong><br>
+      Saisine gratuite, par courrier ou en ligne.
+      La CDC convoque les deux parties et tente une résolution amiable.
+      En cas d'accord, un procès-verbal de conciliation est rédigé.
+      En cas d'échec, une attestation de non-conciliation est délivrée,
+      nécessaire pour certaines juridictions.
+    </li>
+    <li>
+      <strong>Tribunal judiciaire — juge des contentieux de la protection</strong><br>
+      Pour les litiges inférieurs à <strong>5 000 €</strong>, la procédure
+      est simplifiée et ne requiert pas d'avocat. Vous saisissez le tribunal
+      du lieu du logement loué. Le juge peut condamner le propriétaire à
+      restituer le dépôt, les pénalités et éventuellement des dommages-intérêts.
+    </li>
+  </ol>
+
+  <h3>Modèle de lettre de mise en demeure</h3>
+
+  <p>
+    Adaptez ce modèle à votre situation. Précisez la date de remise des clés,
+    le montant du dépôt, les pénalités accumulées et le délai de régularisation.
+  </p>
+
+  <CopyBlock content={miseEnDemeureModel} label="Modèle de mise en demeure — dépôt de garantie" />
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1730"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Commission Départementale de Conciliation
+    </a>
+  </p>
+
+</ArticleLayout>

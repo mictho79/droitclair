@@ -1,0 +1,395 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'principe',  label: "L'interdiction d'expulsion sans jugement" },
+  { id: 'procedure', label: 'La procédure étape par étape'             },
+  { id: 'treve',     label: 'La trêve hivernale'                       },
+  { id: 'delais',    label: 'Les délais de grâce'                      },
+  { id: 'droits',    label: 'Les droits du locataire'                  },
+  { id: 'faq',       label: 'Questions fréquentes'                     },
+];
+
+const summary = [
+  "L'expulsion d'un locataire ne peut se faire que par décision de justice — toute expulsion sans jugement est illégale et pénalement sanctionnée.",
+  "La procédure complète dure en moyenne 12 à 24 mois, avec une trêve hivernale du 1er novembre au 31 mars.",
+  "Le locataire peut obtenir des délais de grâce (jusqu'à 3 ans) et bénéficie de protections spécifiques selon sa situation.",
+];
+
+const faq = [
+  {
+    question: "Le propriétaire peut-il changer les serrures si le locataire ne paie plus ?",
+    answer:   "Non, c'est un délit pénal. Changer les serrures pour forcer le départ du locataire sans décision de justice constitue une voie de fait punie par l'article 226-4-2 du Code pénal (3 ans d'emprisonnement et 30 000 € d'amende). Même si le locataire n'a pas payé son loyer depuis des mois, le propriétaire doit impérativement passer par la procédure judiciaire. La seule exception est si le locataire a expressément renoncé au logement et remis les clés.",
+  },
+  {
+    question: "Que se passe-t-il si le locataire part avant le jugement ?",
+    answer:   "Si le locataire quitte volontairement les lieux avant le jugement, la procédure d'expulsion devient sans objet. Le propriétaire peut toutefois maintenir l'action judiciaire pour obtenir le paiement des loyers impayés et des éventuels dommages-intérêts. Il devra alors constater le départ (état des lieux de sortie), récupérer les clés et documenter l'état du logement avant d'utiliser le dépôt de garantie pour les sommes dues.",
+  },
+  {
+    question: "La trêve hivernale s'applique-t-elle aux squatteurs ?",
+    answer:   "Non. La trêve hivernale protège uniquement les occupants qui disposaient d'un titre d'occupation valable (locataires, sous-locataires autorisés). Elle ne s'applique pas aux personnes qui se sont introduites par voie de fait dans un logement sans aucun droit ni titre (squatteurs). Pour les squatteurs, une procédure d'expulsion d'urgence existe depuis la loi du 6 juillet 2022 (expulsion sous 72 heures sur décision du préfet après constat).",
+  },
+  {
+    question: "Peut-on être expulsé si on a des enfants mineurs ?",
+    answer:   "Oui, la présence d'enfants mineurs ne constitue pas en soi un obstacle légal à l'expulsion. En revanche, c'est un critère que le juge prend en compte pour accorder des délais de grâce plus longs ou pour moduler les conditions d'exécution. De plus, le préfet peut refuser le concours de la force publique et proposer un relogement via le plan d'action pour le logement et l'hébergement des personnes défavorisées (PLALHPD). Les associations familiales et les travailleurs sociaux peuvent intervenir pour faciliter le relogement.",
+  },
+  {
+    question: "Combien coûte une procédure d'expulsion pour le propriétaire ?",
+    answer:   "Une procédure complète coûte entre 1 500 € et 5 000 € environ : actes d'huissier (commandement de payer ~200 €, assignation ~300-500 €, commandement de quitter les lieux ~200 €), honoraires d'avocat si recours (500 à 2 000 €), frais de tribunal (gratuit pour les particuliers), et éventuellement frais de serrurier et déménagement forcé (~500-1 500 €). Si le locataire bénéficie de l'aide juridictionnelle, le propriétaire peut récupérer les frais d'huissier et d'avocat en cas de condamnation du locataire aux dépens.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Dépôt de garantie : montant, restitution et recours',
+    href:         '/depot-de-garantie/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    href:         '/preavis-location/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Lettre de mise en demeure : modèles et rédaction',
+    href:         '/lettre-mise-en-demeure/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'ADIL (annuaire)',             href: 'https://www.anil.org/lanil-et-les-adil/votre-adil/'                    },
+  { title: 'Recours DALO',               href: 'https://www.service-public.fr/particuliers/vosdroits/F16485'           },
+  { title: 'Aide juridictionnelle',       href: 'https://www.service-public.fr/particuliers/vosdroits/F18074'          },
+  { title: 'Fonds de solidarité logement', href: 'https://www.service-public.fr/particuliers/vosdroits/F1334'          },
+];
+---
+
+<ArticleLayout
+  title="Expulsion locataire : procédure, délais et droits en 2026"
+  description="Expulsion locataire en 2026 : interdiction d'expulsion sans jugement, procédure complète (5 étapes), trêve hivernale 1er nov.-31 mars, délais de grâce jusqu'à 3 ans et droits du locataire."
+  publishedDate="2026-03-16"
+  modifiedDate="2026-03-25"
+  category="Logement & contrats"
+  categorySlug="logement"
+  readingTime={8}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Principe
+       ═══════════════════════════════════════════ -->
+  <h2 id="principe">L'interdiction absolue d'expulsion sans jugement</h2>
+
+  <p>
+    En France, <strong>aucun propriétaire ne peut expulser lui-même son locataire</strong>,
+    quelle que soit la situation. Seule une décision de justice et l'intervention
+    des forces de l'ordre sur autorisation du préfet peuvent conduire à une
+    expulsion légale.
+  </p>
+
+  <p>
+    L'article <strong>226-4-2 du Code pénal</strong> punit d'une peine de
+    <strong>3 ans d'emprisonnement et 30 000 € d'amende</strong> toute personne
+    qui expulse ou tente d'expulser un occupant sans décision de justice.
+    Sont visés notamment :
+  </p>
+
+  <ul>
+    <li>Changer les serrures ou condamner l'accès au logement</li>
+    <li>Couper volontairement l'électricité, le gaz ou l'eau</li>
+    <li>Enlever les meubles ou effets personnels du locataire</li>
+    <li>Harceler ou menacer le locataire pour forcer son départ</li>
+    <li>Empêcher l'accès au logement par tout autre moyen</li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Un propriétaire qui expulse lui-même son locataire risque 3 ans de prison
+      et 30 000 € d'amende.</strong> Cela s'applique même si le loyer n'est pas payé
+      depuis des mois, même si le bail est expiré, même si le locataire a refusé
+      de signer un renouvellement. La seule voie légale est la procédure judiciaire.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037289658"
+       target="_blank" rel="noopener">
+      Légifrance — art. 226-4-2 Code pénal
+    </a> et
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1765"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Expulsion du locataire
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Procédure
+       ═══════════════════════════════════════════ -->
+  <h2 id="procedure">La procédure d'expulsion étape par étape</h2>
+
+  <p>
+    La procédure légale d'expulsion comprend au minimum 5 étapes successives,
+    chacune assortie de délais incompressibles. La durée totale minimale,
+    hors trêve hivernale et délais de grâce, est de <strong>12 à 24 mois</strong>.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Commandement de payer (acte d'huissier)</strong><br>
+      Le propriétaire fait signifier par huissier un commandement de payer
+      les loyers impayés. Ce commandement active la clause résolutoire du bail.
+      Le locataire dispose de <strong>2 mois</strong> pour régulariser la situation
+      (payer les sommes dues ou trouver un accord). S'il régularise dans ce délai,
+      la procédure s'arrête.
+    </li>
+    <li>
+      <strong>Assignation en justice</strong><br>
+      Si le locataire n'a pas régularisé à l'issue du délai de 2 mois,
+      le propriétaire peut saisir le tribunal judiciaire par assignation
+      (acte d'huissier remis au locataire). L'audience est fixée par le tribunal,
+      généralement <strong>2 à 6 mois</strong> après l'assignation.
+    </li>
+    <li>
+      <strong>Audience et jugement</strong><br>
+      Les deux parties sont entendues. Le juge peut accorder des délais de grâce
+      au locataire ou prononcer le jugement d'expulsion. Si le jugement est
+      prononcé, un délai minimal de <strong>2 mois</strong> est accordé
+      avant son exécution.
+    </li>
+    <li>
+      <strong>Commandement de quitter les lieux</strong><br>
+      Le jugement est signifié au locataire par huissier.
+      Le locataire dispose de <strong>2 mois</strong> pour quitter
+      le logement volontairement.
+    </li>
+    <li>
+      <strong>Concours de la force publique</strong><br>
+      Si le locataire refuse de partir à l'issue du délai, le propriétaire
+      demande au préfet l'autorisation d'intervention des forces de l'ordre.
+      Le préfet peut accorder le concours ou proposer un relogement,
+      ajoutant potentiellement plusieurs mois supplémentaires.
+    </li>
+  </ol>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Étape</th>
+        <th>Délai minimum</th>
+        <th>Point d'attention</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Commandement de payer</td>
+        <td>2 mois</td>
+        <td>Le locataire peut régulariser et arrêter la procédure</td>
+      </tr>
+      <tr>
+        <td>Assignation → audience</td>
+        <td>2 à 6 mois</td>
+        <td>Délai fixé par le tribunal selon son rôle</td>
+      </tr>
+      <tr>
+        <td>Jugement → exécution</td>
+        <td>2 mois</td>
+        <td>Le juge peut allonger ce délai (délais de grâce)</td>
+      </tr>
+      <tr>
+        <td>Commandement de quitter</td>
+        <td>2 mois</td>
+        <td>Suspendu pendant la trêve hivernale</td>
+      </tr>
+      <tr>
+        <td>Concours force publique</td>
+        <td>Variable</td>
+        <td>Le préfet peut refuser et proposer un relogement</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1765"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Procédure d'expulsion
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000509310"
+       target="_blank" rel="noopener">
+      Légifrance — Loi du 6 juillet 1989
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Trêve hivernale
+       ═══════════════════════════════════════════ -->
+  <h2 id="treve">La trêve hivernale</h2>
+
+  <p>
+    La trêve hivernale interdit toute <strong>exécution d'une expulsion locative</strong>
+    du <strong>1er novembre au 31 mars</strong> de chaque année (soit 5 mois).
+    Elle est prévue par l'article L412-6 du Code des procédures civiles d'exécution.
+  </p>
+
+  <h3>Ce que protège la trêve hivernale</h3>
+
+  <ul>
+    <li>
+      L'expulsion physique des locataires de leur <strong>résidence principale</strong>
+    </li>
+    <li>
+      Les <strong>coupures d'énergie</strong> (électricité, gaz, chaleur) dans les
+      résidences principales — même en cas d'impayés
+    </li>
+  </ul>
+
+  <h3>Exceptions à la trêve hivernale</h3>
+
+  <ul>
+    <li>
+      <strong>Logement squatté</strong> — par des personnes sans aucun titre ni droit
+    </li>
+    <li>
+      <strong>Relogement décent proposé</strong> — si le propriétaire ou l'État
+      propose un relogement adapté à la situation du locataire
+    </li>
+    <li>
+      <strong>Violence ou menace grave</strong> du locataire à l'encontre
+      du propriétaire ou d'autres occupants
+    </li>
+    <li>
+      <strong>Logement non principal</strong> — résidence secondaire, local
+      commercial ou professionnel
+    </li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>La trêve hivernale ne suspend pas la procédure judiciaire.</strong>
+      Les audiences, jugements et commandements de quitter les lieux peuvent être
+      prononcés et signifiés pendant la trêve. Seule l'<em>exécution</em> de l'expulsion
+      physique est suspendue. La procédure reprend son cours dès le 1er avril.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025024113"
+       target="_blank" rel="noopener">
+      Légifrance — art. L412-6 CPCE
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Délais de grâce
+       ═══════════════════════════════════════════ -->
+  <h2 id="delais">Les délais de grâce</h2>
+
+  <p>
+    Le juge peut accorder au locataire des délais supplémentaires pour quitter
+    le logement, au-delà des délais légaux. Ces délais de grâce sont prévus par
+    l'article L412-4 du Code des procédures civiles d'exécution.
+  </p>
+
+  <ul>
+    <li>
+      <strong>Durée</strong> : de 1 mois à <strong>3 ans maximum</strong>,
+      selon la situation du locataire
+    </li>
+    <li>
+      <strong>Critères appréciés par le juge</strong> : âge du locataire,
+      état de santé, présence d'enfants mineurs, ressources financières,
+      perspectives de relogement, efforts de recherche d'un logement de remplacement
+    </li>
+    <li>
+      <strong>Obligation de paiement</strong> : le locataire doit continuer
+      à payer les loyers courants et les charges pendant toute la durée des
+      délais de grâce, sous peine de voir la procédure s'accélérer
+    </li>
+    <li>
+      <strong>Demande</strong> : formulée à l'audience lors du jugement,
+      ou par requête séparée après le jugement (jusqu'à la veille de l'expulsion)
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025024109"
+       target="_blank" rel="noopener">
+      Légifrance — art. L412-4 CPCE
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Droits du locataire
+       ═══════════════════════════════════════════ -->
+  <h2 id="droits">Les droits du locataire face à l'expulsion</h2>
+
+  <ul>
+    <li>
+      <strong>Droit d'être entendu à l'audience</strong> — vous pouvez vous
+      défendre seul ou avec l'assistance d'un avocat (aide juridictionnelle
+      disponible sous conditions de ressources)
+    </li>
+    <li>
+      <strong>Droit aux délais de grâce</strong> — jusqu'à 3 ans selon votre
+      situation personnelle et financière
+    </li>
+    <li>
+      <strong>Droit à la trêve hivernale</strong> — aucune expulsion physique
+      du 1er novembre au 31 mars
+    </li>
+    <li>
+      <strong>Droit au relogement prioritaire via le DALO</strong>
+      (Droit Au Logement Opposable) si vous êtes menacé d'expulsion
+      sans possibilité de vous reloger par vos propres moyens
+    </li>
+    <li>
+      <strong>Droit de contester le jugement</strong> — appel possible
+      dans les <strong>30 jours</strong> suivant la notification du jugement
+    </li>
+    <li>
+      <strong>Droit à un plan d'apurement</strong> — en cas d'impayés,
+      vous pouvez proposer au bailleur ou au juge un plan d'échelonnement
+      de la dette locative pour régulariser progressivement
+    </li>
+  </ul>
+
+  <div class="alert alert--success">
+    <div class="alert__icon">✅</div>
+    <div class="alert__body">
+      <strong>Ne restez pas seul face à une procédure d'expulsion.</strong>
+      Dès la réception d'un commandement de payer, contactez immédiatement :
+      un travailleur social (CCAS de votre mairie), l'ADIL de votre département
+      (conseil juridique gratuit sur le logement), ou une association d'aide
+      aux locataires. Des solutions existent à chaque étape — plan d'apurement,
+      FSL (Fonds de Solidarité pour le Logement), relogement prioritaire — mais
+      elles nécessitent d'agir tôt.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F16485"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Recours DALO
+    </a> et
+    <a href="https://www.anil.org/lanil-et-les-adil/votre-adil/"
+       target="_blank" rel="noopener">
+      ANIL — Trouver votre ADIL
+    </a>
+  </p>
+
+</ArticleLayout>

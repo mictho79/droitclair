@@ -1,0 +1,469 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+/* ── Modèle 1 — Mise en demeure générale ────────────────── */
+const modeleGeneral = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom / Raison sociale du destinataire]
+[Adresse du destinataire]
+[Code postal – Ville]
+
+Objet : Mise en demeure — [objet précis]
+        Lettre recommandée avec accusé de réception
+
+Madame, Monsieur,
+
+Par la présente, je vous mets en demeure de [décrire
+l'obligation : payer la somme de X €, exécuter la
+prestation convenue, restituer le bien, etc.],
+conformément à [la loi du … / l'article … du Code civil /
+la clause … du contrat signé le …].
+
+[Rappel des faits : dates, montants, engagements pris,
+relances déjà effectuées, etc.]
+
+Malgré [mes relances du … / l'échéance convenue du …],
+vous n'avez pas [exécuté votre obligation / payé la somme
+due / remédié au problème].
+
+Je vous demande donc de [action précise] dans un délai
+de [8 / 15 / 30] jours à compter de la réception de
+la présente.
+
+À défaut de réponse satisfaisante dans ce délai, je me
+verrai contraint(e) de saisir [le tribunal judiciaire /
+la Commission de conciliation / un huissier de justice]
+pour faire valoir mes droits et obtenir réparation du
+préjudice subi, frais et intérêts compris.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Modèle 2 — Employeur / salaires impayés ────────────── */
+const modeleEmployeur = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom de l'employeur / Raison sociale]
+[Adresse de l'entreprise]
+[Code postal – Ville]
+
+Objet : Mise en demeure — paiement des salaires impayés
+        Lettre recommandée avec accusé de réception
+
+Madame, Monsieur,
+
+Je suis employé(e) au sein de votre entreprise depuis
+le [date d'embauche] en qualité de [poste], sous contrat
+[CDI / CDD] référencé [numéro si applicable].
+
+Or, à ce jour, les salaires suivants demeurent impayés :
+
+— Salaire du mois de [mois/année] : [montant] €
+— Salaire du mois de [mois/année] : [montant] €
+[Compléter selon le cas]
+
+Soit un total de [montant total] € bruts.
+
+En application des articles L3242-1 et suivants du Code
+du travail, les salaires sont dus à échéance mensuelle.
+Le non-paiement du salaire constitue une faute grave
+de l'employeur.
+
+Je vous mets en demeure de me verser la somme de
+[montant total] € dans un délai de 8 jours à compter
+de la réception de la présente.
+
+À défaut, je me verrai contraint(e) de saisir le Conseil
+de prud'hommes en référé pour obtenir paiement des sommes
+dues en urgence, ainsi que des dommages-intérêts pour
+résistance abusive.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Modèle 3 — Prestataire / non-exécution ─────────────── */
+const modelePrestataire = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom / Raison sociale du prestataire]
+[Adresse du prestataire]
+[Code postal – Ville]
+
+Objet : Mise en demeure — exécution de prestation
+        Lettre recommandée avec accusé de réception
+
+Madame, Monsieur,
+
+Par contrat / devis signé le [date], vous vous êtes
+engagé(e) à [décrire la prestation : réaliser les travaux,
+livrer le bien, fournir le service, etc.] pour un montant
+de [montant] €, avec une date d'exécution prévue au [date].
+
+À ce jour, soit [nombre de jours/semaines] après l'échéance
+convenue, la prestation n'a [pas été exécutée / été
+exécutée que partiellement / été exécutée de manière
+non conforme aux termes du contrat].
+
+[Si acompte versé :] Je vous rappelle que j'ai versé
+un acompte de [montant] € le [date], dont je joins
+la preuve de paiement.
+
+En application de l'article 1217 du Code civil, le
+créancier d'une obligation inexécutée peut notamment
+obtenir l'exécution forcée ou la résolution du contrat
+avec restitution des sommes versées.
+
+Je vous mets en demeure, dans un délai de [8 / 15] jours
+à compter de la réception de la présente, soit :
+— d'exécuter la prestation conformément au contrat,
+— soit de me rembourser la somme de [montant] €.
+
+À défaut, je saisirai le tribunal judiciaire compétent
+pour obtenir exécution forcée et/ou remboursement,
+augmentés des intérêts légaux et des frais de procédure.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition', label: "Qu'est-ce qu'une mise en demeure ?" },
+  { id: 'quand',      label: 'Quand l\'utiliser ?'                },
+  { id: 'redaction',  label: 'Comment la rédiger ?'               },
+  { id: 'modeles',    label: 'Modèles selon les situations'       },
+  { id: 'effets',     label: 'Les effets juridiques'              },
+  { id: 'faq',        label: 'Questions fréquentes'               },
+];
+
+const summary = [
+  "La mise en demeure est une lettre recommandée avec AR qui oblige le destinataire à agir sous peine de poursuites judiciaires.",
+  "Elle constitue une étape souvent obligatoire avant toute action en justice et fait courir les intérêts de retard.",
+  "Une mise en demeure bien rédigée mentionne : les faits, la base légale, le délai d'exécution et les poursuites envisagées.",
+];
+
+const faq = [
+  {
+    question: "La mise en demeure est-elle obligatoire avant d'aller au tribunal ?",
+    answer:   "Pas toujours, mais souvent indispensable en pratique. Pour les litiges inférieurs à 5 000 €, la loi impose depuis 2020 une tentative de résolution amiable avant toute saisine du tribunal judiciaire (art. 750-1 du CPC). La mise en demeure peut constituer cette tentative. Pour les litiges supérieurs, elle n'est pas toujours légalement requise, mais les juges apprécient positivement les justiciables qui ont tenté de régler le différend à l'amiable avant de saisir la justice.",
+  },
+  {
+    question: "Quelle est la différence entre une mise en demeure et une lettre de réclamation simple ?",
+    answer:   "Une lettre de réclamation simple expose un problème et demande une solution, sans délai formel ni mention de poursuites. La mise en demeure va plus loin : elle fixe un délai précis, mentionne explicitement les conséquences juridiques en cas de non-réponse (saisine du tribunal, intérêts de retard), et est envoyée en recommandé avec AR pour avoir une valeur probatoire. C'est cette formalité qui produit les effets juridiques (interruption de prescription, départ des intérêts légaux).",
+  },
+  {
+    question: "Que faire si la mise en demeure reste sans réponse ?",
+    answer:   "Passé le délai que vous avez fixé (généralement 8 à 15 jours), vous pouvez saisir la juridiction compétente : tribunal judiciaire pour les litiges civils, Conseil de prud'hommes pour les litiges du travail, ou recourir à un conciliateur ou médiateur. Pour les petites créances (<10 000 €), la procédure simplifiée de règlement en ligne (SARVI) ou l'injonction de payer sont des alternatives rapides et peu coûteuses.",
+  },
+  {
+    question: "Un email vaut-il mise en demeure ?",
+    answer:   "Un email peut constituer une mise en demeure si l'autre partie en accuse réception et que son contenu est précis, mais sa valeur probatoire est plus fragile qu'une LRAR. L'email peut être contesté (non-réception, modification a posteriori), tandis que la LRAR fixe avec certitude la date de réception. Pour les litiges importants ou lorsque les délais légaux en dépendent (intérêts, pénalités), utilisez toujours la lettre recommandée avec AR ou l'acte d'huissier.",
+  },
+  {
+    question: "Combien coûte une mise en demeure par huissier ?",
+    answer:   "Le tarif d'un acte d'huissier (commissaire de justice) est réglementé. Une signification (remise de l'acte) coûte entre 50 et 80 € environ en 2026 selon la distance et la nature de l'acte. Une mise en demeure par huissier a une valeur probatoire maximale et est difficilement contestable, mais son coût peut être récupéré auprès de la partie adverse si vous obtenez gain de cause. Pour un simple retard de paiement, la LRAR suffit généralement.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Dépôt de garantie : montant, restitution et recours',
+    href:         '/depot-de-garantie/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    href:         '/preavis-location/',
+    category:     'Logement & contrats',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Contester son licenciement : procédure et indemnités',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Conciliateur de justice', href: 'https://www.service-public.fr/particuliers/vosdroits/F1736' },
+  { title: 'Médiation civile',        href: 'https://www.service-public.fr/particuliers/vosdroits/F1741' },
+  { title: 'Tribunal judiciaire',     href: 'https://www.service-public.fr/particuliers/vosdroits/F2289' },
+  { title: 'Aide juridictionnelle',   href: 'https://www.service-public.fr/particuliers/vosdroits/F18074' },
+];
+---
+
+<ArticleLayout
+  title="Lettre de mise en demeure : modèles et rédaction en 2026"
+  description="Mise en demeure en 2026 : définition, quand l'utiliser, 5 éléments obligatoires, 3 modèles gratuits (général, salaires impayés, prestataire) et effets juridiques (intérêts, prescription)."
+  publishedDate="2026-03-23"
+  modifiedDate="2026-03-25"
+  category="Logement & contrats"
+  categorySlug="logement"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce qu'une mise en demeure ?</h2>
+
+  <p>
+    La mise en demeure est un <strong>acte juridique par lequel on somme une personne
+    de respecter une obligation</strong> — payer une dette, exécuter une prestation,
+    restituer un bien — dans un délai précis, sous peine de poursuites.
+    Elle est définie par l'article <strong>1344 du Code civil</strong>.
+  </p>
+
+  <ul>
+    <li>
+      <strong>Forme standard : lettre recommandée avec accusé de réception (LRAR)</strong>
+      — elle fixe avec certitude la date de réception et constitue une preuve solide
+    </li>
+    <li>
+      <strong>Forme renforcée : acte de commissaire de justice (huissier)</strong>
+      — plus formelle, incontestable, utilisée pour les montants importants ou
+      lorsque le destinataire risque de contester la réception
+    </li>
+    <li>
+      <strong>Pas toujours obligatoire légalement</strong>, mais fortement recommandée :
+      elle prouve la tentative amiable, fait courir les intérêts et interrompt
+      la prescription
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032042355"
+       target="_blank" rel="noopener">
+      Légifrance — art. 1344 Code civil
+    </a> et
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1765"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Mise en demeure
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Quand
+       ═══════════════════════════════════════════ -->
+  <h2 id="quand">Quand utiliser une mise en demeure ?</h2>
+
+  <p>
+    La mise en demeure s'adapte à de nombreuses situations, dans les rapports
+    entre particuliers, locataires/propriétaires ou employeurs/salariés.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Objet de la mise en demeure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Propriétaire ne rend pas le dépôt de garantie</td>
+        <td>Restitution du dépôt + pénalités légales de 10 % par mois</td>
+      </tr>
+      <tr>
+        <td>Employeur ne paie pas les salaires</td>
+        <td>Paiement des salaires dus sous 8 jours</td>
+      </tr>
+      <tr>
+        <td>Prestataire ne livre pas ou mal</td>
+        <td>Exécution conforme ou résolution du contrat avec remboursement</td>
+      </tr>
+      <tr>
+        <td>Vendeur — vices cachés</td>
+        <td>Remboursement ou réparation du bien</td>
+      </tr>
+      <tr>
+        <td>Voisin — troubles du voisinage</td>
+        <td>Cessation des nuisances sous délai fixé</td>
+      </tr>
+      <tr>
+        <td>Débiteur — impayé</td>
+        <td>Paiement de la créance + intérêts légaux à compter de la réception</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1765"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Résoudre un litige à l'amiable
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Rédaction
+       ═══════════════════════════════════════════ -->
+  <h2 id="redaction">Comment rédiger une mise en demeure efficace ?</h2>
+
+  <p>
+    Une mise en demeure doit comporter <strong>5 éléments essentiels</strong>
+    pour produire ses effets juridiques :
+  </p>
+
+  <ol>
+    <li>
+      <strong>Identification complète des parties</strong> — votre nom, adresse
+      et coordonnées complètes, ainsi que celles du destinataire (nom ou raison
+      sociale, adresse exacte)
+    </li>
+    <li>
+      <strong>Rappel précis des faits</strong> — dates, montants, références
+      de contrat, relances déjà effectuées, engagements non tenus
+    </li>
+    <li>
+      <strong>Base légale ou contractuelle</strong> — article de loi applicable,
+      clause du contrat, engagement verbal confirmé par écrit
+    </li>
+    <li>
+      <strong>Délai d'exécution explicite</strong> — généralement 8 jours pour
+      un paiement, 15 à 30 jours pour une prestation complexe
+    </li>
+    <li>
+      <strong>Conséquences en cas de non-réponse</strong> — saisine du tribunal,
+      recours à un huissier, intérêts légaux, frais à la charge du destinataire
+    </li>
+  </ol>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Envoyez toujours en recommandé avec accusé de réception.</strong>
+      Un email ou un courrier simple n'a pas la même valeur probatoire : la date
+      de réception peut être contestée, et les délais légaux (intérêts de retard,
+      pénalités) ne courront pas de façon certaine. Conservez l'avis de réception
+      signé avec votre copie du courrier.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032042355"
+       target="_blank" rel="noopener">
+      Légifrance — art. 1344 et 1344-1 Code civil
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Modèles
+       ═══════════════════════════════════════════ -->
+  <h2 id="modeles">Modèles selon les situations</h2>
+
+  <h3>Modèle 1 — Mise en demeure générale (toutes situations)</h3>
+
+  <p>
+    Modèle adaptable à tout type de litige. Complétez les mentions entre crochets
+    selon votre situation.
+  </p>
+
+  <CopyBlock content={modeleGeneral} label="Modèle de mise en demeure générale" />
+
+  <h3>Modèle 2 — Employeur : salaires impayés</h3>
+
+  <p>
+    À utiliser lorsque votre employeur ne vous a pas versé un ou plusieurs salaires.
+    Envoyez également une copie à l'inspection du travail (DREETS).
+  </p>
+
+  <CopyBlock content={modeleEmployeur} label="Modèle mise en demeure — salaires impayés" />
+
+  <h3>Modèle 3 — Prestataire : non-exécution de prestation</h3>
+
+  <p>
+    À utiliser pour un artisan, un commerçant ou un prestataire de service
+    qui n'a pas exécuté sa prestation dans les délais convenus.
+  </p>
+
+  <CopyBlock content={modelePrestataire} label="Modèle mise en demeure — prestataire défaillant" />
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Effets juridiques
+       ═══════════════════════════════════════════ -->
+  <h2 id="effets">Les effets juridiques de la mise en demeure</h2>
+
+  <p>
+    L'envoi d'une mise en demeure en bonne et due forme produit plusieurs
+    effets juridiques automatiques :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Fait courir les intérêts moratoires</strong> au taux légal
+      à compter de la date de réception — sans qu'il soit nécessaire
+      de le réclamer séparément devant le juge
+    </li>
+    <li>
+      <strong>Interrompt le délai de prescription</strong> — le délai repart
+      à zéro à compter de la réception, évitant que votre droit ne se prescrive
+    </li>
+    <li>
+      <strong>Constitue la preuve d'une tentative amiable</strong> — souvent
+      exigée par les tribunaux avant toute audience, notamment pour les litiges
+      inférieurs à 5 000 €
+    </li>
+    <li>
+      <strong>Constitue le point de départ de certaines pénalités légales</strong>
+      (ex. : intérêts légaux pour créances commerciales, pénalités de retard
+      dans certains contrats)
+    </li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Pour les litiges inférieurs à 5 000 €, une tentative de résolution
+      amiable est obligatoire avant toute saisine du tribunal judiciaire</strong>
+      (art. 750-1 du Code de procédure civile). La mise en demeure peut constituer
+      cette tentative, ou vous pouvez recourir à un conciliateur de justice
+      (gratuit) ou à une médiation. Sans cette étape, le tribunal peut déclarer
+      votre demande irrecevable.<br>
+      <strong>Exception 2025 :</strong> la Cour de cassation (avis du 25 sept. 2025)
+      a précisé que la procédure d'injonction de payer n'est pas soumise à cette
+      obligation, ni dans sa phase initiale ni en cas d'opposition.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042338840"
+       target="_blank" rel="noopener">
+      Légifrance — art. 750-1 Code de procédure civile
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032042359"
+       target="_blank" rel="noopener">
+      art. 1344-1 Code civil (intérêts moratoires)
+    </a>
+  </p>
+
+</ArticleLayout>

@@ -1,0 +1,390 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition',        label: "Qu'est-ce que la période d'essai ?" },
+  { id: 'duree',             label: 'Durée maximale légale'               },
+  { id: 'renouvellement',    label: 'Le renouvellement'                   },
+  { id: 'rupture-employeur', label: "Rupture par l'employeur"             },
+  { id: 'rupture-salarie',   label: 'Rupture par le salarié'              },
+  { id: 'faq',               label: 'Questions fréquentes'                },
+];
+
+const summary = [
+  "La durée maximale légale de la période d'essai dépend du statut : 2 mois pour les ouvriers/employés, 3 mois pour les agents de maîtrise, 4 mois pour les cadres.",
+  "La rupture pendant la période d'essai est libre mais doit respecter un délai de prévenance selon l'ancienneté.",
+  "La période d'essai ne se présume pas — elle doit être expressément prévue dans le contrat de travail.",
+];
+
+const faq = [
+  {
+    question: "Peut-on rompre la période d'essai sans motif ?",
+    answer:   "Oui, les deux parties peuvent mettre fin à la période d'essai sans avoir à justifier d'un motif, que ce soit l'employeur ou le salarié. C'est l'une des caractéristiques fondamentales de la période d'essai : elle permet à chacun d'évaluer librement la relation de travail. La seule contrainte est le respect du délai de prévenance. Toutefois, la rupture ne peut pas reposer sur un motif discriminatoire (origine, état de santé, grossesse…) — dans ce cas, elle peut être requalifiée en licenciement nul.",
+  },
+  {
+    question: "La période d'essai ouvre-t-elle droit au chômage ?",
+    answer:   "Cela dépend de qui rompt. Si c'est l'employeur qui met fin à la période d'essai, le salarié a droit aux allocations chômage (ARE) sous conditions d'affiliation (au moins 6 mois travaillés sur les 24 derniers mois). Si c'est le salarié qui rompt lui-même sa période d'essai, il est assimilé à un démissionnaire et n'ouvre pas droit aux ARE — sauf cas de démission légitime ou réexamen après 4 mois de chômage.",
+  },
+  {
+    question: "Que se passe-t-il si l'employeur rompt sans respecter le délai de prévenance ?",
+    answer:   "L'employeur est redevable d'une indemnité compensatrice de prévenance, égale aux salaires et avantages que le salarié aurait perçus s'il avait travaillé pendant ce délai. Par exemple, si le délai de prévenance est de 2 semaines et que l'employeur rompt sans délai, il doit verser l'équivalent de 2 semaines de salaire. Cette indemnité est distincte du solde de tout compte et des congés payés.",
+  },
+  {
+    question: "Peut-on avoir une période d'essai sur un CDI après un CDD dans la même entreprise ?",
+    answer:   "Non, si les deux contrats concernent le même poste. Lorsqu'un salarié est embauché en CDI à l'issue d'un CDD sur le même emploi, la durée du CDD est déduite de la période d'essai éventuelle du CDI. Si la durée du CDD est égale ou supérieure à la période d'essai prévue par le CDI, il n'y a pas de période d'essai. Cette règle vise à éviter une période d'essai cumulative abusive sur le même poste.",
+  },
+  {
+    question: "La période d'essai peut-elle être interrompue par un arrêt maladie ?",
+    answer:   "Oui. Toute suspension du contrat de travail (arrêt maladie, accident du travail, congé, absence autorisée) prolonge la période d'essai d'une durée équivalente à l'absence. Par exemple, si votre période d'essai de 2 mois débute le 1er mars et que vous êtes en arrêt maladie du 15 au 25 mars (10 jours), la période d'essai se termine le 10 avril et non le 1er mai. L'employeur ne peut pas mettre fin au contrat pour le motif de la maladie elle-même pendant un arrêt.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Rupture conventionnelle : procédure et indemnités',
+    href:         '/rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Licenciement pour faute grave : procédure et recours',
+    href:         '/licenciement-faute-grave/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Lettre de démission',    href: '/lettre-de-demission-cdi/' },
+  { title: 'Convention collective',  href: '/convention-collective/'   },
+  { title: 'Solde de tout compte',   href: '/solde-de-tout-compte/'    },
+  { title: 'Contester licenciement', href: '/contester-licenciement/'  },
+];
+---
+
+<ArticleLayout
+  title="Période d'essai : durée, renouvellement et rupture en 2026"
+  description="Période d'essai en 2026 : durée maximale selon le statut (CDI/CDD), conditions de renouvellement, délais de prévenance, rupture par l'employeur ou le salarié et droits au chômage."
+  publishedDate="2026-04-06"
+  modifiedDate="2026-03-21"
+  category="Droits en cours de contrat"
+  categorySlug="droits-contrat"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce que la période d'essai ?</h2>
+
+  <p>
+    La période d'essai est la phase initiale du contrat de travail pendant laquelle
+    <strong>chaque partie peut librement évaluer la relation</strong> : l'employeur
+    vérifie les compétences du salarié, et le salarié s'assure que le poste lui convient.
+  </p>
+
+  <h3>Principes fondamentaux</h3>
+
+  <ul>
+    <li>
+      <strong>Clause écrite obligatoire</strong> — la période d'essai doit être
+      expressément stipulée dans le contrat de travail. Elle ne peut pas être
+      imposée verbalement ou a posteriori.
+    </li>
+    <li>
+      <strong>Elle ne se présume pas</strong> — l'absence de clause dans le contrat
+      signifie qu'il n'y a pas de période d'essai, même si c'est le premier contrat
+      dans l'entreprise.
+    </li>
+    <li>
+      <strong>S'applique au CDI comme au CDD</strong>, mais avec des règles et
+      des durées différentes selon le type de contrat.
+    </li>
+    <li>
+      <strong>Suspension en cas d'absence</strong> — tout arrêt maladie, accident
+      du travail, congé ou absence autorisée suspend la période d'essai, qui est
+      prolongée d'une durée égale à l'absence. Le compteur "pause" et reprend
+      au retour du salarié.
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1643"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Période d'essai
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071194"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1221-19 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Durée
+       ═══════════════════════════════════════════ -->
+  <h2 id="duree">Durée maximale légale</h2>
+
+  <h3>CDI</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Statut</th>
+        <th>Durée initiale maximale</th>
+        <th>Durée maximale avec renouvellement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ouvriers et employés</td>
+        <td><strong>2 mois</strong></td>
+        <td>4 mois</td>
+      </tr>
+      <tr>
+        <td>Agents de maîtrise et techniciens</td>
+        <td><strong>3 mois</strong></td>
+        <td>6 mois</td>
+      </tr>
+      <tr>
+        <td>Cadres</td>
+        <td><strong>4 mois</strong></td>
+        <td>8 mois</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>CDD</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Durée du CDD</th>
+        <th>Période d'essai maximale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CDD inférieur à 6 mois</td>
+        <td>1 jour par semaine de contrat, dans la limite de <strong>2 semaines</strong></td>
+      </tr>
+      <tr>
+        <td>CDD de 6 mois ou plus</td>
+        <td><strong>1 mois maximum</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Ces durées sont des maxima légaux.</strong> Votre convention collective
+      ou votre contrat de travail peut prévoir une durée plus courte — ce qui est
+      favorable au salarié — mais jamais une durée plus longue que le plafond légal.
+      En cas de doute, consultez votre convention collective (code IDCC sur votre bulletin de paie).
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071194"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1221-19 à L1221-24 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Renouvellement
+       ═══════════════════════════════════════════ -->
+  <h2 id="renouvellement">Le renouvellement</h2>
+
+  <p>
+    La période d'essai peut être renouvelée <strong>une seule fois</strong>,
+    à condition que deux conditions soient simultanément remplies :
+  </p>
+
+  <ol>
+    <li>
+      Un <strong>accord collectif de branche</strong> le prévoit explicitement
+      (il ne suffit pas que l'accord d'entreprise ou le contrat le prévoit)
+    </li>
+    <li>
+      Le salarié donne son <strong>accord exprès</strong> au renouvellement —
+      de préférence par écrit, avant l'expiration de la période initiale
+    </li>
+  </ol>
+
+  <p>
+    La reconduction automatique par simple mention dans le contrat, sans accord
+    de branche, est <strong>nulle</strong>. La durée totale (période initiale +
+    renouvellement) ne peut en aucun cas dépasser les plafonds légaux :
+    4 mois pour les ouvriers/employés, 6 mois pour les agents de maîtrise,
+    8 mois pour les cadres.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Un renouvellement sans accord de branche et sans accord écrit du salarié est nul.</strong>
+      Dans ce cas, la période d'essai est réputée expirée à la date initialement prévue.
+      Tout licenciement prononcé après cette date ne peut plus s'appuyer sur la liberté
+      de rupture de la période d'essai — il doit respecter la procédure de licenciement
+      classique (motif réel et sérieux, entretien préalable, etc.).
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1643"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Renouvellement de la période d'essai
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Rupture employeur
+       ═══════════════════════════════════════════ -->
+  <h2 id="rupture-employeur">Rupture par l'employeur</h2>
+
+  <p>
+    L'employeur peut mettre fin à la période d'essai <strong>librement et sans
+    motif à fournir</strong>. Il n'a pas à respecter la procédure de licenciement
+    (pas d'entretien préalable, pas de lettre motivée). Il doit en revanche
+    respecter un <strong>délai de prévenance</strong> selon la durée de présence
+    du salarié dans l'entreprise.
+  </p>
+
+  <h3>Délais de prévenance de l'employeur</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Présence dans l'entreprise</th>
+        <th>Délai de prévenance à respecter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Moins de 8 jours</td>
+        <td><strong>24 heures</strong></td>
+      </tr>
+      <tr>
+        <td>De 8 jours à 1 mois</td>
+        <td><strong>48 heures</strong></td>
+      </tr>
+      <tr>
+        <td>De 1 mois à 3 mois</td>
+        <td><strong>2 semaines</strong></td>
+      </tr>
+      <tr>
+        <td>Plus de 3 mois</td>
+        <td><strong>1 mois</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Si l'employeur ne respecte pas ce délai, il doit verser une
+    <strong>indemnité compensatrice de prévenance</strong>, égale aux
+    salaires et avantages qui auraient été dus pendant la période de
+    prévenance non respectée.
+  </p>
+
+  <h3>Interdictions de rupture</h3>
+
+  <p>
+    Malgré la liberté de rupture, l'employeur ne peut pas mettre fin à la
+    période d'essai dans les cas suivants :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Motif discriminatoire</strong> (origine, sexe, état de santé,
+      grossesse, activité syndicale…) — la rupture serait nulle
+    </li>
+    <li>
+      <strong>Pendant un arrêt pour accident du travail ou maladie
+      professionnelle</strong> — protection absolue sauf faute grave
+      ou impossibilité de maintien étrangère à l'AT/MP
+    </li>
+    <li>
+      <strong>Pendant un congé maternité</strong> — protection absolue
+      pendant la durée du congé
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019354799"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1221-25 C. trav. (délais de prévenance)
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Rupture salarié
+       ═══════════════════════════════════════════ -->
+  <h2 id="rupture-salarie">Rupture par le salarié</h2>
+
+  <p>
+    Le salarié peut également mettre fin à la période d'essai
+    <strong>librement et sans motif</strong>. Il doit respecter un délai
+    de prévenance plus court que celui de l'employeur :
+  </p>
+
+  <ul>
+    <li><strong>48 heures</strong> en règle générale</li>
+    <li>
+      <strong>24 heures</strong> si la présence dans l'entreprise est
+      inférieure à 8 jours
+    </li>
+  </ul>
+
+  <p>
+    La rupture à l'initiative du salarié n'entraîne ni indemnité de rupture,
+    ni préavis au-delà de ces délais de prévenance. Le salarié reçoit son
+    solde de tout compte (salaires + congés payés acquis) mais aucune
+    indemnité spécifique.
+  </p>
+
+  <h3>Droit au chômage en cas de rupture par le salarié</h3>
+
+  <p>
+    En règle générale, le salarié qui rompt lui-même sa période d'essai est
+    assimilé à un <strong>démissionnaire</strong> et <strong>n'ouvre pas droit
+    aux ARE</strong>. France Travail considère qu'il a volontairement mis fin
+    à son contrat.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Rompre vous-même votre période d'essai n'ouvre pas droit aux ARE.</strong>
+      Si c'est l'employeur qui met fin à la période d'essai, vous bénéficiez des
+      allocations chômage (sous conditions d'affiliation). Si c'est vous, vous êtes
+      dans la même situation qu'un démissionnaire — pas d'ARE sauf cas de démission
+      légitime ou réexamen après 4 mois de chômage.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1643"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Rupture de la période d'essai
+    </a>
+  </p>
+
+</ArticleLayout>

@@ -1,0 +1,475 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition',    label: 'Qu\'est-ce que la faute grave ?'         },
+  { id: 'exemples',      label: 'Exemples de fautes graves reconnues'     },
+  { id: 'procedure',     label: 'La procédure disciplinaire'              },
+  { id: 'consequences',  label: 'Les conséquences financières'            },
+  { id: 'contestation',  label: 'Comment contester ?'                     },
+  { id: 'faq',           label: 'Questions fréquentes'                    },
+];
+
+const summary = [
+  "La faute grave est une faute qui rend impossible le maintien du salarié dans l'entreprise — elle prive des indemnités de licenciement et du préavis.",
+  "La procédure disciplinaire doit être strictement respectée : entretien préalable, délais, lettre motivée.",
+  "Vous pouvez contester la qualification de faute grave aux Prud'hommes — les juges requalifient souvent en faute simple voire en licenciement sans cause réelle et sérieuse.",
+];
+
+const faq = [
+  {
+    question: "Peut-on être mis à pied avant l'entretien préalable ?",
+    answer:   "Oui. L'employeur peut prononcer une mise à pied conservatoire dès qu'il a connaissance des faits reprochés, avant même la convocation à l'entretien préalable. Cette mise à pied suspend le contrat de travail mais ne constitue pas encore une sanction. Si le licenciement est finalement prononcé pour faute grave, la période de mise à pied conservatoire n'est pas rémunérée. Si le licenciement est requalifié en faute simple ou annulé, les salaires de cette période doivent être versés.",
+  },
+  {
+    question: "La faute grave prive-t-elle du chômage ?",
+    answer:   "Non. Même en cas de licenciement pour faute grave, vous avez droit aux allocations chômage (ARE) de France Travail, dès lors que vous remplissez les conditions d'affiliation (avoir travaillé au moins 6 mois sur les 24 derniers mois). La faute grave ne prive que du préavis et de l'indemnité légale de licenciement — elle n'affecte pas vos droits à l'assurance chômage.",
+  },
+  {
+    question: "Que faire si la lettre de licenciement ne mentionne pas clairement les faits ?",
+    answer:   "La lettre de licenciement doit impérativement mentionner les faits précis reprochés. Une lettre vague ou générique (\"comportement inapproprié\", \"insuffisance de résultats\" sans détails) est insuffisante. Vous pouvez demander à votre employeur de préciser les motifs par courrier dans les 15 jours suivant la notification. Si les motifs restent insuffisants, c'est un argument fort pour obtenir la requalification en licenciement sans cause réelle et sérieuse devant les Prud'hommes.",
+  },
+  {
+    question: "L'employeur peut-il licencier pour faute grave pendant un arrêt maladie ?",
+    answer:   "En principe oui pour une maladie ordinaire, si la faute a été commise avant l'arrêt ou est étrangère à l'état de santé. Pour un accident du travail ou une maladie professionnelle en revanche, la protection est renforcée : le licenciement pour faute grave reste possible mais l'employeur doit en rapporter la preuve de façon particulièrement rigoureuse, et la nullité est prononcée en cas de doute. En cas de licenciement pendant un arrêt, l'assistance d'un conseil juridique est fortement recommandée.",
+  },
+  {
+    question: "Quelle est la différence entre faute grave et faute lourde ?",
+    answer:   "La faute grave rend impossible le maintien dans l'entreprise même pendant le préavis — elle prive du préavis et de l'indemnité de licenciement, mais pas des congés payés ni du chômage. La faute lourde est d'une gravité encore supérieure : elle implique une intention caractérisée de nuire à l'employeur ou à l'entreprise. Elle peut exposer le salarié à des dommages-intérêts et prive également de l'indemnité compensatrice de congés payés (sauf disposition conventionnelle plus favorable). En pratique, la faute lourde est très rarement retenue par les juges.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Licenciement économique : procédure et droits',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Licenciement pour inaptitude : procédure et indemnités',
+    href:         '/licenciement-pour-inaptitude/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Contester son licenciement',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Barème Macron',                 href: '/bareme-macron/'          },
+  { title: "Conseil prud'hommes démarche",  href: '/prudhommes/'             },
+  { title: 'Solde de tout compte',          href: '/solde-de-tout-compte/'   },
+  { title: 'Indemnité légale licenciement', href: '/indemnite-licenciement/' },
+];
+---
+
+<ArticleLayout
+  title="Licenciement pour faute grave : procédure, droits et recours en 2026"
+  description="Licenciement pour faute grave en 2026 : définition jurisprudentielle, exemples reconnus, procédure obligatoire, conséquences financières (ARE, congés payés) et comment contester aux Prud'hommes."
+  publishedDate="2026-03-30"
+  modifiedDate="2026-03-20"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={8}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce que la faute grave ?</h2>
+
+  <p>
+    La faute grave est définie par la jurisprudence comme la faute qui
+    <strong>rend impossible le maintien du salarié dans l'entreprise,
+    même pendant la durée du préavis</strong>. Elle ne résulte pas d'un
+    simple manquement à une obligation contractuelle : elle suppose un
+    comportement d'une gravité telle que toute poursuite de la relation
+    de travail, même temporaire, devient impossible
+    (Code du travail, art. L1234-1 et suivants).
+  </p>
+
+  <h3>Faute simple, grave ou lourde : quelles différences ?</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type de faute</th>
+        <th>Définition</th>
+        <th>Conséquences pour le salarié</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Faute simple</strong></td>
+        <td>Manquement aux obligations contractuelles sans gravité particulière</td>
+        <td>Préavis + indemnité légale de licenciement maintenus</td>
+      </tr>
+      <tr>
+        <td><strong>Faute grave</strong></td>
+        <td>Faute rendant impossible le maintien dans l'entreprise, même pendant le préavis</td>
+        <td>Pas de préavis, pas d'indemnité légale de licenciement</td>
+      </tr>
+      <tr>
+        <td><strong>Faute lourde</strong></td>
+        <td>Faute grave avec intention caractérisée de nuire à l'employeur ou à l'entreprise</td>
+        <td>Pas de préavis, pas d'indemnité légale, dommages-intérêts possibles à la charge du salarié</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">⚖️</div>
+    <div class="alert__body">
+      <strong>La qualification de faute grave est appréciée par les juges —
+      l'employeur ne décide pas seul.</strong>
+      Ce qui est considéré comme "grave" par l'employeur ne l'est pas forcément
+      pour le tribunal. Les Prud'hommes examinent les circonstances, l'ancienneté,
+      les antécédents disciplinaires et la proportionnalité de la sanction avant
+      de valider ou non la qualification.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2855"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Faute grave
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901112"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1234-1 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Exemples
+       ═══════════════════════════════════════════ -->
+  <h2 id="exemples">Exemples de fautes graves reconnues</h2>
+
+  <p>
+    La jurisprudence de la Cour de cassation offre une grille de lecture sur les
+    faits reconnus ou non comme constitutifs d'une faute grave. Les circonstances
+    propres à chaque affaire restent déterminantes.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Faute invoquée</th>
+        <th>Qualification jurisprudentielle</th>
+        <th>Nuances importantes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Abandon de poste non justifié</td>
+        <td>✅ Grave (si répété ou prolongé)</td>
+        <td>Un abandon isolé peut être faute simple selon les circonstances</td>
+      </tr>
+      <tr>
+        <td>Violence physique sur collègue ou supérieur</td>
+        <td>✅ Grave voire lourde</td>
+        <td>Même un seul acte suffit généralement</td>
+      </tr>
+      <tr>
+        <td>Vol ou détournement de fonds</td>
+        <td>✅ Grave voire lourde</td>
+        <td>Le montant importe peu — c'est l'acte lui-même qui est sanctionné</td>
+      </tr>
+      <tr>
+        <td>Harcèlement moral ou sexuel</td>
+        <td>✅ Grave (obligation de sécurité)</td>
+        <td>L'employeur peut aussi être sanctionné s'il ne l'a pas prévenu</td>
+      </tr>
+      <tr>
+        <td>Divulgation de secrets professionnels</td>
+        <td>✅ Grave (selon les fonctions)</td>
+        <td>La clause de confidentialité renforce la qualification</td>
+      </tr>
+      <tr>
+        <td>Insubordination répétée et caractérisée</td>
+        <td>✅ Grave (si répétée après avertissements)</td>
+        <td>Un seul refus ponctuel = faute simple en général</td>
+      </tr>
+      <tr>
+        <td>Absences répétées non justifiées après avertissements</td>
+        <td>✅ Grave (si avertissements préalables)</td>
+        <td>Sans avertissement préalable : faute simple seulement</td>
+      </tr>
+      <tr>
+        <td>Erreur professionnelle isolée</td>
+        <td>⚠️ Souvent requalifiée en faute simple</td>
+        <td>L'erreur sans intention de nuire n'est pas une faute grave</td>
+      </tr>
+      <tr>
+        <td>Retards occasionnels</td>
+        <td>⚠️ Souvent requalifiée en faute simple</td>
+        <td>Sauf si répétés et après mises en demeure sans résultat</td>
+      </tr>
+      <tr>
+        <td>Conflit verbal unique sans violence</td>
+        <td>⚠️ Souvent requalifiée en faute simple</td>
+        <td>Le contexte et les éventuelles provocations sont pris en compte</td>
+      </tr>
+      <tr>
+        <td>Usage professionnel du téléphone personnel</td>
+        <td>⚠️ Rarement grave</td>
+        <td>Sauf usage abusif caractérisé ou divulgation de données confidentielles</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source : jurisprudence Cour de cassation (chambre sociale) —
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2855"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Procédure
+       ═══════════════════════════════════════════ -->
+  <h2 id="procedure">La procédure disciplinaire obligatoire</h2>
+
+  <p>
+    L'employeur doit impérativement respecter la procédure disciplinaire prévue
+    par le Code du travail. Tout manquement peut entraîner la nullité du licenciement
+    ou l'octroi de dommages-intérêts supplémentaires, indépendamment de la réalité de la faute.
+  </p>
+
+  <h3>Les 6 étapes dans l'ordre chronologique</h3>
+
+  <ol>
+    <li>
+      <strong>Mise à pied conservatoire</strong> <em>(optionnelle mais fréquente)</em><br>
+      L'employeur peut suspendre immédiatement le salarié dès la découverte des faits,
+      sans attendre l'entretien. Le contrat est suspendu mais pas encore rompu.
+      Le salaire de la période n'est pas versé si la faute grave est confirmée ;
+      il est dû si le licenciement est requalifié en faute simple ou annulé.
+    </li>
+    <li>
+      <strong>Convocation à entretien préalable</strong><br>
+      Par lettre recommandée avec AR ou remise en main propre contre décharge.
+      La lettre doit indiquer l'objet, la date, l'heure, le lieu et la possibilité
+      d'être assisté. <strong>Délai minimum : 5 jours ouvrables</strong> entre
+      la présentation de la lettre et la date de l'entretien.
+    </li>
+    <li>
+      <strong>Entretien préalable</strong><br>
+      L'employeur expose les faits reprochés et recueille les explications du salarié.
+      Le salarié peut se faire assister par un représentant du personnel ou,
+      en l'absence de représentants dans l'entreprise, par un conseiller extérieur
+      inscrit sur la liste préfectorale.
+    </li>
+    <li>
+      <strong>Délai de réflexion de l'employeur</strong><br>
+      Après l'entretien, l'employeur doit respecter un <strong>délai minimum
+      de 2 jours ouvrables</strong> avant de notifier sa décision.
+      Il ne peut pas licencier le jour même de l'entretien.
+    </li>
+    <li>
+      <strong>Notification du licenciement par LRAR</strong><br>
+      La lettre doit énoncer précisément et clairement les faits constitutifs
+      de la faute grave. <strong>Délai maximum : 1 mois</strong> à compter
+      de la date de l'entretien préalable. Au-delà, la procédure est nulle.
+    </li>
+    <li>
+      <strong>Remise des documents de fin de contrat</strong><br>
+      Certificat de travail, attestation France Travail, solde de tout compte —
+      remis le dernier jour de travail effectif (ou à la fin de la mise à pied
+      conservatoire si elle précède le licenciement).
+    </li>
+  </ol>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Tout vice de procédure peut invalider le licenciement.</strong>
+      Un délai de convocation inférieur à 5 jours ouvrables, l'absence d'entretien
+      préalable, une lettre de licenciement insuffisamment motivée ou la notification
+      au-delà d'un mois peut entraîner la nullité du licenciement ou des
+      dommages-intérêts supplémentaires — même si la faute est réelle.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901080"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1232-2 à L1232-6 C. trav.
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Conséquences financières
+       ═══════════════════════════════════════════ -->
+  <h2 id="consequences">Les conséquences financières</h2>
+
+  <p>
+    La faute grave n'emporte pas les mêmes conséquences que la faute simple ou
+    la faute lourde. Voici le récapitulatif complet :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Droit</th>
+        <th>Faute simple</th>
+        <th>Faute grave</th>
+        <th>Faute lourde</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Préavis</td>
+        <td>✅ Oui</td>
+        <td>❌ Non</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>✅ Oui</td>
+        <td>❌ Non</td>
+        <td>❌ Non</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de congés payés</td>
+        <td>✅ Oui</td>
+        <td>✅ Oui</td>
+        <td>✅ Oui (depuis arrêt Cour de cassation 2024 aligné sur droit européen)</td>
+      </tr>
+      <tr>
+        <td>Chômage (ARE)</td>
+        <td>✅ Oui</td>
+        <td>✅ Oui</td>
+        <td>✅ Oui</td>
+      </tr>
+      <tr>
+        <td>Dommages-intérêts à la charge du salarié</td>
+        <td>❌ Non</td>
+        <td>❌ Non</td>
+        <td>⚠️ Possible</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Nouveauté 2024 :</strong> suite à plusieurs arrêts de la Cour de cassation
+      alignant le droit français sur le droit européen, l'indemnité compensatrice de
+      congés payés est désormais due même en cas de faute lourde. L'employeur ne peut
+      plus s'en prévaloir pour supprimer ce droit.
+    </div>
+  </div>
+
+  <div class="alert alert--success">
+    <div class="alert__icon">✅</div>
+    <div class="alert__body">
+      <strong>Même en cas de faute grave, vous conservez des droits essentiels :</strong>
+      <ul>
+        <li>L'indemnité compensatrice de congés payés (CP acquis non pris)</li>
+        <li>Le droit au chômage (ARE), sous conditions d'affiliation</li>
+        <li>Le certificat de travail et l'attestation France Travail</li>
+      </ul>
+      Ces droits ne peuvent pas être supprimés par l'employeur, quelle que soit la faute.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F987"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Indemnités de licenciement
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Contestation
+       ═══════════════════════════════════════════ -->
+  <h2 id="contestation">Comment contester le licenciement pour faute grave ?</h2>
+
+  <p>
+    Un licenciement pour faute grave peut être contesté devant le
+    <strong>Conseil de prud'hommes</strong> dans un délai de
+    <strong>12 mois</strong> à compter de la notification du licenciement
+    (art. L1471-1 du Code du travail).
+  </p>
+
+  <h3>Les principaux motifs de contestation</h3>
+
+  <ul>
+    <li>
+      <strong>Qualification exagérée</strong> — les faits sont réels mais ne justifient
+      pas une faute grave (ex. : erreur professionnelle sans intention de nuire)
+    </li>
+    <li>
+      <strong>Procédure non respectée</strong> — délai de convocation insuffisant,
+      absence d'entretien, lettre de licenciement non ou insuffisamment motivée
+    </li>
+    <li>
+      <strong>Faits non établis</strong> — l'employeur ne peut pas prouver les faits
+      reprochés (la charge de la preuve lui incombe)
+    </li>
+    <li>
+      <strong>Prescription de la faute</strong> — les faits étaient connus de l'employeur
+      depuis plus de 2 mois avant la convocation à l'entretien
+    </li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">⏱️</div>
+    <div class="alert__body">
+      <strong>La prescription des fautes : un argument souvent décisif.</strong>
+      L'employeur ne peut pas sanctionner un fait qu'il connaissait depuis plus de
+      <strong>2 mois</strong> avant la convocation à l'entretien préalable.
+      Si les faits reprochés dans la lettre de licenciement datent d'avant ce délai,
+      la faute est prescrite — c'est un argument fort devant les Prud'hommes.
+    </div>
+  </div>
+
+  <h3>Résultats possibles</h3>
+
+  <ul>
+    <li>
+      <strong>Requalification en faute simple</strong> → vous récupérez le préavis
+      et l'indemnité légale de licenciement
+    </li>
+    <li>
+      <strong>Requalification en licenciement sans cause réelle et sérieuse</strong>
+      → préavis + indemnité légale + dommages-intérêts selon le
+      <strong>barème Macron</strong> (fonction de l'ancienneté et de la taille
+      de l'entreprise)
+    </li>
+    <li>
+      <strong>Nullité du licenciement</strong> (vice de procédure grave ou
+      discrimination) → réintégration possible ou indemnité minimale
+      de 6 mois de salaire
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2149"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Contester un licenciement
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035652877"
+       target="_blank" rel="noopener">
+      Légifrance — art. L1471-1 C. trav.
+    </a>
+  </p>
+
+</ArticleLayout>
