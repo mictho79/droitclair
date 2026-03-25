@@ -1,0 +1,409 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition',   label: "Qu'est-ce que l'inaptitude ?"           },
+  { id: 'procedure',    label: 'La procédure de licenciement'            },
+  { id: 'reclassement', label: "L'obligation de reclassement"            },
+  { id: 'indemnites',   label: 'Les indemnités dues'                     },
+  { id: 'pieges',       label: 'Les pièges à éviter'                     },
+  { id: 'faq',          label: 'Questions fréquentes'                    },
+];
+
+const summary = [
+  "Le licenciement pour inaptitude est possible quand le médecin du travail déclare le salarié inapte à son poste — l'employeur doit d'abord chercher un reclassement.",
+  "L'indemnité est majorée (×2) si l'inaptitude est d'origine professionnelle (accident du travail ou maladie professionnelle).",
+  "Le « piège » principal : accepter trop vite la rupture sans vérifier si l'employeur a bien respecté son obligation de reclassement.",
+];
+
+const faq = [
+  {
+    question: "Peut-on refuser le reclassement proposé par l'employeur ?",
+    answer:   "Oui. Le salarié peut refuser les postes de reclassement proposés, notamment s'ils ne respectent pas les restrictions médicales ou impliquent une modification substantielle du contrat (baisse de salaire, changement de lieu). Le refus n'entraîne pas la perte des indemnités — l'employeur procède alors au licenciement pour inaptitude et impossibilité de reclassement, avec versement des indemnités habituelles. Il est néanmoins recommandé de motiver le refus par écrit.",
+  },
+  {
+    question: "L'inaptitude ouvre-t-elle droit au chômage ?",
+    answer:   "Oui. Le licenciement pour inaptitude est un licenciement à l'initiative de l'employeur. Il ouvre droit à l'ARE (Aide au Retour à l'Emploi) dans les conditions habituelles, sous réserve d'avoir cotisé suffisamment (au moins 6 mois sur les 24 derniers mois). Il n'y a pas de délai de carence spécifique lié à l'inaptitude.",
+  },
+  {
+    question: "Combien de temps l'employeur a-t-il pour licencier après l'avis d'inaptitude ?",
+    answer:   "L'employeur dispose d'un délai d'1 mois à compter de la date de l'avis d'inaptitude pour soit reclasser le salarié, soit engager la procédure de licenciement. Passé ce délai sans action, il est tenu de reprendre le versement du salaire, comme si le salarié avait repris son poste. Ce délai d'1 mois est impératif et souvent méconnu des employeurs.",
+  },
+  {
+    question: "Peut-on contester l'avis d'inaptitude du médecin du travail ?",
+    answer:   "Oui, dans un délai de 15 jours à compter de la notification de l'avis. Le salarié (ou l'employeur) peut saisir le conseil de prud'hommes en référé pour contester les éléments de nature médicale. Le juge peut ordonner une expertise médicale. Ce recours suspend le délai d'1 mois dont dispose l'employeur pour reclasser ou licencier.",
+  },
+  {
+    question: "Quelle différence entre inaptitude et invalidité Sécurité sociale ?",
+    answer:   "Ce sont deux notions distinctes. L'inaptitude est un constat du médecin du travail sur l'incapacité à occuper un poste précis dans une entreprise précise — elle relève du droit du travail. L'invalidité est reconnue par la CPAM et concerne la capacité générale à travailler — elle relève de la Sécurité sociale. Un salarié peut être déclaré inapte sans être invalide, et inversement. Les deux statuts peuvent coexister et donnent accès à des indemnisations différentes.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Licenciement économique : droits et recours',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Arrêt maladie et maintien de salaire',
+    href:         '/arret-maladie-salaire/',
+    category:     'Arrêt maladie',
+    categorySlug: 'arret-maladie',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Indemnité légale de licenciement',   href: '/indemnite-licenciement/'    },
+  { title: 'Médecin du travail : rôle et droits', href: '/medecin-du-travail/'       },
+  { title: "Prise d'acte de rupture",            href: '/prise-acte-rupture/'        },
+  { title: 'Contester un licenciement',          href: '/contester-licenciement/'    },
+];
+---
+
+<ArticleLayout
+  title="Licenciement pour inaptitude : droits, indemnités et pièges à éviter en 2026"
+  description="Licenciement pour inaptitude en 2026 : procédure, obligation de reclassement, indemnités doublées en cas d'AT/MP, et pièges à éviter. Guide complet pour salariés."
+  publishedDate="2026-01-26"
+  modifiedDate="2026-03-10"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={9}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce que l'inaptitude au travail ?</h2>
+
+  <p>
+    L'inaptitude au travail est le constat médical selon lequel un salarié
+    n'est plus en mesure d'occuper son poste ou tout poste dans l'entreprise,
+    en raison de son état de santé. Ce constat ne peut être établi que par
+    le <strong>médecin du travail</strong> — ni le médecin traitant, ni un
+    spécialiste ne peut prononcer l'inaptitude au sens du droit du travail.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Seul le médecin du travail peut déclarer l'inaptitude.</strong>
+      Un certificat de votre médecin traitant ou d'un médecin spécialiste
+      n'a aucune valeur juridique pour déclencher la procédure de licenciement
+      pour inaptitude. L'avis du médecin du travail est indispensable.
+    </div>
+  </div>
+
+  <h3>Inaptitude partielle et inaptitude totale</h3>
+
+  <p>
+    Le médecin du travail peut prononcer une inaptitude <strong>partielle</strong>
+    (le salarié peut occuper certains postes avec des restrictions) ou
+    <strong>totale</strong> (aucun poste dans l'entreprise n'est compatible
+    avec son état de santé). Dans les deux cas, l'employeur est tenu de
+    rechercher un reclassement en tenant compte des préconisations médicales.
+  </p>
+
+  <h3>Origine professionnelle ou non — une distinction déterminante</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Critère</th>
+        <th>Inaptitude non professionnelle</th>
+        <th>Inaptitude professionnelle (AT/MP)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Origine</td>
+        <td>Maladie ordinaire, accident de la vie privée</td>
+        <td>Accident du travail ou maladie professionnelle reconnu(e) par la CPAM</td>
+      </tr>
+      <tr>
+        <td>Indemnité de licenciement</td>
+        <td>Taux légal normal (1/4 mois/an)</td>
+        <td>Taux légal doublé (1/2 mois/an)</td>
+      </tr>
+      <tr>
+        <td>Indemnité spéciale d'inaptitude</td>
+        <td>Non applicable</td>
+        <td>Oui — égale à l'indemnité compensatrice de préavis</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de préavis</td>
+        <td>Versée (non effectuée)</td>
+        <td>Versée (non effectuée)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F726"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Licenciement pour inaptitude
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Procédure
+       ═══════════════════════════════════════════ -->
+  <h2 id="procedure">La procédure de licenciement pour inaptitude</h2>
+
+  <p>
+    La procédure est strictement encadrée. Tout manquement de l'employeur
+    peut entraîner la requalification du licenciement en licenciement
+    sans cause réelle et sérieuse.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Visite médicale de reprise</strong> — obligatoire après tout arrêt
+      de travail de plus de 30 jours (maladie) ou après un accident du travail,
+      quelle qu'en soit la durée. Cette visite doit avoir lieu dans les 8 jours
+      suivant la reprise effective ou prévue.
+    </li>
+    <li>
+      <strong>Avis d'inaptitude du médecin du travail</strong> — depuis 2017,
+      un seul avis suffit (contre deux auparavant). Le médecin peut prononcer
+      l'inaptitude en une seule visite s'il estime qu'un second examen est inutile.
+    </li>
+    <li>
+      <strong>Recherche de reclassement</strong> — l'employeur dispose d'<strong>1 mois</strong>
+      à compter de l'avis d'inaptitude pour proposer un poste adapté ou constater
+      l'impossibilité de reclassement.
+    </li>
+    <li>
+      <strong>Convocation à l'entretien préalable</strong> — si le reclassement est
+      impossible ou refusé, l'employeur engage la procédure de licenciement en
+      convoquant le salarié à un entretien préalable.
+    </li>
+    <li>
+      <strong>Notification du licenciement</strong> — la lettre de licenciement
+      est envoyée au minimum 2 jours ouvrables après l'entretien préalable.
+    </li>
+    <li>
+      <strong>Préavis non effectué mais payé</strong> — le salarié inapte ne peut
+      pas exécuter son préavis, mais l'indemnité compensatrice lui est due
+      (sauf inaptitude d'origine professionnelle, où une indemnité spéciale
+      se substitue au préavis).
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://code.travail.gouv.fr/fiche-service-public/licenciement-pour-inaptitude-dorigine-non-professionnelle"
+       target="_blank" rel="noopener">
+      Code du travail numérique — Licenciement pour inaptitude
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Reclassement
+       ═══════════════════════════════════════════ -->
+  <h2 id="reclassement">L'obligation de reclassement — le point clé</h2>
+
+  <p>
+    Avant de pouvoir licencier, l'employeur est tenu de rechercher
+    <strong>sérieusement et loyalement</strong> un poste de reclassement compatible
+    avec les restrictions médicales émises par le médecin du travail.
+    Il ne peut pas se contenter d'une démarche de façade.
+  </p>
+
+  <h3>Périmètre de la recherche</h3>
+
+  <p>La recherche doit porter sur :</p>
+
+  <ul>
+    <li>L'ensemble des postes disponibles dans <strong>l'entreprise</strong>, y compris
+    dans les autres établissements</li>
+    <li>Les postes disponibles dans le <strong>groupe</strong> auquel appartient
+    l'entreprise, en France, si les activités, l'organisation ou le lieu de travail
+    permettent d'effectuer tout ou partie des tâches</li>
+  </ul>
+
+  <h3>Propositions de reclassement</h3>
+
+  <p>
+    Les postes proposés doivent être <strong>aussi comparables que possible</strong>
+    à l'emploi précédent (même salaire, même qualification, même niveau de
+    responsabilité) et respecter scrupuleusement les préconisations du médecin
+    du travail. L'employeur peut proposer un poste moins bien rémunéré avec
+    l'accord du salarié, mais ne peut l'imposer unilatéralement.
+  </p>
+
+  <h3>Refus du salarié</h3>
+
+  <p>
+    Le salarié peut refuser les postes proposés, notamment s'ils ne correspondent
+    pas aux restrictions médicales ou impliquent une modification substantielle
+    du contrat. Le refus n'entraîne pas la perte des indemnités de licenciement.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Si l'employeur ne cherche pas sérieusement à vous reclasser</strong>,
+      le licenciement peut être requalifié en licenciement
+      <strong>sans cause réelle et sérieuse</strong> aux Prud'hommes.
+      Vous pourrez alors obtenir des dommages-intérêts en plus des indemnités légales.
+      Conservez toute trace des échanges sur le reclassement.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F726"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://code.travail.gouv.fr"
+       target="_blank" rel="noopener">
+      Code du travail numérique
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Indemnités
+       ═══════════════════════════════════════════ -->
+  <h2 id="indemnites">Les indemnités dues</h2>
+
+  <p>
+    Le montant des indemnités dépend de l'<strong>origine de l'inaptitude</strong>.
+    Si elle fait suite à un accident du travail (AT) ou à une maladie professionnelle
+    (MP) reconnue par la CPAM, les indemnités sont nettement plus élevées.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Indemnité</th>
+        <th>Inaptitude non professionnelle</th>
+        <th>Inaptitude professionnelle (AT/MP)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>1/4 de mois par année (taux normal)</td>
+        <td><strong>Double de l'indemnité légale (ou conv. si plus favorable)</strong></td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de préavis</td>
+        <td>Versée (préavis non effectué)</td>
+        <td>Versée (préavis non effectué)</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de congés payés</td>
+        <td>Versée normalement</td>
+        <td>Versée normalement</td>
+      </tr>
+      <tr>
+        <td>Indemnité spéciale d'inaptitude</td>
+        <td>Non applicable</td>
+        <td><strong>Oui — égale à l'indemnité compensatrice de préavis</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>L'indemnité doublée s'applique uniquement si l'inaptitude est reconnue
+      comme d'origine professionnelle par la CPAM.</strong> Vérifiez que votre dossier
+      AT/MP a bien été déclaré et accepté — sans cette reconnaissance, vous serez
+      traité comme une inaptitude non professionnelle.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F726"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-du-travail-ou-maladie-professionnelle"
+       target="_blank" rel="noopener">
+      Ameli.fr — AT/MP
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Pièges
+       ═══════════════════════════════════════════ -->
+  <h2 id="pieges">Les pièges à éviter</h2>
+
+  <h3>Piège 1 — Signer trop vite sans vérifier le reclassement</h3>
+
+  <p>
+    Ne signez aucun document avant d'avoir vérifié que l'employeur a effectivement
+    recherché des postes de reclassement. Demandez-lui par écrit la liste des
+    postes consultés et les raisons pour lesquelles aucun n'a pu vous être proposé.
+    Une recherche insuffisante peut faire basculer le licenciement en licenciement
+    sans cause réelle et sérieuse.
+  </p>
+
+  <h3>Piège 2 — Confondre inaptitude et insuffisance professionnelle</h3>
+
+  <p>
+    L'inaptitude est un état de santé constaté médicalement. L'insuffisance
+    professionnelle est liée aux performances du salarié. Certains employeurs
+    tentent de glisser de l'une à l'autre. Si votre employeur invoque une
+    incapacité à réaliser votre travail sans avis du médecin du travail,
+    il ne s'agit pas d'un licenciement pour inaptitude et la procédure
+    applicable est différente.
+  </p>
+
+  <h3>Piège 3 — Ne pas contester l'avis du médecin du travail</h3>
+
+  <p>
+    L'avis d'inaptitude peut être contesté devant le conseil de prud'hommes
+    dans un délai de <strong>15 jours</strong> à compter de sa notification.
+    Si vous estimez que l'avis ne reflète pas fidèlement votre état de santé
+    ou que la procédure n'a pas été respectée, ce recours peut modifier
+    substantiellement votre situation.
+  </p>
+
+  <h3>Piège 4 — Oublier de demander la reconnaissance AT/MP</h3>
+
+  <p>
+    Si votre inaptitude fait suite à un accident du travail ou à une maladie
+    que vous pensez être d'origine professionnelle, vérifiez impérativement
+    que le dossier AT/MP a bien été déclaré et instruit par la CPAM.
+    Sans cette reconnaissance, vous perdez le bénéfice des indemnités doublées
+    et de l'indemnité spéciale — soit souvent plusieurs milliers d'euros.
+  </p>
+
+  <p>
+    Le doublement s'applique à l'indemnité légale uniquement — si votre convention
+    collective prévoit une indemnité plus élevée que le double du légal, c'est
+    celle-ci qui s'applique.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F726"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://code.travail.gouv.fr"
+       target="_blank" rel="noopener">
+      Code du travail numérique
+    </a>
+  </p>
+
+</ArticleLayout>

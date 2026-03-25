@@ -1,0 +1,413 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+/* ── Modèle de lettre de contestation ──────────────────── */
+const contestationModel = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom de l'employeur / Raison sociale]
+À l'attention de [Nom du responsable RH]
+[Adresse de l'entreprise]
+
+Objet : Contestation du solde de tout compte
+
+Madame, Monsieur,
+
+Par lettre recommandée avec accusé de réception, je conteste
+formellement le solde de tout compte qui m'a été remis le [date],
+pour les motifs suivants :
+
+[Détaillez précisément les sommes contestées et les motifs :
+ex. « L'indemnité compensatrice de congés payés a été calculée
+sur la base de X jours, alors que j'en avais Y non pris. »]
+
+Je vous demande de bien vouloir régulariser ma situation
+dans un délai de 15 jours à compter de la réception
+de la présente.
+
+À défaut, je me réserve le droit de saisir le Conseil
+de prud'hommes compétent.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition',   label: "Qu'est-ce que le solde de tout compte ?"  },
+  { id: 'contenu',      label: 'Ce qu\'il doit contenir'                   },
+  { id: 'calcul',       label: 'Comment le calculer ?'                     },
+  { id: 'delai',        label: 'Délai de remise et sanctions'              },
+  { id: 'contestation', label: 'Comment contester ?'                       },
+  { id: 'faq',          label: 'Questions fréquentes'                      },
+];
+
+const summary = [
+  "Le solde de tout compte est un document obligatoire remis par l'employeur à la fin de tout contrat de travail, quel que soit le motif de rupture.",
+  "Il doit être remis avec le certificat de travail et l'attestation France Travail, au plus tard le dernier jour de travail.",
+  "Vous avez 6 mois pour contester son contenu par lettre recommandée — passé ce délai, il devient libératoire.",
+];
+
+const faq = [
+  {
+    question: "Doit-on signer le solde de tout compte ?",
+    answer:   "Vous n'êtes pas légalement obligé de signer immédiatement. Vous pouvez demander un délai pour vérifier les montants. Cependant, refuser de signer ne vous dispense pas de recevoir les sommes dues — l'employeur reste tenu de vous payer. Si vous signez avec des réserves, précisez-les explicitement sur le document : « Je signe ce reçu sous réserve des sommes concernant [élément précis] ». Ne formulez jamais de réserve générale non motivée.",
+  },
+  {
+    question: "Que faire si l'employeur refuse de remettre le solde de tout compte ?",
+    answer:   "L'employeur a l'obligation légale de vous remettre le solde de tout compte. En cas de refus ou de retard injustifié, vous pouvez le mettre en demeure par lettre recommandée avec AR. Si la situation persiste, saisissez le Conseil de prud'hommes en référé pour obtenir la remise du document et le paiement des sommes dues, avec éventuellement des dommages-intérêts pour le préjudice subi.",
+  },
+  {
+    question: "Le solde de tout compte est-il imposable ?",
+    answer:   "Cela dépend des éléments qui le composent. Le dernier salaire et l'indemnité de congés payés sont imposables comme des revenus ordinaires. L'indemnité légale de licenciement est exonérée d'impôt dans la limite de 2 fois le plafond annuel de la Sécurité sociale (soit environ 92 736 € en 2026). Les indemnités de rupture conventionnelle bénéficient d'une exonération similaire. Consultez votre déclaration de revenus ou un conseiller fiscal pour les cas complexes.",
+  },
+  {
+    question: "Peut-on contester après avoir signé ?",
+    answer:   "Oui, dans un délai de 6 mois à compter de la signature. La signature du reçu n'emporte pas acceptation des montants — elle atteste uniquement que vous avez bien reçu le document. Vous disposez de 6 mois pour contester par lettre recommandée avec AR. Passé ce délai, le solde de tout compte devient libératoire : l'employeur est définitivement quitte des sommes qui y figurent.",
+  },
+  {
+    question: "Quelle différence entre solde de tout compte et indemnité de licenciement ?",
+    answer:   "Le solde de tout compte est un document récapitulatif qui regroupe toutes les sommes dues à la fin du contrat, dont l'indemnité de licenciement fait partie si elle est applicable. L'indemnité de licenciement est une somme spécifique versée en compensation de la rupture du contrat à l'initiative de l'employeur — elle ne s'applique pas en cas de démission. Le solde de tout compte, lui, est remis quelle que soit la cause de rupture.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Lettre de démission CDI : modèle gratuit',
+    href:         '/lettre-de-demission-cdi/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Licenciement économique : droits et recours',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Calcul indemnité de licenciement',  href: '/indemnite-licenciement/'      },
+  { title: 'Certificat de travail',             href: '/certificat-de-travail/'       },
+  { title: 'Attestation France Travail',        href: '/attestation-france-travail/'  },
+  { title: 'Rupture conventionnelle',           href: '/rupture-conventionnelle/'     },
+];
+---
+
+<ArticleLayout
+  title="Solde de tout compte : calcul, délai et contestation en 2026"
+  description="Solde de tout compte en 2026 : que doit-il contenir, comment le calculer, dans quel délai le recevoir et comment le contester ? Guide complet avec modèle de lettre."
+  publishedDate="2026-01-19"
+  modifiedDate="2026-03-08"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce que le solde de tout compte ?</h2>
+
+  <p>
+    Le solde de tout compte est un <strong>document obligatoire</strong> que l'employeur
+    doit établir et remettre au salarié à la fin de tout contrat de travail — CDI, CDD,
+    rupture conventionnelle, licenciement ou démission. Il récapitule l'ensemble des
+    sommes versées lors de la rupture du contrat.
+  </p>
+
+  <p>
+    L'employeur remet le document contre signature d'un <strong>reçu</strong>. Ce reçu
+    constitue la preuve que le salarié a bien pris connaissance des montants indiqués.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Point crucial :</strong> signer le reçu du solde de tout compte
+      <strong>n'équivaut pas à accepter les montants</strong>. Vous disposez de
+      6 mois pour contester par lettre recommandée. La signature atteste uniquement
+      la réception du document, pas l'exactitude des sommes.
+    </div>
+  </div>
+
+  <h3>Qui est concerné ?</h3>
+
+  <p>
+    Tous les salariés, quelle que soit la nature de leur contrat ou le motif de rupture.
+    Le solde de tout compte est dû en cas de démission, de licenciement (pour faute ou
+    économique), de rupture conventionnelle, de fin de CDD ou de départ à la retraite.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F86"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Solde de tout compte
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Contenu
+       ═══════════════════════════════════════════ -->
+  <h2 id="contenu">Ce que doit contenir le solde de tout compte</h2>
+
+  <p>
+    Le solde de tout compte doit regrouper <strong>toutes les sommes dues</strong>
+    au salarié à la date de rupture du contrat. Un oubli ne libère pas l'employeur
+    de son obligation de paiement.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Élément</th>
+        <th>Concerne</th>
+        <th>Montant indicatif</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dernier salaire (prorata du mois)</td>
+        <td>Tous contrats</td>
+        <td>Salaire mensuel × jours travaillés / jours du mois</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de congés payés non pris</td>
+        <td>Tous contrats</td>
+        <td>Voir formule de calcul ci-dessous</td>
+      </tr>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>Licenciement (après 8 mois d'ancienneté)</td>
+        <td>Voir formule de calcul ci-dessous</td>
+      </tr>
+      <tr>
+        <td>Indemnité spécifique de rupture conventionnelle</td>
+        <td>Rupture conventionnelle</td>
+        <td>Au moins égale à l'indemnité légale de licenciement</td>
+      </tr>
+      <tr>
+        <td>Prime de précarité (10 % du brut)</td>
+        <td>CDD uniquement</td>
+        <td>10 % de la rémunération brute totale perçue pendant le CDD</td>
+      </tr>
+      <tr>
+        <td>Heures supplémentaires non payées</td>
+        <td>Si applicables</td>
+        <td>Selon le taux majoré prévu (25 % ou 50 %)</td>
+      </tr>
+      <tr>
+        <td>Remboursement de notes de frais en attente</td>
+        <td>Si applicables</td>
+        <td>Montant exact des frais justifiés non encore remboursés</td>
+      </tr>
+      <tr>
+        <td>13e mois ou prime d'ancienneté (au prorata)</td>
+        <td>Si prévu par contrat ou convention collective</td>
+        <td>Montant annuel × mois travaillés dans l'année / 12</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://code.travail.gouv.fr/fiche-service-public/le-solde-de-tout-compte"
+       target="_blank" rel="noopener">
+      Code du travail numérique — Solde de tout compte
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Calcul
+       ═══════════════════════════════════════════ -->
+  <h2 id="calcul">Comment calculer le solde de tout compte ?</h2>
+
+  <p>
+    Deux éléments concentrent la majorité des erreurs et des litiges :
+    l'indemnité de congés payés et l'indemnité de licenciement.
+    Voici comment les calculer.
+  </p>
+
+  <h3>Indemnité compensatrice de congés payés non pris</h3>
+
+  <p>La formule de référence :</p>
+
+  <p>
+    <strong>(Salaire brut annuel ÷ 12) × (jours de CP non pris ÷ 30)</strong>
+  </p>
+
+  <p>
+    <strong>Exemple :</strong> salarié avec un salaire de 2 500 € brut/mois
+    et 8 jours de congés payés non pris :
+  </p>
+
+  <ul>
+    <li>Salaire brut annuel = 2 500 × 12 = 30 000 €</li>
+    <li>Indemnité = (30 000 ÷ 12) × (8 ÷ 30) = 2 500 × 0,267 = <strong>666,67 €</strong></li>
+  </ul>
+
+  <p>
+    En pratique, l'employeur peut aussi utiliser la
+    <strong>règle du dixième</strong> (1/10 de la rémunération brute totale perçue
+    sur la période de référence) et retenir la méthode la plus favorable au salarié.
+  </p>
+
+  <h3>Indemnité légale de licenciement</h3>
+
+  <p>La formule légale (article R. 1234-2 du Code du travail) :</p>
+
+  <ul>
+    <li><strong>1/4 de mois de salaire</strong> par année d'ancienneté pour les 10 premières années</li>
+    <li><strong>1/3 de mois de salaire</strong> par année d'ancienneté au-delà de 10 ans</li>
+  </ul>
+
+  <p>
+    <strong>Exemple :</strong> salarié avec 5 ans d'ancienneté et un salaire de référence
+    de 2 500 € brut/mois :
+  </p>
+
+  <ul>
+    <li>Indemnité = 2 500 × (1/4) × 5 = <strong>3 125 €</strong></li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Ces formules sont les minima légaux.</strong> Votre convention collective
+      peut prévoir des montants plus favorables — vérifiez-la avant de valider
+      les chiffres proposés par votre employeur.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://code.travail.gouv.fr/fiche-service-public/calcul-de-lindemnite-legale-de-licenciement"
+       target="_blank" rel="noopener">
+      Code du travail numérique — Calcul de l'indemnité de licenciement
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Délai
+       ═══════════════════════════════════════════ -->
+  <h2 id="delai">Délai de remise et sanctions</h2>
+
+  <p>
+    La loi ne fixe pas de délai chiffré pour la remise du solde de tout compte.
+    En pratique, il doit être remis <strong>le dernier jour de travail effectif</strong>,
+    en même temps que les deux autres documents obligatoires.
+  </p>
+
+  <h3>Les trois documents obligatoires de fin de contrat</h3>
+
+  <ul>
+    <li>Le <strong>solde de tout compte</strong></li>
+    <li>Le <strong>certificat de travail</strong></li>
+    <li>L'<strong>attestation France Travail</strong> (anciennement attestation Pôle Emploi)</li>
+  </ul>
+
+  <h3>En cas de retard</h3>
+
+  <p>
+    Si l'employeur tarde à remettre le solde de tout compte sans justification,
+    le salarié peut réclamer des <strong>dommages-intérêts</strong> devant
+    le Conseil de prud'hommes. La jurisprudence considère que tout retard injustifié
+    cause un préjudice au salarié, notamment s'il retarde l'inscription à France Travail
+    et donc le versement des allocations.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F86"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Solde de tout compte
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Contestation
+       ═══════════════════════════════════════════ -->
+  <h2 id="contestation">Comment contester le solde de tout compte ?</h2>
+
+  <p>
+    Vous disposez d'un délai de <strong>6 mois à compter de la signature</strong>
+    pour contester le solde de tout compte. Passé ce délai, le document devient
+    <strong>libératoire</strong> : l'employeur est définitivement quitte des sommes
+    qui y figurent et vous ne pouvez plus réclamer quoi que ce soit devant les
+    Prud'hommes pour les éléments mentionnés.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Si vous n'avez pas signé le reçu</strong>,
+      les délais sont différents : 1 an pour contester
+      les éléments liés à la rupture du contrat, 2 ans
+      pour l'exécution du contrat, et 3 ans pour le
+      paiement des salaires (heures sup, etc.).
+      Source : Service-Public.fr
+    </div>
+  </div>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Ne signez jamais sous réserve générale.</strong> Une mention telle que
+      « signé sous toutes réserves » sans précision est sans valeur juridique.
+      Indiquez exactement l'élément contesté :
+      « Sous réserve du montant des congés payés, dont je conteste le calcul. »
+    </div>
+  </div>
+
+  <h3>La procédure de contestation</h3>
+
+  <ol>
+    <li>
+      <strong>Envoyez une lettre recommandée avec AR</strong> à votre employeur
+      dans les 6 mois suivant la signature, en précisant les sommes contestées
+      et les motifs.
+    </li>
+    <li>
+      <strong>En l'absence de réponse ou de régularisation</strong>, saisissez
+      le bureau de conciliation du Conseil de prud'hommes.
+    </li>
+    <li>
+      <strong>En cas d'échec de la conciliation</strong>, l'affaire est renvoyée
+      devant le bureau de jugement, qui tranche et peut condamner l'employeur
+      au paiement des sommes dues majorées d'intérêts.
+    </li>
+  </ol>
+
+  <CopyBlock content={contestationModel} label="Modèle de lettre de contestation" />
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F86"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://code.travail.gouv.fr"
+       target="_blank" rel="noopener">
+      Code du travail numérique
+    </a>
+  </p>
+
+</ArticleLayout>
