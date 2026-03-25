@@ -38,11 +38,39 @@ salutations distinguées.
 [Signature manuscrite]
 [Prénom Nom]`;
 
+/* ── Modèle simple ─────────────────────────────────────── */
+const simpleLetterModel = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom de l'employeur / Raison sociale]
+[Adresse de l'entreprise]
+
+Objet : Démission
+
+Madame, Monsieur,
+
+Je vous informe de ma décision de démissionner de mon poste
+de [intitulé du poste] au sein de [nom de l'entreprise].
+
+Je respecterai un préavis de [durée du préavis], dont le
+point de départ est fixé à ce jour. Mon dernier jour
+de travail sera le [date de fin de préavis].
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
 /* ── Données structurelles ─────────────────────────────── */
 const toc = [
   { id: 'definition',  label: "Qu'est-ce qu'une lettre de démission CDI ?" },
   { id: 'mentions',    label: 'Les mentions à inclure'                      },
-  { id: 'modele',      label: 'Modèle gratuit à copier'                    },
+  { id: 'modele',      label: 'Modèle complet à copier'                    },
+  { id: 'simple',      label: 'Lettre de démission simple'                 },
   { id: 'remise',      label: 'Comment remettre votre lettre ?'             },
   { id: 'apres',       label: 'Que se passe-t-il après ?'                  },
   { id: 'faq',         label: 'Questions fréquentes'                        },
@@ -80,29 +108,29 @@ const faq = [
 const relatedArticles = [
   {
     title:        'Préavis de démission CDI : durée et calcul',
-    href:         '/demission/preavis-demission/',
+    href:         '/preavis-demission/',
     category:     'Démission',
     categorySlug: 'demission',
   },
   {
     title:        'Démission et chômage : avez-vous droit aux ARE ?',
-    href:         '/demission/demission-chomage-droits/',
+    href:         '/demission-chomage/',
     category:     'Démission',
     categorySlug: 'demission',
   },
   {
     title:        'Rupture conventionnelle : alternative à la démission ?',
-    href:         '/rupture-conventionnelle/guide-complet/',
-    category:     'Rupture conventionnelle',
-    categorySlug: 'rupture-conventionnelle',
+    href:         '/rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
   },
 ];
 
 const sidebarLinks = [
-  { title: 'Calcul du préavis CDI selon votre convention',       href: '/preavis-demission/'              },
-  { title: 'Solde de tout compte : ce que doit verser l\'employeur', href: '/solde-de-tout-compte/'     },
-  { title: 'Démission suite à une faute de l\'employeur',        href: '/demission-chomage/'              },
-  { title: 'Attestation France Travail : qui la remet ?',        href: '/solde-de-tout-compte/' },
+  { title: 'Calcul du préavis CDI selon votre convention',          href: '/preavis-demission/'           },
+  { title: "Solde de tout compte : ce que doit verser l'employeur", href: '/solde-de-tout-compte/'        },
+  { title: "Démission suite à une faute de l'employeur",            href: '/demission-faute-employeur/'   },
+  { title: 'Attestation France Travail : qui la remet ?',           href: '/attestation-france-travail/'  },
 ];
 ---
 
@@ -242,6 +270,28 @@ const sidebarLinks = [
       <strong>Vérifiez la durée de votre préavis</strong> dans votre contrat de travail
       ou votre convention collective avant de compléter ce modèle. Elle peut varier de
       1 semaine à 3 mois selon votre situation.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Lettre simple
+       ═══════════════════════════════════════════ -->
+  <h2 id="simple">Lettre de démission simple (version courte)</h2>
+
+  <p>
+    Si votre situation est claire et sans conflit, cette version allégée
+    suffit. Elle contient les mentions indispensables sans formulations superflues.
+  </p>
+
+  <CopyBlock content={simpleLetterModel} label="Lettre de démission simple" />
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Quelle version choisir ?</strong>
+      La version courte convient pour un départ serein avec un employeur
+      coopératif. Préférez la <a href="#modele">version complète</a> en cas de
+      relation tendue ou de risque de contestation sur la date du préavis.
     </div>
   </div>
 

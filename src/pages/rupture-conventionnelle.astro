@@ -40,6 +40,7 @@ const toc = [
   { id: 'definition',   label: "Qu'est-ce que la rupture conventionnelle ?" },
   { id: 'procedure',    label: 'La procédure étape par étape'               },
   { id: 'indemnite',    label: "L'indemnité spécifique"                     },
+  { id: 'simulateur',   label: "Simulateur et calcul de l'indemnité"        },
   { id: 'retractation', label: 'Le délai de rétractation'                   },
   { id: 'chomage',      label: 'Rupture conv. et chômage'                   },
   { id: 'faq',          label: 'Questions fréquentes'                       },
@@ -311,6 +312,98 @@ const sidebarLinks = [
     <a href="https://code.travail.gouv.fr/outils/indemnite-licenciement"
        target="_blank" rel="noopener">
       Code du travail numérique — Simulateur d'indemnité
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Simulateur & calcul
+       ═══════════════════════════════════════════ -->
+  <h2 id="simulateur">Simulateur et calcul de l'indemnité de rupture conventionnelle</h2>
+
+  <p>
+    Pour calculer précisément votre indemnité, le
+    <strong>simulateur officiel</strong> du Code du travail numérique est la
+    référence : il intègre automatiquement votre convention collective.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Simulateur officiel :</strong>
+      <a href="https://code.travail.gouv.fr/outils/indemnite-licenciement"
+         target="_blank" rel="noopener">
+        code.travail.gouv.fr — Calcul d'indemnité
+      </a>.
+      Sélectionnez « Rupture conventionnelle » dans le menu déroulant.
+      Le résultat indiqué est le <em>minimum légal</em> — vous pouvez toujours négocier davantage.
+    </div>
+  </div>
+
+  <h3>Formule de calcul de l'indemnité de rupture conventionnelle</h3>
+
+  <p>La formule légale (art. R1237-19-1 du Code du travail) :</p>
+
+  <ul>
+    <li><strong>1/4 de mois</strong> de salaire de référence par année d'ancienneté pour les 10 premières années</li>
+    <li><strong>1/3 de mois</strong> de salaire de référence par année d'ancienneté au-delà de 10 ans</li>
+  </ul>
+
+  <p>
+    Le <strong>salaire de référence</strong> est le plus favorable entre :
+  </p>
+
+  <ul>
+    <li>La moyenne des <strong>12 derniers mois</strong> de salaire brut</li>
+    <li>La moyenne des <strong>3 derniers mois</strong> (les primes annuelles sont proratisées sur 1/12e)</li>
+  </ul>
+
+  <h3>Exemples de calcul d'indemnité</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ancienneté</th>
+        <th>Salaire de référence</th>
+        <th>Indemnité minimale</th>
+        <th>Formule appliquée</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2 ans</td>
+        <td>2 500 €/mois</td>
+        <td><strong>1 250 €</strong></td>
+        <td>2 500 × ¼ × 2</td>
+      </tr>
+      <tr>
+        <td>5 ans</td>
+        <td>3 000 €/mois</td>
+        <td><strong>3 750 €</strong></td>
+        <td>3 000 × ¼ × 5</td>
+      </tr>
+      <tr>
+        <td>12 ans</td>
+        <td>3 500 €/mois</td>
+        <td><strong>10 583 €</strong></td>
+        <td>(3 500 × ¼ × 10) + (3 500 × ⅓ × 2)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Ces montants sont des minimums légaux.</strong>
+      Votre convention collective peut prévoir des indemnités plus élevées.
+      Utilisez le simulateur officiel qui les intègre selon votre branche.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019068115"
+       target="_blank" rel="noopener">
+      Légifrance — Art. R1237-19-1 Code du travail
     </a>
   </p>
 

@@ -1,0 +1,408 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'principe',  label: 'Rupture libre des deux côtés'                },
+  { id: 'preavis',   label: 'Le délai de prévenance obligatoire'          },
+  { id: 'indemnite', label: 'Indemnités et droits financiers'             },
+  { id: 'abus',      label: "Abus de droit : quand l'employeur va trop loin" },
+  { id: 'chomage',   label: 'Rupture et droit au chômage'                 },
+  { id: 'faq',       label: 'Questions fréquentes'                        },
+];
+
+const summary = [
+  "Pendant la période d'essai, employeur et salarié peuvent rompre le contrat à tout moment, sans avoir à fournir de motif.",
+  "L'employeur doit respecter un délai de prévenance allant de 24 heures à 1 mois selon votre ancienneté — son non-respect entraîne une indemnité compensatrice.",
+  "Si c'est l'employeur qui rompt, vous avez droit au chômage (ARE). Si vous rompez vous-même, vous êtes assimilé à un démissionnaire.",
+];
+
+const faq = [
+  {
+    question: "L'employeur doit-il justifier la rupture de la période d'essai ?",
+    answer:   "Non. Pendant la période d'essai, l'employeur peut rompre le contrat sans motif réel et sérieux — c'est l'un des principes fondamentaux de la période d'essai. Il n'a pas à motiver sa décision ni à respecter une procédure de licenciement. La seule contrainte est de respecter le délai de prévenance légal. Toutefois, si la rupture est motivée par une raison discriminatoire (grossesse, état de santé, activité syndicale…), elle constitue un abus de droit sanctionnable.",
+  },
+  {
+    question: "Peut-on rompre la période d'essai par simple email ou à l'oral ?",
+    answer:   "Légalement, aucune forme n'est imposée. Cependant, pour l'employeur comme pour le salarié, une notification écrite (lettre remise en main propre ou recommandée avec AR) est fortement conseillée. Elle prouve la date de notification, point de départ du délai de prévenance, et évite tout litige sur la date effective de la rupture. Un email simple a une valeur probante faible.",
+  },
+  {
+    question: "Peut-on rompre la période d'essai pendant un arrêt maladie ordinaire ?",
+    answer:   "Oui, pour la maladie ordinaire — contrairement au CDI normal, l'arrêt maladie ne protège pas contre la rupture de la période d'essai. En revanche, si l'arrêt fait suite à un accident du travail ou une maladie professionnelle (AT/MP), la protection est renforcée : la rupture de la période d'essai est impossible pendant la suspension du contrat. La rupture durant un congé maternité ou paternité est également interdite.",
+  },
+  {
+    question: "Quelle est la différence entre rupture de période d'essai et licenciement ?",
+    answer:   "La rupture de période d'essai n'est pas un licenciement juridiquement. Elle ne nécessite pas de cause réelle et sérieuse, pas d'entretien préalable, pas de lettre motivée. L'employeur n'est pas tenu de verser l'indemnité légale de licenciement. En revanche, la rupture par l'employeur ouvre droit au chômage dans les mêmes conditions qu'un licenciement. Si la rupture est abusive (discriminatoire), le salarié peut saisir les Prud'hommes, qui peuvent requalifier la rupture ou accorder des dommages-intérêts.",
+  },
+  {
+    question: "Peut-on contester la rupture de la période d'essai aux Prud'hommes ?",
+    answer:   "Oui, mais le terrain de la contestation est limité. Vous ne pouvez pas contester la rupture au motif qu'elle manque de cause réelle et sérieuse. En revanche, vous pouvez contester : le non-respect du délai de prévenance (indemnité compensatrice due), un motif discriminatoire (grossesse, état de santé, activité syndicale), ou une rupture pendant une période protégée (AT/MP, maternité). Le délai de prescription est de 12 mois à compter de la notification de la rupture.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        "Période d'essai : durée et droits",
+    href:         '/periode-essai/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Rupture conventionnelle : procédure et indemnités',
+    href:         '/rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: "Période d'essai : durée et renouvellement", href: '/periode-essai/'          },
+  { title: "Prud'hommes : saisir le conseil",           href: '/prudhommes/'             },
+  { title: 'Démission et chômage',                      href: '/demission-chomage/'      },
+  { title: 'Rupture conventionnelle',                   href: '/rupture-conventionnelle/' },
+];
+---
+
+<ArticleLayout
+  title="Rupture de période d'essai : droits, délais et indemnités 2026"
+  description="Rupture de période d'essai en 2026 : qui peut rompre, délai de prévenance obligatoire, indemnités dues, abus de droit et droits au chômage. Guide complet salarié et employeur."
+  publishedDate="2026-03-25"
+  modifiedDate="2026-03-25"
+  category="Droits en cours de contrat"
+  categorySlug="droits-salarie"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Principe
+       ═══════════════════════════════════════════ -->
+  <h2 id="principe">Rupture libre des deux côtés</h2>
+
+  <p>
+    La période d'essai est conçue pour permettre à l'employeur d'évaluer
+    les compétences du salarié, et au salarié de vérifier que le poste
+    lui convient. En conséquence, <strong>l'une ou l'autre des parties
+    peut y mettre fin à tout moment</strong>, sans avoir à fournir
+    de motif ni à respecter de procédure particulière.
+  </p>
+
+  <h3>Ce que ça signifie concrètement</h3>
+
+  <ul>
+    <li>
+      L'employeur <strong>n'a pas besoin d'une cause réelle et sérieuse</strong> —
+      contrairement au licenciement, aucune procédure préalable n'est requise.
+    </li>
+    <li>
+      Le salarié <strong>peut partir sans avoir à se justifier</strong> —
+      aucune obligation de motiver sa décision.
+    </li>
+    <li>
+      La rupture peut intervenir dès le premier jour, même après quelques heures
+      de travail seulement.
+    </li>
+    <li>
+      La seule contrainte légale : respecter le
+      <strong>délai de prévenance</strong> fixé par la loi.
+    </li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Périodes protégées :</strong> la rupture de période d'essai est
+      <strong>interdite</strong> pendant un congé maternité ou paternité, et
+      pendant un arrêt lié à un accident du travail ou une maladie professionnelle (AT/MP).
+      Hors ces situations, un arrêt maladie ordinaire ne protège pas contre
+      la rupture de la période d'essai.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1643"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Période d'essai
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Délai de prévenance
+       ═══════════════════════════════════════════ -->
+  <h2 id="preavis">Le délai de prévenance obligatoire</h2>
+
+  <p>
+    Bien que la rupture soit libre, elle n'est pas instantanée.
+    La loi impose un <strong>délai de prévenance</strong> qui varie
+    selon la durée de présence du salarié dans l'entreprise et selon
+    qui prend l'initiative de la rupture.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Durée de présence</th>
+        <th>Délai si l'employeur rompt</th>
+        <th>Délai si le salarié rompt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Moins de 8 jours</td>
+        <td><strong>24 heures</strong></td>
+        <td><strong>24 heures</strong></td>
+      </tr>
+      <tr>
+        <td>Entre 8 jours et 1 mois</td>
+        <td><strong>48 heures</strong></td>
+        <td><strong>24 heures</strong></td>
+      </tr>
+      <tr>
+        <td>Entre 1 mois et 3 mois</td>
+        <td><strong>2 semaines</strong></td>
+        <td><strong>48 heures</strong></td>
+      </tr>
+      <tr>
+        <td>Au-delà de 3 mois</td>
+        <td><strong>1 mois</strong></td>
+        <td><strong>48 heures</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Ces délais sont des <strong>minimums légaux</strong>. Votre convention
+    collective peut prévoir des délais plus longs, mais jamais inférieurs
+    à ces seuils.
+  </p>
+
+  <h3>En cas de non-respect du délai de prévenance</h3>
+
+  <p>
+    Si l'employeur rompt la période d'essai sans respecter le délai de
+    prévenance, il doit verser une <strong>indemnité compensatrice</strong>
+    correspondant aux salaires que le salarié aurait perçus pendant le
+    délai non respecté.
+  </p>
+
+  <p>
+    <strong>Exemple :</strong> salarié présent depuis 5 semaines (entre 1 mois
+    et 3 mois), salaire de 2 400 €/mois. Le délai légal est de 2 semaines.
+    Si l'employeur rompt sans préavis, il doit verser :
+    2 400 ÷ 2 = <strong>1 200 €</strong> d'indemnité compensatrice.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071073"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L1221-25 et L1221-26 Code du travail
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Indemnités
+       ═══════════════════════════════════════════ -->
+  <h2 id="indemnite">Indemnités et droits financiers</h2>
+
+  <p>
+    La rupture de période d'essai n'est pas un licenciement —
+    les règles d'indemnisation sont donc très différentes.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Élément</th>
+        <th>Si l'employeur rompt</th>
+        <th>Si le salarié rompt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>Non due (pas un licenciement)</td>
+        <td>Non due</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de préavis</td>
+        <td>Non due (sauf non-respect du délai de prévenance)</td>
+        <td>Non due</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de congés payés</td>
+        <td><strong>Oui</strong> — pour les CP acquis non pris</td>
+        <td><strong>Oui</strong> — pour les CP acquis non pris</td>
+      </tr>
+      <tr>
+        <td>Indemnité conventionnelle de rupture PE</td>
+        <td>Selon la convention collective (parfois prévue)</td>
+        <td>Rarement prévue</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice si délai de prévenance non respecté</td>
+        <td>Oui, à la charge de l'employeur</td>
+        <td>Oui, à la charge du salarié (rare en pratique)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Vérifiez votre convention collective.</strong>
+      Certaines conventions prévoient une indemnité de rupture de période
+      d'essai par l'employeur, notamment dans la métallurgie ou la
+      construction. C'est rare mais cela existe — consultez votre CCN.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1643"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Rupture de la période d'essai
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Abus de droit
+       ═══════════════════════════════════════════ -->
+  <h2 id="abus">Abus de droit : quand l'employeur va trop loin</h2>
+
+  <p>
+    Même si aucun motif n'est requis, la rupture de la période d'essai
+    ne peut pas être <strong>abusive ou discriminatoire</strong>.
+    Les Prud'hommes peuvent sanctionner une rupture lorsqu'elle est :
+  </p>
+
+  <ul>
+    <li>
+      Motivée par un <strong>motif discriminatoire</strong> : état de santé,
+      grossesse, origine, activité syndicale, handicap…
+    </li>
+    <li>
+      Prononcée en <strong>représailles</strong> à un signalement
+      (harcèlement, situation dangereuse, dénonciation d'irrégularités)
+    </li>
+    <li>
+      Intervenue durant une <strong>période protégée</strong>
+      (maternité, paternité, AT/MP)
+    </li>
+    <li>
+      Fondée sur des <strong>raisons totalement étrangères aux aptitudes
+      professionnelles</strong> du salarié
+    </li>
+  </ul>
+
+  <h3>Ce que le salarié peut obtenir aux Prud'hommes</h3>
+
+  <p>
+    En cas de rupture abusive, le Conseil de prud'hommes peut accorder :
+  </p>
+
+  <ul>
+    <li><strong>Des dommages-intérêts</strong> en réparation du préjudice subi</li>
+    <li>
+      En cas de discrimination avérée : la
+      <strong>nullité de la rupture</strong> et la réintégration, ou
+      une indemnité au moins égale à 6 mois de salaire
+    </li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Charge de la preuve partagée.</strong>
+      Pour invoquer la discrimination, le salarié doit présenter des
+      éléments laissant supposer son existence. L'employeur doit ensuite
+      prouver que la rupture repose sur des éléments objectifs. Conservez
+      tous les éléments de contexte (emails, messages, témoins).
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901121"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L1132-1 Code du travail (discrimination)
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Chômage
+       ═══════════════════════════════════════════ -->
+  <h2 id="chomage">Rupture de période d'essai et droit au chômage</h2>
+
+  <p>
+    Les droits au chômage dépendent entièrement de
+    <strong>qui prend l'initiative de la rupture</strong>.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Qui rompt ?</th>
+        <th>Droit à l'ARE ?</th>
+        <th>Conditions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>L'employeur</strong></td>
+        <td>Oui, en principe</td>
+        <td>Mêmes conditions qu'après un licenciement : avoir cotisé suffisamment, s'inscrire à France Travail dans les 12 mois</td>
+      </tr>
+      <tr>
+        <td><strong>Le salarié</strong></td>
+        <td>Non (assimilé à une démission)</td>
+        <td>Sauf si la rupture constitue une démission légitime (suivi du conjoint, non-paiement du salaire…)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Le cas particulier de la courte période d'essai</h3>
+
+  <p>
+    Si la période d'essai a été très courte (quelques jours ou semaines),
+    vous n'aurez peut-être pas atteint le seuil minimum de <strong>6 mois
+    de travail</strong> (sur les 24 derniers mois) requis pour ouvrir des
+    droits à l'ARE. Dans ce cas, ces jours s'additionnent à vos périodes
+    d'activité antérieures pour atteindre le seuil.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Inscrivez-vous rapidement à France Travail</strong> si c'est
+      l'employeur qui a rompu votre période d'essai. Le délai maximum pour
+      ouvrir vos droits est de <strong>12 mois</strong> après la rupture.
+      Ne tardez pas, même si vous n'êtes pas sûr d'avoir suffisamment cotisé :
+      France Travail vérifiera l'ensemble de vos droits.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F14860"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Allocation chômage (ARE)
+    </a> et
+    <a href="https://www.francetravail.fr"
+       target="_blank" rel="noopener">
+      France Travail
+    </a>
+  </p>
+
+</ArticleLayout>
