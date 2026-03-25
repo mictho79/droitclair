@@ -3,40 +3,40 @@ import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 /* ── Structure ─────────────────────────────────────────── */
 const toc = [
-  { id: 'principe',      label: 'Démission et chômage : le principe général'        },
-  { id: 'legitime',      label: 'Les démissions légitimes reconnues'                 },
-  { id: 'reconversion',  label: 'La démission-reconversion (loi 2018)'               },
-  { id: 'reexamen',      label: 'Le réexamen après 4 mois de chômage'               },
-  { id: 'cas-pratiques', label: 'Cas pratiques'                                     },
-  { id: 'faq',           label: 'Questions fréquentes'                               },
+  { id: 'principe',      label: 'Le principe : démission = pas de chômage'     },
+  { id: 'legitimes',     label: 'Les démissions légitimes reconnues'            },
+  { id: 'reconversion',  label: 'La démission-reconversion (loi 2018)'          },
+  { id: 'reexamen',      label: 'Le réexamen après 4 mois'                     },
+  { id: 'cas-pratiques', label: 'Cas pratiques'                                },
+  { id: 'faq',           label: 'Questions fréquentes'                         },
 ];
 
 const summary = [
-  "Une démission volontaire ne donne pas droit à l'ARE (allocation chômage) — sauf si elle est reconnue comme « légitime » par France Travail.",
-  "Depuis 2019, la démission-reconversion permet d'accéder aux ARE si vous avez un projet de formation ou de création d'entreprise validé.",
-  "Sans motif légitime, vous pouvez demander un réexamen de votre dossier après 4 mois de chômage non indemnisé.",
+  "La démission ne donne pas droit aux ARE par défaut — c'est une rupture volontaire non indemnisable par France Travail.",
+  "Des exceptions existent : démissions légitimes reconnues (suivi conjoint, non-paiement salaire, reconversion...).",
+  "Depuis 2019, la démission-reconversion permet d'ouvrir droit au chômage avec un projet validé par le CEP.",
 ];
 
 const faq = [
   {
-    question: "Combien de temps faut-il attendre avant d'être indemnisé après une démission légitime ?",
-    answer:   "Après une démission légitime reconnue, France Travail applique un délai de carence standard (7 jours) et un différé d'indemnisation calculé sur vos indemnités de fin de contrat. Il n'y a pas de délai de carence spécifique lié à la démission elle-même. L'ouverture des droits intervient généralement dans les 2 à 4 semaines suivant l'inscription.",
+    question: "Peut-on toucher le chômage si on démissionne pour raisons personnelles ?",
+    answer:   "Non, en principe. Les raisons personnelles — lassitude, envie de changement, conflit de personnalité — ne constituent pas un motif légitime aux yeux de France Travail. L'ARE n'est accordée que dans des situations précises (voir démissions légitimes) ou après le réexamen de 4 mois.",
   },
   {
-    question: "Peut-on cumuler ARE et activité partielle après une démission ?",
-    answer:   "Non directement. L'ARE est versée après une rupture de contrat, non pendant. Si vous créez une activité indépendante après votre démission et que celle-ci est reconnue comme légitime ou dans le cadre d'une démission-reconversion, vous pouvez cumuler partiellement l'ARE avec des revenus non salariés, dans la limite d'un plafond fixé par France Travail.",
+    question: "Combien de temps après une démission légitime les ARE sont-elles versées ?",
+    answer:   "Après reconnaissance de la démission légitime, France Travail applique un délai de carence standard de 7 jours, puis un éventuel différé d'indemnisation calculé sur vos indemnités de fin de contrat. Le versement démarre généralement dans les 2 à 4 semaines suivant l'inscription.",
   },
   {
-    question: "La démission suite à un harcèlement moral donne-t-elle droit au chômage ?",
-    answer:   "Oui, si le harcèlement est établi et que vous pouvez en apporter la preuve (attestations, mails, plainte, etc.). France Travail peut reconnaître une démission pour harcèlement comme légitime. En l'absence de reconnaissance immédiate, vous pourrez demander un réexamen après 4 mois et saisir les Prud'hommes pour faire requalifier votre démission en prise d'acte, ce qui ouvre automatiquement les droits.",
+    question: "La démission-reconversion s'applique-t-elle aux CDD ?",
+    answer:   "Non. La démission-reconversion est réservée aux salariés en CDI. Un salarié en CDD ne peut pas démissionner pour reconversion et obtenir l'ARE à ce titre. En revanche, la fin de CDD ouvre automatiquement les droits à l'ARE sous conditions d'ancienneté.",
   },
   {
-    question: "Quelles pièces fournir pour une démission-reconversion ?",
-    answer:   "Vous devez présenter à la commission paritaire interprofessionnelle régionale (CPIR) un dossier comprenant : votre projet professionnel détaillé, un plan de financement si vous créez une entreprise, ou une attestation d'admission à la formation souhaitée. La CPIR dispose de 2 mois pour se prononcer. Sans réponse, la demande est considérée comme rejetée.",
+    question: "Que se passe-t-il si France Travail refuse ma démission légitime ?",
+    answer:   "Vous pouvez contester la décision par voie de recours amiable, puis devant le tribunal judiciaire compétent. Parallèlement, si votre employeur a commis des manquements graves, vous pouvez saisir les Prud'hommes pour faire requalifier votre démission en prise d'acte de rupture, ce qui ouvre automatiquement les droits à l'ARE. Consultez un avocat spécialisé en droit du travail dans cette hypothèse.",
   },
   {
-    question: "Que se passe-t-il si France Travail rejette mon réexamen après 4 mois ?",
-    answer:   "En cas de rejet, vous ne bénéficiez d'aucune indemnisation. Vous pouvez contester la décision devant la juridiction compétente (tribunal judiciaire) ou tenter de faire requalifier votre démission en licenciement aux Prud'hommes si l'employeur a commis des manquements graves à ses obligations. Il est conseillé de consulter un avocat spécialisé en droit du travail dans ce cas.",
+    question: "Peut-on cumuler ARE et création d'entreprise après démission ?",
+    answer:   "Oui, partiellement. Si vous créez une entreprise après une démission-reconversion validée, vous pouvez cumuler l'ARE avec des revenus non salariés issus de l'activité, dans la limite d'un plafond fixé par France Travail. Le montant de l'ARE est alors réduit proportionnellement aux revenus perçus. Renseignez-vous auprès de votre conseiller France Travail pour le calcul exact.",
   },
 ];
 
@@ -48,35 +48,35 @@ const relatedArticles = [
     categorySlug: 'demission',
   },
   {
-    title:        'Préavis de démission CDI : durée et calcul',
-    href:         '/demission/preavis-demission/',
+    title:        'Préavis de démission : durée et calcul',
+    href:         '/preavis-demission/',
     category:     'Démission',
     categorySlug: 'demission',
   },
   {
     title:        'Rupture conventionnelle : alternative à la démission ?',
-    href:         '/rupture-conventionnelle/guide-complet/',
+    href:         '/rupture-conventionnelle/',
     category:     'Rupture conventionnelle',
     categorySlug: 'rupture-conventionnelle',
   },
 ];
 
 const sidebarLinks = [
-  { title: 'Les cas de démission légitime (liste complète)',          href: '/demission/demission-legitime/'          },
-  { title: 'Rupture conventionnelle et chômage',                      href: '/rupture-conventionnelle/chomage/'       },
-  { title: 'Simulateur ARE : estimez vos allocations',                href: '/outils/simulateur-are/'                 },
-  { title: 'Prise d\'acte de rupture : quand y recourir ?',          href: '/licenciement/prise-d-acte/'             },
+  { title: 'Solde de tout compte après démission',    href: '/solde-de-tout-compte/'                                },
+  { title: 'Documents de fin de contrat',             href: '/documents-fin-contrat/'                              },
+  { title: 'Démission pour faute de l\'employeur',   href: '/demission-faute-employeur/'                          },
+  { title: 'Simulateur ARE France Travail',           href: 'https://www.unedic.org/indemnisation/calculez-vos-droits' },
 ];
 ---
 
 <ArticleLayout
   title="Démission et chômage : avez-vous droit aux ARE en 2026 ?"
-  description="Téléchargez un modèle de lettre de démission CDI gratuit et découvrez comment démissionner correctement : préavis, forme, remise en main propre ou recommandé."
-  publishedDate="2026-02-15"
-  modifiedDate="2026-03-10"
+  description="Démission et chômage en 2026 : dans quels cas avez-vous droit aux ARE ? Démissions légitimes, démission-reconversion, réexamen après 4 mois — guide complet avec cas pratiques."
+  publishedDate="2026-01-12"
+  modifiedDate="2026-03-05"
   category="Démission"
   categorySlug="demission"
-  readingTime={9}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -87,54 +87,62 @@ const sidebarLinks = [
   <!-- ═══════════════════════════════════════════
        H2 — Principe général
        ═══════════════════════════════════════════ -->
-  <h2 id="principe">Démission et chômage : le principe général</h2>
+  <h2 id="principe">Le principe : démission = pas de chômage</h2>
 
   <p>
-    En France, l'assurance chômage (ARE — Aide au Retour à l'Emploi) est réservée
+    L'ARE (Aide au Retour à l'Emploi) est une allocation versée par France Travail
     aux salariés dont la rupture du contrat est <strong>involontaire</strong> :
-    licenciement, rupture conventionnelle, fin de CDD, etc.
+    licenciement, rupture conventionnelle, fin de CDD non renouvelé, etc.
   </p>
 
   <p>
-    La démission, acte volontaire par lequel le salarié quitte son emploi de sa propre
-    initiative, est donc en principe <strong>exclue du droit à l'ARE</strong>.
-    France Travail (anciennement Pôle Emploi) ne versera aucune allocation si vous
-    démissionnez sans motif reconnu.
+    La démission, acte par lequel le salarié quitte volontairement son emploi,
+    est donc en principe <strong>exclue du droit à l'ARE</strong>.
+    France Travail considère que le salarié a choisi de mettre fin à son contrat
+    et n'a donc pas subi de perte d'emploi involontaire.
+  </p>
+
+  <h3>Pourquoi cette exclusion ?</h3>
+
+  <p>
+    L'assurance chômage est un filet de sécurité conçu pour couvrir la perte
+    <em>contrainte</em> d'emploi. Étendre le droit aux ARE à toutes les démissions
+    créerait un risque d'aléa moral. Le législateur a donc prévu des exceptions
+    ciblées pour les situations où la démission est imposée par une contrainte sérieuse
+    ou un projet professionnel encadré.
   </p>
 
   <div class="alert alert--warning">
     <div class="alert__icon">⚠️</div>
     <div class="alert__body">
-      <strong>Avant de démissionner</strong>, étudiez systématiquement la possibilité
-      d'une rupture conventionnelle avec votre employeur. Elle ouvre les mêmes droits
-      qu'un licenciement tout en étant négociée à l'amiable.
+      <strong>Avant de démissionner</strong>, examinez systématiquement la possibilité
+      d'une <strong>rupture conventionnelle</strong> avec votre employeur.
+      Elle ouvre les mêmes droits qu'un licenciement tout en étant négociée à l'amiable.
     </div>
   </div>
 
-  <h3>Pourquoi cette exclusion existe-t-elle ?</h3>
-
-  <p>
-    L'assurance chômage est un filet de sécurité conçu pour couvrir la perte
-    <em>involontaire</em> d'emploi. Étendre le droit aux ARE à toutes les démissions
-    créerait un risque d'aléa moral — des salariés pourraient quitter leur poste
-    sans contrainte économique réelle. Le législateur a donc prévu des exceptions
-    ciblées pour les situations où la démission est justifiée par une contrainte
-    sérieuse.
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F14860"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Allocation chômage (ARE)
+    </a> et
+    <a href="https://www.francetravail.fr"
+       target="_blank" rel="noopener">
+      France Travail
+    </a>
   </p>
 
   <!-- ═══════════════════════════════════════════
        H2 — Démissions légitimes
        ═══════════════════════════════════════════ -->
-  <h2 id="legitime">Les démissions légitimes reconnues par France Travail</h2>
+  <h2 id="legitimes">Les démissions légitimes — les cas où France Travail dit oui</h2>
 
   <p>
-    Certaines situations permettent de démissionner tout en conservant le droit
-    à l'ARE. Ces <strong>démissions légitimes</strong> sont définies par les
-    règles de l'assurance chômage (accord d'application n° 14 à la convention
-    d'assurance chômage) et par la jurisprudence.
+    Certaines situations permettent de démissionner tout en conservant le droit à l'ARE.
+    Ces <strong>démissions légitimes</strong> sont définies par les règles de l'assurance
+    chômage (accord d'application n° 14) et par la jurisprudence.
   </p>
-
-  <h3>Les motifs reconnus</h3>
 
   <table>
     <thead>
@@ -145,32 +153,28 @@ const sidebarLinks = [
     </thead>
     <tbody>
       <tr>
-        <td>Suivi du conjoint (mutation, nouvel emploi)</td>
-        <td>Déménagement effectif, démission dans les 2 mois</td>
+        <td>Suivi du conjoint (mutation, nouvel emploi, PACS ou mariage)</td>
+        <td>Déménagement effectif, démission dans les 2 mois suivant l'événement</td>
       </tr>
       <tr>
-        <td>Mariage ou PACS entraînant un changement de résidence</td>
-        <td>Cérémonie dans les 2 mois précédant ou suivant la démission</td>
+        <td>Non-paiement ou paiement partiel du salaire</td>
+        <td>Manquement établi, procédure engagée (Prud'hommes ou référé)</td>
       </tr>
       <tr>
-        <td>Non-paiement du salaire</td>
-        <td>Manquement établi, procédure engagée aux Prud'hommes ou référé</td>
+        <td>Actes délictueux de l'employeur (harcèlement moral, sexuel, violence)</td>
+        <td>Faits documentés, dépôt de plainte ou signalement RH formalisé</td>
+      </tr>
+      <tr>
+        <td>Démission pour création ou reprise d'entreprise</td>
+        <td>Projet sérieux et viable (sous conditions CEP ou Transitions Pro selon ancienneté)</td>
+      </tr>
+      <tr>
+        <td>Démission suite à un contrat rompu par l'employeur précédent dans les 65 jours</td>
+        <td>Nouvel emploi repris puis perdu rapidement sans faute du salarié</td>
       </tr>
       <tr>
         <td>Modification unilatérale du contrat par l'employeur</td>
-        <td>Changement substantiel refusé par le salarié</td>
-      </tr>
-      <tr>
-        <td>Harcèlement moral ou sexuel</td>
-        <td>Faits documentés, dépôt de plainte ou signalement RH</td>
-      </tr>
-      <tr>
-        <td>Victime de violences conjugales</td>
-        <td>Justificatif (dépôt de plainte, ordonnance de protection…)</td>
-      </tr>
-      <tr>
-        <td>Démission pour reprendre un emploi, puis licenciement dans les 65 jours</td>
-        <td>Le nouvel emploi n'a pas duré en raison d'un licenciement ou d'une rupture de période d'essai</td>
+        <td>Changement substantiel refusé par le salarié, refus notifié par écrit</td>
       </tr>
     </tbody>
   </table>
@@ -178,105 +182,109 @@ const sidebarLinks = [
   <div class="alert alert--info">
     <div class="alert__icon">💡</div>
     <div class="alert__body">
-      <strong>Cette liste n'est pas exhaustive.</strong> France Travail examine chaque
-      dossier au cas par cas. Si votre situation ne figure pas dans ce tableau,
-      exposez-la par écrit lors de votre inscription — une commission peut reconnaître
-      d'autres motifs légitimes.
+      <strong>Dans tous ces cas, constituez un dossier de preuves AVANT de démissionner.</strong>
+      Attestations, courriels, bulletins de paie, ordonnances, actes de mariage…
+      France Travail instruit le dossier sur pièces et peut refuser si les justificatifs
+      sont insuffisants.
     </div>
   </div>
 
-  <h3>Comment faire valoir une démission légitime ?</h3>
-
-  <p>
-    Lors de votre inscription à France Travail, cochez la case « démission légitime »
-    et joignez les justificatifs correspondant à votre situation (acte de mariage,
-    contrat du conjoint, attestation de dépôt de plainte, etc.).
-    France Travail instruit le dossier et notifie sa décision par courrier.
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F89"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Démissions légitimes
+    </a> et
+    <a href="https://www.francetravail.fr"
+       target="_blank" rel="noopener">
+      France Travail
+    </a>
   </p>
 
   <!-- ═══════════════════════════════════════════
        H2 — Démission-reconversion
        ═══════════════════════════════════════════ -->
-  <h2 id="reconversion">La démission-reconversion (loi Avenir professionnel 2018)</h2>
+  <h2 id="reconversion">La démission-reconversion — la nouveauté qui change tout</h2>
 
   <p>
-    Instaurée par la <strong>loi du 5 septembre 2018 pour la liberté de choisir
-    son avenir professionnel</strong>, la démission-reconversion est une exception
-    majeure au principe d'exclusion. Elle permet à un salarié en CDI de démissionner
-    pour <strong>se former ou créer une entreprise</strong> tout en bénéficiant
-    de l'ARE.
+    Instaurée par la <strong>loi Avenir professionnel du 5 septembre 2018</strong>
+    et entrée en vigueur en novembre 2019, la démission-reconversion est une exception
+    majeure. Elle permet à un salarié en CDI de démissionner pour
+    <strong>se former ou créer une entreprise</strong> tout en bénéficiant de l'ARE.
   </p>
 
-  <h3>Qui peut en bénéficier ?</h3>
-
-  <p>Trois conditions cumulatives sont requises :</p>
+  <h3>Trois conditions cumulatives</h3>
 
   <ul>
     <li>
-      Avoir travaillé <strong>au moins 5 ans en continu</strong>
-      (toutes entreprises confondues) avant la démission.
+      Justifier d'au moins <strong>5 ans d'activité salariée continue</strong>
+      (tous employeurs confondus) avant la démission.
     </li>
     <li>
-      Avoir un <strong>projet de reconversion professionnelle sérieux</strong> :
+      Avoir un <strong>projet de reconversion professionnelle sérieux et réel</strong> :
       formation qualifiante ou certifiante, ou création/reprise d'entreprise.
     </li>
     <li>
-      Faire <strong>valider ce projet par la commission paritaire
-      interprofessionnelle régionale (CPIR)</strong> de votre région
-      <em>avant</em> de démissionner.
+      Faire <strong>valider ce projet par la commission paritaire interprofessionnelle
+      régionale (Transitions Pro)</strong> de votre région <em>avant</em> de démissionner.
     </li>
   </ul>
 
   <div class="alert alert--warning">
     <div class="alert__icon">⚠️</div>
     <div class="alert__body">
-      <strong>La validation CPIR doit précéder la démission.</strong> Si vous démissionnez
-      sans avoir obtenu l'accord de la CPIR au préalable, vous perdez tout droit à l'ARE
-      dans ce cadre. Ne brûlez pas les étapes.
+      <strong>Le projet doit être validé AVANT la démission, pas après.</strong>
+      Si vous démissionnez sans accord préalable de la Transitions Pro, vous perdez tout droit
+      à l'ARE dans ce cadre. Ne brûlez pas les étapes.
     </div>
   </div>
 
-  <h3>La procédure étape par étape</h3>
+  <h3>Les démarches étape par étape</h3>
 
   <ol>
     <li>
-      <strong>Constituez votre dossier de projet</strong> sur le site
-      <em>transitions-pro.fr</em> (opérateur de la CPIR dans votre région).
+      <strong>Constituez votre dossier de projet</strong> sur <em>demission-reconversion.gouv.fr</em>
+      (opérateur de la Transitions Pro dans votre région). Joignez le plan de financement ou
+      l'attestation d'entrée en formation.
     </li>
     <li>
-      <strong>Soumettez la demande de validation.</strong> La CPIR dispose de
-      <strong>2 mois</strong> pour répondre. Sans réponse dans ce délai, la
-      demande est considérée comme rejetée.
+      <strong>Soumettez la demande de validation.</strong> La Transitions Pro dispose de 2 mois pour
+      répondre. Sans réponse dans ce délai, la demande est considérée comme rejetée.
     </li>
     <li>
-      <strong>En cas de validation</strong>, vous pouvez démissionner et vous
-      inscrire à France Travail. Votre projet doit démarrer dans les
-      <strong>6 mois</strong> suivant la démission.
+      <strong>En cas de validation</strong>, démissionnez et inscrivez-vous à France Travail.
+      Votre projet doit démarrer dans les 6 mois suivant la démission.
     </li>
     <li>
-      <strong>France Travail verse l'ARE</strong> selon les règles habituelles
-      (durée et montant calculés sur vos 24 derniers mois de salaire).
+      <strong>France Travail verse l'ARE</strong> selon les règles habituelles :
+      durée et montant calculés sur vos 24 derniers mois de salaire brut.
     </li>
   </ol>
 
-  <h3>Montant et durée de l'ARE en démission-reconversion</h3>
+  <h3>Montant et durée de l'indemnisation</h3>
 
   <p>
-    L'ARE versée est identique à celle d'un licenciement classique : entre
-    <strong>57 % et 75 % du salaire journalier de référence</strong>, pendant
-    une durée proportionnelle à votre ancienneté (entre 6 et 24 mois, voire
-    36 mois pour les plus de 53 ans).
+    L'ARE versée est identique à celle d'un licenciement : entre
+    <strong>57 % et 75 % du salaire journalier de référence</strong>, pour une durée
+    proportionnelle à l'ancienneté (6 à 24 mois, voire 36 mois pour les plus de 53 ans).
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F13819"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Démission pour reconversion professionnelle
+    </a>
   </p>
 
   <!-- ═══════════════════════════════════════════
        H2 — Réexamen après 4 mois
        ═══════════════════════════════════════════ -->
-  <h2 id="reexamen">Le réexamen après 4 mois de chômage</h2>
+  <h2 id="reexamen">Le réexamen après 4 mois</h2>
 
   <p>
-    Si votre démission ne relève d'aucun des cas légitimes ni de la
-    démission-reconversion, une dernière voie existe : le
-    <strong>réexamen de votre situation après 121 jours</strong>
+    Si votre démission ne relève d'aucun cas légitime ni de la démission-reconversion,
+    une dernière voie existe : le <strong>réexamen de votre situation après 121 jours</strong>
     (environ 4 mois) de chômage non indemnisé.
   </p>
 
@@ -284,29 +292,37 @@ const sidebarLinks = [
 
   <p>
     Après 121 jours d'inscription continue à France Travail sans allocation,
-    vous pouvez demander que votre dossier soit réexaminé par une instance
-    régionale de France Travail. Cette instance apprécie votre situation globale :
+    vous pouvez <strong>en faire la demande</strong> auprès de votre agence.
+    Ce réexamen n'est pas automatique — il faut le solliciter explicitement.
+    L'instance régionale apprécie votre situation globale :
   </p>
 
   <ul>
-    <li>Vos démarches actives de recherche d'emploi pendant les 4 mois</li>
-    <li>Vos ressources financières</li>
-    <li>Le contexte de votre démission</li>
-    <li>Tout élément montrant que vous méritez l'accompagnement de France Travail</li>
+    <li>Vos démarches actives de recherche d'emploi durant les 4 mois</li>
+    <li>Vos ressources financières actuelles</li>
+    <li>Le contexte de votre démission et tout élément nouveau</li>
   </ul>
 
   <p>
-    Si le réexamen est favorable, vous percevez l'ARE à partir de la date
-    de la décision — les 4 mois précédents ne sont pas rétroactivement indemnisés.
+    Si le réexamen est favorable, vous percevez l'ARE à compter de la date de la décision —
+    les 121 jours précédents ne sont pas rétroactivement indemnisés.
   </p>
 
   <h3>Conseils pour maximiser vos chances</h3>
 
   <p>
-    Durant les 4 mois d'attente, conservez la <strong>preuve de toutes vos
-    démarches</strong> : candidatures envoyées, entretiens passés, formations suivies,
-    contacts avec votre conseiller France Travail. Le dossier de réexamen doit
-    démontrer une recherche d'emploi active et sincère.
+    Durant les 4 mois d'attente, conservez la <strong>preuve de toutes vos démarches</strong> :
+    candidatures envoyées, entretiens passés, formations suivies, contacts avec votre
+    conseiller France Travail. Le dossier de réexamen doit démontrer une recherche
+    d'emploi active et sincère.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.francetravail.fr"
+       target="_blank" rel="noopener">
+      France Travail
+    </a>
   </p>
 
   <!-- ═══════════════════════════════════════════
@@ -314,42 +330,31 @@ const sidebarLinks = [
        ═══════════════════════════════════════════ -->
   <h2 id="cas-pratiques">Cas pratiques</h2>
 
-  <h3>Cas 1 — Démission suite au déménagement du conjoint</h3>
-
-  <p>
-    Votre conjoint est muté à Lyon. Vous démissionnez de votre CDI parisien
-    pour le suivre. <strong>Vous avez droit à l'ARE</strong> : c'est une démission
-    légitime au sens de France Travail, à condition de vous inscrire dans les
-    12 mois suivant la démission et de fournir le justificatif de mutation du conjoint.
-  </p>
-
-  <h3>Cas 2 — Démission pour lancer une auto-entreprise</h3>
-
-  <p>
-    Vous voulez créer votre activité de consultant. Vous avez 7 ans d'ancienneté
-    tous employeurs confondus. <strong>Vous pouvez prétendre à la démission-reconversion</strong>
-    si votre projet est validé par la CPIR avant la démission. Sans validation préalable,
-    vous n'aurez pas d'ARE pendant les 4 premiers mois minimum.
-  </p>
-
-  <h3>Cas 3 — Démission suite à un conflit avec la hiérarchie</h3>
-
-  <p>
-    Un conflit relationnel seul, sans caractériser un harcèlement ou un manquement
-    de l'employeur, <strong>ne constitue pas un motif légitime</strong>. France Travail
-    n'accordera pas l'ARE immédiatement. Vous pourrez toutefois demander un réexamen
-    après 4 mois, ou consulter un avocat pour analyser si les faits permettraient
-    une prise d'acte de rupture requalifiée en licenciement aux Prud'hommes.
-  </p>
-
-  <h3>Cas 4 — Démission d'un emploi très court retrouvé après un licenciement</h3>
-
-  <p>
-    Vous avez été licencié, vous retrouvez un emploi, mais vous démissionnez
-    dans les <strong>65 jours ouvrés</strong> qui suivent la reprise. Dans ce cas,
-    France Travail peut rouvrir vos droits antérieurs, à condition que la durée
-    du nouvel emploi soit inférieure à 65 jours. C'est l'une des exceptions les
-    plus méconnues et les plus avantageuses.
-  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Droit au chômage</th>
+        <th>Démarche</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Marie démissionne pour suivre son mari muté à Lyon</td>
+        <td><strong>Oui</strong></td>
+        <td>Prouver la mutation (lettre employeur conjoint) + démissionner dans les 2 mois</td>
+      </tr>
+      <tr>
+        <td>Thomas démissionne pour créer une startup (7 ans d'ancienneté)</td>
+        <td><strong>Sous conditions</strong></td>
+        <td>Faire valider le projet par la Transitions Pro <em>avant</em> la démission</td>
+      </tr>
+      <tr>
+        <td>Julie démissionne suite à du harcèlement moral</td>
+        <td><strong>Oui si prouvé</strong></td>
+        <td>Dépôt de plainte, témoignages, courriels documentant les faits</td>
+      </tr>
+    </tbody>
+  </table>
 
 </ArticleLayout>
