@@ -1,0 +1,379 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition', label: "Qu'est-ce qu'une heure supplémentaire ?" },
+  { id: 'taux',       label: 'Taux de majoration'                      },
+  { id: 'exoneration', label: 'Exonération fiscale et sociale 2026'    },
+  { id: 'contingent', label: 'Le contingent annuel de 220 heures'      },
+  { id: 'repos',      label: 'Contrepartie obligatoire en repos'       },
+  { id: 'faq',        label: 'Questions fréquentes'                    },
+];
+
+const summary = [
+  "Les heures supplémentaires sont majorées de 25 % pour les 8 premières, puis 50 % au-delà — sauf accord de branche plus favorable.",
+  "Depuis 2022, les heures supplémentaires sont exonérées d'impôt sur le revenu dans la limite de 7 500 € par an.",
+  "Le contingent annuel légal est de 220 heures par salarié — au-delà, des contreparties obligatoires en repos s'appliquent.",
+];
+
+const faq = [
+  {
+    question: "Mon employeur peut-il m'obliger à faire des heures supplémentaires ?",
+    answer:   "Oui, dans certaines limites. L'employeur peut imposer des heures supplémentaires dans la limite du contingent annuel (220 heures légales ou durée conventionnelle) sans avoir à obtenir l'accord préalable du salarié. Le refus du salarié peut constituer une faute. En revanche, au-delà du contingent, les heures supplémentaires nécessitent l'avis conforme du CSE et l'accord du salarié. Par ailleurs, l'employeur ne peut pas imposer des heures portant la durée journalière au-delà de 10 heures ou la durée hebdomadaire au-delà de 48 heures.",
+  },
+  {
+    question: "Les heures supplémentaires sont-elles toujours payées ?",
+    answer:   "Non nécessairement sous forme de rémunération. Avec l'accord du salarié, les heures supplémentaires peuvent être remplacées par un repos compensateur de remplacement (RCR) équivalent — autrement dit, vous récupérez les heures au lieu d'être payé. Si un accord collectif ou votre contrat le prévoit, ce repos peut se substituer au paiement majoré. Sans accord, le paiement majoré s'impose.",
+  },
+  {
+    question: "Comment prouver des heures supplémentaires non rémunérées ?",
+    answer:   "La preuve est partagée : vous devez d'abord étayer votre demande (relevés d'heures, emails envoyés tard, témoignages, badges d'accès, logs informatiques), puis l'employeur doit justifier les horaires réellement effectués. Aux Prud'hommes, il suffit que vos éléments soient suffisamment précis pour que l'employeur ait à se justifier — vous n'avez pas à prouver avec certitude absolue. Conservez toute trace écrite des demandes et des horaires effectués.",
+  },
+  {
+    question: "Le plafond de 7 500 € s'applique-t-il aux fonctionnaires ?",
+    answer:   "Non directement, mais les agents de la fonction publique bénéficient d'un dispositif équivalent pour les heures supplémentaires et indemnités horaires dans les mêmes limites depuis 2022. Les conditions varient selon la fonction publique (État, territoriale, hospitalière) et le statut de l'agent. Renseignez-vous auprès de votre service RH ou de votre direction des ressources humaines.",
+  },
+  {
+    question: "Que se passe-t-il si l'employeur refuse de payer les heures supplémentaires ?",
+    answer:   "Vous pouvez saisir le Conseil de prud'hommes pour obtenir le paiement des heures majorées, les congés payés afférents et des dommages-intérêts. Préalablement, une mise en demeure par lettre recommandée avec AR est conseillée. Si l'employeur conteste l'existence des heures, la charge de la preuve est partagée (voir question ci-dessus). Le délai de prescription pour agir en paiement de salaires est de 3 ans.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Arrêt maladie et salaire : qui paie quoi ?',
+    href:         '/arret-maladie-salaire/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-contrat',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Mutuelle obligatoire d\'entreprise',
+    href:         '/mutuelle-obligatoire/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-contrat',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Calcul salaire net',           href: '/calcul-salaire-net/'   },
+  { title: 'Convention collective',        href: '/convention-collective/' },
+  { title: "Prud'hommes : la démarche",   href: '/prudhommes/'            },
+  { title: 'Bulletin de paie décryptage', href: '/bulletin-paie/'         },
+];
+---
+
+<ArticleLayout
+  title="Heures supplémentaires : taux, exonération et droits en 2026"
+  description="Heures supplémentaires en 2026 : taux de majoration 25 %/50 %, exonération fiscale 7 500 €, contingent de 220 heures et contrepartie en repos. Guide complet avec exemples chiffrés."
+  publishedDate="2026-02-23"
+  modifiedDate="2026-03-16"
+  category="Droits en cours de contrat"
+  categorySlug="droits-contrat"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce qu'une heure supplémentaire ?</h2>
+
+  <p>
+    Une heure supplémentaire est toute heure de travail effectuée
+    <strong>au-delà de 35 heures par semaine</strong> (ou au-delà de la durée
+    conventionnelle si votre convention collective fixe un seuil inférieur).
+    Les heures supplémentaires ouvrent droit à une majoration de salaire
+    ou à un repos compensateur équivalent.
+  </p>
+
+  <h3>Conditions de déclenchement</h3>
+
+  <p>
+    Les heures supplémentaires doivent être effectuées à la
+    <strong>demande de l'employeur</strong> ou avec son
+    <strong>accord implicite</strong> — si l'employeur était au courant
+    des dépassements sans s'y opposer, ils sont présumés acceptés.
+    Un salarié ne peut pas s'auto-attribuer unilatéralement des heures
+    supplémentaires sans l'accord de son employeur.
+  </p>
+
+  <p>
+    Le salarié peut refuser d'effectuer des heures supplémentaires dans
+    certaines circonstances (raisons médicales, obligations familiales impérieuses),
+    mais un refus systématique sans motif légitime peut être considéré comme
+    une faute. Au-delà du contingent annuel, le salarié doit en revanche
+    donner son accord explicite.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Ne pas confondre</strong> heures supplémentaires (salariés à temps plein)
+      et <strong>heures complémentaires</strong> (salariés à temps partiel).
+      Les heures complémentaires ont leurs propres règles de majoration et sont
+      plafonnées à 1/10 ou 1/3 de la durée contractuelle selon la convention collective.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2391"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Heures supplémentaires
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Taux de majoration
+       ═══════════════════════════════════════════ -->
+  <h2 id="taux">Taux de majoration</h2>
+
+  <p>
+    Les taux légaux de majoration sont fixés par l'<strong>article L3121-36
+    du Code du travail</strong>. Un accord de branche ou d'entreprise peut
+    prévoir des taux différents, avec un minimum de 10 %.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Heures de la semaine</th>
+        <th>Taux légal</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>36e à 43e heure (8 premières heures supp)</td>
+        <td><strong>+ 25 %</strong></td>
+        <td>Taux applicable sauf accord plus favorable</td>
+      </tr>
+      <tr>
+        <td>44e heure et au-delà</td>
+        <td><strong>+ 50 %</strong></td>
+        <td>Taux applicable sauf accord plus favorable</td>
+      </tr>
+      <tr>
+        <td>Taux conventionnel minimum</td>
+        <td><strong>+ 10 % minimum</strong></td>
+        <td>Si accord de branche ou d'entreprise dérogatoire</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Exemple chiffré</h3>
+
+  <p>
+    Salarié au taux horaire de 15 €, semaine de 42 heures :
+  </p>
+
+  <ul>
+    <li>Salaire pour 35 heures normales = 35 × 15 = <strong>525,00 €</strong></li>
+    <li>7 heures supplémentaires à + 25 % = 7 × 15 × 1,25 = <strong>131,25 €</strong></li>
+    <li><strong>Total semaine = 656,25 €</strong></li>
+  </ul>
+
+  <h3>Remplacement par un repos compensateur</h3>
+
+  <p>
+    Avec l'accord du salarié, le paiement majoré peut être remplacé par
+    un <strong>repos compensateur de remplacement (RCR)</strong> équivalent.
+    Le RCR est alors calculé en intégrant la majoration — pour 1 heure supplémentaire
+    à 25 %, le repos accordé sera de 1h15 (et non 1h).
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902587"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L3121-36 Code du travail
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Exonération
+       ═══════════════════════════════════════════ -->
+  <h2 id="exoneration">Exonération fiscale et sociale 2026</h2>
+
+  <p>
+    Depuis la <strong>loi du 16 août 2022 portant mesures d'urgence pour la
+    protection du pouvoir d'achat</strong>, les heures supplémentaires bénéficient
+    d'avantages fiscaux et sociaux significatifs.
+  </p>
+
+  <h3>Exonération d'impôt sur le revenu</h3>
+
+  <p>
+    La rémunération des heures supplémentaires (salaire majoré) est
+    <strong>exonérée d'impôt sur le revenu</strong> dans la limite de
+    <strong>7 500 € par an</strong>. Au-delà, la fraction excédant ce plafond
+    est imposée normalement. Cette exonération est automatique et s'applique
+    dès la déclaration de revenus.
+  </p>
+
+  <h3>Réduction de cotisations salariales</h3>
+
+  <p>
+    Les heures supplémentaires bénéficient d'une
+    <strong>réduction des cotisations salariales</strong> de
+    <strong>11,31 %</strong> sur la rémunération des heures concernées.
+    Concrètement, votre salaire net perçu pour ces heures est supérieur
+    à ce qu'il serait sans ce mécanisme.
+  </p>
+
+  <h3>Réduction de cotisations patronales</h3>
+
+  <p>
+    Depuis le <strong>1er janvier 2026</strong>, tous les employeurs
+    (quel que soit leur effectif) peuvent bénéficier d'une déduction forfaitaire
+    sur les cotisations patronales pour les heures supplémentaires.
+    Le seuil de 250 salariés a été supprimé par la
+    <strong>loi de financement de la Sécurité sociale 2026</strong>.
+    Source : URSSAF — LFSS 2026
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Concrètement :</strong> une heure supplémentaire à 15 €/h majorée à 18,75 €
+      vous coûte moins en cotisations sociales et n'est pas imposable jusqu'au plafond
+      de 7 500 €. C'est une augmentation nette de pouvoir d'achat par rapport au
+      salaire ordinaire.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.impots.gouv.fr/particulier/les-heures-supplementaires-sont-elles-imposables"
+       target="_blank" rel="noopener">
+      Impots.gouv.fr — Exonération heures supplémentaires
+    </a> et
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2391"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Contingent annuel
+       ═══════════════════════════════════════════ -->
+  <h2 id="contingent">Le contingent annuel de 220 heures</h2>
+
+  <p>
+    Le <strong>contingent annuel d'heures supplémentaires</strong> représente
+    le volume d'heures supplémentaires que l'employeur peut imposer unilatéralement
+    à un salarié sur une année civile. Il est fixé à <strong>220 heures par salarié</strong>
+    par la loi, sauf accord de branche fixant une durée différente (supérieure ou inférieure).
+  </p>
+
+  <h3>Dépassement du contingent</h3>
+
+  <p>
+    Au-delà du contingent, chaque heure supplémentaire requiert :
+  </p>
+
+  <ul>
+    <li>
+      L'<strong>avis conforme du Comité Social et Économique (CSE)</strong>
+      s'il en existe un dans l'entreprise
+    </li>
+    <li>
+      L'<strong>accord explicite du salarié</strong> — il ne peut plus être
+      contraint comme pour les heures dans le contingent
+    </li>
+    <li>
+      Une <strong>information préalable</strong> du salarié concerné
+    </li>
+  </ul>
+
+  <p>
+    Les heures hors contingent ouvrent droit, en plus de la majoration habituelle,
+    à une <strong>contrepartie obligatoire en repos (COR)</strong>.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902591"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L3121-28 et suivants
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — COR
+       ═══════════════════════════════════════════ -->
+  <h2 id="repos">Contrepartie obligatoire en repos (COR)</h2>
+
+  <p>
+    La contrepartie obligatoire en repos (COR) est due pour chaque heure
+    supplémentaire effectuée <strong>au-delà du contingent annuel</strong>.
+    Elle s'ajoute à la majoration de salaire — ce n'est pas un substitut.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Taille de l'entreprise</th>
+        <th>Taux de la COR</th>
+        <th>Exemple</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>20 salariés et moins</td>
+        <td><strong>50 %</strong></td>
+        <td>10 h hors contingent = 5 h de repos à prendre</td>
+      </tr>
+      <tr>
+        <td>Plus de 20 salariés</td>
+        <td><strong>100 %</strong></td>
+        <td>10 h hors contingent = 10 h de repos à prendre</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Modalités de prise du repos</h3>
+
+  <ul>
+    <li>
+      Le droit à la COR est <strong>ouvert dès que 7 heures</strong> de repos
+      ont été acquises (soit 7 heures de COR cumulées).
+    </li>
+    <li>
+      Le salarié dispose d'un délai de <strong>2 mois</strong> à compter de
+      l'ouverture du droit pour prendre ce repos, en accord avec l'employeur.
+    </li>
+    <li>
+      Si l'employeur ne propose pas de dates dans ce délai, le salarié peut
+      imposer ses dates avec un préavis d'une semaine.
+    </li>
+    <li>
+      La COR non prise à la rupture du contrat est convertie en
+      <strong>indemnité financière</strong> versée dans le solde de tout compte.
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2391"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Heures supplémentaires
+    </a> et
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902591"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L3121-30
+    </a>
+  </p>
+
+</ArticleLayout>

@@ -1,0 +1,415 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+/* ── Modèle de lettre de rétractation ──────────────────── */
+const retractationModel = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+
+À [Ville], le [Date]
+
+[Nom de l'employeur / Raison sociale]
+À l'attention de [Nom du responsable RH ou dirigeant]
+[Adresse de l'entreprise]
+
+Objet : Rétractation de la convention de rupture conventionnelle
+        signée le [date de signature]
+
+Madame, Monsieur,
+
+Par la présente lettre recommandée avec accusé de réception,
+je vous notifie ma décision de me rétracter de la convention
+de rupture conventionnelle que nous avons signée le [date],
+conformément à l'article L1237-13 du Code du travail.
+
+Cette rétractation intervient dans le délai légal de
+15 jours calendaires suivant la signature.
+
+En conséquence, mon contrat de travail se poursuit aux
+conditions habituelles, sans modification.
+
+Veuillez agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'definition',   label: "Qu'est-ce que la rupture conventionnelle ?" },
+  { id: 'procedure',    label: 'La procédure étape par étape'               },
+  { id: 'indemnite',    label: "L'indemnité spécifique"                     },
+  { id: 'retractation', label: 'Le délai de rétractation'                   },
+  { id: 'chomage',      label: 'Rupture conv. et chômage'                   },
+  { id: 'faq',          label: 'Questions fréquentes'                       },
+];
+
+const summary = [
+  "La rupture conventionnelle est un accord amiable entre employeur et salarié pour mettre fin au CDI — elle ouvre droit au chômage contrairement à la démission.",
+  "L'indemnité spécifique de rupture conventionnelle ne peut pas être inférieure à l'indemnité légale de licenciement.",
+  "Un délai de rétractation de 15 jours calendaires s'applique après signature de la convention — chaque partie peut revenir sur sa décision sans motif.",
+];
+
+const faq = [
+  {
+    question: "L'employeur peut-il refuser une rupture conventionnelle ?",
+    answer:   "Oui. La rupture conventionnelle est un accord bilatéral — ni le salarié ni l'employeur ne peut l'imposer à l'autre. L'employeur peut refuser sans avoir à se justifier. Dans ce cas, le salarié ne dispose d'aucun recours pour l'y contraindre. La négociation reste la seule voie : préparez votre demande avec des arguments concrets (coût d'un remplacement, difficultés relationnelles, projet professionnel) pour maximiser vos chances d'obtenir un accord.",
+  },
+  {
+    question: "Peut-on signer une rupture conventionnelle pendant un arrêt maladie ?",
+    answer:   "Oui. La rupture conventionnelle est possible pendant un arrêt maladie ordinaire — il n'existe pas d'interdiction légale. Toutefois, le juge vérifie que le consentement du salarié n'a pas été vicié par sa situation de fragilité. Si le salarié est en arrêt pour maladie professionnelle ou accident du travail, les règles sont identiques depuis 2012. Assurez-vous que la décision est libre et éclairée, et faites-vous assister lors de l'entretien si nécessaire.",
+  },
+  {
+    question: "La rupture conventionnelle est-elle possible pendant la période d'essai ?",
+    answer:   "Non. Pendant la période d'essai, chaque partie peut rompre librement le contrat selon les règles propres à la période d'essai (délai de prévenance). La rupture conventionnelle est réservée aux CDI en cours d'exécution, hors période d'essai. Après la fin de la période d'essai, elle redevient possible.",
+  },
+  {
+    question: "Combien de temps prend la procédure de bout en bout ?",
+    answer:   "La procédure dure au minimum 1 mois entre la première demande et la rupture effective du contrat. Décomposition : entretien(s) préalable(s) → signature de la convention → délai de rétractation de 15 jours calendaires → envoi à la DREETS → instruction de 15 jours ouvrables → homologation → rupture le lendemain ou à la date convenue. En pratique, comptez 5 à 8 semaines selon la rapidité des parties.",
+  },
+  {
+    question: "Peut-on contester une rupture conventionnelle après homologation ?",
+    answer:   "Oui, dans un délai de 12 mois à compter de la date d'homologation (article L1237-14 du Code du travail). Les motifs de contestation incluent : vice du consentement (pression, harcèlement, état de vulnérabilité), non-respect de la procédure (absence d'entretien, défaut d'assistance), ou montant de l'indemnité inférieur au minimum légal. En cas de succès, la rupture conventionnelle peut être requalifiée en licenciement sans cause réelle et sérieuse.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Lettre de démission CDI : modèle gratuit',
+    href:         '/lettre-de-demission-cdi/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: "Simulateur indemnité rupture conv.", href: 'https://code.travail.gouv.fr/outils/indemnite-licenciement' },
+  { title: 'Lettre demande rupture conv.',       href: '/lettre-rupture-conventionnelle/'                          },
+  { title: 'Contester une rupture conv.',        href: '/contester-rupture-conventionnelle/'                       },
+  { title: "Période d'essai : droits",           href: '/periode-essai/'                                           },
+];
+---
+
+<ArticleLayout
+  title="Rupture conventionnelle : procédure, indemnités et chômage en 2026"
+  description="Rupture conventionnelle en 2026 : procédure complète, calcul de l'indemnité, délai de rétractation, homologation DREETS et droits au chômage. Guide avec modèle de lettre."
+  publishedDate="2026-03-02"
+  modifiedDate="2026-03-17"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={9}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce que la rupture conventionnelle ?</h2>
+
+  <p>
+    La rupture conventionnelle est un mode de rupture du contrat de travail
+    instauré par la loi du 25 juin 2008. Elle permet à un employeur et à un
+    salarié en <strong>CDI de se séparer d'un commun accord</strong>, sans
+    que ce soit une démission ni un licenciement.
+  </p>
+
+  <h3>Ce que la rupture conventionnelle n'est pas</h3>
+
+  <ul>
+    <li>
+      Ce n'est <strong>pas une démission</strong> : elle ouvre droit au chômage
+      (ARE) alors que la démission en est exclue en règle générale.
+    </li>
+    <li>
+      Ce n'est <strong>pas un licenciement</strong> : elle ne nécessite pas de
+      motif réel et sérieux, et la procédure est plus légère.
+    </li>
+    <li>
+      Elle ne concerne <strong>pas les CDD</strong>, ni la fonction publique —
+      sauf les contractuels de droit public depuis 2020, qui bénéficient d'un
+      dispositif équivalent.
+    </li>
+  </ul>
+
+  <h3>Les avantages pour chaque partie</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Pour le salarié</th>
+        <th>Pour l'employeur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Accès à l'ARE (chômage)</td>
+        <td>Procédure simplifiée sans motif à justifier</td>
+      </tr>
+      <tr>
+        <td>Indemnité spécifique au moins égale au légal</td>
+        <td>Pas de risque de contentieux prud'homal pour motif insuffisant</td>
+      </tr>
+      <tr>
+        <td>Date de rupture négociée librement</td>
+        <td>Date de départ maîtrisée, accord sur la transition</td>
+      </tr>
+      <tr>
+        <td>Délai de rétractation de 15 jours</td>
+        <td>Délai de rétractation de 15 jours (symétrique)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Alternative à la démission :</strong> si vous souhaitez quitter votre
+      entreprise, négociez d'abord une rupture conventionnelle avant de démissionner.
+      Vous conservez votre pouvoir de négociation tant que vous n'avez pas démissionné,
+      et vous ouvrez droit au chômage si un accord est trouvé.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Rupture conventionnelle
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Procédure
+       ═══════════════════════════════════════════ -->
+  <h2 id="procedure">La procédure étape par étape</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Étape</th>
+        <th>Délai</th>
+        <th>Points d'attention</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1.</strong> Demande d'entretien (salarié ou employeur)</td>
+        <td>Aucun délai imposé</td>
+        <td>Formalisez la demande par écrit pour traçabilité</td>
+      </tr>
+      <tr>
+        <td><strong>2.</strong> Entretien(s) préalable(s) — au moins 1 obligatoire</td>
+        <td>Aucun délai minimum entre la demande et l'entretien</td>
+        <td>Le salarié peut se faire assister par un représentant du personnel ou un conseiller du salarié</td>
+      </tr>
+      <tr>
+        <td><strong>3.</strong> Signature de la convention de rupture (formulaire Cerfa)</td>
+        <td>Après au moins 1 entretien</td>
+        <td>Vérifiez l'indemnité, la date de rupture et la date de signature avant de signer</td>
+      </tr>
+      <tr>
+        <td><strong>4.</strong> Délai de rétractation</td>
+        <td>15 jours calendaires à compter du lendemain de la signature</td>
+        <td>Chaque partie peut se rétracter librement par LRAR</td>
+      </tr>
+      <tr>
+        <td><strong>5.</strong> Envoi du dossier à la DREETS (ex-DIRECCTE)</td>
+        <td>Après expiration du délai de rétractation</td>
+        <td>Via le service TéléRC sur telerc.travail.gouv.fr</td>
+      </tr>
+      <tr>
+        <td><strong>6.</strong> Instruction et homologation</td>
+        <td>15 jours ouvrables — silence = homologation tacite</td>
+        <td>La DREETS peut refuser si la procédure n'a pas été respectée ou si l'indemnité est insuffisante</td>
+      </tr>
+      <tr>
+        <td><strong>7.</strong> Rupture effective du contrat</td>
+        <td>Le lendemain de l'homologation au plus tôt</td>
+        <td>La date peut être postérieure si les parties l'ont prévu dans la convention</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://code.travail.gouv.fr/fiche-service-public/rupture-conventionnelle-du-contrat-de-travail-cdi"
+       target="_blank" rel="noopener">
+      Code du travail numérique
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Indemnité
+       ═══════════════════════════════════════════ -->
+  <h2 id="indemnite">L'indemnité spécifique de rupture conventionnelle</h2>
+
+  <p>
+    L'indemnité spécifique de rupture conventionnelle ne peut pas être inférieure
+    à l'<strong>indemnité légale de licenciement</strong>, calculée selon les mêmes
+    règles : 1/4 de mois de salaire par année d'ancienneté pour les 10 premières
+    années, puis 1/3 de mois au-delà.
+  </p>
+
+  <h3>Exemple chiffré</h3>
+
+  <p>
+    Salarié en CDI depuis 4 ans, salaire de référence 2 800 € brut/mois :
+  </p>
+
+  <ul>
+    <li>Indemnité minimum légale = 2 800 × (1/4) × 4 = <strong>2 800 €</strong></li>
+    <li>
+      Montant négocié possible : <strong>5 000 à 8 000 €</strong> selon le contexte
+      (ancienneté, compétences rares, départ facilité, climat social)
+    </li>
+  </ul>
+
+  <h3>Régime fiscal</h3>
+
+  <p>
+    L'indemnité est <strong>exonérée d'impôt sur le revenu</strong> dans la limite
+    du plus élevé des montants suivants : l'indemnité légale ou conventionnelle
+    de licenciement, ou 2 fois la rémunération annuelle brute (dans la limite
+    de 6 fois le plafond annuel de la Sécurité sociale). La fraction dépassant
+    ce plafond est imposable.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>L'indemnité est négociable.</strong> L'employeur peut accepter un montant
+      supérieur au minimum légal — c'est souvent l'objet principal de la négociation.
+      Préparez votre entretien avec des arguments concrets : coût et délai de
+      remplacement, ancienneté, compétences transférées, contexte économique
+      de l'entreprise.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://code.travail.gouv.fr/outils/indemnite-licenciement"
+       target="_blank" rel="noopener">
+      Code du travail numérique — Simulateur d'indemnité
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Rétractation
+       ═══════════════════════════════════════════ -->
+  <h2 id="retractation">Le délai de rétractation</h2>
+
+  <p>
+    Après la signature de la convention, chaque partie dispose d'un délai de
+    <strong>15 jours calendaires</strong> (décompté à partir du lendemain de la
+    signature) pour se rétracter, sans avoir à se justifier.
+  </p>
+
+  <ul>
+    <li>
+      La rétractation doit être notifiée par <strong>lettre recommandée avec AR</strong>
+      (ou remise en main propre contre signature) pour garantir la preuve de la date.
+    </li>
+    <li>
+      Si l'une des parties se rétracte dans ce délai, la convention est
+      <strong>annulée</strong> et le contrat de travail se poursuit normalement.
+    </li>
+    <li>
+      Si aucune des deux parties ne se rétracte, la convention devient définitive
+      et peut être envoyée à la DREETS pour homologation.
+    </li>
+  </ul>
+
+  <CopyBlock content={retractationModel} label="Modèle de lettre de rétractation" />
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Rupture conventionnelle
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Chômage
+       ═══════════════════════════════════════════ -->
+  <h2 id="chomage">Rupture conventionnelle et chômage</h2>
+
+  <p>
+    La rupture conventionnelle <strong>ouvre droit à l'ARE</strong> (Aide au Retour
+    à l'Emploi) dans les mêmes conditions qu'un licenciement. C'est l'un de ses
+    principaux avantages par rapport à la démission.
+  </p>
+
+  <h3>Les conditions habituelles s'appliquent</h3>
+
+  <ul>
+    <li>
+      Avoir cotisé au moins <strong>6 mois</strong> sur les 24 derniers mois
+      (ou 36 mois pour les plus de 53 ans)
+    </li>
+    <li>
+      S'inscrire à France Travail dans les <strong>12 mois</strong> suivant
+      la rupture du contrat
+    </li>
+    <li>
+      Appliquer le <strong>délai de carence habituel</strong> : 7 jours + différé
+      d'indemnisation calculé sur les indemnités perçues — il n'y a pas de délai
+      de carence supplémentaire spécifique à la rupture conventionnelle
+    </li>
+  </ul>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Attention au différé spécifique :</strong>
+      plus votre indemnité de rupture est élevée,
+      plus le différé d'indemnisation sera long
+      (jusqu'à 150 jours maximum). Une indemnité
+      négociée à la hausse retarde donc le versement
+      des ARE — anticipez votre trésorerie en conséquence.
+    </div>
+  </div>
+
+  <h3>Délai minimal de bout en bout</h3>
+
+  <p>
+    En raison des délais légaux incompressibles (rétractation + instruction DREETS),
+    comptez environ <strong>5 à 8 semaines</strong> entre la signature et la rupture
+    effective — et donc entre la rupture et le premier versement des ARE.
+    Anticipez votre trésorerie en conséquence.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://www.dreets.gouv.fr"
+       target="_blank" rel="noopener">
+      DREETS
+    </a>
+  </p>
+
+</ArticleLayout>

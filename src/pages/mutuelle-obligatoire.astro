@@ -1,0 +1,381 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+/* ── Structure ─────────────────────────────────────────── */
+const toc = [
+  { id: 'obligation', label: "L'obligation depuis 2016"                      },
+  { id: 'cotisation', label: 'Qui paie quoi ?'                               },
+  { id: 'panier',     label: 'Le panier de soins minimum'                    },
+  { id: 'dispenses',  label: 'Les cas de dispense'                           },
+  { id: 'depart',     label: "Que devient la mutuelle en quittant l'entreprise ?" },
+  { id: 'faq',        label: 'Questions fréquentes'                          },
+];
+
+const summary = [
+  "Depuis 2016, tout employeur privé doit proposer une mutuelle collective à ses salariés et en financer au moins 50 %.",
+  "Certains salariés peuvent refuser la mutuelle d'entreprise sous conditions strictes (dispenses légales).",
+  "La mutuelle doit couvrir un panier de soins minimum défini par la loi (contrat responsable).",
+];
+
+const faq = [
+  {
+    question: "Mon employeur peut-il choisir n'importe quelle mutuelle ?",
+    answer:   "Non. L'employeur doit choisir un contrat dit « responsable » qui respecte le panier de soins minimum légal. Il peut négocier librement les garanties au-dessus de ce plancher, seul ou via accord collectif avec les représentants du personnel. Le choix de l'organisme (assureur, mutuelle, institution de prévoyance) est libre, mais le contrat doit être conforme aux exigences légales pour bénéficier des exonérations de cotisations sociales.",
+  },
+  {
+    question: "Puis-je garder ma mutuelle individuelle plutôt que celle de l'entreprise ?",
+    answer:   "En principe non — sauf si vous entrez dans un cas de dispense légal ou prévu par l'acte fondateur. Si vous avez déjà une mutuelle individuelle sans être couvert comme ayant droit par celle d'un conjoint, vous ne pouvez généralement pas refuser la mutuelle d'entreprise. La cotisation salariale est prélevée automatiquement. Si vous estimez être dans un cas de dispense, faites-en la demande écrite à votre employeur avec les justificatifs.",
+  },
+  {
+    question: "La mutuelle d'entreprise couvre-t-elle ma famille ?",
+    answer:   "Cela dépend des garanties négociées. La mutuelle d'entreprise couvre obligatoirement le salarié lui-même. La couverture des ayants droit (conjoint, enfants) est facultative sauf si l'accord collectif ou la décision unilatérale de l'employeur le prévoit. Si la couverture famille est possible, elle entraîne une cotisation supplémentaire dont la prise en charge par l'employeur est optionnelle — vérifiez votre contrat collectif.",
+  },
+  {
+    question: "Que se passe-t-il si l'employeur ne propose pas de mutuelle ?",
+    answer:   "L'employeur s'expose à des sanctions. Il peut être condamné à verser au salarié des dommages-intérêts correspondant aux frais de santé que la mutuelle aurait couverts, ainsi qu'au remboursement des cotisations patronales non versées majorées. Le salarié peut saisir le Conseil de prud'hommes. En cas de contrôle URSSAF, l'entreprise peut également perdre le bénéfice des exonérations de cotisations sociales liées à la mutuelle.",
+  },
+  {
+    question: "La part employeur est-elle imposable ?",
+    answer:   "Non, dans les limites légales. La contribution de l'employeur à la mutuelle collective est exonérée de cotisations sociales (dans la limite de 6 % du plafond SS + 1,5 % de la rémunération brute, plafonnée à 12 % du plafond SS) et n'est pas imposable pour le salarié à titre d'avantage en nature, à condition que le contrat soit « responsable ». Au-delà de ces plafonds, la fraction excédentaire est soumise à cotisations et à l'impôt sur le revenu.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Arrêt maladie et salaire : qui paie quoi ?',
+    href:         '/arret-maladie-salaire/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-contrat',
+  },
+  {
+    title:        'Heures supplémentaires : taux et exonération',
+    href:         '/heures-supplementaires/',
+    category:     'Droits en cours de contrat',
+    categorySlug: 'droits-contrat',
+  },
+  {
+    title:        'Solde de tout compte : calcul et contestation',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Complémentaire santé solidaire', href: 'https://www.complementaire-sante-solidaire.gouv.fr' },
+  { title: 'Portabilité mutuelle',           href: '/portabilite-mutuelle/'                             },
+  { title: 'Bulletin de paie décryptage',    href: '/bulletin-paie/'                                    },
+  { title: 'Convention collective',          href: '/convention-collective/'                             },
+];
+---
+
+<ArticleLayout
+  title="Mutuelle obligatoire en entreprise : règles, cotisation et dispenses en 2026"
+  description="Mutuelle d'entreprise obligatoire en 2026 : qui paie quoi, panier de soins minimum, cas de dispense et portabilité après départ. Guide complet pour salariés."
+  publishedDate="2026-03-09"
+  modifiedDate="2026-03-18"
+  category="Droits en cours de contrat"
+  categorySlug="droits-contrat"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Obligation
+       ═══════════════════════════════════════════ -->
+  <h2 id="obligation">L'obligation depuis la loi ANI 2016</h2>
+
+  <p>
+    La <strong>loi ANI du 14 juin 2013</strong> (Accord National Interprofessionnel),
+    entrée en vigueur le <strong>1er janvier 2016</strong>, impose à tout employeur
+    du secteur privé de proposer une complémentaire santé collective à l'ensemble
+    de ses salariés, et d'en financer au moins la moitié.
+  </p>
+
+  <h3>Qui est concerné ?</h3>
+
+  <p>
+    L'obligation s'applique à <strong>tous les salariés du secteur privé</strong> :
+    CDI, CDD, temps plein, temps partiel, quelle que soit l'ancienneté ou la taille
+    de l'entreprise. Elle ne concerne pas les fonctionnaires (qui bénéficient d'un
+    régime spécifique), ni les travailleurs indépendants.
+  </p>
+
+  <p>
+    L'employeur a deux obligations distinctes : <strong>proposer</strong> la mutuelle
+    (faire adhérer le salarié) et <strong>co-financer</strong> a minima 50 % de
+    la cotisation de base.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Nouveauté 2026 :</strong> la mutuelle obligatoire s'étend à la fonction
+      publique depuis le 1er janvier 2026. Les agents publics bénéficient désormais
+      d'une prise en charge d'au moins 50 % de leurs cotisations santé par leur
+      employeur, comme les salariés du privé.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F20739"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Mutuelle d'entreprise obligatoire
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Cotisation
+       ═══════════════════════════════════════════ -->
+  <h2 id="cotisation">Qui paie quoi ?</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Qui</th>
+        <th>Minimum légal</th>
+        <th>Maximum</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Employeur</td>
+        <td><strong>50 %</strong> de la cotisation de base</td>
+        <td>100 % (prise en charge totale possible)</td>
+        <td>Part exonérée de cotisations sociales dans les limites légales</td>
+      </tr>
+      <tr>
+        <td>Salarié</td>
+        <td>0 % (si employeur paie 100 %)</td>
+        <td><strong>50 %</strong> maximum pour la part obligatoire</td>
+        <td>Prélevée sur le bulletin de paie</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Exemple :</strong> mutuelle dont la cotisation mensuelle de base est
+    de 80 € — l'employeur paie au minimum 40 €, le salarié au maximum 40 €.
+    Si l'accord collectif prévoit une prise en charge à 60 %, l'employeur paie
+    48 € et le salarié 32 €.
+  </p>
+
+  <p>
+    La part patronale est <strong>exonérée de cotisations sociales</strong>
+    (dans la limite de 6 % du plafond SS + 1,5 % de la rémunération brute,
+    plafonnée à 12 % du plafond SS) et n'est pas imposable pour le salarié,
+    à condition que le contrat soit « responsable ».
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006741413"
+       target="_blank" rel="noopener">
+      Légifrance — Art. L911-7 Code de la Sécurité sociale
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Panier de soins
+       ═══════════════════════════════════════════ -->
+  <h2 id="panier">Le panier de soins minimum (contrat responsable)</h2>
+
+  <p>
+    Pour bénéficier des exonérations sociales et fiscales, la mutuelle d'entreprise
+    doit être un <strong>contrat responsable</strong> respectant le panier de soins
+    minimum défini par décret. Ce plancher couvre au minimum :
+  </p>
+
+  <ul>
+    <li>
+      L'<strong>intégralité du ticket modérateur</strong> sur les consultations,
+      actes et prestations remboursés par l'Assurance maladie
+    </li>
+    <li>
+      La <strong>totalité du forfait journalier hospitalier</strong>
+      (environ 20 €/jour en service de médecine, 15 €/jour en psychiatrie)
+    </li>
+    <li>
+      Les <strong>frais dentaires</strong> : au moins 125 % du tarif de convention
+      pour les prothèses et l'orthodontie
+    </li>
+    <li>
+      Les <strong>frais d'optique</strong> : un forfait par période de 2 ans
+      (exemple : environ 100 € pour une correction simple, 150 € pour une
+      correction complexe) — ces montants sont révisés périodiquement
+    </li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Ces minima sont les <strong>planchers légaux</strong> — votre mutuelle
+      d'entreprise peut couvrir davantage selon la négociation collective.
+      Comparez le détail des garanties avant de demander une dispense :
+      la mutuelle d'entreprise peut être plus avantageuse que votre couverture
+      individuelle.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.ameli.fr/assure/droits-demarches/salarie/complementaire-sante/complementaire-sante-entreprise"
+       target="_blank" rel="noopener">
+      Ameli.fr — Complémentaire santé d'entreprise
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Dispenses
+       ═══════════════════════════════════════════ -->
+  <h2 id="dispenses">Les cas de dispense</h2>
+
+  <p>
+    Certains salariés peuvent refuser d'adhérer à la mutuelle d'entreprise.
+    Les dispenses se répartissent en deux catégories.
+  </p>
+
+  <h3>Dispenses légales (de droit)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Motif</th>
+        <th>Conditions</th>
+        <th>Documents requis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CDD ou contrat de mission court</td>
+        <td>Durée inférieure à 3 mois</td>
+        <td>Attestation de la durée du contrat</td>
+      </tr>
+      <tr>
+        <td>Bénéficiaire de la CSS (Complémentaire Santé Solidaire)</td>
+        <td>Bénéficier de la CSS en cours de validité</td>
+        <td>Attestation CSS délivrée par la CPAM</td>
+      </tr>
+      <tr>
+        <td>Apprenti</td>
+        <td>Si la cotisation salariale représente plus de 10 % du salaire brut</td>
+        <td>Calcul justifié par l'employeur</td>
+      </tr>
+      <tr>
+        <td>Ayant droit couvert par la mutuelle du conjoint</td>
+        <td>Déjà couvert en tant qu'ayant droit par la complémentaire d'un conjoint</td>
+        <td>Attestation de couverture du conjoint mentionnant le statut d'ayant droit</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Dispenses prévues par l'acte fondateur</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Motif</th>
+        <th>Conditions</th>
+        <th>Documents requis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Salarié à temps partiel</td>
+        <td>Si la cotisation représente 10 % ou plus du salaire brut mensuel</td>
+        <td>Justificatif de salaire et simulation de cotisation</td>
+      </tr>
+      <tr>
+        <td>Salarié multi-employeurs</td>
+        <td>Déjà couvert par la mutuelle obligatoire d'un autre employeur</td>
+        <td>Attestation de couverture de l'autre employeur</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>La dispense doit être demandée par écrit à l'employeur</strong> —
+      elle n'est pas automatique. Joignez les justificatifs requis. Sans demande
+      formelle, vous serez affilié d'office et la cotisation sera prélevée sur
+      votre salaire.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F20739"
+       target="_blank" rel="noopener">
+      Service-Public.fr
+    </a> et
+    <a href="https://www.ameli.fr"
+       target="_blank" rel="noopener">
+      Ameli.fr
+    </a>
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Départ
+       ═══════════════════════════════════════════ -->
+  <h2 id="depart">Que devient la mutuelle en quittant l'entreprise ?</h2>
+
+  <p>
+    Lorsque vous quittez votre entreprise, vous pouvez bénéficier de la
+    <strong>portabilité de la mutuelle</strong> : le maintien gratuit de votre
+    couverture pendant une durée maximale de <strong>12 mois</strong>.
+  </p>
+
+  <h3>Conditions de la portabilité</h3>
+
+  <ul>
+    <li>
+      Avoir droit aux allocations chômage (ARE) suite à la rupture du contrat —
+      la portabilité n'est pas accessible après une démission non reconnue comme
+      légitime
+    </li>
+    <li>
+      En faire la <strong>demande explicite à l'employeur</strong> lors du départ
+      (ou dans les 2 mois suivant la rupture du contrat)
+    </li>
+    <li>
+      La durée de portabilité est égale à la durée du dernier contrat,
+      dans la limite de 12 mois
+    </li>
+  </ul>
+
+  <h3>Après la portabilité</h3>
+
+  <p>
+    À l'issue des 12 mois (ou dès que vous retrouvez un emploi ouvrant droit
+    à une nouvelle mutuelle d'entreprise), la portabilité cesse. Vous devez
+    alors souscrire une <strong>assurance individuelle</strong>, généralement
+    plus onéreuse. Comparez les offres avant l'expiration de votre portabilité
+    pour éviter une rupture de couverture.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>La portabilité est gratuite</strong> — vous ne payez rien pendant
+      la période de portabilité, ni la part salariale ni la part patronale.
+      N'oubliez pas d'en faire la demande à votre employeur lors de votre départ :
+      c'est souvent oublié et vous ne pouvez pas la réclamer après le délai de 2 mois.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F20739"
+       target="_blank" rel="noopener">
+      Service-Public.fr — Portabilité de la mutuelle
+    </a>
+  </p>
+
+</ArticleLayout>
