@@ -810,3 +810,16 @@ small { font-size: var(--text-sm); }
     width: 100%;
   }
 }
+
+/* ── Source references ───────────────────────────────── */
+.source-ref {
+  font-size: 0.75rem;
+  color: var(--clr-text-faint);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--clr-border-subtle);
+}
+.source-ref a {
+  color: var(--clr-green);
+  text-decoration: underline;
+}
