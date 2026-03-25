@@ -3,9 +3,9 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://droitclair.fr',
-  compressHTML: true,
+  site: 'https://droitclair.pages.dev',
+  trailingSlash: 'always',
   build: {
-    inlineStylesheets: 'auto',
-  },
+    format: 'directory'
+  }
 });
