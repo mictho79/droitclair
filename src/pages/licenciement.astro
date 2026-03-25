@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const articles = [
+  {
+    title: 'Licenciement économique : droits et recours en 2026',
+    description: 'PSE, CSP, priorité de réembauche, indemnité supralégale — tout ce que vous devez savoir et exiger face à un licenciement économique.',
+    href: '/licenciement-economique/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2025-12-10',
+    readingTime: 10,
+  },
+  {
+    title: 'Licenciement pour faute grave : procédure et conséquences',
+    description: 'Définition de la faute grave, exemples jurisprudentiels, procédure de mise à pied et conséquences financières pour le salarié.',
+    href: '/licenciement-faute-grave/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-02-12',
+    readingTime: 9,
+  },
+  {
+    title: 'Licenciement pour inaptitude : droits du salarié',
+    description: 'Inaptitude professionnelle ou non professionnelle, obligation de reclassement, indemnité spéciale — vos droits en cas de licenciement pour inaptitude.',
+    href: '/licenciement-pour-inaptitude/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-01-28',
+    readingTime: 8,
+  },
+  {
+    title: 'Indemnité de licenciement : calcul et montants 2026',
+    description: 'Formule légale, salaire de référence, exemples chiffrés pour 5, 10 et 15 ans d\'ancienneté — calculez précisément votre indemnité.',
+    href: '/indemnite-licenciement/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-02-20',
+    readingTime: 7,
+  },
+  {
+    title: 'Contester son licenciement : délais, procédure et barème',
+    description: 'Licenciement sans cause réelle, vice de procédure, discrimination — comment saisir le Conseil de prud\'hommes et le barème Macron détaillé.',
+    href: '/contester-licenciement/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-01',
+    readingTime: 10,
+  },
+  {
+    title: 'Barème Macron : indemnités prud\'homales en 2026',
+    description: 'Tableau complet des planchers et plafonds du barème Macron selon l\'ancienneté, et les cas de nullité qui permettent de le dépasser.',
+    href: '/bareme-macron/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Conseil de prud\'hommes : saisine et procédure',
+    description: 'Comment saisir le CPH, les phases de la procédure (BCO, bureau de jugement, appel) et les délais de prescription à respecter.',
+    href: '/prudhommes/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 7,
+  },
+  {
+    title: 'Priorité de réembauche : conditions, délai et exercice',
+    description: 'Droit accordé aux salariés licenciés pour motif économique de retrouver un emploi dans l\'entreprise pendant 12 mois.',
+    href: '/priorite-reembauche/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Plan de sauvegarde de l\'emploi (PSE) : obligations et droits',
+    description: 'Seuils d\'obligation (50 salariés / 10 licenciements), contenu obligatoire, validation DREETS et droits des salariés concernés.',
+    href: '/plan-sauvegarde-emploi/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 7,
+  },
+];
+---
+
+<BaseLayout
+  title="Licenciement — Guides et droits du salarié 2026"
+  description="Tout sur le licenciement : licenciement économique, pour faute grave, pour inaptitude, calcul de l'indemnité, et comment contester devant les prud'hommes. Guides 2026."
+>
+
+  <!-- En-tête de catégorie -->
+  <div class="cat-hero">
+    <div class="container cat-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Licenciement</span>
+      </nav>
+      <h1 class="cat-hero__title">Licenciement</h1>
+      <p class="cat-hero__desc">
+        Comprendre les différents types de licenciement, calculer vos indemnités,
+        connaître vos droits et savoir comment contester une rupture abusive
+        devant le Conseil de prud'hommes.
+      </p>
+      <p class="cat-hero__count">{articles.length} guides disponibles</p>
+    </div>
+  </div>
+
+  <!-- Grille d'articles -->
+  <div class="cat-body">
+    <div class="container">
+      <div class="cat-grid">
+        {articles.map((article) => (
+          <ArticleCard {...article} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ── En-tête ── */
+  .cat-hero {
+    background-color: var(--clr-gray);
+    border-bottom: 1px solid var(--clr-border);
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .cat-hero__inner {
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .breadcrumb a {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--clr-green);
+    text-decoration: underline;
+  }
+
+  .cat-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--clr-black);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--clr-green);
+    margin: 0;
+  }
+
+  /* ── Corps ── */
+  .cat-body {
+    padding-block: var(--space-9) var(--space-12);
+    background-color: #ffffff;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

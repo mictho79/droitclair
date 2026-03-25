@@ -1,0 +1,124 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que la priorité de réembauche ?' },
+  { id: 'conditions',  label: 'Conditions et bénéficiaires'                },
+  { id: 'exercice',    label: 'Comment l\'exercer'                          },
+  { id: 'faq',         label: 'Questions fréquentes'                        },
+];
+
+const summary = [
+  "La priorité de réembauche est un droit accordé aux salariés licenciés pour motif économique de retrouver un emploi dans l'entreprise si un poste compatible se libère dans l'année suivant le licenciement.",
+  "L'employeur a l'obligation d'informer le salarié des postes disponibles correspondant à sa qualification pendant 12 mois.",
+  "Le salarié qui exerce ce droit et n'est pas réembauché alors qu'un poste était disponible peut demander des dommages-intérêts équivalents à 2 mois de salaire minimum.",
+];
+
+const faq = [
+  {
+    question: "La priorité de réembauche s'applique-t-elle à tout licenciement ?",
+    answer: "Non. La priorité de réembauche est réservée aux salariés licenciés pour motif économique (art. L1233-45 du Code du travail). Elle ne s'applique pas aux licenciements pour motif personnel (faute, inaptitude), aux ruptures conventionnelles ni aux démissions. Le salarié en CSP (Contrat de Sécurisation Professionnelle) ou en congé de reclassement conserve ce droit pendant la durée de son dispositif.",
+  },
+  {
+    question: "Comment exercer concrètement son droit à la priorité de réembauche ?",
+    answer: "Le salarié doit manifester sa demande dans le délai d'un an suivant son départ. Il est conseillé d'envoyer une LRAR à l'employeur rappelant votre souhait de bénéficier de la priorité de réembauche et demandant à être informé de tout poste disponible correspondant à votre qualification. L'employeur qui ne respecte pas cette obligation peut être condamné à verser une indemnité minimale de 2 mois de salaire brut.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Licenciement économique : droits et recours',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Plan de sauvegarde de l\'emploi (PSE)',
+    href:         '/plan-sauvegarde-emploi/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Indemnité de licenciement : calcul et montants',
+    href:         '/indemnite-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Licenciement économique',        href: '/licenciement-economique/'                                               },
+  { title: 'Plan de sauvegarde de l\'emploi', href: '/plan-sauvegarde-emploi/'                                              },
+  { title: 'Service-Public — Priorité réembauche', href: 'https://www.service-public.fr/particuliers/vosdroits/F1145'      },
+];
+---
+
+<ArticleLayout
+  title="Priorité de réembauche : conditions, délai et exercice du droit en 2026"
+  description="Priorité de réembauche après licenciement économique en 2026 : bénéficiaires, durée de 12 mois, obligation d'information de l'employeur et indemnité en cas de non-respect."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que la priorité de réembauche ?</h2>
+
+  <p>
+    La <strong>priorité de réembauche</strong> est un droit légal accordé aux salariés
+    licenciés pour motif économique (art. <strong>L1233-45 du Code du travail</strong>).
+    Elle leur permet, si un poste compatible avec leur qualification se libère dans
+    l'entreprise, d'être prioritaires pour y être réembauchés.
+  </p>
+
+  <p>
+    Ce droit s'exerce pendant une durée d'<strong>un an</strong> à compter
+    de la date de rupture du contrat de travail.
+  </p>
+
+  <h2 id="conditions">Conditions et bénéficiaires</h2>
+
+  <ul>
+    <li>Avoir été licencié pour <strong>motif économique</strong> (individuel ou collectif)</li>
+    <li>Faire une demande expresse à l'employeur pour bénéficier de ce droit</li>
+    <li>Le poste disponible doit correspondre à la <strong>qualification du salarié</strong>
+    ou à une qualification qu'il peut exercer après formation</li>
+  </ul>
+
+  <p>
+    L'employeur a l'obligation d'<strong>informer le salarié</strong> de tout emploi
+    disponible compatible avec sa qualification dans l'entreprise ou le groupe,
+    pendant toute la durée du droit (12 mois).
+  </p>
+
+  <h2 id="exercice">Comment l'exercer</h2>
+
+  <ol>
+    <li>
+      <strong>Manifester sa demande par écrit</strong> — envoyez une LRAR à l'employeur
+      rappelant votre souhait de bénéficier de la priorité de réembauche
+    </li>
+    <li>
+      <strong>Restez disponible</strong> — répondez aux offres que l'employeur est
+      tenu de vous communiquer
+    </li>
+    <li>
+      En cas de non-respect par l'employeur : <strong>saisir le CPH</strong> —
+      l'indemnité minimale est de <strong>2 mois de salaire brut</strong>
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1145" target="_blank" rel="noopener">
+      Service-Public.fr — Priorité de réembauche
+    </a>
+  </p>
+
+</ArticleLayout>

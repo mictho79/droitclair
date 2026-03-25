@@ -1,0 +1,134 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'brut-net',   label: 'Salaire brut vs salaire net'         },
+  { id: 'taux',       label: 'Taux de cotisations salariales 2026' },
+  { id: 'exemple',    label: 'Exemples de calcul'                  },
+  { id: 'faq',        label: 'Questions fréquentes'                },
+];
+
+const summary = [
+  "Le salaire net correspond au salaire brut diminué des cotisations sociales salariales (environ 22 à 25 % du brut selon la situation).",
+  "Depuis 2018, les cotisations chômage et une partie des cotisations maladie ont été supprimées pour les salariés, compensées par une hausse de la CSG.",
+  "Le prélèvement à la source de l'impôt sur le revenu est déduit du net imposable pour obtenir le net à payer.",
+];
+
+const faq = [
+  {
+    question: "Quel est le taux de passage du brut au net en 2026 ?",
+    answer: "En 2026, pour un salarié du privé sans avantages particuliers, le taux de cotisations salariales est d'environ 22 à 25 % du salaire brut selon le niveau de rémunération et la tranche de retraite complémentaire. À titre d'exemple, un salaire brut de 2 000 € correspond à un net imposable d'environ 1 560 € (avant impôt sur le revenu). Ces taux varient selon la convention collective, le statut (cadre/non-cadre) et les garanties de prévoyance.",
+  },
+  {
+    question: "Quelle est la différence entre net imposable et net à payer ?",
+    answer: "Le net imposable est le salaire net avant déduction du prélèvement à la source (PAS) de l'impôt sur le revenu. Il sert de base au calcul de l'impôt et figure sur la déclaration de revenus. Le net à payer est le montant effectivement versé sur le compte bancaire : il correspond au net imposable diminué du montant du PAS. Ces deux montants sont distincts sur le bulletin de paie depuis janvier 2019.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Heures supplémentaires : majoration et droits',
+    href:         '/heures-supplementaires/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Bulletin de paie : mentions obligatoires et lecture',
+    href:         '/bulletin-paie/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Indemnité de licenciement : calcul et montants',
+    href:         '/indemnite-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Bulletin de paie décryptage',  href: '/bulletin-paie/'                                                           },
+  { title: 'URSSAF — Taux de cotisations', href: 'https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html'  },
+  { title: 'Simulateur net-brut URSSAF',   href: 'https://www.urssaf.fr/portail/home/utilitaires/estimateur-de-cotisations.html' },
+];
+---
+
+<ArticleLayout
+  title="Calcul salaire net : taux de cotisations et exemples 2026"
+  description="Comment calculer son salaire net à partir du brut en 2026 : taux de cotisations salariales, CSG/CRDS, retraite complémentaire, prélèvement à la source et exemples chiffrés."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="brut-net">Salaire brut vs salaire net</h2>
+
+  <p>
+    Le <strong>salaire brut</strong> est la rémunération convenue dans le contrat
+    de travail, avant déduction des cotisations sociales. Le <strong>salaire net</strong>
+    est ce qui reste après déduction des cotisations salariales obligatoires.
+  </p>
+
+  <p>
+    La différence entre brut et net provient des cotisations sociales salariales
+    qui financent la Sécurité sociale, la retraite, la prévoyance et la CSG/CRDS.
+    Ces cotisations représentent environ <strong>22 à 25 % du brut</strong>
+    pour un salarié du secteur privé.
+  </p>
+
+  <h2 id="taux">Taux de cotisations salariales 2026</h2>
+
+  <table>
+    <thead>
+      <tr><th>Cotisation</th><th>Taux salarié</th><th>Assiette</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Assurance maladie</td><td>0 %</td><td>Supprimée pour les salariés depuis 2018</td></tr>
+      <tr><td>Assurance chômage</td><td>0 %</td><td>Supprimée pour les salariés depuis 2018</td></tr>
+      <tr><td>Retraite de base (CNAV)</td><td>6,90 %</td><td>Dans la limite du plafond SS (PMSS)</td></tr>
+      <tr><td>Retraite déplafonnée</td><td>0,40 %</td><td>Totalité du salaire brut</td></tr>
+      <tr><td>Retraite complémentaire T1 (AGIRC-ARRCO)</td><td>3,15 %</td><td>Tranche 1 (≤ 1 PMSS)</td></tr>
+      <tr><td>Retraite complémentaire T2 (AGIRC-ARRCO)</td><td>8,64 %</td><td>Tranche 2 (1 à 8 PMSS)</td></tr>
+      <tr><td>CSG déductible</td><td>6,80 %</td><td>98,25 % du brut</td></tr>
+      <tr><td>CSG non déductible + CRDS</td><td>2,90 %</td><td>98,25 % du brut</td></tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html" target="_blank" rel="noopener">
+      URSSAF — Taux de cotisations 2026
+    </a> (à vérifier et mettre à jour avec les taux en vigueur)
+  </p>
+
+  <h2 id="exemple">Exemples de calcul</h2>
+
+  <table>
+    <thead>
+      <tr><th>Salaire brut</th><th>Net imposable estimé</th><th>Écart brut/net</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1 800 € (SMIC brut approx.)</td><td>~1 420 €</td><td>~21 %</td></tr>
+      <tr><td>2 500 €</td><td>~1 950 €</td><td>~22 %</td></tr>
+      <tr><td>3 500 €</td><td>~2 700 €</td><td>~23 %</td></tr>
+      <tr><td>5 000 €</td><td>~3 750 €</td><td>~25 %</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Ces estimations sont indicatives. Le taux exact dépend du statut cadre/non-cadre,
+      des garanties de prévoyance, des avantages en nature et de la convention collective.
+      Pour un calcul précis, utilisez le simulateur officiel de l'URSSAF.
+    </div>
+  </div>
+
+</ArticleLayout>

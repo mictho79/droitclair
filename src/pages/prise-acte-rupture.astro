@@ -1,0 +1,151 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que la prise d\'acte ?'  },
+  { id: 'conditions',  label: 'Conditions et manquements visés'     },
+  { id: 'risques',     label: 'Risques et enjeux'                   },
+  { id: 'procedure',   label: 'Procédure et effets'                 },
+  { id: 'faq',         label: 'Questions fréquentes'                },
+];
+
+const summary = [
+  "La prise d'acte de rupture est un mode de rupture du contrat de travail à l'initiative du salarié, fondée sur des manquements graves de l'employeur à ses obligations.",
+  "Elle produit immédiatement les effets d'une démission, mais si le juge l'analyse comme justifiée, elle est requalifiée en licenciement sans cause réelle et sérieuse.",
+  "C'est une démarche risquée : si le juge estime les manquements insuffisants, la prise d'acte produit les effets d'une démission — sans indemnités ni ARE.",
+];
+
+const faq = [
+  {
+    question: "Quelle est la différence entre prise d'acte et démission pour faute de l'employeur ?",
+    answer: "Ce sont deux appellations pour le même mécanisme juridique. La 'démission pour faute de l'employeur' est l'expression courante, mais le terme technique consacré par la jurisprudence de la Cour de cassation est 'prise d'acte de rupture aux torts de l'employeur'. Dans les deux cas, le salarié rompt son contrat en invoquant des manquements graves de l'employeur, et c'est le juge qui détermine si ces manquements justifient la rupture.",
+  },
+  {
+    question: "Doit-on effectuer son préavis après une prise d'acte ?",
+    answer: "Non. La prise d'acte rompt immédiatement le contrat de travail, sans préavis. Le salarié peut quitter l'entreprise le jour même où il notifie la prise d'acte. Si le juge estime ensuite que la prise d'acte est justifiée, l'employeur peut être condamné à payer l'indemnité compensatrice de préavis, l'indemnité de licenciement et des dommages-intérêts au titre du licenciement sans cause réelle et sérieuse.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Démission pour faute de l\'employeur',
+    href:         '/demission-faute-employeur/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Contester son licenciement : procédure et délais',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Démission pour faute employeur',  href: '/demission-faute-employeur/'                                            },
+  { title: 'Conseil de prud\'hommes',         href: '/prudhommes/'                                                           },
+  { title: 'Service-Public — Prise d\'acte', href: 'https://www.service-public.fr/particuliers/vosdroits/F24412'            },
+];
+---
+
+<ArticleLayout
+  title="Prise d'acte de rupture : conditions, risques et procédure en 2026"
+  description="Prise d'acte de rupture en 2026 : définition, manquements graves de l'employeur qui la justifient, risque en cas de rejet par le juge et effets sur les indemnités et le chômage."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que la prise d'acte de rupture ?</h2>
+
+  <p>
+    La <strong>prise d'acte de rupture</strong> est un mécanisme jurisprudentiel
+    permettant à un salarié de rompre immédiatement son contrat de travail en
+    invoquant des <strong>manquements suffisamment graves de l'employeur</strong>
+    à ses obligations.
+  </p>
+
+  <p>
+    Contrairement à une démission classique, le salarié ne choisit pas de partir
+    librement : il est <em>contraint</em> de partir en raison des agissements de
+    l'employeur. C'est au <strong>Conseil de prud'hommes</strong> de déterminer,
+    après coup, si les manquements étaient suffisamment graves pour justifier
+    la rupture.
+  </p>
+
+  <h2 id="conditions">Conditions et manquements visés</h2>
+
+  <p>
+    Les manquements doivent être <strong>suffisamment graves</strong> pour
+    empêcher la poursuite du contrat de travail. Exemples reconnus par la
+    jurisprudence :
+  </p>
+
+  <ul>
+    <li>Non-paiement total ou partiel du salaire</li>
+    <li>Modification unilatérale du contrat de travail sans accord du salarié</li>
+    <li>Harcèlement moral caractérisé</li>
+    <li>Mise à l'écart systématique et délibérée du salarié</li>
+    <li>Manquement grave à l'obligation de sécurité (danger pour la santé)</li>
+    <li>Non-fourniture de travail sur une longue période</li>
+  </ul>
+
+  <h2 id="risques">Risques et enjeux</h2>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>C'est une démarche à double tranchant.</strong> Si le juge estime
+      que les manquements de l'employeur ne sont pas suffisamment graves, la prise
+      d'acte produit les effets d'une <strong>démission</strong> : pas d'indemnité
+      de licenciement, pas d'indemnité de préavis, et pas d'ouverture des droits au
+      chômage (ARE). La consultation d'un avocat avant toute décision est vivement
+      recommandée.
+    </div>
+  </div>
+
+  <h2 id="procedure">Procédure et effets</h2>
+
+  <ol>
+    <li>
+      <strong>Notification écrite à l'employeur</strong> — par LRAR, en exposant
+      clairement les manquements reprochés
+    </li>
+    <li>
+      <strong>Rupture immédiate</strong> — le contrat cesse le jour de la notification,
+      sans préavis
+    </li>
+    <li>
+      <strong>Saisine du CPH</strong> — dans les 12 mois suivant la rupture
+    </li>
+    <li>
+      Si <strong>prise d'acte justifiée</strong> → effets d'un licenciement sans
+      cause réelle et sérieuse (indemnités + ARE)
+    </li>
+    <li>
+      Si <strong>prise d'acte non justifiée</strong> → effets d'une démission
+      (aucune indemnité, pas d'ARE)
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F24412" target="_blank" rel="noopener">
+      Service-Public.fr — Prise d'acte de rupture
+    </a>
+  </p>
+
+</ArticleLayout>

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact — DroitClair"
+  description="Contactez l'équipe DroitClair pour toute question sur le contenu du site ou pour signaler une erreur juridique."
+  noindex={true}
+>
+
+  <div class="contact-page">
+    <div class="contact-page__container">
+
+      <h1 class="contact-page__title">Contact</h1>
+
+      <p class="contact-page__intro">
+        Pour toute question sur le contenu du site ou pour signaler une erreur juridique,
+        contactez-nous par email.
+      </p>
+
+      <div class="contact-card">
+        <div class="contact-card__email-label">Adresse email</div>
+        <a href="mailto:mic.thomas1334@gmail.com" class="contact-card__email">
+          mic.thomas1334@gmail.com
+        </a>
+        <p class="contact-card__delay">
+          Réponse sous <strong>48h ouvrées</strong>
+        </p>
+      </div>
+
+      <div class="contact-notice">
+        <div class="contact-notice__icon" aria-hidden="true">ℹ️</div>
+        <div class="contact-notice__body">
+          <strong>DroitClair ne fournit pas de consultations juridiques personnalisées.</strong>
+          Pour un conseil adapté à votre situation, consultez un avocat ou un conseiller
+          juridique. Vous pouvez trouver un avocat via le
+          <a href="https://www.cnb.avocat.fr/fr/trouver-un-avocat" target="_blank" rel="noopener">
+            Conseil National des Barreaux
+          </a>
+          ou obtenir une aide juridictionnelle via
+          <a href="https://www.service-public.fr/particuliers/vosdroits/F18074" target="_blank" rel="noopener">
+            Service-Public.fr
+          </a>.
+        </div>
+      </div>
+
+      <div class="contact-topics">
+        <h2>Exemples de demandes</h2>
+        <ul>
+          <li>Signaler une information juridique inexacte ou obsolète</li>
+          <li>Suggérer un sujet de guide non encore traité</li>
+          <li>Question sur le fonctionnement du site</li>
+          <li>Demande relative à vos données personnelles (RGPD)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-block: var(--space-10) var(--space-12);
+  }
+
+  .contact-page__container {
+    max-width: 640px;
+    margin-inline: auto;
+    padding-inline: var(--space-5);
+  }
+
+  .contact-page__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--clr-black);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-5);
+  }
+
+  .contact-page__intro {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  /* ── Carte email ── */
+  .contact-card {
+    background-color: var(--clr-gray);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6) var(--space-7);
+    margin-bottom: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .contact-card__email-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--clr-text-muted);
+  }
+
+  .contact-card__email {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--clr-green);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-card__email:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-card__delay {
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    margin: 0;
+  }
+
+  /* ── Notice ── */
+  .contact-notice {
+    display: flex;
+    gap: var(--space-4);
+    background-color: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-notice__icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  .contact-notice__body {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: #1E40AF;
+  }
+
+  .contact-notice__body a {
+    color: #1D4ED8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .contact-notice__body a:hover {
+    text-decoration: none;
+  }
+
+  /* ── Topics ── */
+  .contact-topics h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
+  }
+
+  .contact-topics ul {
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .contact-topics li {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+  }
+</style>

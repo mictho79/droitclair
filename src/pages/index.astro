@@ -74,20 +74,20 @@ const themes = [
     href: '/demission/',
     links: [
       { label: 'Lettre de démission',         href: '/lettre-de-demission-cdi/'  },
-      { label: 'Démission pour faute grave',   href: '#'                          },
-      { label: 'Rupture conventionnelle',      href: '#'                          },
-      { label: 'Licenciement pour faute',      href: '#'                          },
+      { label: 'Démission pour faute grave',   href: '/demission/'                },
+      { label: 'Rupture conventionnelle',      href: '/rupture-conventionnelle/'  },
+      { label: 'Licenciement pour faute',      href: '/licenciement-faute-grave/' },
     ],
   },
   {
     color: 'blue',
     heading: 'Droits en cours de contrat',
-    href: '/droits-contrat/',
+    href: '/droits-salarie/',
     links: [
-      { label: 'Arrêt maladie et salaire',     href: '#'                          },
-      { label: 'Congés payés : calcul',        href: '#'                          },
-      { label: 'Période d\'essai',             href: '#'                          },
-      { label: 'Heures supplémentaires',       href: '#'                          },
+      { label: 'Arrêt maladie et salaire',     href: '/arret-maladie-salaire/'    },
+      { label: 'Congés payés : calcul',        href: '/conges-payes-calcul/'      },
+      { label: 'Période d\'essai',             href: '/periode-essai/'            },
+      { label: 'Heures supplémentaires',       href: '/heures-supplementaires/'   },
     ],
   },
   {
@@ -95,10 +95,10 @@ const themes = [
     heading: 'Logement & contrats',
     href: '/logement/',
     links: [
-      { label: 'Préavis locataire',            href: '#'                          },
-      { label: 'Dépôt de garantie',            href: '#'                          },
-      { label: 'État des lieux de sortie',     href: '#'                          },
-      { label: 'Résiliation de bail',          href: '#'                          },
+      { label: 'Préavis locataire',            href: '/preavis-location/'         },
+      { label: 'Dépôt de garantie',            href: '/depot-de-garantie/'        },
+      { label: 'État des lieux de sortie',     href: '/logement/'                 },
+      { label: 'Résiliation de bail',          href: '/logement/'                 },
     ],
   },
 ];
@@ -194,10 +194,10 @@ const schema = [
       <!-- Tags de navigation rapide -->
       <div class="hero-tags" role="list" aria-label="Thèmes populaires">
         {[
-          { label: 'Démission',     href: '/demission/'     },
-          { label: 'Licenciement',  href: '/licenciement/'  },
-          { label: 'Préavis',       href: '/preavis/'       },
-          { label: 'Arrêt maladie', href: '/arret-maladie/' },
+          { label: 'Démission',     href: '/demission/'    },
+          { label: 'Licenciement',  href: '/licenciement/' },
+          { label: 'Préavis',       href: '/preavis-demission/'       },
+          { label: 'Arrêt maladie', href: '/arret-maladie-salaire/'  },
         ].map(({ label, href }) => (
           <a href={href} class="hero-tag" role="listitem">{label}</a>
         ))}

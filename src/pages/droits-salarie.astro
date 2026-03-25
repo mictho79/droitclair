@@ -1,0 +1,290 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const articles = [
+  {
+    title: 'Arrêt maladie : maintien de salaire, IJSS et démarches',
+    description: 'Qui paie ? Combien ? Pendant combien de temps ? Les règles du maintien de salaire et des indemnités journalières de la Sécurité sociale décryptées.',
+    href: '/arret-maladie-salaire/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-02-01',
+    readingTime: 7,
+  },
+  {
+    title: 'Congés payés : calcul, acquisition et droits en 2026',
+    description: 'Règles d\'acquisition, méthodes de calcul (1/10 ou maintien de salaire), congés et maladie depuis la loi 2024 — tout ce qu\'il faut savoir.',
+    href: '/conges-payes-calcul/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-02-28',
+    readingTime: 8,
+  },
+  {
+    title: 'Période d\'essai : durée, renouvellement et rupture',
+    description: 'Durées légales selon le statut (CDI/CDD), conditions de renouvellement, délais de prévenance et conséquences financières de la rupture.',
+    href: '/periode-essai/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-02-15',
+    readingTime: 7,
+  },
+  {
+    title: 'Heures supplémentaires : majoration, récupération et droits',
+    description: 'Seuil de déclenchement, taux de majoration (25 % / 50 %), repos compensateur, contingent annuel et refus de l\'employeur : vos droits.',
+    href: '/heures-supplementaires/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-01-22',
+    readingTime: 6,
+  },
+  {
+    title: 'Mutuelle d\'entreprise : adhésion, cotisation et portabilité',
+    description: 'Obligation de l\'employeur, base de remboursement, cas de dispense d\'adhésion et portabilité de la mutuelle après la fin du contrat.',
+    href: '/mutuelle-obligatoire/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-01-30',
+    readingTime: 6,
+  },
+  {
+    title: 'Bulletin de paie : mentions obligatoires et lecture',
+    description: 'Mentions obligatoires depuis 2017, décryptage du bulletin simplifié et durée de conservation sans limite pour le salarié.',
+    href: '/bulletin-paie/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Convention collective : comment trouver la vôtre',
+    description: 'IDCC, code APE, recherche sur Légifrance — comment identifier et consulter votre convention collective et les avantages qu\'elle peut prévoir.',
+    href: '/convention-collective/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Calcul salaire net : taux de cotisations 2026',
+    description: 'Tableau des cotisations salariales 2026 (SS, retraite, chômage, CSG/CRDS) et 4 exemples de calcul brut vers net.',
+    href: '/calcul-salaire-net/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Accident du travail : déclaration, indemnisation et protection',
+    description: 'Déclaration dans les 48h, IJ majorées (60 % puis 80 %), protection contre le licenciement et procédure en cas de faute inexcusable.',
+    href: '/accident-du-travail/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 7,
+  },
+  {
+    title: 'Mi-temps thérapeutique : conditions, durée et indemnisation',
+    description: 'Conditions d\'accès (60 jours d\'arrêt), cumul salaire partiel et IJ, durée maximale de 12 mois et démarches auprès de la CPAM.',
+    href: '/mi-temps-therapeutique/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Visite de reprise : quand est-elle obligatoire ?',
+    description: 'Tableau des cas d\'obligation, délais à respecter, rôle du médecin du travail et procédure en cas d\'avis d\'inaptitude.',
+    href: '/visite-reprise/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Médecin du travail : visites, rôle et contestation de l\'avis',
+    description: 'Types de visites obligatoires, secret médical, avis d\'inaptitude et comment contester un avis médical dans les 15 jours.',
+    href: '/medecin-du-travail/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Indemnité de congés payés : calcul et règles en 2026',
+    description: 'Les deux méthodes de calcul (1/10 et maintien), cas particuliers (faute lourde post-2024) et exemples chiffrés.',
+    href: '/indemnite-conges-payes/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Portabilité mutuelle : 12 mois gratuits après le contrat',
+    description: 'Conditions d\'accès (ouverture ARE), durée maximale de 12 mois, gratuité et cessation automatique en cas de réemploi.',
+    href: '/portabilite-mutuelle/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+  {
+    title: 'Certificat de travail : mentions obligatoires et recours',
+    description: 'Ce que l\'employeur doit mentionner, ce qu\'il lui est interdit d\'écrire, et comment réagir si le document n\'est pas remis.',
+    href: '/certificat-de-travail/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+  {
+    title: 'Attestation France Travail : contenu et délai de remise',
+    description: 'Informations obligatoires, délai de remise, transmission dématérialisée et recours en cas de retard ou d\'erreur.',
+    href: '/attestation-france-travail/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+  {
+    title: 'Documents de fin de contrat : les 3 documents obligatoires',
+    description: 'Certificat de travail, attestation France Travail, solde de tout compte — récapitulatif des 3 documents que l\'employeur doit remettre.',
+    href: '/documents-fin-contrat/',
+    category: 'Droits du salarié',
+    categorySlug: 'droits-salarie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+];
+---
+
+<BaseLayout
+  title="Droits du salarié en cours de contrat — Guides 2026"
+  description="Arrêt maladie, congés payés, période d'essai, heures supplémentaires, mutuelle — tous vos droits en cours de contrat de travail. Guides pratiques mis à jour 2026."
+>
+
+  <!-- En-tête de catégorie -->
+  <div class="cat-hero">
+    <div class="container cat-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Droits du salarié</span>
+      </nav>
+      <h1 class="cat-hero__title">Droits en cours de contrat</h1>
+      <p class="cat-hero__desc">
+        Tout ce que vous devez savoir sur vos droits pendant l'exécution de votre contrat :
+        arrêt maladie, congés payés, heures supplémentaires, période d'essai et mutuelle d'entreprise.
+      </p>
+      <p class="cat-hero__count">{articles.length} guides disponibles</p>
+    </div>
+  </div>
+
+  <!-- Grille d'articles -->
+  <div class="cat-body">
+    <div class="container">
+      <div class="cat-grid">
+        {articles.map((article) => (
+          <ArticleCard {...article} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .cat-hero {
+    background-color: var(--clr-gray);
+    border-bottom: 1px solid var(--clr-border);
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .cat-hero__inner {
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .breadcrumb a {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--clr-green);
+    text-decoration: underline;
+  }
+
+  .cat-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--clr-black);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--clr-green);
+    margin: 0;
+  }
+
+  .cat-body {
+    padding-block: var(--space-9) var(--space-12);
+    background-color: #ffffff;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

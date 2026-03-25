@@ -1,0 +1,133 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'principe',   label: 'Principe de la portabilité'         },
+  { id: 'conditions', label: 'Conditions et bénéficiaires'        },
+  { id: 'duree',      label: 'Durée et financement'               },
+  { id: 'faq',        label: 'Questions fréquentes'               },
+];
+
+const summary = [
+  "La portabilité de la mutuelle permet à un salarié quittant l'entreprise de conserver la couverture santé et prévoyance collective pendant une période maximale de 12 mois.",
+  "Elle est gratuite pour l'ancien salarié : le financement est assuré par un mécanisme de mutualisation entre actifs et anciens salariés.",
+  "Elle s'applique en cas de rupture du contrat ouvrant droit à l'assurance chômage : licenciement, rupture conventionnelle, fin de CDD, mais pas en cas de démission (sauf légitime).",
+];
+
+const faq = [
+  {
+    question: "La portabilité s'applique-t-elle en cas de démission ?",
+    answer: "En principe non. La portabilité est réservée aux ruptures de contrat ouvrant droit à l'allocation chômage (ARE). Une démission simple n'ouvre pas droit à la portabilité, car elle n'ouvre pas droit aux ARE. Exception : les démissions légitimes reconnues par France Travail (ex. : démission pour suivre un conjoint muté) qui ouvrent droit à l'ARE peuvent également ouvrir droit à la portabilité.",
+  },
+  {
+    question: "Doit-on demander la portabilité à son employeur ?",
+    answer: "Non. La portabilité est automatique : l'employeur doit informer l'organisme assureur de la rupture du contrat. Le salarié reçoit une attestation et n'a pas de démarches actives à faire pour bénéficier de la portabilité, à condition qu'il s'inscrive à France Travail. La portabilité cesse automatiquement dès la reprise d'un emploi ou la fin des droits au chômage.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Mutuelle d\'entreprise : adhésion et obligations',
+    href:         '/mutuelle-obligatoire/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Documents fin de contrat : liste complète',
+    href:         '/documents-fin-contrat/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Mutuelle obligatoire',          href: '/mutuelle-obligatoire/'                                                    },
+  { title: 'Démission et chômage',          href: '/demission-chomage/'                                                       },
+  { title: 'Service-Public — Portabilité',  href: 'https://www.service-public.fr/particuliers/vosdroits/F31608'              },
+];
+---
+
+<ArticleLayout
+  title="Portabilité mutuelle : durée, conditions et fonctionnement en 2026"
+  description="Portabilité de la mutuelle d'entreprise en 2026 : qui peut en bénéficier, durée maximale de 12 mois, financement automatique et fin de la portabilité en cas de reprise d'emploi."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="principe">Principe de la portabilité</h2>
+
+  <p>
+    La <strong>portabilité de la mutuelle et de la prévoyance</strong> permet à un
+    salarié dont le contrat de travail est rompu de conserver pendant une certaine
+    période les garanties de <strong>complémentaire santé et prévoyance</strong>
+    souscrites par son employeur.
+  </p>
+
+  <p>
+    Ce dispositif est prévu par l'article <strong>L911-8 du Code de la Sécurité sociale</strong>,
+    issu de la loi de sécurisation de l'emploi du 14 juin 2013.
+  </p>
+
+  <h2 id="conditions">Conditions et bénéficiaires</h2>
+
+  <p>Pour bénéficier de la portabilité, le salarié doit :</p>
+
+  <ul>
+    <li>
+      Avoir été couvert par la mutuelle et/ou prévoyance de l'entreprise
+      au moment de la rupture du contrat
+    </li>
+    <li>
+      Bénéficier du maintien de revenus par l'assurance chômage (être indemnisé
+      par France Travail)
+    </li>
+    <li>
+      La rupture doit ouvrir droit à l'ARE : <strong>licenciement, rupture
+      conventionnelle, fin de CDD, démission légitime</strong>
+    </li>
+    <li>
+      La portabilité <strong>ne s'applique pas</strong> en cas de démission
+      sans cause légitime, de départ en retraite ou de rupture pour faute lourde
+    </li>
+  </ul>
+
+  <h2 id="duree">Durée et financement</h2>
+
+  <ul>
+    <li>
+      <strong>Durée maximale : 12 mois</strong> (égale à la durée du dernier contrat,
+      dans la limite de 12 mois)
+    </li>
+    <li>
+      <strong>Gratuite</strong> pour l'ancien salarié : le coût est mutualisé entre
+      les actifs et les anciens salariés — ni cotisation supplémentaire, ni avance
+      de frais
+    </li>
+    <li>
+      La portabilité <strong>cesse automatiquement</strong> dès la reprise d'un emploi,
+      la fin des droits au chômage ou l'adhésion à un autre régime de complémentaire santé
+    </li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F31608" target="_blank" rel="noopener">
+      Service-Public.fr — Portabilité de la mutuelle
+    </a>
+  </p>
+
+</ArticleLayout>

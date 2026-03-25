@@ -1,0 +1,150 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Définition et reconnaissance'       },
+  { id: 'declaration', label: 'Déclaration et démarches'           },
+  { id: 'droits',      label: 'Droits du salarié victime'          },
+  { id: 'inaptitude',  label: 'Inaptitude et retour au travail'    },
+  { id: 'faq',         label: 'Questions fréquentes'               },
+];
+
+const summary = [
+  "Un accident du travail est tout accident survenu par le fait ou à l'occasion du travail, quelle qu'en soit la cause, entraînant une lésion corporelle ou psychique.",
+  "Le salarié victime bénéficie d'une prise en charge à 100 % des soins, d'indemnités journalières majorées et d'une protection renforcée contre le licenciement.",
+  "L'employeur doit déclarer l'accident à la CPAM dans les 48 heures, et le salarié doit informer son employeur dans la journée.",
+];
+
+const faq = [
+  {
+    question: "L'accident de trajet est-il assimilé à un accident du travail ?",
+    answer: "Oui, l'accident de trajet bénéficie du même régime de prise en charge que l'accident du travail, avec quelques différences : il est défini comme l'accident survenu pendant le trajet aller-retour entre le lieu de travail et le domicile (ou le lieu habituel de restauration). La protection contre le licenciement en cas d'accident de trajet est toutefois moins étendue qu'en cas d'accident du travail proprement dit.",
+  },
+  {
+    question: "Peut-on être licencié pendant un arrêt pour accident du travail ?",
+    answer: "Le licenciement est interdit pendant la période de suspension du contrat consécutive à un accident du travail (sauf faute grave ou impossibilité de maintenir le contrat). Cette protection s'applique également pendant les 12 mois suivant la reprise du travail si la rechute est liée à l'accident. Tout licenciement prononcé en violation de cette protection est nul.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Arrêt maladie : maintien de salaire et démarches',
+    href:         '/arret-maladie-salaire/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Licenciement pour inaptitude : droits du salarié',
+    href:         '/licenciement-pour-inaptitude/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Visite de reprise : quand et pourquoi',
+    href:         '/visite-reprise/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Arrêt maladie et salaire',       href: '/arret-maladie-salaire/'                                                 },
+  { title: 'Visite de reprise',              href: '/visite-reprise/'                                                        },
+  { title: 'Ameli — Accident du travail',    href: 'https://www.ameli.fr/assure/remboursements/accidents-du-travail-maladies-professionnelles/accident-du-travail' },
+  { title: 'Service-Public — AT',            href: 'https://www.service-public.fr/particuliers/vosdroits/F175'              },
+];
+---
+
+<ArticleLayout
+  title="Accident du travail : reconnaissance, droits et démarches en 2026"
+  description="Accident du travail en 2026 : définition, déclaration dans les 48h, prise en charge à 100 %, indemnités journalières majorées et protection contre le licenciement."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Définition et reconnaissance</h2>
+
+  <p>
+    Est considéré comme accident du travail, quelle qu'en soit la cause,
+    <strong>tout accident survenu par le fait ou à l'occasion du travail</strong>
+    à toute personne salariée (art. <strong>L411-1 du Code de la Sécurité sociale</strong>).
+  </p>
+
+  <p>Deux conditions cumulatives sont nécessaires :</p>
+  <ul>
+    <li>Un <strong>événement soudain</strong> et identifiable dans le temps</li>
+    <li>Une <strong>lésion</strong> corporelle ou psychique résultant de cet événement</li>
+  </ul>
+
+  <p>La qualification en accident du travail est présumée lorsque l'accident survient
+  sur le lieu et pendant le temps de travail. C'est à l'employeur ou à la CPAM de
+  renverser cette présomption.</p>
+
+  <h2 id="declaration">Déclaration et démarches</h2>
+
+  <ol>
+    <li>
+      <strong>Le salarié informe l'employeur</strong> dans la journée de l'accident
+      (ou dès que possible)
+    </li>
+    <li>
+      <strong>L'employeur déclare l'accident à la CPAM</strong> dans les
+      <strong>48 heures</strong> (jours ouvrés), via le formulaire S6200 ou en ligne
+      sur net-entreprises.fr
+    </li>
+    <li>
+      <strong>Le salarié consulte un médecin</strong> qui établit un certificat
+      médical initial (CMI) décrivant les lésions
+    </li>
+    <li>
+      <strong>La CPAM statue</strong> dans un délai de 30 jours (ou 90 jours si
+      instruction complémentaire) sur la reconnaissance de l'accident
+    </li>
+  </ol>
+
+  <h2 id="droits">Droits du salarié victime</h2>
+
+  <ul>
+    <li><strong>Prise en charge à 100 %</strong> des soins médicaux sans avance de frais</li>
+    <li>
+      <strong>Indemnités journalières (IJ) majorées</strong> : 60 % du salaire journalier
+      de référence du 1er au 28e jour, puis 80 % à partir du 29e jour
+      (sans délai de carence, contrairement à la maladie ordinaire)
+    </li>
+    <li><strong>Protection contre le licenciement</strong> pendant l'arrêt</li>
+    <li>
+      <strong>Indemnisation complémentaire</strong> en cas d'incapacité permanente
+      (rente AT proportionnelle au taux d'incapacité)
+    </li>
+    <li>
+      <strong>Faute inexcusable de l'employeur</strong> — si l'employeur avait ou
+      aurait dû avoir conscience du danger, la rente et les dommages-intérêts peuvent
+      être majorés
+    </li>
+  </ul>
+
+  <h2 id="inaptitude">Inaptitude et retour au travail</h2>
+
+  <p>
+    À l'issue d'un arrêt pour accident du travail, le salarié doit passer une
+    <strong>visite de reprise</strong> obligatoire auprès du médecin du travail.
+    Si celui-ci constate une inaptitude à reprendre le poste, l'employeur a l'obligation
+    de rechercher un reclassement avant tout licenciement pour inaptitude.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F175" target="_blank" rel="noopener">
+      Service-Public.fr — Accident du travail
+    </a>
+  </p>
+
+</ArticleLayout>

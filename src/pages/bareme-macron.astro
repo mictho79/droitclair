@@ -1,0 +1,158 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que le barème Macron ?' },
+  { id: 'tableau',     label: 'Tableau des planchers et plafonds'  },
+  { id: 'exceptions',  label: 'Cas de nullité hors barème'         },
+  { id: 'faq',         label: 'Questions fréquentes'               },
+];
+
+const summary = [
+  "Le barème Macron plafonne les indemnités accordées par le Conseil de prud'hommes en cas de licenciement sans cause réelle et sérieuse, selon l'ancienneté du salarié.",
+  "Il prévoit des planchers et plafonds en mois de salaire brut, avec des seuils réduits pour les entreprises de moins de 11 salariés jusqu'à 10 ans d'ancienneté.",
+  "Certains cas restent hors barème : licenciements nuls (discrimination, harcèlement, violation d'une liberté fondamentale) où le juge peut accorder plus.",
+];
+
+const faq = [
+  {
+    question: "Le barème Macron est-il obligatoire pour les juges ?",
+    answer: "Oui, depuis la validation par la Cour de cassation (assemblée plénière, 11 mai 2022) et le Conseil constitutionnel, le barème s'impose aux juges du fond. Ils ne peuvent plus l'écarter au cas par cas pour accorder une indemnisation supérieure au plafond, sauf dans les cas de nullité du licenciement.",
+  },
+  {
+    question: "Peut-on obtenir plus que le plafond du barème ?",
+    answer: "Oui, mais uniquement dans les cas de licenciement nul : discrimination syndicale, harcèlement moral ou sexuel, violation d'une liberté fondamentale, licenciement d'un salarié protégé irrégulier. Dans ces hypothèses, le juge peut accorder une indemnisation supérieure au plafond du barème.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Contester son licenciement : délais, procédure et barème',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Indemnité de licenciement : calcul et montants 2026',
+    href:         '/indemnite-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Licenciement pour faute grave : procédure et conséquences',
+    href:         '/licenciement-faute-grave/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Conseil de prud\'hommes',          href: '/prudhommes/'            },
+  { title: 'Contester son licenciement',        href: '/contester-licenciement/' },
+  { title: 'Indemnité de licenciement',         href: '/indemnite-licenciement/' },
+];
+---
+
+<ArticleLayout
+  title="Barème Macron 2026 : planchers et plafonds d'indemnités prud'homales"
+  description="Barème Macron 2026 : tableau complet des planchers et plafonds d'indemnités en cas de licenciement abusif, cas de nullité hors barème et jurisprudence récente."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que le barème Macron ?</h2>
+
+  <p>
+    Le <strong>barème Macron</strong> est un système de plafonnement des indemnités
+    accordées par le Conseil de prud'hommes lorsqu'un licenciement est jugé
+    <strong>sans cause réelle et sérieuse</strong>. Instauré par l'ordonnance
+    n°2017-1387 du 22 septembre 2017, il est codifié à l'article <strong>L1235-3
+    du Code du travail</strong>.
+  </p>
+
+  <p>
+    Avant ce barème, le juge fixait librement le montant des dommages-intérêts.
+    Désormais, il est tenu par des <strong>planchers et plafonds exprimés en mois
+    de salaire brut</strong>, variables selon l'ancienneté du salarié et la taille
+    de l'entreprise.
+  </p>
+
+  <h2 id="tableau">Tableau des planchers et plafonds</h2>
+
+  <p>
+    Les montants ci-dessous s'expriment en <strong>mois de salaire brut de référence</strong>.
+    Le plancher « petites entreprises » s'applique aux entreprises de
+    <strong>moins de 11 salariés</strong> jusqu'à 10 ans d'ancienneté.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ancienneté</th>
+        <th>Plancher (≥ 11 sal.)</th>
+        <th>Plancher (&lt; 11 sal.)</th>
+        <th>Plafond</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>0 à 1 an</td><td>1 mois</td><td>0,5 mois</td><td>1 mois</td></tr>
+      <tr><td>1 an</td><td>1 mois</td><td>0,5 mois</td><td>2 mois</td></tr>
+      <tr><td>2 ans</td><td>3 mois</td><td>0,5 mois</td><td>3,5 mois</td></tr>
+      <tr><td>3 ans</td><td>3 mois</td><td>1 mois</td><td>4 mois</td></tr>
+      <tr><td>4 ans</td><td>3 mois</td><td>1 mois</td><td>5 mois</td></tr>
+      <tr><td>5 ans</td><td>3 mois</td><td>1,5 mois</td><td>6 mois</td></tr>
+      <tr><td>6 ans</td><td>3 mois</td><td>2 mois</td><td>7 mois</td></tr>
+      <tr><td>7 ans</td><td>3 mois</td><td>2,5 mois</td><td>8 mois</td></tr>
+      <tr><td>8 ans</td><td>3 mois</td><td>3 mois</td><td>8 mois</td></tr>
+      <tr><td>9 ans</td><td>3 mois</td><td>3 mois</td><td>9 mois</td></tr>
+      <tr><td>10 ans</td><td>3 mois</td><td>3 mois</td><td>10 mois</td></tr>
+      <tr><td>11 ans</td><td>3 mois</td><td>3 mois</td><td>10,5 mois</td></tr>
+      <tr><td>12 ans</td><td>3 mois</td><td>3 mois</td><td>11 mois</td></tr>
+      <tr><td>15 ans</td><td>3 mois</td><td>3 mois</td><td>13 mois</td></tr>
+      <tr><td>20 ans</td><td>3 mois</td><td>3 mois</td><td>15,5 mois</td></tr>
+      <tr><td>25 ans</td><td>3 mois</td><td>3 mois</td><td>17,5 mois</td></tr>
+      <tr><td>30 ans et +</td><td>3 mois</td><td>3 mois</td><td>20 mois</td></tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762163" target="_blank" rel="noopener">
+      Légifrance — art. L1235-3 Code du travail
+    </a>
+  </p>
+
+  <h2 id="exceptions">Cas de nullité hors barème</h2>
+
+  <p>
+    Le barème <strong>ne s'applique pas</strong> aux licenciements prononcés en
+    violation d'une liberté fondamentale ou entachés de nullité.
+    Dans ces cas, le juge peut allouer une indemnisation supérieure au plafond
+    (article <strong>L1235-3-1</strong> du Code du travail).
+  </p>
+
+  <ul>
+    <li>Licenciement discriminatoire (origine, sexe, âge, religion, handicap…)</li>
+    <li>Harcèlement moral ou sexuel</li>
+    <li>Licenciement en violation d'une liberté fondamentale (droit de grève, liberté d'expression…)</li>
+    <li>Licenciement d'un salarié protégé sans autorisation de l'inspection du travail</li>
+    <li>Licenciement d'une salariée enceinte</li>
+    <li>Licenciement consécutif à un accident du travail ou maladie professionnelle</li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037073358" target="_blank" rel="noopener">
+      Légifrance — art. L1235-3-1 Code du travail
+    </a>
+  </p>
+
+</ArticleLayout>

@@ -1,0 +1,146 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'locataire',    label: 'Résiliation par le locataire'    },
+  { id: 'proprietaire', label: 'Résiliation par le propriétaire' },
+  { id: 'procedure',    label: 'Formalités et délais'            },
+  { id: 'faq',          label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "Le locataire peut résilier son bail à tout moment, sous réserve de respecter un préavis (1 mois en zone tendue, 3 mois ailleurs pour un logement vide).",
+  "Le propriétaire ne peut résilier le bail qu'à l'échéance, avec un préavis de 6 mois, et uniquement pour des motifs limitativement prévus par la loi.",
+  "La résiliation doit être notifiée par lettre recommandée avec accusé de réception, acte d'huissier ou remise en main propre contre récépissé.",
+];
+
+const faq = [
+  {
+    question: "Le propriétaire peut-il résilier le bail en cours d'année ?",
+    answer: "Non, sauf cas exceptionnels (clause résolutoire activée pour impayés, décision de justice). Le propriétaire ne peut donner congé qu'à l'échéance du bail (tous les 3 ans pour un logement vide, 1 an pour un meublé) avec un préavis de 6 mois (logement vide) ou 3 mois (meublé). Le congé doit être motivé : reprise pour y habiter, vente du logement, ou motif sérieux et légitime.",
+  },
+  {
+    question: "Peut-on résilier un bail par email ou SMS ?",
+    answer: "Non. La résiliation doit impérativement être effectuée par lettre recommandée avec accusé de réception, par acte d'huissier ou par remise en main propre contre récépissé ou émargement. Un email ou un SMS ne constitue pas un congé valable sur le plan juridique, même si l'autre partie en accuse réception.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    href:         '/preavis-location/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Dépôt de garantie : montant, restitution et recours',
+    href:         '/depot-de-garantie/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'État des lieux : entrée, sortie et contestation',
+    href:         '/etat-des-lieux/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Préavis de location',          href: '/preavis-location/'                                                 },
+  { title: 'Dépôt de garantie',            href: '/depot-de-garantie/'                                               },
+  { title: 'Service-Public — Congé bail',  href: 'https://www.service-public.fr/particuliers/vosdroits/F929'        },
+];
+---
+
+<ArticleLayout
+  title="Résiliation de bail : préavis, motifs et formalités en 2026"
+  description="Comment résilier un bail locatif en 2026 : préavis locataire (1 ou 3 mois), motifs de congé du propriétaire (6 mois), formalités obligatoires et effets de la résiliation."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Logement"
+  categorySlug="logement"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="locataire">Résiliation par le locataire</h2>
+
+  <p>
+    Le locataire peut donner congé à <strong>tout moment</strong>, sans avoir à justifier
+    de motif. Il doit respecter un <strong>préavis</strong> dont la durée varie selon
+    le type de logement et la zone géographique.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Type de bail</th><th>Préavis standard</th><th>Préavis zone tendue</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Logement vide (loi 1989)</td><td>3 mois</td><td>1 mois</td></tr>
+      <tr><td>Logement meublé</td><td>1 mois</td><td>1 mois</td></tr>
+      <tr><td>Motif légitime (licenciement, maladie grave…)</td><td>1 mois</td><td>1 mois</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="proprietaire">Résiliation par le propriétaire</h2>
+
+  <p>
+    Le propriétaire ne peut donner congé qu'<strong>à l'échéance du bail</strong>
+    et uniquement pour l'un des trois motifs limitativement prévus par la loi
+    (art. 15 de la loi du 6 juillet 1989) :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Reprise pour habiter</strong> — le propriétaire ou un proche (conjoint,
+      partenaire PACS, enfants, ascendants) souhaite occuper le logement à titre
+      de résidence principale
+    </li>
+    <li>
+      <strong>Vente du logement</strong> — le locataire bénéficie d'un droit de
+      préemption (priorité d'achat)
+    </li>
+    <li>
+      <strong>Motif sérieux et légitime</strong> — manquement grave du locataire
+      (impayés récurrents, troubles de jouissance)
+    </li>
+  </ul>
+
+  <p>
+    Le préavis du propriétaire est de <strong>6 mois</strong> avant l'échéance du bail
+    pour un logement vide, et de <strong>3 mois</strong> pour un logement meublé.
+  </p>
+
+  <h2 id="procedure">Formalités et délais</h2>
+
+  <ol>
+    <li>
+      <strong>Forme obligatoire</strong> — lettre recommandée avec accusé de réception,
+      acte d'huissier, ou remise en main propre contre récépissé
+    </li>
+    <li>
+      <strong>Point de départ du préavis</strong> — date de réception de la lettre
+      recommandée (ou de l'acte d'huissier), pas la date d'envoi
+    </li>
+    <li>
+      <strong>État des lieux de sortie</strong> — obligatoire au départ du locataire
+    </li>
+    <li>
+      <strong>Restitution du dépôt de garantie</strong> — dans 1 mois si état des lieux
+      conformes, 2 mois si dégradations constatées
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F929" target="_blank" rel="noopener">
+      Service-Public.fr — Donner congé (résiliation du bail)
+    </a>
+  </p>
+
+</ArticleLayout>

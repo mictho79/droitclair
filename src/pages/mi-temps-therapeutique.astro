@@ -1,0 +1,152 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que le mi-temps thérapeutique ?' },
+  { id: 'conditions',  label: 'Conditions d\'accès'                         },
+  { id: 'remuneration', label: 'Rémunération et indemnités'                 },
+  { id: 'duree',       label: 'Durée et fin du mi-temps'                    },
+  { id: 'faq',         label: 'Questions fréquentes'                        },
+];
+
+const summary = [
+  "Le mi-temps thérapeutique permet à un salarié de reprendre progressivement le travail à temps partiel après un arrêt maladie, tout en continuant à percevoir des indemnités journalières complémentaires.",
+  "Il est accordé par le médecin traitant et le médecin du travail, avec l'accord de la CPAM, et nécessite l'accord de l'employeur sur les modalités pratiques.",
+  "Le salarié perçoit son salaire à temps partiel plus des IJ complémentaires, de façon à maintenir un niveau de revenu proche de son salaire à temps plein.",
+];
+
+const faq = [
+  {
+    question: "L'employeur peut-il refuser le mi-temps thérapeutique ?",
+    answer: "L'employeur ne peut pas refuser le principe du mi-temps thérapeutique si le médecin du travail le préconise et si la CPAM l'accepte. En revanche, il peut discuter des modalités pratiques d'organisation (horaires, jours, poste). Si le salarié ne peut pas reprendre son ancien poste en mi-temps thérapeutique, l'employeur doit lui proposer un poste compatible avec son état de santé.",
+  },
+  {
+    question: "Le mi-temps thérapeutique est-il possible après un accident du travail ?",
+    answer: "Oui, et dans ce cas les règles sont encore plus favorables. Après un accident du travail ou une maladie professionnelle, le mi-temps thérapeutique peut être prescrit sans condition de durée minimale d'arrêt préalable. Les indemnités journalières versées par la CPAM sont calculées sur la base du taux AT/MP (60 % puis 80 %), ce qui est souvent plus avantageux que les IJ maladie ordinaire.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Arrêt maladie : maintien de salaire et démarches',
+    href:         '/arret-maladie-salaire/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Accident du travail : reconnaissance et droits',
+    href:         '/accident-du-travail/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Visite de reprise : quand et pourquoi',
+    href:         '/visite-reprise/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Arrêt maladie et salaire',         href: '/arret-maladie-salaire/'                                                },
+  { title: 'Médecin du travail',               href: '/medecin-du-travail/'                                                   },
+  { title: 'Ameli — Mi-temps thérapeutique',   href: 'https://www.ameli.fr/assure/remboursements/indemnites-journalieres/mi-temps-therapeutique' },
+];
+---
+
+<ArticleLayout
+  title="Mi-temps thérapeutique : conditions, rémunération et durée en 2026"
+  description="Mi-temps thérapeutique en 2026 : conditions d'accès, accord médecin traitant, médecin du travail et CPAM, cumul salaire partiel et IJ, durée maximale et fin du dispositif."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que le mi-temps thérapeutique ?</h2>
+
+  <p>
+    Le <strong>mi-temps thérapeutique</strong> (ou reprise à temps partiel pour
+    motif thérapeutique) est un dispositif qui permet à un salarié de <strong>reprendre
+    progressivement son activité</strong> à temps partiel après un arrêt de travail,
+    lorsque son état de santé le justifie médicalement.
+  </p>
+
+  <p>
+    Il est distinct du temps partiel classique : le salarié perçoit simultanément
+    son <strong>salaire à temps partiel</strong> et des <strong>indemnités journalières
+    complémentaires</strong> versées par la CPAM, pour compenser la perte de revenus.
+  </p>
+
+  <h2 id="conditions">Conditions d'accès</h2>
+
+  <ul>
+    <li>
+      Avoir été en arrêt de travail <strong>au moins 60 jours consécutifs</strong>
+      avant la reprise en mi-temps thérapeutique (pour la maladie ordinaire)
+    </li>
+    <li>
+      Prescription du <strong>médecin traitant</strong> sur l'avis de reprise
+      à temps partiel pour motif thérapeutique
+    </li>
+    <li>
+      Avis favorable du <strong>médecin-conseil de la CPAM</strong>
+    </li>
+    <li>
+      Accord du <strong>médecin du travail</strong> sur les modalités de reprise
+    </li>
+    <li>
+      Accord de <strong>l'employeur</strong> sur l'organisation pratique
+    </li>
+  </ul>
+
+  <h2 id="remuneration">Rémunération et indemnités</h2>
+
+  <p>
+    Pendant le mi-temps thérapeutique, le salarié perçoit :
+  </p>
+
+  <ul>
+    <li>
+      Son <strong>salaire correspondant au temps partiel effectué</strong>
+      (ex. : 50 % du salaire habituel pour un mi-temps)
+    </li>
+    <li>
+      Des <strong>indemnités journalières</strong> versées par la CPAM pour compenser
+      la perte de revenus liée à la réduction d'activité
+    </li>
+  </ul>
+
+  <p>
+    Le cumul salaire + IJ ne peut pas dépasser le salaire que le salarié aurait
+    perçu en travaillant à temps plein.
+  </p>
+
+  <h2 id="duree">Durée et fin du mi-temps</h2>
+
+  <p>
+    Le mi-temps thérapeutique est accordé pour une durée limitée, renouvelable
+    par périodes, dans la limite de <strong>12 mois</strong> sur une période de
+    3 ans (pour la maladie ordinaire).
+  </p>
+
+  <p>
+    À l'issue du mi-temps thérapeutique, le salarié reprend son poste à temps
+    plein, ou une visite médicale de reprise détermine son aptitude / inaptitude
+    à reprendre le travail.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.ameli.fr/assure/remboursements/indemnites-journalieres/mi-temps-therapeutique" target="_blank" rel="noopener">
+      Ameli.fr — Mi-temps thérapeutique
+    </a>
+  </p>
+
+</ArticleLayout>

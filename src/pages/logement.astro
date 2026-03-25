@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const articles = [
+  {
+    title: 'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    description: 'Zone tendue, motif légitime, logement social, accord amiable — les cas où vous pouvez réduire ou supprimer votre préavis locatif.',
+    href: '/preavis-location/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-01-05',
+    readingTime: 5,
+  },
+  {
+    title: 'Dépôt de garantie : montant, restitution et recours',
+    description: 'Délais légaux de restitution, retenues autorisées, pénalités de 10 % par mois de retard et recours en cas de litige avec votre propriétaire.',
+    href: '/depot-de-garantie/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-02-18',
+    readingTime: 7,
+  },
+  {
+    title: 'Expulsion locataire : procédure, délais et droits en 2026',
+    description: 'Interdiction d\'expulsion sans jugement, procédure en 5 étapes, trêve hivernale du 1er novembre au 31 mars, et droits du locataire face à l\'expulsion.',
+    href: '/expulsion-locataire/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-03-16',
+    readingTime: 8,
+  },
+  {
+    title: 'Lettre de mise en demeure : modèles et rédaction',
+    description: '3 modèles gratuits (général, employeur, prestataire), éléments obligatoires et effets juridiques d\'une mise en demeure envoyée par LRAR.',
+    href: '/lettre-mise-en-demeure/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-03-10',
+    readingTime: 6,
+  },
+  {
+    title: 'État des lieux : entrée, sortie et litiges',
+    description: 'Comment réaliser un état des lieux contradictoire, distinguer vétusté et dégradation, et contester les retenues sur dépôt de garantie.',
+    href: '/etat-des-lieux/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Caution locative : simple, solidaire et acte de cautionnement',
+    description: 'Différences entre caution simple et solidaire, mentions obligatoires de l\'acte de cautionnement et alternatives (Visale, GLI).',
+    href: '/caution-locative/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 5,
+  },
+  {
+    title: 'Résiliation de bail : préavis locataire et congé propriétaire',
+    description: 'Délais de préavis selon la situation du locataire, les 3 motifs légaux du propriétaire et les formalités à respecter.',
+    href: '/resiliation-bail/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+];
+---
+
+<BaseLayout
+  title="Logement — Guides locatif et contrats 2026"
+  description="Tout sur le droit locatif : préavis de location, dépôt de garantie, expulsion, mise en demeure. Guides pratiques pour locataires, mis à jour 2026."
+>
+
+  <!-- En-tête de catégorie -->
+  <div class="cat-hero">
+    <div class="container cat-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Logement</span>
+      </nav>
+      <h1 class="cat-hero__title">Logement & contrats</h1>
+      <p class="cat-hero__desc">
+        Guides pratiques pour locataires : préavis de location, récupérer
+        votre dépôt de garantie, faire face à une expulsion ou rédiger
+        une mise en demeure efficace.
+      </p>
+      <p class="cat-hero__count">{articles.length} guides disponibles</p>
+    </div>
+  </div>
+
+  <!-- Grille d'articles -->
+  <div class="cat-body">
+    <div class="container">
+      <div class="cat-grid">
+        {articles.map((article) => (
+          <ArticleCard {...article} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ── En-tête ── */
+  .cat-hero {
+    background-color: var(--clr-gray);
+    border-bottom: 1px solid var(--clr-border);
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .cat-hero__inner {
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .breadcrumb a {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--clr-green);
+    text-decoration: underline;
+  }
+
+  .cat-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--clr-black);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--clr-green);
+    margin: 0;
+  }
+
+  /* ── Corps ── */
+  .cat-body {
+    padding-block: var(--space-9) var(--space-12);
+    background-color: #ffffff;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

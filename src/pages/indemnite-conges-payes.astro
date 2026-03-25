@@ -1,0 +1,136 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition', label: 'Qu\'est-ce que l\'indemnité de CP ?'   },
+  { id: 'calcul',     label: 'Les deux méthodes de calcul'           },
+  { id: 'depart',     label: 'Quand est-elle due ?'                  },
+  { id: 'faq',        label: 'Questions fréquentes'                  },
+];
+
+const summary = [
+  "L'indemnité compensatrice de congés payés est due à tout salarié quittant l'entreprise avec des congés payés acquis mais non pris.",
+  "Son montant est calculé selon la méthode la plus favorable pour le salarié : 1/10e de la rémunération annuelle brute ou maintien de salaire.",
+  "Elle est due quelle que soit la cause de rupture du contrat : démission, licenciement, rupture conventionnelle, départ en retraite.",
+];
+
+const faq = [
+  {
+    question: "L'indemnité de CP est-elle imposable ?",
+    answer: "Oui, l'indemnité compensatrice de congés payés est intégralement soumise à l'impôt sur le revenu et aux cotisations sociales. Elle est versée dans le solde de tout compte et figure sur le dernier bulletin de paie. Contrairement à certaines indemnités de licenciement, elle ne bénéficie d'aucune exonération fiscale ou sociale spécifique.",
+  },
+  {
+    question: "Peut-on renoncer à ses congés payés non pris contre rémunération ?",
+    answer: "En principe, non : le Code du travail interdit le rachat des congés payés légaux (5 semaines). Toutefois, les jours de CP au-delà de 24 jours ouvrables (congés supplémentaires conventionnels ou contractuels) peuvent, dans certaines conditions, faire l'objet d'une monétisation, notamment via le CET (Compte Épargne Temps). À la rupture du contrat, tous les CP acquis non pris doivent obligatoirement être indemnisés.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Congés payés : calcul, acquisition et droits',
+    href:         '/conges-payes-calcul/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Solde de tout compte : ce que doit contenir votre reçu',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Préavis de démission CDI : durée et calcul',
+    href:         '/preavis-demission/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Congés payés : calcul complet',    href: '/conges-payes-calcul/'                                                  },
+  { title: 'Solde de tout compte',             href: '/solde-de-tout-compte/'                                                 },
+  { title: 'Service-Public — Congés payés',    href: 'https://www.service-public.fr/particuliers/vosdroits/F2416'            },
+];
+---
+
+<ArticleLayout
+  title="Indemnité compensatrice de congés payés : calcul et règles 2026"
+  description="Indemnité compensatrice de congés payés en 2026 : deux méthodes de calcul (1/10e ou maintien de salaire), cas d'application à la rupture du contrat, imposition et versement."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que l'indemnité compensatrice de congés payés ?</h2>
+
+  <p>
+    L'<strong>indemnité compensatrice de congés payés</strong> est la somme versée
+    au salarié à la rupture de son contrat pour les jours de congés payés acquis
+    mais non pris (art. <strong>L3141-28 du Code du travail</strong>).
+  </p>
+
+  <p>
+    Elle est obligatoire quelle que soit la cause de rupture et est versée dans le
+    cadre du <strong>solde de tout compte</strong>, en même temps que les autres
+    sommes dues à la rupture.
+  </p>
+
+  <h2 id="calcul">Les deux méthodes de calcul</h2>
+
+  <p>
+    L'employeur doit retenir la méthode qui donne le résultat <strong>le plus
+    favorable au salarié</strong> :
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Méthode</th><th>Formule</th><th>Quand avantageuse ?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1/10e de la rémunération annuelle</strong></td>
+        <td>Total brut des 12 derniers mois × 1/10 × (jours CP non pris / jours CP acquis)</td>
+        <td>Si le salarié a perçu des primes ou commissions importantes</td>
+      </tr>
+      <tr>
+        <td><strong>Maintien de salaire</strong></td>
+        <td>Salaire journalier × nombre de jours CP non pris</td>
+        <td>Si le salaire est régulier sans éléments variables importants</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="depart">Quand est-elle due ?</h2>
+
+  <ul>
+    <li><strong>Démission</strong> — les CP acquis non pris sont indemnisés</li>
+    <li><strong>Licenciement</strong> — idem, quelle que soit la cause</li>
+    <li><strong>Rupture conventionnelle</strong> — idem</li>
+    <li><strong>Fin de CDD</strong> — idem, plus l'indemnité de fin de CDD (10 %)</li>
+    <li><strong>Départ ou mise à la retraite</strong> — idem</li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      En cas de <strong>faute lourde</strong>, l'indemnité compensatrice de CP
+      reste due depuis l'arrêt de la Cour de cassation de 2024 alignant le droit
+      français sur le droit européen.
+    </div>
+  </div>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2416" target="_blank" rel="noopener">
+      Service-Public.fr — Congés payés non pris à la rupture du contrat
+    </a>
+  </p>
+
+</ArticleLayout>

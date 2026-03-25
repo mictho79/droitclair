@@ -1,0 +1,145 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'motifs',   label: 'Motifs de contestation'          },
+  { id: 'delais',   label: 'Délais et prescription'          },
+  { id: 'procedure', label: 'Procédure de contestation'      },
+  { id: 'faq',      label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "Une rupture conventionnelle peut être contestée devant le Conseil de prud'hommes dans un délai de 12 mois à compter de son homologation.",
+  "Les principaux motifs sont le vice du consentement (pression, harcèlement, erreur, dol) et les irrégularités de procédure (absence d'entretien, délai de rétractation non respecté).",
+  "En cas d'annulation, la rupture conventionnelle peut être requalifiée en licenciement sans cause réelle et sérieuse, ouvrant droit aux indemnités correspondantes.",
+];
+
+const faq = [
+  {
+    question: "Peut-on contester une rupture conventionnelle après l'avoir signée ?",
+    answer: "Oui, la signature ne vaut pas renonciation à tout recours. Le délai de prescription est de 12 mois à compter de l'homologation de la rupture conventionnelle par la DREETS (art. L1237-14 du Code du travail). Pendant la procédure de contestation, l'exécution de la rupture conventionnelle n'est pas suspendue — le contrat est rompu à la date prévue. Si le juge annule la rupture, il peut ordonner la réintégration ou condamner l'employeur à des dommages-intérêts.",
+  },
+  {
+    question: "Quels éléments prouver un vice du consentement ?",
+    answer: "Le vice du consentement peut être prouvé par tout moyen : emails, SMS, témoignages, attestations de collègues, arrêts de travail pour maladie liés au contexte, rapport médical du médecin du travail. La situation de harcèlement moral avant la signature, les pressions répétées de l'employeur pour obtenir la signature, ou la vulnérabilité psychologique du salarié au moment de la signature sont des éléments appréciés par les juges pour caractériser un consentement vicié.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Rupture conventionnelle : indemnités et procédure',
+    href:         '/rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Contester son licenciement : délais et procédure',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Conseil de prud\'hommes : saisine et procédure',
+    href:         '/prudhommes/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Rupture conventionnelle',        href: '/rupture-conventionnelle/'                                                },
+  { title: 'Conseil de prud\'hommes',        href: '/prudhommes/'                                                            },
+  { title: 'Service-Public — RC',            href: 'https://www.service-public.fr/particuliers/vosdroits/F19030'            },
+];
+---
+
+<ArticleLayout
+  title="Contester une rupture conventionnelle : motifs, délais et procédure"
+  description="Comment contester une rupture conventionnelle en 2026 : vice du consentement, irrégularité de procédure, délai de 12 mois, saisine du CPH et conséquences d'une annulation."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="motifs">Motifs de contestation</h2>
+
+  <p>
+    La rupture conventionnelle peut être annulée par le juge lorsqu'elle est
+    entachée d'un <strong>vice du consentement</strong> ou d'une
+    <strong>irrégularité de procédure</strong>.
+  </p>
+
+  <h3>Vices du consentement</h3>
+  <ul>
+    <li><strong>Violence / pression</strong> — menaces, harcèlement moral ou psychologique ayant conduit le salarié à signer</li>
+    <li><strong>Dol</strong> — manœuvres frauduleuses de l'employeur pour obtenir la signature</li>
+    <li><strong>Erreur</strong> — sur un élément essentiel (ex. : montant de l'indemnité mal calculé)</li>
+    <li><strong>État de vulnérabilité</strong> — signature pendant un arrêt maladie lié à un harcèlement</li>
+  </ul>
+
+  <h3>Irrégularités de procédure</h3>
+  <ul>
+    <li>Absence d'entretien préalable</li>
+    <li>Non-respect du délai de rétractation de 15 jours</li>
+    <li>Absence de remise d'un exemplaire du formulaire au salarié</li>
+    <li>Signature avant l'expiration du délai de rétractation</li>
+  </ul>
+
+  <h2 id="delais">Délais et prescription</h2>
+
+  <p>
+    Le délai de contestation est de <strong>12 mois</strong> à compter du
+    <strong>lendemain de l'homologation</strong> par la DREETS
+    (art. <strong>L1237-14 du Code du travail</strong>).
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      Passé le délai de 12 mois, la rupture conventionnelle devient définitive
+      et incontestable. Ce délai est d'ordre public : aucune convention ne peut
+      le rallonger.
+    </div>
+  </div>
+
+  <h2 id="procedure">Procédure de contestation</h2>
+
+  <ol>
+    <li>
+      <strong>Rassembler les preuves</strong> — emails, SMS, arrêts maladie,
+      attestations de collègues, relevés de soins psychologiques
+    </li>
+    <li>
+      <strong>Consultation d'un avocat ou défenseur syndical</strong> (recommandé)
+    </li>
+    <li>
+      <strong>Saisine du Conseil de prud'hommes</strong> par requête écrite
+      avant l'expiration du délai de 12 mois
+    </li>
+    <li>
+      <strong>Phase de conciliation (BCO)</strong> puis, en cas d'échec,
+      <strong>bureau de jugement</strong>
+    </li>
+  </ol>
+
+  <p>
+    En cas d'annulation, le juge peut prononcer la <strong>réintégration</strong>
+    ou condamner l'employeur à des <strong>dommages-intérêts</strong> équivalents
+    à ceux d'un licenciement sans cause réelle et sérieuse (barème Macron).
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029146095" target="_blank" rel="noopener">
+      Légifrance — art. L1237-14 Code du travail
+    </a>
+  </p>
+
+</ArticleLayout>

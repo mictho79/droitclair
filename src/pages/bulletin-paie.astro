@@ -1,0 +1,134 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'mentions',     label: 'Mentions obligatoires'                  },
+  { id: 'lecture',      label: 'Comment lire votre bulletin de paie'    },
+  { id: 'conservation', label: 'Conservation et valeur juridique'       },
+  { id: 'faq',          label: 'Questions fréquentes'                   },
+];
+
+const summary = [
+  "Le bulletin de paie doit comporter des mentions obligatoires définies par le Code du travail, dont l'identité des parties, la convention collective, les cotisations et le net à payer.",
+  "Depuis 2017, le bulletin simplifié est obligatoire : il regroupe les cotisations par grandes catégories pour plus de lisibilité.",
+  "Le salarié doit conserver ses bulletins de paie sans limitation de durée — ils sont indispensables pour faire valoir ses droits (retraite, chômage, litiges).",
+];
+
+const faq = [
+  {
+    question: "Mon employeur peut-il refuser de me remettre un bulletin de paie ?",
+    answer: "Non. La remise du bulletin de paie est une obligation légale (art. L3243-2 du Code du travail). L'employeur qui s'y refuse commet une infraction pénale et s'expose à des poursuites. Si vous ne recevez pas votre bulletin, envoyez une mise en demeure par recommandé. En cas de persistance, saisissez l'inspection du travail ou le Conseil de prud'hommes.",
+  },
+  {
+    question: "Puis-je demander à recevoir mes bulletins de paie par email ?",
+    answer: "Oui, depuis 2017 le bulletin de paie peut être remis sous forme électronique, sauf refus exprès du salarié. L'employeur doit s'assurer de la disponibilité et de l'intégrité du document. Si vous souhaitez recevoir vos bulletins en version papier, vous pouvez vous y opposer à tout moment en informant votre employeur.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Congés payés : calcul, acquisition et droits',
+    href:         '/conges-payes-calcul/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Heures supplémentaires : majoration et droits',
+    href:         '/heures-supplementaires/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
+    title:        'Convention collective : comment trouver la vôtre',
+    href:         '/convention-collective/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Convention collective',         href: '/convention-collective/'                                                    },
+  { title: 'Calcul salaire net',            href: '/calcul-salaire-net/'                                                      },
+  { title: 'Service-Public — Bulletin paie', href: 'https://www.service-public.fr/particuliers/vosdroits/F559'               },
+];
+---
+
+<ArticleLayout
+  title="Bulletin de paie : mentions obligatoires et comment le lire en 2026"
+  description="Bulletin de paie 2026 : mentions obligatoires, lecture du bulletin simplifié (salaire brut, cotisations, net à payer), conservation sans limite de durée et recours en cas d'erreur."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Droits du salarié"
+  categorySlug="droits-salarie"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="mentions">Mentions obligatoires</h2>
+
+  <p>
+    Le bulletin de paie doit obligatoirement mentionner (art. <strong>R3243-1
+    du Code du travail</strong>) :
+  </p>
+
+  <ul>
+    <li>Nom et adresse de l'employeur, numéro SIRET, code APE/NAF</li>
+    <li>Intitulé et référence de la <strong>convention collective applicable</strong> (code IDCC)</li>
+    <li>Nom, emploi, niveau/coefficient du salarié</li>
+    <li>Période et nombre d'heures travaillées</li>
+    <li>Nature et montant des <strong>éléments de rémunération</strong> (salaire de base, heures sup, primes)</li>
+    <li>Montant des <strong>cotisations et contributions sociales</strong> (part salariale et patronale)</li>
+    <li><strong>Net à payer avant impôt sur le revenu</strong></li>
+    <li>Montant du <strong>prélèvement à la source</strong> (PAS)</li>
+    <li><strong>Net payé</strong> au salarié</li>
+    <li>Date de paiement et cumuls annuels</li>
+  </ul>
+
+  <h2 id="lecture">Comment lire votre bulletin de paie</h2>
+
+  <p>
+    Depuis janvier 2017, le <strong>bulletin de paie simplifié</strong> est
+    obligatoire. Il regroupe les cotisations en grandes rubriques pour plus
+    de lisibilité :
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Rubrique</th><th>Ce qu'elle regroupe</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Santé</td><td>Assurance maladie, mutuelle, prévoyance</td></tr>
+      <tr><td>Accidents du travail</td><td>Cotisation AT/MP (uniquement patronale)</td></tr>
+      <tr><td>Retraite</td><td>Retraite de base (CNAV), retraite complémentaire (AGIRC-ARRCO)</td></tr>
+      <tr><td>Famille</td><td>Allocations familiales (uniquement patronale)</td></tr>
+      <tr><td>Chômage</td><td>Assurance chômage (uniquement patronale depuis 2018)</td></tr>
+      <tr><td>Autres</td><td>CSG, CRDS, formation professionnelle, taxe d'apprentissage</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="conservation">Conservation et valeur juridique</h2>
+
+  <p>
+    Le salarié doit conserver ses bulletins de paie <strong>sans limitation de durée</strong>
+    (art. L3243-4 du Code du travail). Ils sont indispensables pour :
+  </p>
+
+  <ul>
+    <li>Calculer et vérifier ses droits à la <strong>retraite</strong></li>
+    <li>Calculer l'indemnité de licenciement ou de rupture conventionnelle</li>
+    <li>Prouver un salaire en cas de litige aux prud'hommes</li>
+    <li>Justifier de revenus pour un crédit ou une location</li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F559" target="_blank" rel="noopener">
+      Service-Public.fr — Bulletin de paie
+    </a>
+  </p>
+
+</ArticleLayout>

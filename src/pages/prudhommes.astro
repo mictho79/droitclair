@@ -1,0 +1,183 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'role',       label: 'Rôle du Conseil de prud\'hommes'   },
+  { id: 'saisine',    label: 'Comment saisir le CPH'             },
+  { id: 'procedure',  label: 'Déroulement de la procédure'       },
+  { id: 'delais',     label: 'Délais et prescription'            },
+  { id: 'faq',        label: 'Questions fréquentes'              },
+];
+
+const summary = [
+  "Le Conseil de prud'hommes (CPH) est la juridiction compétente pour régler les litiges individuels entre employeurs et salariés nés du contrat de travail.",
+  "La saisine est gratuite et peut se faire sans avocat, par formulaire Cerfa ou par voie électronique auprès du greffe du tribunal.",
+  "La procédure comporte une phase de conciliation obligatoire puis, en cas d'échec, une audience de jugement devant le bureau de jugement.",
+];
+
+const faq = [
+  {
+    question: "Faut-il un avocat pour aller aux prud'hommes ?",
+    answer: "Non, la représentation par un avocat n'est pas obligatoire devant le Conseil de prud'hommes. Le salarié peut se défendre seul ou se faire assister par un représentant syndical (délégué syndical, défenseur syndical). L'avocat est toutefois conseillé pour les dossiers complexes ou les montants importants. En appel, la représentation par avocat devient obligatoire.",
+  },
+  {
+    question: "Quel délai pour contester un licenciement aux prud'hommes ?",
+    answer: "Le délai de prescription est de 12 mois à compter de la notification du licenciement pour contester sa cause réelle et sérieuse (art. L1471-1 du Code du travail). Pour les actions en paiement de salaires, le délai est de 3 ans. Pour les discriminations, il est de 5 ans. Ces délais sont des délais de forclusion : passé ce terme, l'action est irrecevable.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Contester son licenciement : délais, procédure et barème',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Barème Macron : planchers et plafonds d\'indemnités',
+    href:         '/bareme-macron/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Licenciement économique : droits et recours',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Contester son licenciement',  href: '/contester-licenciement/'                                                        },
+  { title: 'Barème Macron simulateur',    href: '/bareme-macron/'                                                                 },
+  { title: 'Service-Public — CPH',        href: 'https://www.service-public.fr/particuliers/vosdroits/F2360'                     },
+  { title: 'Aide juridictionnelle',       href: 'https://www.service-public.fr/particuliers/vosdroits/F18074'                    },
+];
+---
+
+<ArticleLayout
+  title="Conseil de prud'hommes : saisine, procédure et délais en 2026"
+  description="Comment saisir le Conseil de prud'hommes : compétence, formulaire de saisine, phases de la procédure (BCO, bureau de jugement), délais de prescription et résultats possibles."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="role">Rôle du Conseil de prud'hommes</h2>
+
+  <p>
+    Le <strong>Conseil de prud'hommes (CPH)</strong> est une juridiction paritaire
+    composée de juges élus — représentants des employeurs et des salariés en nombre
+    égal. Il est compétent pour trancher les <strong>litiges individuels nés de
+    l'exécution ou de la rupture du contrat de travail</strong>.
+  </p>
+
+  <ul>
+    <li>Contestation d'un licenciement (cause, procédure)</li>
+    <li>Demande de paiement de salaires, primes, heures supplémentaires</li>
+    <li>Contestation d'une rupture conventionnelle</li>
+    <li>Prise d'acte de rupture aux torts de l'employeur</li>
+    <li>Demandes de dommages-intérêts liés à l'exécution du contrat</li>
+  </ul>
+
+  <h2 id="saisine">Comment saisir le CPH</h2>
+
+  <p>
+    La saisine est <strong>gratuite</strong> et s'effectue auprès du greffe
+    du Conseil de prud'hommes du lieu où est situé l'établissement où travaille
+    le salarié (ou du lieu du domicile du salarié si le travail est accompli à
+    domicile ou en dehors de tout établissement).
+  </p>
+
+  <ol>
+    <li>
+      <strong>Remplir le formulaire Cerfa n°15586</strong> (requête aux fins de
+      saisine du CPH) en indiquant les demandes chiffrées et les pièces justificatives
+    </li>
+    <li>
+      <strong>Déposer ou envoyer la requête au greffe</strong> — en personne,
+      par courrier recommandé ou via le portail numérique du tribunal
+    </li>
+    <li>
+      <strong>Recevoir la convocation</strong> à l'audience de conciliation
+      (bureau de conciliation et d'orientation — BCO)
+    </li>
+  </ol>
+
+  <h2 id="procedure">Déroulement de la procédure</h2>
+
+  <ol>
+    <li>
+      <strong>Bureau de conciliation et d'orientation (BCO)</strong><br>
+      Première étape obligatoire. Les parties tentent un accord amiable.
+      En cas d'échec, le BCO oriente l'affaire vers le bureau de jugement
+      ou un juge départiteur. Délai moyen : <strong>3 à 6 mois</strong> après saisine.
+    </li>
+    <li>
+      <strong>Bureau de jugement</strong><br>
+      Audience contradictoire où chaque partie expose ses arguments et remet ses
+      pièces. Le jugement est rendu dans un délai variable selon le rôle du tribunal.
+      Délai moyen : <strong>12 à 24 mois</strong> après la saisine.
+    </li>
+    <li>
+      <strong>Appel</strong><br>
+      La décision du CPH peut être frappée d'appel dans un délai d'<strong>1 mois</strong>
+      suivant la notification du jugement, devant la Cour d'appel.
+      La représentation par avocat devient alors obligatoire.
+    </li>
+  </ol>
+
+  <h2 id="delais">Délais et prescription</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type d'action</th>
+        <th>Délai de prescription</th>
+        <th>Point de départ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Contestation du licenciement</td>
+        <td>12 mois</td>
+        <td>Notification du licenciement</td>
+      </tr>
+      <tr>
+        <td>Paiement de salaires / primes</td>
+        <td>3 ans</td>
+        <td>Date d'exigibilité des sommes</td>
+      </tr>
+      <tr>
+        <td>Discrimination</td>
+        <td>5 ans</td>
+        <td>Révélation des faits discriminatoires</td>
+      </tr>
+      <tr>
+        <td>Harcèlement moral</td>
+        <td>5 ans</td>
+        <td>Derniers faits de harcèlement</td>
+      </tr>
+      <tr>
+        <td>Appel du jugement CPH</td>
+        <td>1 mois</td>
+        <td>Notification du jugement</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020261" target="_blank" rel="noopener">
+      Légifrance — art. L1471-1 Code du travail
+    </a>
+  </p>
+
+</ArticleLayout>

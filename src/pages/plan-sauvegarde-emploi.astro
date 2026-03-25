@@ -1,0 +1,129 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce qu\'un PSE ?'            },
+  { id: 'seuils',      label: 'Seuils d\'obligation'               },
+  { id: 'contenu',     label: 'Contenu obligatoire du PSE'         },
+  { id: 'droits',      label: 'Droits des salariés concernés'      },
+  { id: 'faq',         label: 'Questions fréquentes'               },
+];
+
+const summary = [
+  "Le Plan de Sauvegarde de l'Emploi (PSE) est obligatoire dans toute entreprise d'au moins 50 salariés envisageant de licencier au moins 10 salariés sur 30 jours pour motif économique.",
+  "Il doit prévoir des mesures pour éviter ou réduire les licenciements et faciliter le reclassement des salariés dont le licenciement ne peut être évité.",
+  "Le PSE est élaboré en concertation avec les représentants du personnel et doit être validé ou homologué par la DREETS avant la mise en œuvre des licenciements.",
+];
+
+const faq = [
+  {
+    question: "Que se passe-t-il si l'entreprise ne respecte pas l'obligation de PSE ?",
+    answer: "Les licenciements prononcés en l'absence de PSE obligatoire sont nuls de plein droit. Les salariés dont le licenciement est nul ont droit à la réintégration dans l'entreprise ou, s'ils ne le souhaitent pas, à une indemnité minimale de 12 mois de salaire brut. L'employeur s'expose également à des poursuites pénales. La DREETS peut bloquer les licenciements si le PSE n'est pas conforme.",
+  },
+  {
+    question: "Un salarié peut-il refuser le PSE et rester dans l'entreprise ?",
+    answer: "Le salarié peut refuser les mesures de reclassement proposées dans le PSE (par exemple une mobilité géographique ou fonctionnelle), mais ce refus ne le protège pas automatiquement du licenciement économique. Si l'entreprise ne peut pas lui proposer un poste de reclassement compatible sans modification de son contrat, le licenciement économique peut être prononcé même en cas de refus des mesures du PSE.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Licenciement économique : droits et recours',
+    href:         '/licenciement-economique/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Priorité de réembauche : conditions et délai',
+    href:         '/priorite-reembauche/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+  {
+    title:        'Indemnité de licenciement : calcul et montants',
+    href:         '/indemnite-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Licenciement économique',         href: '/licenciement-economique/'                                              },
+  { title: 'Priorité de réembauche',          href: '/priorite-reembauche/'                                                  },
+  { title: 'Service-Public — PSE',            href: 'https://www.service-public.fr/particuliers/vosdroits/F2811'            },
+];
+---
+
+<ArticleLayout
+  title="Plan de sauvegarde de l'emploi (PSE) : obligations et droits des salariés"
+  description="PSE en 2026 : seuils d'obligation (50 salariés / 10 licenciements), contenu obligatoire, validation par la DREETS, droits des salariés et nullité des licenciements sans PSE."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Licenciement"
+  categorySlug="licenciement"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce qu'un PSE ?</h2>
+
+  <p>
+    Le <strong>Plan de Sauvegarde de l'Emploi (PSE)</strong> est une procédure
+    obligatoire encadrée par les articles <strong>L1233-61 et suivants du Code
+    du travail</strong>. Il s'impose aux entreprises qui envisagent des
+    licenciements économiques collectifs au-delà de certains seuils.
+  </p>
+
+  <p>
+    Son objectif est double : <strong>éviter ou limiter les suppressions de postes</strong>
+    et <strong>faciliter le reclassement</strong> des salariés dont le licenciement
+    ne peut être évité.
+  </p>
+
+  <h2 id="seuils">Seuils d'obligation</h2>
+
+  <table>
+    <thead>
+      <tr><th>Taille de l'entreprise</th><th>Nombre de licenciements envisagés sur 30 jours</th><th>PSE obligatoire ?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>50 salariés et plus</td><td>10 et plus</td><td>✅ Oui</td></tr>
+      <tr><td>Moins de 50 salariés</td><td>Peu importe</td><td>❌ Non (procédure simplifiée)</td></tr>
+      <tr><td>50 salariés et plus</td><td>Moins de 10</td><td>❌ Non (procédure simplifiée)</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="contenu">Contenu obligatoire du PSE</h2>
+
+  <p>Le PSE doit impérativement prévoir :</p>
+
+  <ul>
+    <li><strong>Mesures d'évitement</strong> — réduction du temps de travail, formation, mobilité interne, départs volontaires</li>
+    <li><strong>Reclassement interne</strong> — liste des postes disponibles dans l'entreprise et le groupe</li>
+    <li><strong>Mesures d'accompagnement</strong> — congé de reclassement, CSP, aide à la création d'entreprise, formation professionnelle</li>
+    <li><strong>Calendrier de mise en œuvre</strong></li>
+    <li><strong>Indemnités supra-légales</strong> (si négociées)</li>
+  </ul>
+
+  <h2 id="droits">Droits des salariés concernés</h2>
+
+  <ul>
+    <li><strong>Information et consultation du CSE</strong> (ex-CHSCT/CE) avant et pendant l'élaboration du PSE</li>
+    <li><strong>Congé de reclassement</strong> (dans les grandes entreprises) — maintien partiel de salaire pendant la recherche d'emploi</li>
+    <li><strong>CSP (Contrat de Sécurisation Professionnelle)</strong> — accompagnement intensif de France Travail</li>
+    <li><strong>Priorité de réembauche</strong> pendant 1 an</li>
+    <li><strong>Contester le PSE</strong> devant le tribunal administratif (dans les 2 mois suivant la validation/homologation)</li>
+  </ul>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2811" target="_blank" rel="noopener">
+      Service-Public.fr — Plan de sauvegarde de l'emploi (PSE)
+    </a>
+  </p>
+
+</ArticleLayout>

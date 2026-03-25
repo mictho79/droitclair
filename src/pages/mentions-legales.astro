@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Mentions légales — DroitClair"
+  description="Mentions légales du site DroitClair : éditeur, hébergeur, propriété intellectuelle et limitation de responsabilité."
+  noindex={true}
+>
+
+  <div class="legal-page">
+    <div class="legal-page__container">
+
+      <h1 class="legal-page__title">Mentions légales</h1>
+
+      <section class="legal-section">
+        <h2>Éditeur du site</h2>
+        <p>
+          Le site DroitClair est édité par <strong>Michael Thomas</strong>, particulier.<br>
+          Adresse : 22a rue des taillées<br>
+          Email : <a href="mailto:mic.thomas1334@gmail.com">mic.thomas1334@gmail.com</a>
+        </p>
+        <p>
+          <strong>Directeur de la publication :</strong> Michael Thomas
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Hébergeur</h2>
+        <p>
+          <strong>Cloudflare, Inc.</strong><br>
+          101 Townsend St<br>
+          San Francisco, CA 94107<br>
+          États-Unis<br>
+          <a href="https://www.cloudflare.com" target="_blank" rel="noopener">www.cloudflare.com</a>
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des contenus publiés sur DroitClair (textes, guides, tableaux, illustrations)
+          est protégé par le droit d'auteur. Toute reproduction, représentation, modification
+          ou exploitation, totale ou partielle, des contenus de ce site sans autorisation
+          expresse et préalable de l'éditeur est interdite et constitue une contrefaçon
+          sanctionnée par les articles L335-2 et suivants du Code de la propriété intellectuelle.
+        </p>
+        <p>
+          Les liens hypertextes vers des sources officielles (Légifrance, Service-Public.fr,
+          URSSAF…) restent la propriété de leurs titulaires respectifs.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Limitation de responsabilité</h2>
+        <p>
+          Les informations publiées sur DroitClair sont fournies <strong>à titre indicatif et
+          pédagogique uniquement</strong>. Elles ne constituent pas un conseil juridique,
+          ne sauraient remplacer la consultation d'un professionnel du droit (avocat,
+          conseil juridique), et ne peuvent être invoquées à titre de preuve devant
+          une juridiction.
+        </p>
+        <p>
+          DroitClair s'efforce de maintenir les informations à jour, mais ne peut garantir
+          l'exactitude ou l'exhaustivité des contenus au regard de l'évolution permanente
+          de la législation et de la jurisprudence. L'éditeur décline toute responsabilité
+          quant aux conséquences d'une décision prise sur la seule base des informations
+          publiées sur ce site.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Liens externes</h2>
+        <p>
+          Ce site contient des liens vers des sites tiers. Ces liens sont fournis à titre
+          informatif. DroitClair n'exerce aucun contrôle sur le contenu de ces sites
+          et décline toute responsabilité quant à leur disponibilité ou à leur contenu.
+        </p>
+      </section>
+
+      <p class="legal-page__updated">
+        Dernière mise à jour : mars 2026
+      </p>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--space-10) var(--space-12);
+  }
+
+  .legal-page__container {
+    max-width: 720px;
+    margin-inline: auto;
+    padding-inline: var(--space-5);
+  }
+
+  .legal-page__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--clr-black);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-8);
+  }
+
+  .legal-section {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  .legal-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.01em;
+  }
+
+  .legal-section p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section a {
+    color: var(--clr-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .legal-section a:hover {
+    text-decoration: none;
+  }
+
+  .legal-page__updated {
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    font-style: italic;
+    margin-top: var(--space-6);
+  }
+</style>

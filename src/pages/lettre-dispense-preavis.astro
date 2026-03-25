@@ -1,0 +1,142 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+const modeleDispense = `[Ville], le [date]
+
+[Prénom Nom]
+[Adresse]
+
+[Nom de l'entreprise]
+[Adresse de l'entreprise]
+
+Objet : Demande de dispense de préavis
+
+Madame, Monsieur,
+
+Suite à ma démission notifiée par courrier en date du [date de la démission], je me permets de vous adresser la présente afin de solliciter une dispense d'exécution de mon préavis de [durée du préavis].
+
+Je vous serais reconnaissant(e) de bien vouloir m'indiquer si vous acceptez de me dispenser de l'exécution de ce préavis, ce qui me permettrait de quitter mes fonctions à compter du [date souhaitée de départ].
+
+Dans cette hypothèse, je vous confirme que la dispense de préavis, à votre initiative, ne saurait avoir d'incidence sur mon droit à l'indemnité compensatrice de préavis.
+
+Dans l'attente de votre réponse, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+[Signature]
+[Prénom Nom]`;
+
+const toc = [
+  { id: 'principe',  label: 'Principe et initiative'          },
+  { id: 'effets',    label: 'Effets financiers'               },
+  { id: 'modele',    label: 'Modèle de lettre'                },
+  { id: 'faq',       label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "La dispense de préavis permet au salarié de quitter l'entreprise avant la fin de son préavis, à condition que les deux parties soient d'accord.",
+  "Si la dispense est à l'initiative de l'employeur, le salarié a droit à l'indemnité compensatrice de préavis (son salaire habituel jusqu'à la fin du préavis théorique).",
+  "Si la dispense est à l'initiative du salarié (acceptée par l'employeur), aucune indemnité compensatrice n'est due.",
+];
+
+const faq = [
+  {
+    question: "L'employeur peut-il imposer une dispense de préavis ?",
+    answer: "Oui, l'employeur peut décider de dispenser le salarié d'exécuter son préavis, mais cette dispense unilatérale est à sa charge : il doit verser l'indemnité compensatrice de préavis correspondant aux salaires et avantages que le salarié aurait perçus jusqu'au terme du préavis. La dispense imposée par l'employeur ne peut pas réduire la rémunération du salarié.",
+  },
+  {
+    question: "La dispense de préavis permet-elle de s'inscrire plus vite à France Travail ?",
+    answer: "Non, la date d'inscription à France Travail est la date de fin du contrat, c'est-à-dire la date de fin du préavis — même si le salarié a été dispensé de l'exécuter physiquement. Le préavis continue de courir juridiquement, même en cas de dispense. La dispense permet simplement de ne plus se rendre au travail pendant cette période.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Préavis de démission CDI : durée et calcul',
+    href:         '/preavis-demission/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Lettre de démission CDI : modèles et guide',
+    href:         '/lettre-de-demission-cdi/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Solde de tout compte : ce que doit contenir votre reçu',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Préavis de démission',          href: '/preavis-demission/'                                                       },
+  { title: 'Lettre de démission',           href: '/lettre-de-demission-cdi/'                                                 },
+  { title: 'Service-Public — Préavis',      href: 'https://www.service-public.fr/particuliers/vosdroits/F2883'               },
+];
+---
+
+<ArticleLayout
+  title="Lettre de dispense de préavis : modèle et effets en 2026"
+  description="Lettre de dispense de préavis en 2026 : différence entre dispense à l'initiative de l'employeur et du salarié, effets sur l'indemnité compensatrice et modèle de lettre."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="principe">Principe et initiative</h2>
+
+  <p>
+    La <strong>dispense de préavis</strong> est un accord par lequel le salarié
+    est libéré de l'obligation d'effectuer physiquement son préavis, tout en
+    restant lié juridiquement à l'entreprise jusqu'au terme de ce préavis.
+  </p>
+
+  <p>Il faut distinguer selon qui prend l'initiative :</p>
+
+  <table>
+    <thead>
+      <tr><th>Initiative</th><th>Conséquence</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Employeur</strong> dispense le salarié</td>
+        <td>Indemnité compensatrice de préavis obligatoire (salaire maintenu jusqu'à la fin du préavis)</td>
+      </tr>
+      <tr>
+        <td><strong>Salarié</strong> demande et obtient la dispense</td>
+        <td>Pas d'indemnité compensatrice — le salarié part plus tôt sans être payé pour le reliquat du préavis</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="effets">Effets financiers</h2>
+
+  <ul>
+    <li>
+      La <strong>date de fin de contrat</strong> reste la date de fin du préavis
+      théorique, même si le salarié a cessé de travailler plus tôt
+    </li>
+    <li>
+      La <strong>date d'inscription à France Travail</strong> ne peut pas être
+      avancée : elle correspond à la fin du préavis
+    </li>
+    <li>
+      Les <strong>droits à la retraite</strong> continuent de s'acquérir jusqu'à
+      la fin du préavis indemnisé (si dispense à l'initiative de l'employeur)
+    </li>
+  </ul>
+
+  <h2 id="modele">Modèle de lettre de demande de dispense</h2>
+
+  <CopyBlock title="Modèle — Demande de dispense de préavis" content={modeleDispense} />
+
+</ArticleLayout>

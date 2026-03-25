@@ -1,0 +1,147 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'liste',    label: 'Les 3 documents obligatoires'    },
+  { id: 'delais',   label: 'Délais de remise'                },
+  { id: 'recours',  label: 'Recours en cas de non-remise'    },
+  { id: 'faq',      label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "À la fin de tout contrat de travail, l'employeur doit remettre 3 documents obligatoires : le certificat de travail, l'attestation France Travail et le reçu pour solde de tout compte.",
+  "Ces documents doivent être remis au plus tard le dernier jour de travail effectif, simultanément.",
+  "L'absence ou le retard de remise expose l'employeur à des dommages-intérêts devant le Conseil de prud'hommes.",
+];
+
+const faq = [
+  {
+    question: "L'employeur peut-il retenir les documents de fin de contrat en cas de litige ?",
+    answer: "Non. La remise des documents de fin de contrat est une obligation légale indépendante de tout litige entre les parties. L'employeur ne peut pas conditionner leur remise au paiement d'une dette ou à la signature d'une transaction. Retenir ces documents constitue un manquement grave pouvant engager sa responsabilité civile et exposer le salarié à des préjudices (impossibilité de s'inscrire à France Travail, difficultés à trouver un emploi).",
+  },
+  {
+    question: "Que faire si le solde de tout compte comporte des erreurs ?",
+    answer: "Vous avez 6 mois à compter de la signature du reçu pour solde de tout compte pour le contester. Passé ce délai, le solde de tout compte devient libératoire pour les sommes qui y sont mentionnées. Pour contester, envoyez une lettre recommandée à votre ancien employeur en précisant les sommes contestées. En cas de refus, saisissez le Conseil de prud'hommes dans le délai de 3 ans pour les créances salariales.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Solde de tout compte : ce que doit contenir votre reçu',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Attestation France Travail : délais et contenu',
+    href:         '/attestation-france-travail/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Certificat de travail : contenu et recours',
+    href:         '/certificat-de-travail/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Solde de tout compte',          href: '/solde-de-tout-compte/'                                                    },
+  { title: 'Certificat de travail',         href: '/certificat-de-travail/'                                                   },
+  { title: 'Attestation France Travail',    href: '/attestation-france-travail/'                                              },
+  { title: 'Service-Public — Fin contrat',  href: 'https://www.service-public.fr/particuliers/vosdroits/F87'                 },
+];
+---
+
+<ArticleLayout
+  title="Documents fin de contrat : liste complète et délais en 2026"
+  description="Les 3 documents obligatoires à la fin d'un contrat de travail en 2026 : certificat de travail, attestation France Travail, solde de tout compte — délais, contenu et recours."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="liste">Les 3 documents obligatoires</h2>
+
+  <p>
+    Quelle que soit la cause de rupture du contrat (démission, licenciement,
+    rupture conventionnelle, fin de CDD, départ en retraite), l'employeur doit
+    remettre <strong>3 documents obligatoires</strong> à la fin du contrat
+    (art. L1234-19, R1234-9 et L1237-19 du Code du travail) :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Document</th>
+        <th>À quoi ça sert</th>
+        <th>Délai légal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Certificat de travail</strong></td>
+        <td>Atteste la durée et la nature de l'emploi</td>
+        <td>Dernier jour de travail</td>
+      </tr>
+      <tr>
+        <td><strong>Attestation France Travail</strong></td>
+        <td>Ouvre les droits à l'ARE (chômage)</td>
+        <td>Dernier jour de travail</td>
+      </tr>
+      <tr>
+        <td><strong>Reçu pour solde de tout compte</strong></td>
+        <td>Récapitule toutes les sommes versées à la rupture</td>
+        <td>Dernier jour de travail</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="delais">Délais de remise</h2>
+
+  <p>
+    Ces trois documents doivent être remis <strong>simultanément, au dernier jour
+    de travail effectif</strong> — c'est-à-dire à la fin du préavis si celui-ci
+    est effectué, ou au jour de la dispense de préavis si le salarié en est dispensé.
+  </p>
+
+  <p>
+    L'employeur peut les remettre en main propre ou par courrier. Depuis 2022,
+    l'attestation France Travail peut être transmise directement de façon
+    dématérialisée à France Travail par les employeurs de plus de 10 salariés.
+  </p>
+
+  <h2 id="recours">Recours en cas de non-remise</h2>
+
+  <ol>
+    <li>
+      <strong>Mise en demeure par LRAR</strong> — demandez la remise sous 8 jours
+      à votre ancien employeur
+    </li>
+    <li>
+      <strong>Signalement à l'inspection du travail</strong> — elle peut intervenir
+      auprès de l'employeur récalcitrant
+    </li>
+    <li>
+      <strong>Conseil de prud'hommes</strong> — obtenir la remise sous astreinte
+      journalière et des dommages-intérêts pour le préjudice subi (retard ARE,
+      difficultés à retrouver un emploi)
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F87" target="_blank" rel="noopener">
+      Service-Public.fr — Documents remis à la fin du contrat de travail
+    </a>
+  </p>
+
+</ArticleLayout>

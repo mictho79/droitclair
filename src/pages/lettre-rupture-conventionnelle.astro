@@ -1,0 +1,151 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+const modele = `[Ville], le [date]
+
+[Prénom Nom du salarié]
+[Adresse]
+
+[Nom et adresse de l'employeur]
+
+Objet : Demande d'ouverture d'une procédure de rupture conventionnelle
+
+Madame, Monsieur,
+
+Salarié(e) au sein de votre entreprise depuis le [date d'entrée] en qualité de [intitulé du poste], je vous adresse la présente afin de vous faire part de mon souhait de convenir ensemble d'une rupture conventionnelle de mon contrat de travail à durée indéterminée.
+
+Je souhaiterais vous rencontrer dans les meilleurs délais afin d'entamer la procédure prévue par les articles L1237-11 et suivants du Code du travail.
+
+Je reste disponible pour convenir d'une date d'entretien à votre convenance.
+
+Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+[Signature]
+[Prénom Nom]`;
+
+const toc = [
+  { id: 'role',      label: 'Rôle de la lettre'              },
+  { id: 'modele',    label: 'Modèle de demande'              },
+  { id: 'suite',     label: 'Suite de la procédure'          },
+  { id: 'faq',       label: 'Questions fréquentes'           },
+];
+
+const summary = [
+  "La rupture conventionnelle ne requiert pas de lettre formelle obligatoire : la demande peut être verbale ou écrite, et c'est le formulaire Cerfa qui constitue le document officiel.",
+  "Envoyer une lettre de demande par écrit est néanmoins conseillé pour garder une trace de la démarche et marquer la date du début de la procédure.",
+  "L'employeur n'est pas obligé d'accepter une demande de rupture conventionnelle du salarié.",
+];
+
+const faq = [
+  {
+    question: "L'employeur est-il obligé d'accepter une rupture conventionnelle ?",
+    answer: "Non. La rupture conventionnelle repose sur le consentement mutuel des deux parties. L'employeur peut refuser une demande de rupture conventionnelle sans avoir à se justifier. Il ne peut pas non plus contraindre le salarié à signer une rupture conventionnelle : si le consentement est vicié (pressions, menaces, harcèlement), la rupture conventionnelle peut être annulée par le Conseil de prud'hommes.",
+  },
+  {
+    question: "Faut-il envoyer la lettre de demande en recommandé ?",
+    answer: "La loi n'impose pas l'envoi en recommandé pour la demande initiale de rupture conventionnelle. Cependant, il est vivement conseillé de le faire pour conserver une preuve de la date de la demande. La procédure officielle commence à partir du premier entretien et se conclut par la signature du formulaire Cerfa, qui lui doit obligatoirement être homologué par la DREETS.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Rupture conventionnelle : indemnités et procédure',
+    href:         '/rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Contester une rupture conventionnelle',
+    href:         '/contester-rupture-conventionnelle/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Rupture conventionnelle',        href: '/rupture-conventionnelle/'                                                },
+  { title: 'Contester une rupture conv.',    href: '/contester-rupture-conventionnelle/'                                     },
+  { title: 'Service-Public — RC',            href: 'https://www.service-public.fr/particuliers/vosdroits/F19030'            },
+];
+---
+
+<ArticleLayout
+  title="Lettre de demande de rupture conventionnelle : modèle 2026"
+  description="Modèle gratuit de lettre de demande de rupture conventionnelle en 2026, étapes de la procédure après envoi, délai de rétractation et homologation par la DREETS."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="role">Rôle de la lettre</h2>
+
+  <p>
+    La <strong>rupture conventionnelle</strong> est une procédure encadrée par
+    les articles <strong>L1237-11 et suivants du Code du travail</strong>.
+    Elle ne nécessite pas de lettre de démission — c'est le formulaire
+    <strong>Cerfa n°14598</strong> signé par les deux parties qui constitue
+    l'acte officiel.
+  </p>
+
+  <p>
+    Envoyer une lettre de demande écrite est néanmoins conseillé pour :
+  </p>
+
+  <ul>
+    <li>Formaliser le déclenchement de la démarche par écrit</li>
+    <li>Conserver une preuve de la date de la demande</li>
+    <li>Montrer le caractère volontaire et non contraint de la démarche</li>
+  </ul>
+
+  <h2 id="modele">Modèle de demande de rupture conventionnelle</h2>
+
+  <CopyBlock title="Modèle — Demande de rupture conventionnelle" content={modele} />
+
+  <h2 id="suite">Suite de la procédure</h2>
+
+  <ol>
+    <li>
+      <strong>Entretien(s) préalable(s)</strong> — au moins un entretien entre l'employeur
+      et le salarié pour négocier les conditions de la rupture (date, indemnité)
+    </li>
+    <li>
+      <strong>Signature du formulaire Cerfa</strong> — les deux parties signent le
+      document de rupture conventionnelle
+    </li>
+    <li>
+      <strong>Délai de rétractation : 15 jours calendaires</strong> — chaque partie
+      peut se rétracter par LRAR dans les 15 jours suivant la signature
+    </li>
+    <li>
+      <strong>Demande d'homologation à la DREETS</strong> — après le délai de
+      rétractation, le formulaire est envoyé à la DREETS qui dispose de 15 jours
+      ouvrables pour valider ou refuser
+    </li>
+    <li>
+      <strong>Rupture effective</strong> — après homologation, à la date convenue
+      dans le formulaire
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030" target="_blank" rel="noopener">
+      Service-Public.fr — Rupture conventionnelle
+    </a>
+  </p>
+
+</ArticleLayout>

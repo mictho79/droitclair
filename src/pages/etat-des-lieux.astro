@@ -1,0 +1,152 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: "Qu'est-ce que l'état des lieux ?"     },
+  { id: 'entree',      label: "État des lieux d'entrée"               },
+  { id: 'sortie',      label: "État des lieux de sortie"              },
+  { id: 'litige',      label: 'Litige et contestation'                },
+  { id: 'faq',         label: 'Questions fréquentes'                  },
+];
+
+const summary = [
+  "L'état des lieux est un document contradictoire dressé entre le propriétaire et le locataire à l'entrée et à la sortie du logement, qui décrit précisément l'état du bien.",
+  "Il conditionne les retenues sur le dépôt de garantie : seules les dégradations constatées entre l'état des lieux d'entrée et celui de sortie peuvent justifier des retenues.",
+  "En l'absence d'état des lieux d'entrée, le logement est présumé remis en bon état, ce qui protège le locataire.",
+];
+
+const faq = [
+  {
+    question: "Le propriétaire peut-il retenir le dépôt de garantie sans état des lieux de sortie ?",
+    answer: "Non. Sans état des lieux de sortie, le propriétaire ne peut pas justifier de dégradations imputables au locataire. En l'absence d'état des lieux — d'entrée ou de sortie — la loi ALUR présume que le logement a été rendu dans le même état qu'à l'entrée. Le dépôt de garantie doit alors être restitué dans les délais légaux (1 mois si état des lieux conformes, 2 mois en cas de dégradations constatées).",
+  },
+  {
+    question: "Que faire si je suis en désaccord avec l'état des lieux de sortie ?",
+    answer: "Vous pouvez refuser de signer l'état des lieux de sortie ou le signer avec des réserves écrites. Si aucun accord n'est trouvé, vous pouvez faire appel à un huissier de justice pour établir un état des lieux contradictoire (frais partagés entre propriétaire et locataire). En cas de litige persistant, la Commission Départementale de Conciliation (CDC) peut être saisie gratuitement avant tout recours judiciaire.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Dépôt de garantie : montant, restitution et recours',
+    href:         '/depot-de-garantie/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois',
+    href:         '/preavis-location/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Expulsion locataire : procédure et droits',
+    href:         '/expulsion-locataire/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Dépôt de garantie',            href: '/depot-de-garantie/'                                                     },
+  { title: 'Commission conciliation',       href: 'https://www.service-public.fr/particuliers/vosdroits/F1411'              },
+  { title: 'Service-Public — État des lieux', href: 'https://www.service-public.fr/particuliers/vosdroits/F1722'           },
+];
+---
+
+<ArticleLayout
+  title="État des lieux : entrée, sortie et contestation en 2026"
+  description="État des lieux d'entrée et de sortie : rôle, contenu obligatoire, lien avec le dépôt de garantie, dégradations vs vétusté, et recours en cas de litige avec le propriétaire."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Logement"
+  categorySlug="logement"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que l'état des lieux ?</h2>
+
+  <p>
+    L'<strong>état des lieux</strong> est un document contradictoire établi en présence
+    du propriétaire (ou son mandataire) et du locataire, qui décrit de manière détaillée
+    l'état du logement et de ses équipements. Il est obligatoire lors de <strong>l'entrée
+    et de la sortie</strong> du locataire (loi ALUR du 24 mars 2014, art. 3-2 de la loi
+    du 6 juillet 1989).
+  </p>
+
+  <p>
+    C'est la <strong>pièce maîtresse</strong> pour résoudre les litiges sur le dépôt de
+    garantie : seules les dégradations constatées entre l'état des lieux d'entrée et
+    celui de sortie peuvent être imputées au locataire.
+  </p>
+
+  <h2 id="entree">État des lieux d'entrée</h2>
+
+  <p>
+    Il doit être établi <strong>au moment de la remise des clés</strong>. Il doit
+    décrire pièce par pièce l'état des murs, plafonds, sols, menuiseries, équipements
+    et relevés de compteurs.
+  </p>
+
+  <ul>
+    <li>Établi en autant d'exemplaires que de parties (un pour chaque signataire)</li>
+    <li>Signé par le propriétaire et le locataire</li>
+    <li>Peut être réalisé par huissier (frais partagés) si l'une des parties le refuse</li>
+    <li>En l'absence d'état des lieux d'entrée : le logement est <strong>présumé avoir
+    été remis en bon état</strong> — ce qui protège le locataire</li>
+  </ul>
+
+  <h2 id="sortie">État des lieux de sortie</h2>
+
+  <p>
+    Il est établi <strong>le jour de la restitution des clés</strong>, dans les mêmes
+    conditions de forme que l'état des lieux d'entrée. La comparaison des deux états
+    des lieux permet de déterminer les <strong>dégradations imputables au locataire</strong>.
+  </p>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Dégradation ≠ vétusté.</strong> Le propriétaire ne peut pas retenir
+      sur le dépôt de garantie les dégradations liées à l'usure normale du temps
+      (vétusté). Une grille de vétusté, fixée par accord collectif ou par la
+      convention de location, peut préciser les abattements à appliquer selon l'âge
+      des éléments du logement.
+    </div>
+  </div>
+
+  <h2 id="litige">Litige et contestation</h2>
+
+  <ol>
+    <li>
+      <strong>Signer avec réserves</strong> — notez vos désaccords directement sur
+      le document au moment de la signature
+    </li>
+    <li>
+      <strong>Faire appel à un huissier</strong> — si aucun accord n'est possible,
+      un huissier peut établir un constat contradictoire (frais partagés)
+    </li>
+    <li>
+      <strong>Saisir la CDC</strong> — la Commission Départementale de Conciliation
+      est gratuite et obligatoire avant tout recours judiciaire pour les litiges
+      locatifs &lt; 5 000 €
+    </li>
+    <li>
+      <strong>Tribunal judiciaire</strong> — en dernier recours, pour les montants
+      inférieurs à 5 000 € sans avocat obligatoire
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F1722" target="_blank" rel="noopener">
+      Service-Public.fr — État des lieux
+    </a>
+  </p>
+
+</ArticleLayout>

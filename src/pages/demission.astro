@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const articles = [
+  {
+    title: 'Lettre de démission CDI : modèles et guide complet 2026',
+    description: 'Comment rédiger une lettre de démission valide, les délais à respecter, les formules recommandées et les modèles à copier directement.',
+    href: '/lettre-de-demission-cdi/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-01-10',
+    readingTime: 7,
+  },
+  {
+    title: 'Préavis de démission CDI : durée et calcul',
+    description: 'Préavis d\'1 mois, 2 mois ou 3 mois selon votre ancienneté et votre convention collective ? Le guide complet pour ne pas se tromper.',
+    href: '/preavis-demission/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-01-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Démission et chômage : avez-vous droit aux ARE ?',
+    description: 'Les cas de démission légitime, la démission-reconversion, et toutes les démarches pour ouvrir droit à l\'allocation chômage après une démission.',
+    href: '/demission-chomage/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-01-15',
+    readingTime: 8,
+  },
+  {
+    title: 'Rupture conventionnelle : indemnités et procédure pas à pas',
+    description: 'Calcul de l\'indemnité spécifique de rupture, délai de rétractation, homologation DREETS — le guide complet pour 2026.',
+    href: '/rupture-conventionnelle/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2025-11-28',
+    readingTime: 9,
+  },
+  {
+    title: 'Solde de tout compte : ce que doit contenir votre reçu',
+    description: 'Indemnités compensatrices, congés payés non pris, primes — ce qui doit figurer sur votre solde de tout compte et comment le contester.',
+    href: '/solde-de-tout-compte/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-02-05',
+    readingTime: 6,
+  },
+  {
+    title: 'Démission pour faute de l\'employeur : droits et procédure',
+    description: 'Prise d\'acte de rupture aux torts de l\'employeur : motifs reconnus, procédure LRAR et droits au chômage conditionnels.',
+    href: '/demission-faute-employeur/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Prise d\'acte de rupture : conditions, risques et procédure',
+    description: 'Mécanisme juridique de la prise d\'acte, manquements graves requis, risque en cas de rejet et effets sur les indemnités.',
+    href: '/prise-acte-rupture/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Contester une rupture conventionnelle : motifs, délais et procédure',
+    description: 'Vice du consentement, irrégularités de procédure, délai de 12 mois et conséquences d\'une annulation par le CPH.',
+    href: '/contester-rupture-conventionnelle/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Lettre de demande de rupture conventionnelle : modèle',
+    description: 'Modèle de lettre à envoyer à votre employeur pour initier une rupture conventionnelle et guide des 5 étapes de la procédure.',
+    href: '/lettre-rupture-conventionnelle/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+  {
+    title: 'Lettre de dispense de préavis : modèle et conseils',
+    description: 'Modèle de lettre pour demander ou accepter une dispense de préavis et tableau récapitulatif des droits selon l\'initiateur.',
+    href: '/lettre-dispense-preavis/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-03-20',
+    readingTime: 4,
+  },
+];
+---
+
+<BaseLayout
+  title="Démission — Guides et modèles gratuits 2026"
+  description="Tout sur la démission : lettre de démission, préavis CDI, rupture conventionnelle, solde de tout compte, droit au chômage. Guides pratiques mis à jour 2026."
+>
+
+  <!-- En-tête de catégorie -->
+  <div class="cat-hero">
+    <div class="container cat-hero__inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Démission</span>
+      </nav>
+      <h1 class="cat-hero__title">Démission</h1>
+      <p class="cat-hero__desc">
+        Guides pratiques pour préparer et réussir votre démission :
+        lettre de démission, calcul du préavis, rupture conventionnelle,
+        et vos droits au chômage après la fin du contrat.
+      </p>
+      <p class="cat-hero__count">{articles.length} guides disponibles</p>
+    </div>
+  </div>
+
+  <!-- Grille d'articles -->
+  <div class="cat-body">
+    <div class="container">
+      <div class="cat-grid">
+        {articles.map((article) => (
+          <ArticleCard {...article} />
+        ))}
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ── En-tête ── */
+  .cat-hero {
+    background-color: var(--clr-gray);
+    border-bottom: 1px solid var(--clr-border);
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .cat-hero__inner {
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--clr-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .breadcrumb a {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--clr-green);
+    text-decoration: underline;
+  }
+
+  .cat-hero__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 800;
+    color: var(--clr-black);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-4);
+  }
+
+  .cat-hero__count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--clr-green);
+    margin: 0;
+  }
+
+  /* ── Corps ── */
+  .cat-body {
+    padding-block: var(--space-9) var(--space-12);
+    background-color: #ffffff;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que l\'attestation France Travail ?' },
+  { id: 'contenu',     label: 'Informations qu\'elle contient'                  },
+  { id: 'delai',       label: 'Délai de remise et transmission'                 },
+  { id: 'recours',     label: 'Que faire si vous ne la recevez pas'             },
+  { id: 'faq',         label: 'Questions fréquentes'                            },
+];
+
+const summary = [
+  "L'attestation France Travail (anciennement attestation Pôle Emploi) est le document indispensable pour ouvrir des droits à l'allocation chômage (ARE) après la fin d'un contrat.",
+  "L'employeur doit la remettre au salarié et la transmettre à France Travail à la fin de tout contrat, quelle qu'en soit la cause.",
+  "En cas de non-remise, le salarié peut saisir France Travail ou l'inspection du travail, et demander réparation du préjudice devant le Conseil de prud'hommes.",
+];
+
+const faq = [
+  {
+    question: "L'attestation France Travail est-elle nécessaire en cas de démission ?",
+    answer: "Oui, même en cas de démission. L'employeur doit toujours remettre l'attestation France Travail, quelle que soit la cause de rupture du contrat. En cas de démission, le salarié n'ouvre généralement pas de droits à l'ARE (sauf démission légitime ou démission-reconversion), mais l'attestation peut servir pour d'autres démarches (CPF, formation, etc.).",
+  },
+  {
+    question: "Que faire si mon attestation France Travail comporte des erreurs ?",
+    answer: "Contactez d'abord votre ancien employeur pour lui demander de corriger les informations erronées (salaires, motif de rupture, dates). Si l'employeur refuse, signalez l'erreur à France Travail qui peut demander une correction. En dernier recours, vous pouvez saisir le Conseil de prud'hommes pour obtenir la correction et des dommages-intérêts si l'erreur vous a causé un préjudice (retard dans l'ouverture des droits, calcul ARE incorrect).",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Solde de tout compte : ce que doit contenir votre reçu',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Certificat de travail : contenu et délais',
+    href:         '/certificat-de-travail/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Documents fin de contrat',            href: '/documents-fin-contrat/'                                             },
+  { title: 'Démission et chômage (ARE)',           href: '/demission-chomage/'                                                 },
+  { title: 'Service-Public — Attestation',        href: 'https://www.service-public.fr/particuliers/vosdroits/F87'           },
+  { title: 'France Travail — Connexion',          href: 'https://www.francetravail.fr'                                       },
+];
+---
+
+<ArticleLayout
+  title="Attestation France Travail : délais, contenu et recours en 2026"
+  description="Attestation France Travail (ex Pôle Emploi) en 2026 : à quoi elle sert, informations obligatoires, délai de remise par l'employeur, transmission dématérialisée et recours si manquante."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que l'attestation France Travail ?</h2>
+
+  <p>
+    L'<strong>attestation France Travail</strong> (anciennement appelée attestation
+    Pôle Emploi) est un document établi par l'employeur à la fin de tout contrat
+    de travail, obligatoire en vertu de l'article <strong>R1234-9 du Code du travail</strong>.
+  </p>
+
+  <p>
+    Elle sert principalement à <strong>ouvrir des droits à l'allocation de retour
+    à l'emploi (ARE)</strong> et à en calculer le montant. Sans elle, France Travail
+    ne peut pas étudier le dossier d'indemnisation.
+  </p>
+
+  <h2 id="contenu">Informations qu'elle contient</h2>
+
+  <ul>
+    <li>Identité de l'employeur et du salarié</li>
+    <li>Dates de début et de fin de contrat</li>
+    <li>Nature du contrat (CDI, CDD, apprentissage…)</li>
+    <li><strong>Motif de rupture</strong> (démission, licenciement, rupture conventionnelle…)</li>
+    <li>Salaires bruts des <strong>12 derniers mois</strong> travaillés</li>
+    <li>Nombre d'heures travaillées par mois</li>
+    <li>Primes et indemnités perçues</li>
+  </ul>
+
+  <h2 id="delai">Délai de remise et transmission</h2>
+
+  <p>
+    L'attestation doit être remise au salarié et transmise à France Travail
+    <strong>le dernier jour de travail effectif</strong>, en même temps que
+    le certificat de travail et le solde de tout compte.
+  </p>
+
+  <p>
+    Depuis 2015, les employeurs de plus de 10 salariés doivent transmettre
+    l'attestation à France Travail par voie <strong>dématérialisée</strong>
+    (via le portail net-entreprises.fr). Les employeurs de moins de 10 salariés
+    peuvent encore la transmettre en format papier.
+  </p>
+
+  <h2 id="recours">Que faire si vous ne la recevez pas</h2>
+
+  <ol>
+    <li>
+      <strong>Contacter France Travail</strong> — ils peuvent réclamer l'attestation
+      directement à l'employeur et vous permettre de vous inscrire en demandeur d'emploi
+      avec un dossier provisoire
+    </li>
+    <li>
+      <strong>Mettre en demeure l'employeur par LRAR</strong> — demandez la remise
+      sous 8 jours
+    </li>
+    <li>
+      <strong>Saisir l'inspection du travail</strong> — elle peut contraindre
+      l'employeur à remettre le document
+    </li>
+    <li>
+      <strong>Saisir le Conseil de prud'hommes</strong> — pour obtenir la remise
+      sous astreinte et des dommages-intérêts pour le retard dans l'ouverture des droits
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F87" target="_blank" rel="noopener">
+      Service-Public.fr — Documents remis à la fin du contrat de travail
+    </a>
+  </p>
+
+</ArticleLayout>

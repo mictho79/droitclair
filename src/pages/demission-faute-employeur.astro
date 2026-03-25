@@ -1,0 +1,143 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Définition et mécanisme'            },
+  { id: 'motifs',      label: 'Motifs reconnus par la jurisprudence' },
+  { id: 'procedure',   label: 'Procédure et démarches'              },
+  { id: 'faq',         label: 'Questions fréquentes'                },
+];
+
+const summary = [
+  "La démission pour faute de l'employeur (prise d'acte) permet de rompre le contrat en invoquant des manquements graves de l'employeur, avec les effets d'un licenciement si le juge valide la démarche.",
+  "Elle ouvre droit aux indemnités de licenciement, à l'indemnité compensatrice de préavis et aux allocations chômage (ARE) si le Conseil de prud'hommes juge les manquements suffisamment graves.",
+  "Le risque : si le juge rejette la prise d'acte, elle produit les effets d'une démission ordinaire — sans indemnités ni ARE.",
+];
+
+const faq = [
+  {
+    question: "Peut-on bénéficier du chômage après une démission pour faute de l'employeur ?",
+    answer: "Oui, mais uniquement si le Conseil de prud'hommes requalifie la prise d'acte en licenciement sans cause réelle et sérieuse. Tant que le jugement n'est pas rendu, France Travail traite la rupture comme une démission simple (pas d'ARE). Après le jugement favorable, le salarié peut demander une régularisation de ses droits et le versement rétroactif des allocations chômage. Le délai jusqu'au jugement peut être de 12 à 24 mois.",
+  },
+  {
+    question: "Quels sont les risques si le juge ne reconnaît pas la faute de l'employeur ?",
+    answer: "Si le Conseil de prud'hommes estime que les manquements de l'employeur n'étaient pas suffisamment graves, la prise d'acte est analysée comme une démission. Le salarié perd : l'indemnité légale de licenciement, l'indemnité compensatrice de préavis, les dommages-intérêts pour licenciement abusif, et n'a pas droit à l'ARE (sauf motif légitime de démission reconnu par France Travail). C'est pourquoi il est crucial de consulter un avocat avant de prendre cette décision.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Prise d\'acte de rupture : conditions et risques',
+    href:         '/prise-acte-rupture/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission-chomage/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Contester son licenciement : délais et procédure',
+    href:         '/contester-licenciement/',
+    category:     'Licenciement',
+    categorySlug: 'licenciement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Prise d\'acte de rupture',       href: '/prise-acte-rupture/'                                                    },
+  { title: 'Conseil de prud\'hommes',        href: '/prudhommes/'                                                            },
+  { title: 'Démission et chômage',           href: '/demission-chomage/'                                                     },
+  { title: 'Aide juridictionnelle',          href: 'https://www.service-public.fr/particuliers/vosdroits/F18074'            },
+];
+---
+
+<ArticleLayout
+  title="Démission pour faute de l'employeur : droits et procédure en 2026"
+  description="Démission pour faute de l'employeur (prise d'acte) en 2026 : manquements graves reconnus, procédure devant le CPH, droits au chômage conditionnels et risques en cas de rejet."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={6}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Définition et mécanisme</h2>
+
+  <p>
+    La <strong>démission pour faute de l'employeur</strong> — techniquement appelée
+    <strong>prise d'acte de rupture aux torts de l'employeur</strong> — est un mode
+    de rupture du contrat initié par le salarié, mais fondé sur des
+    <strong>manquements graves de l'employeur</strong> à ses obligations contractuelles
+    ou légales.
+  </p>
+
+  <p>
+    À la différence d'une démission ordinaire, ce n'est pas un acte volontaire libre :
+    le salarié est <em>contraint</em> de partir en raison des agissements de son employeur.
+    Le <strong>Conseil de prud'hommes</strong> déterminera ensuite si ces manquements
+    justifiaient la rupture.
+  </p>
+
+  <h2 id="motifs">Motifs reconnus par la jurisprudence</h2>
+
+  <ul>
+    <li><strong>Non-paiement du salaire</strong> (même partiel ou récurrent)</li>
+    <li><strong>Modification unilatérale du contrat</strong> (poste, salaire, horaires, lieu)</li>
+    <li><strong>Harcèlement moral</strong> caractérisé et documenté</li>
+    <li><strong>Mise à l'écart délibérée</strong> (suppression de missions, isolement)</li>
+    <li><strong>Danger grave pour la santé</strong> (manquement à l'obligation de sécurité)</li>
+    <li><strong>Discrimination</strong> (syndicale, liée au sexe, à l'âge, au handicap…)</li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Les manquements doivent être <strong>suffisamment graves</strong> et
+      <strong>documentés</strong>. Rassemblez toutes les preuves avant d'agir :
+      emails, SMS, bulletins de paie, arrêts maladie, témoignages de collègues.
+    </div>
+  </div>
+
+  <h2 id="procedure">Procédure et démarches</h2>
+
+  <ol>
+    <li>
+      <strong>Consulter un avocat ou un défenseur syndical</strong> avant toute décision —
+      la démarche est risquée et irréversible
+    </li>
+    <li>
+      <strong>Notifier la prise d'acte par LRAR</strong> à l'employeur, en exposant
+      précisément les manquements reprochés
+    </li>
+    <li>
+      <strong>Rupture immédiate</strong> — le contrat cesse le jour de l'envoi, sans préavis
+    </li>
+    <li>
+      <strong>Inscription à France Travail</strong> — traitée comme une démission
+      en attendant le jugement
+    </li>
+    <li>
+      <strong>Saisine du CPH</strong> dans les <strong>12 mois</strong>
+    </li>
+    <li>
+      Si le juge valide : requalification en licenciement sans cause réelle et sérieuse,
+      versement des indemnités et régularisation des droits ARE
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F24412" target="_blank" rel="noopener">
+      Service-Public.fr — Prise d'acte de la rupture du contrat
+    </a>
+  </p>
+
+</ArticleLayout>

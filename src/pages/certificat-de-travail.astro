@@ -1,0 +1,150 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Qu\'est-ce que le certificat de travail ?' },
+  { id: 'contenu',     label: 'Contenu obligatoire'                        },
+  { id: 'delai',       label: 'Délai de remise'                            },
+  { id: 'recours',     label: 'Recours si l\'employeur ne le remet pas'    },
+  { id: 'faq',         label: 'Questions fréquentes'                       },
+];
+
+const summary = [
+  "Le certificat de travail est un document obligatoire que l'employeur doit remettre au salarié à la fin de tout contrat de travail, quelle que soit la cause de la rupture.",
+  "Il doit mentionner la date d'entrée, la date de sortie, la nature du ou des emplois occupés et les périodes correspondantes.",
+  "Le salarié peut exiger ce document par mise en demeure, et l'employeur s'expose à des dommages-intérêts en cas de non-remise ou de remise tardive.",
+];
+
+const faq = [
+  {
+    question: "Le certificat de travail est-il la même chose que l'attestation France Travail ?",
+    answer: "Non, ce sont deux documents distincts. Le certificat de travail est établi par l'employeur et résume la relation de travail (dates, emploi). L'attestation France Travail (anciennement Pôle Emploi) est le document permettant d'ouvrir des droits à l'allocation chômage — elle contient des informations sur les salaires, le motif de rupture et est transmise directement à France Travail. Ces deux documents doivent être remis à la fin du contrat.",
+  },
+  {
+    question: "L'employeur peut-il ajouter des informations négatives dans le certificat de travail ?",
+    answer: "Non. Le certificat de travail ne peut contenir que les mentions légalement prévues (dates, emplois). L'employeur ne peut pas y mentionner de motif de rupture, d'évaluations négatives, de sanctions disciplinaires ou de jugements de valeur. Un certificat de travail contenant des mentions illégales ou dénigrantes peut engager la responsabilité de l'employeur.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Attestation France Travail : qui la remet et délais',
+    href:         '/attestation-france-travail/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Solde de tout compte : ce que doit contenir votre reçu',
+    href:         '/solde-de-tout-compte/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Documents fin de contrat : liste complète',
+    href:         '/documents-fin-contrat/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Documents fin de contrat',          href: '/documents-fin-contrat/'                                               },
+  { title: 'Solde de tout compte',              href: '/solde-de-tout-compte/'                                                },
+  { title: 'Service-Public — Certificat travail', href: 'https://www.service-public.fr/particuliers/vosdroits/F87'           },
+];
+---
+
+<ArticleLayout
+  title="Certificat de travail : contenu, délai de remise et recours"
+  description="Certificat de travail 2026 : mentions obligatoires, délai de remise à la fin du contrat, différence avec l'attestation France Travail et recours si l'employeur ne le remet pas."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Qu'est-ce que le certificat de travail ?</h2>
+
+  <p>
+    Le <strong>certificat de travail</strong> est un document que l'employeur est
+    légalement tenu de remettre au salarié à la fin de tout contrat de travail
+    (art. <strong>L1234-19 du Code du travail</strong>), quelle que soit la cause
+    de rupture : démission, licenciement, rupture conventionnelle, fin de CDD,
+    départ en retraite.
+  </p>
+
+  <p>
+    Il atteste de l'existence et de la durée de la relation de travail.
+    Il est <strong>distinct de l'attestation France Travail</strong> et du solde
+    de tout compte, qui constituent les deux autres documents obligatoires remis
+    en fin de contrat.
+  </p>
+
+  <h2 id="contenu">Contenu obligatoire</h2>
+
+  <p>
+    Le certificat de travail doit mentionner, au minimum :
+  </p>
+
+  <ul>
+    <li>La <strong>date d'entrée</strong> dans l'entreprise</li>
+    <li>La <strong>date de sortie</strong> (fin du contrat)</li>
+    <li>La <strong>nature du ou des emplois occupés</strong> et les périodes correspondantes</li>
+    <li>La <strong>dénomination et l'adresse de l'employeur</strong></li>
+  </ul>
+
+  <p>
+    Depuis 2017, l'employeur peut également mentionner, <strong>avec l'accord du salarié</strong>,
+    les activités exercées et les compétences acquises.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Mentions interdites :</strong> le motif de rupture, les évaluations de performance,
+      les sanctions disciplinaires ou tout élément susceptible de nuire au salarié ne peuvent
+      pas figurer dans le certificat de travail.
+    </div>
+  </div>
+
+  <h2 id="delai">Délai de remise</h2>
+
+  <p>
+    Le certificat de travail doit être remis au salarié <strong>le dernier jour de travail
+    effectif</strong>, en même temps que le solde de tout compte et l'attestation
+    France Travail. Il peut être remis en main propre ou envoyé par courrier.
+  </p>
+
+  <h2 id="recours">Recours si l'employeur ne le remet pas</h2>
+
+  <ol>
+    <li>
+      <strong>Mise en demeure par LRAR</strong> — adressez une lettre recommandée
+      à votre ancien employeur en lui demandant la remise du certificat dans un délai
+      de 8 jours
+    </li>
+    <li>
+      <strong>Saisine de l'inspection du travail</strong> — elle peut contraindre
+      l'employeur à remettre le document
+    </li>
+    <li>
+      <strong>Saisine du Conseil de prud'hommes</strong> — le juge peut condamner
+      l'employeur à remettre le certificat sous astreinte journalière et à verser
+      des dommages-intérêts pour le préjudice subi (difficultés à trouver un nouvel emploi)
+    </li>
+  </ol>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F87" target="_blank" rel="noopener">
+      Service-Public.fr — Documents remis à la fin du contrat
+    </a>
+  </p>
+
+</ArticleLayout>

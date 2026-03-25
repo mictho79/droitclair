@@ -1,0 +1,134 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+const toc = [
+  { id: 'definition',  label: 'Caution vs dépôt de garantie'   },
+  { id: 'types',       label: 'Caution simple et solidaire'     },
+  { id: 'acte',        label: 'L\'acte de cautionnement'        },
+  { id: 'engagement',  label: 'Engagement du garant'            },
+  { id: 'faq',         label: 'Questions fréquentes'            },
+];
+
+const summary = [
+  "La caution locative est une garantie fournie par un tiers (garant) qui s'engage à payer le loyer et les charges si le locataire est défaillant.",
+  "Elle est distincte du dépôt de garantie : la caution est une personne physique ou morale, le dépôt de garantie est une somme d'argent versée à l'entrée.",
+  "L'acte de cautionnement doit respecter un formalisme strict (mentions manuscrites obligatoires) sous peine de nullité.",
+];
+
+const faq = [
+  {
+    question: "Un propriétaire peut-il exiger à la fois une caution et une assurance loyers impayés ?",
+    answer: "Non, depuis la loi ALUR (2014), le propriétaire ne peut pas cumuler une caution personnelle et une assurance loyers impayés (GLI), sauf si le locataire est étudiant ou apprenti. Cette interdiction vise à éviter une double garantie qui pénaliserait les locataires.",
+  },
+  {
+    question: "Jusqu'à quand s'engage le garant ?",
+    answer: "Le garant s'engage pour la durée du bail et ses renouvellements, dans la limite prévue à l'acte de cautionnement. Il peut résilier son engagement à l'issue de chaque période annuelle du bail (si mention dans l'acte) par lettre recommandée. La résiliation ne prend effet qu'à la prochaine échéance annuelle du bail et ne libère pas le garant des dettes antérieures.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Dépôt de garantie : montant, restitution et recours',
+    href:         '/depot-de-garantie/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'Préavis de location : 1 mois ou 3 mois',
+    href:         '/preavis-location/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+  {
+    title:        'État des lieux : entrée, sortie et contestation',
+    href:         '/etat-des-lieux/',
+    category:     'Logement',
+    categorySlug: 'logement',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Dépôt de garantie',           href: '/depot-de-garantie/'                                               },
+  { title: 'Service-Public — Caution',     href: 'https://www.service-public.fr/particuliers/vosdroits/F31267'      },
+  { title: 'Visale (caution gratuite)',    href: 'https://www.visale.fr'                                             },
+];
+---
+
+<ArticleLayout
+  title="Caution locative : acte de cautionnement, types et engagement du garant"
+  description="Caution locative en 2026 : différence avec le dépôt de garantie, caution simple vs solidaire, mentions obligatoires de l'acte, durée d'engagement et résiliation."
+  publishedDate="2026-03-20"
+  modifiedDate="2026-03-25"
+  category="Logement"
+  categorySlug="logement"
+  readingTime={5}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <h2 id="definition">Caution vs dépôt de garantie</h2>
+
+  <p>
+    Ces deux termes sont souvent confondus mais désignent des mécanismes distincts :
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Caractéristique</th><th>Caution locative</th><th>Dépôt de garantie</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Nature</td><td>Personne physique ou morale (garant)</td><td>Somme d'argent versée à l'entrée</td></tr>
+      <tr><td>Qui paie</td><td>Le garant, en cas de défaillance du locataire</td><td>Le locataire, dès la signature du bail</td></tr>
+      <tr><td>Montant</td><td>Illimité (toutes dettes locatives)</td><td>1 mois de loyer hors charges (non meublé)</td></tr>
+      <tr><td>Restitution</td><td>Non applicable</td><td>Dans 1 ou 2 mois après remise des clés</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="types">Caution simple et caution solidaire</h2>
+
+  <ul>
+    <li>
+      <strong>Caution simple</strong> — le propriétaire doit d'abord poursuivre le
+      locataire avant de se retourner contre le garant (bénéfice de discussion)
+    </li>
+    <li>
+      <strong>Caution solidaire</strong> — le propriétaire peut directement réclamer
+      le paiement au garant sans avoir à poursuivre le locataire d'abord.
+      C'est la forme la plus répandue et la plus protectrice pour le bailleur.
+    </li>
+  </ul>
+
+  <h2 id="acte">L'acte de cautionnement</h2>
+
+  <p>
+    L'acte de cautionnement doit comporter des <strong>mentions manuscrites obligatoires</strong>
+    (art. 22-1 de la loi du 6 juillet 1989), sous peine de nullité :
+  </p>
+
+  <ul>
+    <li>Montant du loyer en chiffres et en lettres</li>
+    <li>Conditions de révision du loyer</li>
+    <li>Durée de l'engagement</li>
+    <li>Reproduction intégrale de l'art. 22-1 de la loi du 6 juillet 1989</li>
+    <li>Mention expresse que le garant a bien pris connaissance du bail</li>
+  </ul>
+
+  <h2 id="engagement">Engagement du garant</h2>
+
+  <p>
+    Le garant s'engage à couvrir toutes les dettes locatives : <strong>loyers, charges,
+    réparations locatives, indemnités d'occupation</strong>. Cet engagement peut être
+    limité dans le temps ou en montant si l'acte le prévoit expressément.
+  </p>
+
+  <p class="source-ref">
+    Source :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F31267" target="_blank" rel="noopener">
+      Service-Public.fr — Caution locative
+    </a>
+  </p>
+
+</ArticleLayout>
