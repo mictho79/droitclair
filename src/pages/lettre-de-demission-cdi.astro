@@ -1,0 +1,322 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import CopyBlock from '../components/CopyBlock.astro';
+
+/* ── Modèle de lettre ──────────────────────────────────── */
+const letterModel = `[Prénom Nom]
+[Adresse]
+[Code postal – Ville]
+[Téléphone] – [Email]
+
+À [Ville], le [Date]
+
+[Nom de l'employeur / Raison sociale]
+À l'attention de [Nom du responsable RH ou dirigeant]
+[Adresse de l'entreprise]
+[Code postal – Ville]
+
+Objet : Démission de mon poste de [intitulé du poste]
+
+Madame, Monsieur,
+
+Par la présente lettre, je vous notifie ma décision de démissionner
+du poste de [intitulé du poste] que j'occupe au sein de [nom de
+l'entreprise] depuis le [date de début de contrat].
+
+Conformément aux dispositions légales et à la convention collective
+applicable, je respecterai un préavis de [durée du préavis : 1 mois /
+2 mois / 3 mois], dont le point de départ est fixé à la date de remise
+de la présente lettre. Mon dernier jour de travail effectif sera donc
+le [date de fin de préavis].
+
+Je reste pleinement disponible durant cette période pour assurer la
+passation de mes missions dans les meilleures conditions.
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes
+salutations distinguées.
+
+[Signature manuscrite]
+[Prénom Nom]`;
+
+/* ── Données structurelles ─────────────────────────────── */
+const toc = [
+  { id: 'definition',  label: "Qu'est-ce qu'une lettre de démission CDI ?" },
+  { id: 'mentions',    label: 'Les mentions à inclure'                      },
+  { id: 'modele',      label: 'Modèle gratuit à copier'                    },
+  { id: 'remise',      label: 'Comment remettre votre lettre ?'             },
+  { id: 'apres',       label: 'Que se passe-t-il après ?'                  },
+  { id: 'faq',         label: 'Questions fréquentes'                        },
+];
+
+const summary = [
+  "Aucune forme légale n'est imposée, mais une lettre écrite reste indispensable pour fixer la date de départ du préavis.",
+  "Le préavis commence dès la remise en main propre ou la première présentation du recommandé avec AR.",
+  "La démission ne donne généralement pas droit à l'ARE (chômage), sauf dans les cas de démission légitime reconnus par France Travail.",
+];
+
+const faq = [
+  {
+    question: "Est-il obligatoire d'envoyer sa démission en recommandé ?",
+    answer:   "Non. La loi n'impose aucun mode d'envoi particulier. En revanche, la lettre recommandée avec accusé de réception (LRAR) est fortement conseillée : elle prouve la date de réception et fait courir le préavis même si l'employeur refuse de la signer. La remise en main propre contre décharge signée est une alternative équivalente.",
+  },
+  {
+    question: "Quel est le préavis après une démission CDI ?",
+    answer:   "La durée du préavis dépend de votre convention collective et de votre ancienneté. La loi ne fixe pas de durée légale par défaut. C'est toujours votre convention collective ou votre contrat de travail qui détermine la durée — vérifiez sur convention.fr ou auprès de votre RH.",
+  },
+  {
+    question: "Peut-on démissionner sans lettre écrite ?",
+    answer:   "Oui, légalement. La démission peut être verbale. Toutefois, sans trace écrite, la date de départ du préavis est difficile à prouver et des litiges peuvent surgir. Certains employeurs refusent même de reconnaître une démission non formalisée par écrit. La lettre reste la protection minimale du salarié.",
+  },
+  {
+    question: "La démission ouvre-t-elle droit au chômage ?",
+    answer:   "Non, en principe. La démission est considérée comme une rupture volontaire du contrat, non indemnisable par France Travail (ex-Pôle Emploi). Des exceptions existent pour les <strong>démissions légitimes</strong> : suivi du conjoint, non-paiement du salaire, reconversion professionnelle avec projet de formation validé… En dehors de ces cas, le salarié peut saisir France Travail après 4 mois de chômage pour demander un réexamen.",
+  },
+  {
+    question: "Peut-on revenir sur sa démission ?",
+    answer:   "Oui, mais uniquement avec l'accord de l'employeur. La démission est un acte unilatéral et irrévocable. Si l'employeur refuse, la démission reste valide. En pratique, la rétractation doit intervenir rapidement — idéalement dans les 24 à 48 heures — et par écrit, pour laisser le moins de place possible à l'ambiguïté.",
+  },
+];
+
+const relatedArticles = [
+  {
+    title:        'Préavis de démission CDI : durée et calcul',
+    href:         '/demission/preavis-demission/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Démission et chômage : avez-vous droit aux ARE ?',
+    href:         '/demission/demission-chomage-droits/',
+    category:     'Démission',
+    categorySlug: 'demission',
+  },
+  {
+    title:        'Rupture conventionnelle : alternative à la démission ?',
+    href:         '/rupture-conventionnelle/guide-complet/',
+    category:     'Rupture conventionnelle',
+    categorySlug: 'rupture-conventionnelle',
+  },
+];
+
+const sidebarLinks = [
+  { title: 'Calcul du préavis CDI selon votre convention',       href: '/preavis/duree-preavis-cdi/'              },
+  { title: 'Solde de tout compte : ce que doit verser l\'employeur', href: '/demission/solde-de-tout-compte/'     },
+  { title: 'Démission suite à une faute de l\'employeur',        href: '/demission/faute-employeur/'              },
+  { title: 'Attestation France Travail : qui la remet ?',        href: '/droits-contrat/attestation-france-travail/' },
+];
+---
+
+<ArticleLayout
+  title="Lettre de démission CDI : modèle gratuit et guide complet 2026"
+  description="Téléchargez un modèle de lettre de démission CDI gratuit et découvrez comment démissionner correctement : préavis, forme, remise en main propre ou recommandé."
+  publishedDate="2026-01-10"
+  modifiedDate="2026-03-01"
+  category="Démission"
+  categorySlug="demission"
+  readingTime={7}
+  summary={summary}
+  toc={toc}
+  faq={faq}
+  relatedArticles={relatedArticles}
+  sidebarLinks={sidebarLinks}
+>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Définition
+       ═══════════════════════════════════════════ -->
+  <h2 id="definition">Qu'est-ce qu'une lettre de démission CDI ?</h2>
+
+  <p>
+    La démission est l'acte par lequel un salarié en contrat à durée indéterminée (CDI) met fin
+    unilatéralement à son contrat de travail. Contrairement à une idée reçue,
+    <strong>la loi n'impose aucune forme particulière</strong> pour démissionner :
+    une démission verbale est juridiquement valide.
+  </p>
+
+  <p>
+    Pourtant, rédiger une lettre écrite reste indispensable dans la quasi-totalité des situations,
+    pour deux raisons pratiques :
+  </p>
+
+  <ul>
+    <li>
+      Elle <strong>fixe avec certitude la date de départ du préavis</strong>, qui commence
+      à courir dès la remise ou la réception de la lettre.
+    </li>
+    <li>
+      Elle constitue une <strong>preuve en cas de litige</strong> sur la date ou les conditions
+      de votre départ.
+    </li>
+  </ul>
+
+  <h3>CDI et démission : les principes</h3>
+
+  <p>
+    Tout salarié en CDI peut démissionner à tout moment, sans avoir à justifier
+    sa décision auprès de son employeur. La démission est un droit ; l'accord de
+    l'employeur n'est pas requis. En revanche, le salarié est tenu de respecter
+    son préavis, sauf dispense accordée par l'employeur.
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Mentions à inclure
+       ═══════════════════════════════════════════ -->
+  <h2 id="mentions">Les mentions à inclure dans votre lettre</h2>
+
+  <p>
+    Légalement, aucune mention n'est rendue obligatoire par le Code du travail.
+    En pratique, une lettre complète et sans ambiguïté doit contenir les éléments suivants :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Élément</th>
+        <th>Pourquoi l'inclure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date et lieu de rédaction</td>
+        <td>Point de départ officiel du préavis</td>
+      </tr>
+      <tr>
+        <td>Vos coordonnées complètes</td>
+        <td>Identification claire du salarié démissionnaire</td>
+      </tr>
+      <tr>
+        <td>Coordonnées de l'employeur</td>
+        <td>Désignation précise du destinataire</td>
+      </tr>
+      <tr>
+        <td>Intitulé exact du poste</td>
+        <td>Évite toute ambiguïté sur le contrat visé</td>
+      </tr>
+      <tr>
+        <td>Volonté claire et non équivoque de démissionner</td>
+        <td>Condition essentielle de validité</td>
+      </tr>
+      <tr>
+        <td>Date de fin de préavis souhaitée</td>
+        <td>Facilite la gestion administrative</td>
+      </tr>
+      <tr>
+        <td>Signature manuscrite</td>
+        <td>Authentifie le document</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Conseil :</strong> Évitez d'expliquer les raisons de votre départ dans la lettre,
+      surtout si elles sont liées à un conflit. Une formulation neutre et factuelle vous protège
+      mieux en cas de litige ultérieur.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Modèle à copier
+       ═══════════════════════════════════════════ -->
+  <h2 id="modele">Modèle de lettre de démission CDI</h2>
+
+  <p>
+    Copiez ce modèle, remplacez les éléments entre crochets par vos informations
+    personnelles et adaptez la durée du préavis à votre convention collective.
+  </p>
+
+  <CopyBlock content={letterModel} label="Modèle de lettre de démission CDI" />
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Vérifiez la durée de votre préavis</strong> dans votre contrat de travail
+      ou votre convention collective avant de compléter ce modèle. Elle peut varier de
+      1 semaine à 3 mois selon votre situation.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Remise de la lettre
+       ═══════════════════════════════════════════ -->
+  <h2 id="remise">Comment remettre votre lettre de démission ?</h2>
+
+  <p>
+    Le mode de remise conditionne la date de départ du préavis.
+    Deux options sont recommandées :
+  </p>
+
+  <h3>Remise en main propre contre décharge</h3>
+
+  <p>
+    C'est la méthode la plus rapide. Remettez la lettre directement à votre responsable
+    RH ou à votre dirigeant, et demandez systématiquement un <strong>récépissé daté et signé</strong>.
+    Le préavis commence le jour même de la remise.
+  </p>
+
+  <p>
+    Si votre employeur refuse de signer, prenez un témoin ou envoyez également un email
+    récapitulatif le jour même pour conserver une trace.
+  </p>
+
+  <h3>Lettre recommandée avec accusé de réception (LRAR)</h3>
+
+  <p>
+    C'est la méthode la plus sûre en cas de conflit potentiel. Le préavis commence
+    à la <strong>date de première présentation</strong> du recommandé au domicile ou au siège
+    social de l'employeur, même si ce dernier ne le retire pas.
+  </p>
+
+  <h3>Email : valeur juridique limitée</h3>
+
+  <p>
+    Un email seul est insuffisant : sa valeur probante reste faible sans signature
+    électronique qualifiée. Il peut compléter une LRAR, mais ne la remplace pas.
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       H2 — Après la démission
+       ═══════════════════════════════════════════ -->
+  <h2 id="apres">Que se passe-t-il après la remise de la lettre ?</h2>
+
+  <h3>Le préavis s'exécute (sauf dispense)</h3>
+
+  <p>
+    Dès la réception de votre lettre, le préavis démarre. Sa durée varie selon
+    votre convention collective, votre ancienneté et votre catégorie professionnelle.
+    Votre employeur peut vous <strong>dispenser d'effectuer le préavis</strong>,
+    auquel cas il doit vous le verser intégralement, sauf si vous en faites
+    vous-même la demande.
+  </p>
+
+  <h3>Les documents de fin de contrat</h3>
+
+  <p>
+    À la fin du préavis, votre employeur est tenu de vous remettre obligatoirement :
+  </p>
+
+  <ul>
+    <li>Le <strong>certificat de travail</strong></li>
+    <li>L'<strong>attestation France Travail</strong> (anciennement attestation Pôle Emploi)</li>
+    <li>Le <strong>solde de tout compte</strong> (bulletin de salaire, indemnités de congés payés non pris…)</li>
+    <li>Le <strong>relevé du compte épargne-temps</strong>, si applicable</li>
+  </ul>
+
+  <h3>Droit au chômage après une démission</h3>
+
+  <p>
+    En règle générale, la démission n'ouvre <strong>pas droit à l'ARE</strong>
+    (Aide au Retour à l'Emploi). France Travail considère la démission comme une
+    rupture volontaire non indemnisable.
+  </p>
+
+  <p>
+    Des exceptions existent pour les <strong>démissions dites légitimes</strong> :
+    suivi du conjoint suite à une mutation, non-paiement du salaire par l'employeur,
+    démission pour reconversion avec projet de formation validé par le CPF de transition…
+    Renseignez-vous auprès de France Travail avant de démissionner si vous êtes dans
+    l'une de ces situations.
+  </p>
+
+</ArticleLayout>

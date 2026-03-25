@@ -1,0 +1,442 @@
+---
+const navLinks = [
+  { label: 'Démission',     href: '/demission/'     },
+  { label: 'Licenciement',  href: '/licenciement/'  },
+  { label: 'Préavis',       href: '/preavis/'        },
+  { label: 'Arrêt maladie', href: '/arret-maladie/' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" role="banner">
+  <div class="container site-header__inner">
+
+    <!-- ── Logo ─────────────────────────────────────── -->
+    <a href="/" class="site-logo" aria-label="DroitClair — retour à l'accueil">
+      <svg
+        class="site-logo__icon"
+        width="26" height="26"
+        viewBox="0 0 26 26"
+        fill="none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <!-- Fléau de balance stylisé -->
+        <circle cx="13" cy="13" r="13" fill="#1D9E75"/>
+        <!-- Pilier -->
+        <rect x="12.1" y="7" width="1.8" height="11" rx="0.9" fill="white"/>
+        <!-- Socle -->
+        <rect x="8.5" y="17.5" width="9" height="1.8" rx="0.9" fill="white"/>
+        <!-- Bras -->
+        <rect x="6" y="9.6" width="14" height="1.5" rx="0.75" fill="white"/>
+        <!-- Plateau gauche -->
+        <path d="M7 11.1 Q7 14.2 10 14.2 Q13 14.2 13 11.1" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <!-- Plateau droit -->
+        <path d="M13 11.1 Q13 14.8 16 14.8 Q19 14.8 19 11.1" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="site-logo__wordmark">
+        Droit<span class="site-logo__accent">Clair</span>
+      </span>
+    </a>
+
+    <!-- ── Nav + Search (collapse sur mobile) ────────── -->
+    <div class="header-collapse" id="header-collapse" aria-hidden="true">
+
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul class="site-nav__list" role="list">
+          {navLinks.map(({ label, href }) => {
+            const active = currentPath === href
+              || (href !== '/' && currentPath.startsWith(href));
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={['site-nav__link', { 'site-nav__link--active': active }]}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <div class="site-search" role="search" aria-label="Recherche sur le site">
+        <label for="site-search-input" class="sr-only">Rechercher un guide</label>
+        <div class="site-search__wrap">
+          <svg
+            class="site-search__icon"
+            width="16" height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input
+            id="site-search-input"
+            class="site-search__input"
+            type="search"
+            placeholder="Rechercher un guide…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Bouton hamburger (mobile only) ────────────── -->
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="header-collapse"
+      aria-label="Ouvrir le menu"
+    >
+      <span class="nav-toggle__bars" aria-hidden="true">
+        <b></b>
+        <b></b>
+        <b></b>
+      </span>
+    </button>
+
+  </div>
+</header>
+
+<script>
+  const toggle  = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const collapse = document.getElementById('header-collapse');
+
+  if (toggle && collapse) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+      collapse.classList.toggle('is-open', !isOpen);
+      collapse.setAttribute('aria-hidden', String(isOpen));
+    });
+
+    // Fermeture au clic extérieur
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      if (!toggle.contains(target) && !collapse.contains(target)) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        collapse.classList.remove('is-open');
+        collapse.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Fermeture à Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        collapse.classList.remove('is-open');
+        collapse.setAttribute('aria-hidden', 'true');
+        toggle.focus();
+      }
+    });
+  }
+
+  // Recherche header → Google site search
+  const headerInput = document.getElementById('site-search-input') as HTMLInputElement | null;
+  headerInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const q = headerInput.value.trim();
+      if (q) {
+        window.location.href =
+          'https://www.google.com/search?q=' +
+          encodeURIComponent('site:droitclair.fr ' + q);
+      }
+    }
+  });
+</script>
+
+<style>
+  /* ── Wrapper ──────────────────────────────────────────────── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--clr-border);
+    /* Ombre légère ajoutée via box-shadow pour ne pas perturber le layout */
+    box-shadow: 0 1px 0 var(--clr-border-subtle);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    height: 68px;
+  }
+
+  /* ── Logo ─────────────────────────────────────────────────── */
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    /* On retire le focus-visible par défaut pour le remplacer */
+    border-radius: var(--radius-sm);
+  }
+
+  .site-logo__icon {
+    flex-shrink: 0;
+    transition: transform var(--duration) var(--ease);
+  }
+
+  .site-logo:hover .site-logo__icon {
+    transform: rotate(-6deg) scale(1.05);
+  }
+
+  .site-logo__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--clr-black);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .site-logo__accent {
+    color: var(--clr-green);
+  }
+
+  /* ── Collapse (nav + search) ──────────────────────────────── */
+  .header-collapse {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: var(--space-4);
+  }
+
+  /* ── Navigation ───────────────────────────────────────────── */
+  .site-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+  }
+
+  .site-nav__link {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    padding: 0.4em 0.8em;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    transition:
+      color       var(--duration) var(--ease),
+      background  var(--duration) var(--ease);
+  }
+
+  .site-nav__link:hover {
+    color: var(--clr-green);
+    background-color: var(--clr-green-light);
+  }
+
+  .site-nav__link--active {
+    color: var(--clr-green);
+    font-weight: 600;
+    background-color: var(--clr-green-light);
+  }
+
+  /* ── Barre de recherche ───────────────────────────────────── */
+  .site-search {
+    flex-shrink: 0;
+  }
+
+  .site-search__wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--clr-gray);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-full);
+    padding: 0.42em 1em;
+    transition:
+      border-color var(--duration) var(--ease),
+      background   var(--duration) var(--ease),
+      box-shadow   var(--duration) var(--ease);
+  }
+
+  .site-search__wrap:focus-within {
+    border-color: var(--clr-green);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+  }
+
+  .site-search__icon {
+    color: var(--clr-text-faint);
+    flex-shrink: 0;
+    pointer-events: none;
+    transition: color var(--duration) var(--ease);
+  }
+
+  .site-search__wrap:focus-within .site-search__icon {
+    color: var(--clr-green);
+  }
+
+  .site-search__input {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--clr-text);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 200px;
+    min-width: 0;
+    line-height: 1;
+  }
+
+  .site-search__input::placeholder {
+    color: var(--clr-text-faint);
+  }
+
+  /* Masque le bouton natif "× effacer" sur Chrome/Safari */
+  .site-search__input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  /* ── Bouton hamburger ─────────────────────────────────────── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    color: var(--clr-text);
+    flex-shrink: 0;
+    transition: background-color var(--duration) var(--ease);
+  }
+
+  .nav-toggle:hover {
+    background-color: var(--clr-gray);
+  }
+
+  .nav-toggle__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-toggle__bars b {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 1px;
+    transform-origin: center;
+    transition:
+      transform 240ms var(--ease),
+      opacity   160ms var(--ease);
+  }
+
+  /* Animation → croix */
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars b:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars b:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.15);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars b:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .site-search__input {
+      width: 160px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .site-header__inner {
+      gap: var(--space-3);
+    }
+
+    /* Le collapse devient un panneau en dessous de la barre */
+    .header-collapse {
+      display: none;
+      position: absolute;
+      top: 68px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--clr-border);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-4) var(--space-4) var(--space-5);
+      z-index: var(--z-nav);
+    }
+
+    .header-collapse.is-open {
+      display: flex;
+    }
+
+    /* Nav mobile : liste verticale */
+    .site-nav {
+      justify-content: flex-start;
+      border-bottom: 1px solid var(--clr-border-subtle);
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .site-nav__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-1);
+      width: 100%;
+    }
+
+    .site-nav__link {
+      font-size: var(--text-base);
+      padding: 0.6em 0.75em;
+    }
+
+    /* Search mobile : pleine largeur */
+    .site-search {
+      width: 100%;
+    }
+
+    .site-search__wrap {
+      width: 100%;
+    }
+
+    .site-search__input {
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Hamburger visible */
+    .nav-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+</style>

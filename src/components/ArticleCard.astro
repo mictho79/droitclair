@@ -1,0 +1,161 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  category: string;
+  categorySlug: string;
+  publishedDate: string;
+  readingTime?: number;
+  featured?: boolean;
+  badgeColor?: 'green' | 'blue' | 'orange';
+}
+
+const {
+  title,
+  description,
+  href,
+  category,
+  categorySlug,
+  publishedDate,
+  readingTime,
+  featured = false,
+  badgeColor = 'green',
+} = Astro.props;
+
+const badgeClass = {
+  green:  'badge-green',
+  blue:   'badge-blue',
+  orange: 'badge-orange',
+}[badgeColor];
+
+const formattedDate = new Date(publishedDate).toLocaleDateString('fr-FR', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class={`article-card${featured ? ' article-card--featured' : ''}`}>
+  <a href={`/${categorySlug}/`} class={`article-card__category ${badgeClass}`} tabindex="-1" aria-hidden="true">
+    {category}
+  </a>
+
+  <h2 class="article-card__title">
+    <a href={href} class="article-card__link">{title}</a>
+  </h2>
+
+  <p class="article-card__excerpt">{description}</p>
+
+  <footer class="article-card__footer">
+    <time datetime={publishedDate} class="article-card__date">{formattedDate}</time>
+    {readingTime && (
+      <span class="article-card__reading">{readingTime} min</span>
+    )}
+    <a href={href} class="article-card__cta" aria-label={`Lire l'article : ${title}`}>
+      Lire l'article →
+    </a>
+  </footer>
+</article>
+
+<style>
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+
+  .article-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .article-card--featured {
+    border-color: var(--clr-primary);
+    border-width: 2px;
+  }
+
+  .article-card__title {
+    font-size: 1.125rem;
+    line-height: 1.35;
+    margin: 0.25rem 0 0;
+  }
+
+  .article-card__link {
+    color: var(--clr-text);
+    text-decoration: none;
+  }
+
+  .article-card__link:hover {
+    color: var(--clr-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Make the whole card clickable via the title link */
+  .article-card__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+  }
+
+  .article-card {
+    position: relative;
+  }
+
+  .article-card__category {
+    position: relative; /* above the stretched link */
+    z-index: 1;
+    align-self: flex-start;
+  }
+
+  .article-card__excerpt {
+    color: var(--clr-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    flex: 1;
+    margin: 0;
+  }
+
+  .article-card__footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--clr-text-muted);
+  }
+
+  .article-card__date,
+  .article-card__reading {
+    flex-shrink: 0;
+  }
+
+  .article-card__reading::before {
+    content: "· ";
+  }
+
+  .article-card__cta {
+    margin-left: auto;
+    position: relative;
+    z-index: 1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .article-card__cta:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

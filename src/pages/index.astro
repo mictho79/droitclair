@@ -1,0 +1,858 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+/* ── Données ──────────────────────────────────────────────── */
+
+const popularArticles = [
+  {
+    title: 'Comment démissionner sans perdre ses droits au chômage ?',
+    description: 'Les cas légitimes, la démission-reconversion, et toutes les démarches pour ouvrir droit à l\'ARE après une démission.',
+    href: '/demission/demission-chomage-droits/',
+    category: 'Démission',
+    categorySlug: 'demission',
+    badgeColor: 'green' as const,
+    publishedDate: '2026-01-15',
+    readingTime: 8,
+  },
+  {
+    title: 'Durée du préavis CDI : calcul selon votre convention collective',
+    description: 'Préavis d\'1 mois, 2 mois ou 3 mois selon l\'ancienneté et la convention ? Le guide complet pour ne pas se tromper.',
+    href: '/preavis/duree-preavis-cdi/',
+    category: 'Préavis',
+    categorySlug: 'preavis',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-01-20',
+    readingTime: 6,
+  },
+  {
+    title: 'Licenciement économique : droits et recours en 2026',
+    description: 'PSE, CSP, priorité de réembauche, indemnité supralégale — tout ce que vous devez exiger face à un licenciement éco.',
+    href: '/licenciement/licenciement-economique-droits/',
+    category: 'Licenciement',
+    categorySlug: 'licenciement',
+    badgeColor: 'green' as const,
+    publishedDate: '2025-12-10',
+    readingTime: 10,
+  },
+  {
+    title: 'Arrêt maladie : maintien de salaire, IJSS et démarches',
+    description: 'Qui paie ? Combien ? Pendant combien de temps ? Les règles du maintien de salaire et des indemnités journalières décryptées.',
+    href: '/arret-maladie/maintien-salaire/',
+    category: 'Arrêt maladie',
+    categorySlug: 'arret-maladie',
+    badgeColor: 'blue' as const,
+    publishedDate: '2026-02-01',
+    readingTime: 7,
+  },
+  {
+    title: 'Rupture conventionnelle : indemnités et procédure pas à pas',
+    description: 'Calcul de l\'indemnité spécifique, délai de rétractation, homologation Dreets — le guide complet en 2026.',
+    href: '/rupture-conventionnelle/guide-complet/',
+    category: 'Rupture conventionnelle',
+    categorySlug: 'rupture-conventionnelle',
+    badgeColor: 'green' as const,
+    publishedDate: '2025-11-28',
+    readingTime: 9,
+  },
+  {
+    title: 'Préavis de location : 1 mois ou 3 mois selon votre situation',
+    description: 'Zone tendue, motif légitime, logement social, accord amiable — les cas où vous pouvez réduire ou supprimer votre préavis.',
+    href: '/logement/preavis-location/',
+    category: 'Logement',
+    categorySlug: 'logement',
+    badgeColor: 'orange' as const,
+    publishedDate: '2026-01-05',
+    readingTime: 5,
+  },
+];
+
+const themes = [
+  {
+    color: 'green',
+    heading: 'Quitter son emploi',
+    href: '/demission/',
+    links: [
+      { label: 'Lettre de démission',         href: '/demission/lettre-de-demission/'     },
+      { label: 'Démission pour faute grave',   href: '/demission/faute-grave/'              },
+      { label: 'Rupture conventionnelle',      href: '/rupture-conventionnelle/guide-complet/' },
+      { label: 'Licenciement pour faute',      href: '/licenciement/faute-grave/'           },
+    ],
+  },
+  {
+    color: 'blue',
+    heading: 'Droits en cours de contrat',
+    href: '/droits-contrat/',
+    links: [
+      { label: 'Arrêt maladie et salaire',     href: '/arret-maladie/maintien-salaire/'    },
+      { label: 'Congés payés : calcul',        href: '/conges/calcul-conges-payes/'         },
+      { label: 'Période d\'essai',             href: '/periode-essai/'                      },
+      { label: 'Heures supplémentaires',       href: '/heures-supplementaires/'             },
+    ],
+  },
+  {
+    color: 'orange',
+    heading: 'Logement & contrats',
+    href: '/logement/',
+    links: [
+      { label: 'Préavis locataire',            href: '/logement/preavis-location/'          },
+      { label: 'Dépôt de garantie',            href: '/logement/depot-de-garantie/'        },
+      { label: 'État des lieux de sortie',     href: '/logement/etat-des-lieux/'            },
+      { label: 'Résiliation de bail',          href: '/logement/resilier-son-bail/'         },
+    ],
+  },
+];
+
+const trustItems = [
+  {
+    heading: 'Contenus vérifiés',
+    text: 'Chaque guide est rédigé et relu par des juristes spécialisés en droit du travail et droit locatif.',
+  },
+  {
+    heading: 'Mis à jour 2026',
+    text: 'Nos articles intègrent les dernières réformes législatives, ordonnances et décisions de jurisprudence.',
+  },
+  {
+    heading: '100% gratuit',
+    text: 'Accès illimité à tous les guides et modèles, sans inscription ni abonnement.',
+  },
+];
+
+/* ── JSON-LD ──────────────────────────────────────────────── */
+
+const siteUrl = 'https://droitclair.fr';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'DroitClair',
+    url: siteUrl,
+    description: 'Guides clairs et modèles gratuits sur le droit du travail et le droit locatif pour tous les salariés français.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/recherche/?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'DroitClair',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    description: 'Le droit du travail expliqué simplement pour tous les salariés français.',
+  },
+];
+---
+
+<BaseLayout
+  title="DroitClair — Guides pratiques sur vos droits de salarié"
+  description="Démission, licenciement, préavis, arrêt maladie, logement : DroitClair vous explique vos droits avec des guides clairs, vérifiés et mis à jour en 2026."
+  ogImage="/og-home.png"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- ══════════════════════════════════════════════
+       1. HERO
+       ══════════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+
+      <p class="eyebrow">Guide du salarié · Mis à jour 2026</p>
+
+      <h1 class="hero__title" id="hero-title">
+        Vous avez une question<br>
+        <span class="hero__title-highlight">sur vos droits&nbsp;?</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Guides clairs et modèles gratuits pour salariés — mis à jour 2026
+      </p>
+
+      <!-- Barre de recherche -->
+      <form class="hero-search" role="search" aria-label="Recherche de guides juridiques">
+        <label for="hero-q" class="sr-only">Rechercher un guide</label>
+        <svg class="hero-search__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="1.75"/>
+          <path d="M16 16L21 21" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+        <input
+          id="hero-q"
+          class="hero-search__input"
+          type="search"
+          placeholder="Ex. : lettre de démission, préavis CDI…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Mot-clé ou thème à rechercher"
+        />
+        <button class="hero-search__btn" type="submit">
+          Rechercher
+        </button>
+      </form>
+
+      <!-- Tags de navigation rapide -->
+      <div class="hero-tags" role="list" aria-label="Thèmes populaires">
+        {[
+          { label: 'Démission',     href: '/demission/'     },
+          { label: 'Licenciement',  href: '/licenciement/'  },
+          { label: 'Préavis',       href: '/preavis/'       },
+          { label: 'Arrêt maladie', href: '/arret-maladie/' },
+        ].map(({ label, href }) => (
+          <a href={href} class="hero-tag" role="listitem">{label}</a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       2. ARTICLES POPULAIRES
+       ══════════════════════════════════════════════ -->
+  <section class="section popular" aria-labelledby="popular-title">
+    <div class="container">
+
+      <div class="section-hd">
+        <h2 class="section-hd__title" id="popular-title">
+          Les guides les plus consultés
+        </h2>
+        <a href="/articles/" class="section-hd__more" aria-label="Voir tous les guides DroitClair">
+          Tous les guides →
+        </a>
+      </div>
+
+      <div class="card-grid">
+        {popularArticles.map((article) => (
+          <ArticleCard {...article} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       3. PAR THÈME
+       ══════════════════════════════════════════════ -->
+  <section class="section themes" aria-labelledby="themes-title">
+    <div class="container">
+
+      <h2 class="section-title" id="themes-title">Explorer par thème</h2>
+
+      <div class="themes-grid">
+        {themes.map(({ color, heading, href, links }) => (
+          <div class={`theme-block theme-block--${color}`}>
+
+            <div class="theme-block__header">
+              <div class={`theme-icon theme-icon--${color}`} aria-hidden="true">
+                {color === 'green' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V7z"/>
+                    <path d="M15 3v4h4M9 13l2 2 4-4"/>
+                  </svg>
+                )}
+                {color === 'blue' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                  </svg>
+                )}
+                {color === 'orange' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V10.5z"/>
+                    <path d="M9 21V12h6v9"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="theme-block__heading">{heading}</h3>
+            </div>
+
+            <ul class="theme-block__list" role="list">
+              {links.map(({ label, href: linkHref }) => (
+                <li class="theme-block__item">
+                  <a href={linkHref} class="theme-block__link">
+                    <span>{label}</span>
+                    <svg class="theme-block__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6"/>
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a href={href} class="theme-block__more">
+              Tous les guides →
+            </a>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       4. RÉASSURANCE
+       ══════════════════════════════════════════════ -->
+  <section class="section trust" aria-labelledby="trust-title">
+    <div class="container">
+
+      <h2 class="sr-only" id="trust-title">Pourquoi faire confiance à DroitClair ?</h2>
+
+      <div class="trust-grid">
+
+        <div class="trust-item">
+          <div class="trust-item__icon" aria-hidden="true">
+            <!-- Loupe -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10.5" cy="10.5" r="7"/>
+              <path d="M16 16L21 21"/>
+            </svg>
+          </div>
+          <div class="trust-item__body">
+            <h3 class="trust-item__heading">Guides complets</h3>
+            <p class="trust-item__text">
+              Des articles structurés, avec modèles à copier et exemples concrets.
+            </p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-item__icon" aria-hidden="true">
+            <!-- Calendrier -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+          </div>
+          <div class="trust-item__body">
+            <h3 class="trust-item__heading">Vérifiés et actualisés</h3>
+            <p class="trust-item__text">
+              Nos guides sont relus après chaque changement législatif majeur.
+            </p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-item__icon" aria-hidden="true">
+            <!-- Cadenas ouvert -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+            </svg>
+          </div>
+          <div class="trust-item__body">
+            <h3 class="trust-item__heading">100% gratuit</h3>
+            <p class="trust-item__text">
+              Accès libre à tous les guides et modèles, sans inscription.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Recherche hero → Google site search
+  document.querySelector<HTMLFormElement>('.hero-search')
+    ?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = (document.getElementById('hero-q') as HTMLInputElement)?.value.trim();
+      if (q) {
+        window.location.href =
+          'https://www.google.com/search?q=' +
+          encodeURIComponent('site:droitclair.fr ' + q);
+      }
+    });
+</script>
+
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.hero {
+  background-color: #ffffff;
+  padding-block: 60px var(--space-9);
+  border-bottom: 1px solid var(--clr-border-subtle);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.hero .eyebrow {
+  /* override max-width from p reset */
+  max-width: none;
+  margin-bottom: var(--space-4);
+}
+
+.hero__title {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--clr-black);
+  margin-bottom: var(--space-4);
+}
+
+.hero__title-highlight {
+  color: var(--clr-green);
+}
+
+.hero__subtitle {
+  font-size: var(--text-md);
+  color: var(--clr-text-muted);
+  line-height: var(--leading-normal);
+  max-width: 52ch;
+  margin-bottom: var(--space-7);
+}
+
+/* Barre de recherche hero */
+.hero-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+  background: #ffffff;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow   var(--duration) var(--ease);
+}
+
+.hero-search:focus-within {
+  border-color: var(--clr-green);
+  box-shadow: 0 0 0 4px rgba(29, 158, 117, 0.1), var(--shadow-sm);
+}
+
+.hero-search__icon {
+  color: var(--clr-text-faint);
+  flex-shrink: 0;
+  pointer-events: none;
+  transition: color var(--duration) var(--ease);
+}
+
+.hero-search:focus-within .hero-search__icon {
+  color: var(--clr-green);
+}
+
+.hero-search__input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--clr-text);
+  background: transparent;
+  border: none;
+  outline: none;
+  line-height: 1;
+  padding-block: 0.3rem;
+}
+
+.hero-search__input::placeholder {
+  color: var(--clr-text-faint);
+}
+
+.hero-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.hero-search__btn {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--clr-green);
+  padding: 0.65em 1.4em;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration) var(--ease),
+    transform        var(--duration) var(--ease);
+}
+
+.hero-search__btn:hover {
+  background-color: var(--clr-primary-dark);
+}
+
+.hero-search__btn:active {
+  transform: scale(0.97);
+}
+
+/* Tags de navigation rapide */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  background-color: var(--clr-gray);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  padding: 0.45em 1.1em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color            var(--duration) var(--ease),
+    background-color var(--duration) var(--ease),
+    border-color     var(--duration) var(--ease);
+}
+
+.hero-tag:hover {
+  color: var(--clr-green);
+  background-color: var(--clr-green-light);
+  border-color: rgba(29, 158, 117, 0.3);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION HEADER (réutilisé)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.section-hd {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+
+.section-hd__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--clr-black);
+  margin: 0;
+}
+
+.section-hd__more {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--clr-green);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--duration) var(--ease);
+}
+
+.section-hd__more:hover {
+  color: var(--clr-primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--clr-black);
+  margin-bottom: var(--space-7);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION ARTICLES POPULAIRES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.popular {
+  background-color: var(--clr-white);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION THÈMES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.themes {
+  background-color: var(--clr-gray);
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* Bloc thème */
+.theme-block {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xs);
+  border: 1px solid var(--clr-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: box-shadow var(--duration) var(--ease);
+}
+
+.theme-block:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-block__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+/* Icône colorée */
+.theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+.theme-icon--green {
+  background-color: var(--clr-green-light);
+  color: var(--clr-primary-dark);
+}
+
+.theme-icon--blue {
+  background-color: #EEF2FF;
+  color: #3730A3;
+}
+
+.theme-icon--orange {
+  background-color: #FFF7ED;
+  color: #C2410C;
+}
+
+.theme-block__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--clr-black);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+}
+
+/* Liste de liens */
+.theme-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  margin-bottom: var(--space-5);
+}
+
+.theme-block__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-block: 0.65rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--clr-border-subtle);
+  transition: color var(--duration) var(--ease);
+}
+
+.theme-block__item:first-child .theme-block__link {
+  border-top: 1px solid var(--clr-border-subtle);
+}
+
+.theme-block__link:hover {
+  color: var(--clr-green);
+}
+
+.theme-block__arrow {
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity   var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+  color: var(--clr-green);
+}
+
+.theme-block__link:hover .theme-block__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Lien "Tous les guides" */
+.theme-block__more {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--clr-green);
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
+  margin-top: auto;
+}
+
+.theme-block__more:hover {
+  color: var(--clr-primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION RÉASSURANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.trust {
+  background-color: #ffffff;
+  border-top: 1px solid var(--clr-border-subtle);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.trust-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  background-color: var(--clr-green-light);
+  color: var(--clr-primary-dark);
+  flex-shrink: 0;
+}
+
+.trust-item__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.trust-item__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--clr-black);
+  letter-spacing: var(--tracking-tight);
+}
+
+.trust-item__text {
+  font-size: var(--text-sm);
+  color: var(--clr-text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 34ch;
+  margin: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
+  .themes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-search {
+    max-width: 100%;
+    padding: var(--space-2);
+    gap: var(--space-2);
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+  }
+
+  .hero-search__icon {
+    display: none;
+  }
+
+  .hero-search__input {
+    /* Occupe toute la largeur avant le bouton */
+    flex-basis: 100%;
+    padding-block: 0.5rem;
+    font-size: var(--text-md);
+  }
+
+  .hero-search__btn {
+    width: 100%;
+    padding-block: 0.8em;
+    font-size: var(--text-base);
+    border-radius: var(--radius);
+  }
+
+  .themes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .trust-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .trust-item__text {
+    max-width: 100%;
+  }
+
+  .section-hd {
+    margin-bottom: var(--space-5);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-tags {
+    gap: var(--space-2);
+  }
+
+  .hero-tag {
+    font-size: var(--text-xs);
+    padding: 0.5em 0.9em;
+  }
+}
+</style>
