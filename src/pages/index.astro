@@ -74,7 +74,7 @@ const themes = [
     href: '/demission/',
     links: [
       { label: 'Lettre de démission',         href: '/lettre-de-demission-cdi/'  },
-      { label: 'Démission pour faute grave',   href: '/demission/'                },
+      { label: 'Démission pour faute de l\'employeur', href: '/demission-faute-employeur/' },
       { label: 'Rupture conventionnelle',      href: '/rupture-conventionnelle/'  },
       { label: 'Licenciement pour faute',      href: '/licenciement-faute-grave/' },
     ],
@@ -97,8 +97,8 @@ const themes = [
     links: [
       { label: 'Préavis locataire',            href: '/preavis-location/'         },
       { label: 'Dépôt de garantie',            href: '/depot-de-garantie/'        },
-      { label: 'État des lieux de sortie',     href: '/logement/'                 },
-      { label: 'Résiliation de bail',          href: '/logement/'                 },
+      { label: 'État des lieux de sortie',     href: '/etat-des-lieux/'           },
+      { label: 'Résiliation de bail',          href: '/resiliation-bail/'         },
     ],
   },
 ];
@@ -120,7 +120,7 @@ const trustItems = [
 
 /* ── JSON-LD ──────────────────────────────────────────────── */
 
-const siteUrl = 'https://droitclair.fr';
+const siteUrl = import.meta.env.SITE ?? 'https://droitclair.fr';
 
 const schema = [
   {
@@ -171,7 +171,7 @@ const schema = [
       </p>
 
       <!-- Barre de recherche -->
-      <form class="hero-search" role="search" aria-label="Recherche de guides juridiques">
+      <form class="hero-search" role="search" aria-label="Recherche de guides juridiques" data-site={new URL(siteUrl).hostname}>
         <label for="hero-q" class="sr-only">Rechercher un guide</label>
         <svg class="hero-search__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="1.75"/>
@@ -362,9 +362,10 @@ const schema = [
       e.preventDefault();
       const q = (document.getElementById('hero-q') as HTMLInputElement)?.value.trim();
       if (q) {
+        const domain = document.querySelector<HTMLElement>('.hero-search')?.dataset.site ?? 'droitclair.fr';
         window.location.href =
           'https://www.google.com/search?q=' +
-          encodeURIComponent('site:droitclair.fr ' + q);
+          encodeURIComponent('site:' + domain + ' ' + q);
       }
     });
 </script>
