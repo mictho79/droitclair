@@ -8,7 +8,7 @@ interface Props {
   publishedDate: string;
   readingTime?: number;
   featured?: boolean;
-  badgeColor?: 'green' | 'blue' | 'orange';
+  badgeColor?: 'green' | 'blue' | 'orange' | 'red';
 }
 
 const {
@@ -27,6 +27,7 @@ const badgeClass = {
   green:  'badge-green',
   blue:   'badge-blue',
   orange: 'badge-orange',
+  red:    'badge-red',
 }[badgeColor];
 
 const formattedDate = new Date(publishedDate).toLocaleDateString('fr-FR', {
