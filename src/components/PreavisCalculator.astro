@@ -9,55 +9,100 @@
 
   <form class="pc-form" id="pc-form" novalidate>
 
-    <!-- Catégorie professionnelle -->
+    <!-- 1. Type de contrat (affiché en premier) -->
     <fieldset class="pc-fieldset">
-      <legend class="pc-legend">Votre catégorie professionnelle</legend>
+      <legend class="pc-legend">Type de contrat</legend>
       <div class="pc-radio-group">
         <label class="pc-radio">
-          <input type="radio" name="categorie" value="ouvrier" required />
-          <span>Ouvrier</span>
+          <input type="radio" name="contrat" value="cdi" checked />
+          <span>CDI</span>
         </label>
         <label class="pc-radio">
-          <input type="radio" name="categorie" value="employe" />
-          <span>Employé / Technicien</span>
+          <input type="radio" name="contrat" value="cdd" />
+          <span>CDD</span>
         </label>
         <label class="pc-radio">
-          <input type="radio" name="categorie" value="maitrise" />
-          <span>Agent de maîtrise</span>
-        </label>
-        <label class="pc-radio">
-          <input type="radio" name="categorie" value="cadre" />
-          <span>Cadre</span>
+          <input type="radio" name="contrat" value="apprentissage" />
+          <span>Apprentissage</span>
         </label>
       </div>
     </fieldset>
 
-    <!-- Ancienneté -->
-    <div class="pc-field">
-      <label class="pc-label" for="pc-anciennete">Ancienneté dans l'entreprise</label>
-      <select class="pc-select" id="pc-anciennete" name="anciennete">
-        <option value="">— Sélectionner —</option>
-        <option value="moins6mois">Moins de 6 mois</option>
-        <option value="6mois2ans">6 mois à 2 ans</option>
-        <option value="2ans5ans">2 à 5 ans</option>
-        <option value="plus5ans">Plus de 5 ans</option>
-      </select>
-    </div>
+    <!-- 2. Champs CDI (masqués si CDD ou apprentissage) -->
+    <div class="pc-cdi-fields" id="pc-cdi-fields">
 
-    <!-- Date d'envoi (optionnel) -->
-    <div class="pc-field">
-      <label class="pc-label" for="pc-date">
-        Date d'envoi de la lettre recommandée
-        <span class="pc-optional">(optionnel)</span>
-      </label>
-      <input class="pc-input-date" type="date" id="pc-date" name="date" />
-    </div>
+      <!-- Catégorie professionnelle -->
+      <fieldset class="pc-fieldset">
+        <legend class="pc-legend">Votre catégorie professionnelle</legend>
+        <div class="pc-radio-group">
+          <label class="pc-radio">
+            <input type="radio" name="categorie" value="ouvrier" />
+            <span>Ouvrier</span>
+          </label>
+          <label class="pc-radio">
+            <input type="radio" name="categorie" value="employe" />
+            <span>Employé / Technicien</span>
+          </label>
+          <label class="pc-radio">
+            <input type="radio" name="categorie" value="maitrise" />
+            <span>Agent de maîtrise</span>
+          </label>
+          <label class="pc-radio">
+            <input type="radio" name="categorie" value="cadre" />
+            <span>Cadre</span>
+          </label>
+        </div>
+      </fieldset>
 
-    <button class="pc-btn" type="submit">Calculer mon préavis</button>
+      <!-- Ancienneté -->
+      <div class="pc-field">
+        <label class="pc-label" for="pc-anciennete">Ancienneté dans l'entreprise</label>
+        <select class="pc-select" id="pc-anciennete" name="anciennete">
+          <option value="">— Sélectionner —</option>
+          <option value="moins6mois">Moins de 6 mois</option>
+          <option value="6mois2ans">6 mois à 2 ans</option>
+          <option value="2ans5ans">2 à 5 ans</option>
+          <option value="plus5ans">Plus de 5 ans</option>
+        </select>
+      </div>
+
+      <!-- Date d'envoi (optionnel) -->
+      <div class="pc-field">
+        <label class="pc-label" for="pc-date">
+          Date d'envoi de la lettre recommandée
+          <span class="pc-optional">(optionnel)</span>
+        </label>
+        <input class="pc-input-date" type="date" id="pc-date" name="date" />
+      </div>
+
+      <button class="pc-btn" type="submit">Calculer mon préavis</button>
+
+    </div>
 
   </form>
 
-  <!-- Résultat -->
+  <!-- Message CDD -->
+  <div class="pc-msg pc-msg--info" id="pc-msg-cdd" hidden>
+    <p>
+      <strong>En CDD, il n'y a pas de préavis de démission légal</strong>, sauf si votre
+      contrat le prévoit expressément. Vous pouvez quitter votre poste uniquement en cas
+      d'accord amiable avec l'employeur, de faute grave de sa part, ou si vous avez trouvé
+      un CDI (sous conditions).
+    </p>
+    <p class="pc-msg__source">Source : art. L1243-2 Code du travail.</p>
+  </div>
+
+  <!-- Message Apprentissage -->
+  <div class="pc-msg pc-msg--info" id="pc-msg-apprentissage" hidden>
+    <p>
+      <strong>En contrat d'apprentissage</strong>, la démission est possible sans préavis
+      pendant les <strong>45 premiers jours</strong> (en entreprise). Au-delà, la rupture
+      est encadrée et nécessite un accord ou une saisine du médiateur.
+    </p>
+    <p class="pc-msg__source">Source : art. L6222-18 Code du travail.</p>
+  </div>
+
+  <!-- Résultat CDI -->
   <div class="pc-result" id="pc-result" hidden>
     <div class="pc-result__inner">
       <p class="pc-result__main" id="pc-result-main"></p>
@@ -131,9 +176,7 @@
     user-select: none;
   }
 
-  .pc-radio input[type="radio"] {
-    display: none;
-  }
+  .pc-radio input[type="radio"] { display: none; }
 
   .pc-radio:has(input:checked) {
     border-color: var(--clr-primary);
@@ -142,8 +185,62 @@
     font-weight: 600;
   }
 
-  .pc-radio:hover {
-    border-color: var(--clr-primary);
+  .pc-radio:hover { border-color: var(--clr-primary); }
+
+  /* Champs CDI animés */
+  .pc-cdi-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    overflow: hidden;
+    max-height: 600px;
+    opacity: 1;
+    transition: max-height 300ms ease, opacity 250ms ease;
+  }
+
+  .pc-cdi-fields.pc-hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Messages CDD / Apprentissage */
+  .pc-msg {
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow: hidden;
+    max-height: 300px;
+    opacity: 1;
+    transition: max-height 300ms ease, opacity 250ms ease;
+  }
+
+  .pc-msg.pc-hidden {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+    margin-top: 0;
+    pointer-events: none;
+  }
+
+  .pc-msg--info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+  }
+
+  .pc-msg--info p {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-base);
+    color: #1E40AF;
+    line-height: var(--leading-relaxed, 1.6);
+  }
+
+  .pc-msg--info p:last-child { margin-bottom: 0; }
+
+  .pc-msg__source {
+    font-size: var(--text-sm, 0.875rem) !important;
+    color: #3B82F6 !important;
+    font-style: italic;
   }
 
   /* Select & date */
@@ -185,7 +282,6 @@
     border-color: var(--clr-primary);
   }
 
-  /* Bouton */
   .pc-btn {
     align-self: flex-start;
     background: var(--clr-primary);
@@ -199,9 +295,7 @@
     transition: background var(--duration) var(--ease);
   }
 
-  .pc-btn:hover {
-    background: var(--clr-primary-dark);
-  }
+  .pc-btn:hover { background: var(--clr-primary-dark); }
 
   /* Résultat */
   .pc-result {
@@ -239,83 +333,76 @@
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
-  /* Mobile */
   @media (max-width: 600px) {
-    .pc-wrapper {
-      padding: var(--space-4);
-    }
-
-    .pc-radio-group {
-      flex-direction: column;
-    }
-
-    .pc-select,
-    .pc-input-date {
-      max-width: 100%;
-    }
+    .pc-wrapper { padding: var(--space-4); }
+    .pc-radio-group { flex-direction: column; }
+    .pc-select, .pc-input-date { max-width: 100%; }
   }
 </style>
 
 <script>
-  const form = document.getElementById('pc-form') as HTMLFormElement;
-  const resultBox = document.getElementById('pc-result') as HTMLDivElement;
-  const resultMain = document.getElementById('pc-result-main') as HTMLParagraphElement;
-  const resultDate = document.getElementById('pc-result-date') as HTMLParagraphElement;
+  const cdiFields   = document.getElementById('pc-cdi-fields') as HTMLDivElement;
+  const msgCdd      = document.getElementById('pc-msg-cdd') as HTMLDivElement;
+  const msgApprent  = document.getElementById('pc-msg-apprentissage') as HTMLDivElement;
+  const form        = document.getElementById('pc-form') as HTMLFormElement;
+  const resultBox   = document.getElementById('pc-result') as HTMLDivElement;
+  const resultMain  = document.getElementById('pc-result-main') as HTMLParagraphElement;
+  const resultDate  = document.getElementById('pc-result-date') as HTMLParagraphElement;
 
-  // ── Logique de calcul ──────────────────────────────────────────
+  // ── Affichage selon le type de contrat ────────────────────────
+  function updateContrat(value: string) {
+    const isCdi = value === 'cdi';
+    const isCdd = value === 'cdd';
+    const isApp = value === 'apprentissage';
+
+    cdiFields.classList.toggle('pc-hidden', !isCdi);
+    msgCdd.hidden = !isCdd;
+    msgApprent.hidden = !isApp;
+    msgCdd.classList.toggle('pc-hidden', !isCdd);
+    msgApprent.classList.toggle('pc-hidden', !isApp);
+
+    // Réinitialiser le résultat si on change de type
+    if (!isCdi) resultBox.hidden = true;
+  }
+
+  document.querySelectorAll('input[name="contrat"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      updateContrat((e.target as HTMLInputElement).value);
+    });
+  });
+
+  // ── Logique de calcul CDI ──────────────────────────────────────
   function getPreavis(categorie: string, anciennete: string): { label: string; months: number; days: number } {
     if (categorie === 'ouvrier') {
       if (anciennete === 'moins6mois') return { label: '8 jours', months: 0, days: 8 };
-      // 6 mois à 2 ans et au-delà → 1 mois (droit commun, indicatif)
       return { label: '1 mois', months: 1, days: 0 };
     }
-
-    if (categorie === 'employe') {
-      return { label: '1 mois', months: 1, days: 0 };
-    }
-
+    if (categorie === 'employe') return { label: '1 mois', months: 1, days: 0 };
     if (categorie === 'maitrise') {
-      if (anciennete === 'moins6mois' || anciennete === '6mois2ans') {
-        return { label: '1 mois', months: 1, days: 0 };
-      }
+      if (anciennete === 'moins6mois' || anciennete === '6mois2ans') return { label: '1 mois', months: 1, days: 0 };
       return { label: '2 mois', months: 2, days: 0 };
     }
-
-    if (categorie === 'cadre') {
-      return { label: '3 mois', months: 3, days: 0 };
-    }
-
+    if (categorie === 'cadre') return { label: '3 mois', months: 3, days: 0 };
     return { label: '—', months: 0, days: 0 };
   }
 
   function addPeriod(date: Date, months: number, days: number): Date {
     const result = new Date(date);
-    if (months > 0) {
-      result.setMonth(result.getMonth() + months);
-    }
-    if (days > 0) {
-      result.setDate(result.getDate() + days);
-    }
+    if (months > 0) result.setMonth(result.getMonth() + months);
+    if (days > 0) result.setDate(result.getDate() + days);
     return result;
   }
 
   function formatDate(date: Date): string {
-    return date.toLocaleDateString('fr-FR', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
+    return date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  // ── Soumission ─────────────────────────────────────────────────
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const data = new FormData(form);
-    const categorie = data.get('categorie') as string;
+    const categorie  = data.get('categorie') as string;
     const anciennete = data.get('anciennete') as string;
-    const dateStr = data.get('date') as string;
+    const dateStr    = data.get('date') as string;
 
     if (!categorie || !anciennete) {
       resultMain.textContent = 'Veuillez sélectionner une catégorie et une ancienneté.';
@@ -325,12 +412,10 @@
     }
 
     const { label, months, days } = getPreavis(categorie, anciennete);
-
     resultMain.textContent = `Votre préavis est de ${label}.`;
 
     if (dateStr) {
-      const start = new Date(dateStr);
-      const end = addPeriod(start, months, days);
+      const end = addPeriod(new Date(dateStr), months, days);
       resultDate.textContent = `Votre dernier jour de travail est estimé au ${formatDate(end)}.`;
       resultDate.hidden = false;
     } else {

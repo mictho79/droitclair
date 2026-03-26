@@ -9,63 +9,94 @@
 
   <form class="ilc-form" id="ilc-form" novalidate>
 
-    <!-- Salaire -->
-    <div class="ilc-field">
-      <label class="ilc-label" for="ilc-salaire">
-        Salaire brut mensuel moyen
-        <span class="ilc-hint">(sur les 12 ou 3 derniers mois, le plus favorable)</span>
-      </label>
-      <div class="ilc-input-wrap">
-        <input class="ilc-input" type="number" id="ilc-salaire" name="salaire"
-               min="0" step="1" placeholder="2 500" />
-        <span class="ilc-unit">€</span>
-      </div>
-    </div>
-
-    <!-- Ancienneté -->
-    <div class="ilc-field">
-      <span class="ilc-label">Ancienneté dans l'entreprise</span>
-      <div class="ilc-anciennete-row">
-        <div class="ilc-input-wrap ilc-input-wrap--sm">
-          <input class="ilc-input" type="number" id="ilc-annees" name="annees"
-                 min="0" max="50" step="1" placeholder="8" />
-          <span class="ilc-unit">ans</span>
-        </div>
-        <div class="ilc-input-wrap ilc-input-wrap--sm">
-          <input class="ilc-input" type="number" id="ilc-mois" name="mois"
-                 min="0" max="11" step="1" placeholder="6" />
-          <span class="ilc-unit">mois</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Type de licenciement -->
+    <!-- 1. Type de contrat (en premier) -->
     <fieldset class="ilc-fieldset">
-      <legend class="ilc-label">Type de licenciement</legend>
+      <legend class="ilc-label">Type de contrat</legend>
       <div class="ilc-radio-group">
         <label class="ilc-radio">
-          <input type="radio" name="type" value="personnel" checked />
-          <span>Licenciement personnel</span>
+          <input type="radio" name="contrat" value="cdi" checked />
+          <span>CDI</span>
         </label>
         <label class="ilc-radio">
-          <input type="radio" name="type" value="economique" />
-          <span>Licenciement économique</span>
+          <input type="radio" name="contrat" value="cdd" />
+          <span>CDD</span>
         </label>
       </div>
     </fieldset>
 
-    <button class="ilc-btn" type="submit">Calculer mon indemnité</button>
+    <!-- 2. Champs CDI (masqués si CDD) -->
+    <div class="ilc-cdi-fields" id="ilc-cdi-fields">
+
+      <!-- Salaire -->
+      <div class="ilc-field">
+        <label class="ilc-label" for="ilc-salaire">
+          Salaire brut mensuel moyen
+          <span class="ilc-hint">(sur les 12 ou 3 derniers mois, le plus favorable)</span>
+        </label>
+        <div class="ilc-input-wrap">
+          <input class="ilc-input" type="number" id="ilc-salaire" name="salaire"
+                 min="0" step="1" placeholder="2 500" />
+          <span class="ilc-unit">€</span>
+        </div>
+      </div>
+
+      <!-- Ancienneté -->
+      <div class="ilc-field">
+        <span class="ilc-label">Ancienneté dans l'entreprise</span>
+        <div class="ilc-anciennete-row">
+          <div class="ilc-input-wrap ilc-input-wrap--sm">
+            <input class="ilc-input" type="number" id="ilc-annees" name="annees"
+                   min="0" max="50" step="1" placeholder="8" />
+            <span class="ilc-unit">ans</span>
+          </div>
+          <div class="ilc-input-wrap ilc-input-wrap--sm">
+            <input class="ilc-input" type="number" id="ilc-mois" name="mois"
+                   min="0" max="11" step="1" placeholder="6" />
+            <span class="ilc-unit">mois</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Type de licenciement -->
+      <fieldset class="ilc-fieldset">
+        <legend class="ilc-label">Type de licenciement</legend>
+        <div class="ilc-radio-group">
+          <label class="ilc-radio">
+            <input type="radio" name="type" value="personnel" checked />
+            <span>Licenciement personnel</span>
+          </label>
+          <label class="ilc-radio">
+            <input type="radio" name="type" value="economique" />
+            <span>Licenciement économique</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <button class="ilc-btn" type="submit">Calculer mon indemnité</button>
+
+    </div>
 
   </form>
 
-  <!-- Résultat -->
+  <!-- Message CDD -->
+  <div class="ilc-msg ilc-msg--info" id="ilc-msg-cdd" hidden>
+    <p>
+      <strong>L'indemnité légale de licenciement ne s'applique pas aux CDD.</strong>
+      En cas de rupture anticipée abusive par l'employeur, vous avez droit à des
+      dommages et intérêts correspondant aux salaires restant dus jusqu'à la fin
+      du contrat.
+    </p>
+    <p class="ilc-msg__source">Source : art. L1243-4 Code du travail.</p>
+  </div>
+
+  <!-- Résultat CDI -->
   <div class="ilc-result" id="ilc-result" hidden>
     <div class="ilc-result__amount-block">
       <span class="ilc-result__label">Indemnité légale minimale</span>
       <span class="ilc-result__amount" id="ilc-amount"></span>
     </div>
     <p class="ilc-result__detail" id="ilc-detail"></p>
-    <p class="ilc-result__warning" id="ilc-warning">
+    <p class="ilc-result__warning">
       Il s'agit du <strong>plancher légal</strong>. Votre convention collective ou contrat
       peut prévoir un montant supérieur — vérifiez avant d'accepter.
       <a href="/indemnite-licenciement/" class="ilc-result__link">En savoir plus sur l'indemnité de licenciement →</a>
@@ -135,9 +166,7 @@
     max-width: 200px;
   }
 
-  .ilc-input-wrap--sm {
-    max-width: 120px;
-  }
+  .ilc-input-wrap--sm { max-width: 120px; }
 
   .ilc-anciennete-row {
     display: flex;
@@ -210,6 +239,62 @@
   }
 
   .ilc-radio:hover { border-color: var(--clr-primary); }
+
+  /* Champs CDI animés */
+  .ilc-cdi-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    overflow: hidden;
+    max-height: 700px;
+    opacity: 1;
+    transition: max-height 300ms ease, opacity 250ms ease;
+  }
+
+  .ilc-cdi-fields.ilc-hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Message CDD */
+  .ilc-msg {
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow: hidden;
+    max-height: 300px;
+    opacity: 1;
+    transition: max-height 300ms ease, opacity 250ms ease;
+  }
+
+  .ilc-msg.ilc-hidden {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+    margin-top: 0;
+    pointer-events: none;
+  }
+
+  .ilc-msg--info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+  }
+
+  .ilc-msg--info p {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-base);
+    color: #1E40AF;
+    line-height: var(--leading-relaxed, 1.6);
+  }
+
+  .ilc-msg--info p:last-child { margin-bottom: 0; }
+
+  .ilc-msg__source {
+    font-size: var(--text-sm, 0.875rem) !important;
+    color: #3B82F6 !important;
+    font-style: italic;
+  }
 
   /* Bouton */
   .ilc-btn {
@@ -311,32 +396,49 @@
 </style>
 
 <script>
-  const form = document.getElementById('ilc-form') as HTMLFormElement;
-  const resultBox = document.getElementById('ilc-result') as HTMLDivElement;
+  const cdiFields  = document.getElementById('ilc-cdi-fields') as HTMLDivElement;
+  const msgCdd     = document.getElementById('ilc-msg-cdd') as HTMLDivElement;
+  const form       = document.getElementById('ilc-form') as HTMLFormElement;
+  const resultBox  = document.getElementById('ilc-result') as HTMLDivElement;
   const noRightBox = document.getElementById('ilc-no-right') as HTMLDivElement;
-  const amountEl = document.getElementById('ilc-amount') as HTMLSpanElement;
-  const detailEl = document.getElementById('ilc-detail') as HTMLParagraphElement;
+  const amountEl   = document.getElementById('ilc-amount') as HTMLSpanElement;
+  const detailEl   = document.getElementById('ilc-detail') as HTMLParagraphElement;
 
+  // ── Affichage selon le type de contrat ────────────────────────
+  function updateContrat(value: string) {
+    const isCdi = value === 'cdi';
+    cdiFields.classList.toggle('ilc-hidden', !isCdi);
+    msgCdd.hidden = isCdi;
+    msgCdd.classList.toggle('ilc-hidden', isCdi);
+    if (!isCdi) {
+      resultBox.hidden = true;
+      noRightBox.hidden = true;
+    }
+  }
+
+  document.querySelectorAll('input[name="contrat"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      updateContrat((e.target as HTMLInputElement).value);
+    });
+  });
+
+  // ── Logique de calcul CDI ──────────────────────────────────────
   function fmt(n: number): string {
     return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
   }
 
   function calcIndemnite(salaire: number, annees: number, moisRest: number): { total: number; detail: string } | null {
     const ancienneteTotal = annees + moisRest / 12;
-
-    // Moins de 8 mois → pas d'indemnité légale
     if (ancienneteTotal < 8 / 12) return null;
 
     let indemnite = 0;
     let detail = '';
 
     if (annees <= 10) {
-      // Tout sur la tranche à 1/4
       const base = (salaire / 4) * (annees + moisRest / 12);
       indemnite = base;
       detail = `${annees} an${annees > 1 ? 's' : ''}${moisRest > 0 ? ` ${moisRest} mois` : ''} × 1/4 × ${fmt(salaire)} = ${fmt(base)}`;
     } else {
-      // Tranche 1-10 ans à 1/4, au-delà à 1/3
       const base10 = (salaire / 4) * 10;
       const basePlus = (salaire / 3) * (annees - 10 + moisRest / 12);
       indemnite = base10 + basePlus;
@@ -350,11 +452,11 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = new FormData(form);
+    const data    = new FormData(form);
     const salaire = parseFloat(data.get('salaire') as string);
-    const annees = parseInt(data.get('annees') as string) || 0;
-    const mois = parseInt(data.get('mois') as string) || 0;
-    const type = data.get('type') as string;
+    const annees  = parseInt(data.get('annees') as string) || 0;
+    const mois    = parseInt(data.get('mois') as string) || 0;
+    const type    = data.get('type') as string;
 
     if (!salaire || salaire <= 0) {
       amountEl.textContent = 'Veuillez saisir un salaire valide.';
