@@ -1,6 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 import CopyBlock from '../components/CopyBlock.astro';
+import PreavisLocationCalculator from '../components/PreavisLocationCalculator.astro';
 
 /* ── Modèle de lettre de congé ──────────────────────────── */
 const congeModel = `[Prénom Nom]
@@ -257,6 +258,9 @@ const sidebarLinks = [
       </tr>
     </tbody>
   </table>
+
+  <!-- OUTIL INTERACTIF -->
+  <PreavisLocationCalculator />
 
   <p class="source-ref">
     💡 <strong>Jurisprudence 2024 :</strong>

@@ -1,6 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 import CopyBlock from '../components/CopyBlock.astro';
+import RuptureConventionnelleSimulator from '../components/RuptureConventionnelleSimulator.astro';
 
 /* ── Modèle de lettre de rétractation ──────────────────── */
 const retractationModel = `[Prénom Nom]
@@ -319,6 +320,9 @@ const sidebarLinks = [
        H2 — Simulateur & calcul
        ═══════════════════════════════════════════ -->
   <h2 id="simulateur">Simulateur et calcul de l'indemnité de rupture conventionnelle</h2>
+
+  <!-- OUTIL INTERACTIF -->
+  <RuptureConventionnelleSimulator />
 
   <p>
     Pour calculer précisément votre indemnité, le

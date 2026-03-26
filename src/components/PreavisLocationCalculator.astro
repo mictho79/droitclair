@@ -1,0 +1,292 @@
+---
+// PreavisLocationCalculator.astro
+// Loi du 6 juillet 1989 — aucune dépendance externe
+---
+
+<div class="plc-wrapper" id="preavis-location-calculator">
+
+  <h3 class="plc-title">Calculez votre préavis de départ</h3>
+
+  <form class="plc-form" id="plc-form" novalidate>
+
+    <!-- Type de logement -->
+    <fieldset class="plc-fieldset">
+      <legend class="plc-label">Type de logement</legend>
+      <div class="plc-radio-group">
+        <label class="plc-radio">
+          <input type="radio" name="type" value="vide" checked />
+          <span>Logement vide</span>
+        </label>
+        <label class="plc-radio">
+          <input type="radio" name="type" value="meuble" />
+          <span>Logement meublé</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Motif -->
+    <div class="plc-field">
+      <label class="plc-label" for="plc-motif">Motif de départ</label>
+      <select class="plc-select" id="plc-motif" name="motif">
+        <option value="classique">Départ classique (sans motif particulier)</option>
+        <option value="zone-tendue">Zone tendue (art. 17 loi 1989)</option>
+        <option value="mutation">Mutation professionnelle</option>
+        <option value="perte-emploi">Perte d'emploi ou nouvel emploi suite à perte d'emploi</option>
+        <option value="sante">État de santé justifiant un changement de domicile</option>
+        <option value="rsa-aah">Bénéficiaire RSA ou AAH</option>
+        <option value="logement-social">Attribution d'un logement social</option>
+      </select>
+    </div>
+
+    <!-- Date d'envoi -->
+    <div class="plc-field">
+      <label class="plc-label" for="plc-date">
+        Date d'envoi du recommandé (LRAR)
+        <span class="plc-optional">(optionnel)</span>
+      </label>
+      <input class="plc-input-date" type="date" id="plc-date" name="date" />
+    </div>
+
+    <button class="plc-btn" type="submit">Calculer mon préavis</button>
+
+  </form>
+
+  <!-- Résultat -->
+  <div class="plc-result" id="plc-result" hidden>
+    <p class="plc-result__main" id="plc-result-main"></p>
+    <p class="plc-result__date" id="plc-result-date" hidden></p>
+    <div class="plc-result__rappel">
+      <strong>À retenir :</strong> Le préavis commence à la date de
+      <strong>première présentation</strong> du recommandé, même si le
+      propriétaire ne le retire pas.
+    </div>
+    <p class="plc-result__link-wrap">
+      Besoin d'un modèle de lettre ?
+      <a href="/preavis-location/" class="plc-result__link">Voir le modèle de lettre de résiliation →</a>
+    </p>
+  </div>
+
+</div>
+
+<style>
+  .plc-wrapper {
+    background: #fff;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+    margin-block: var(--space-7);
+  }
+
+  .plc-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0 0 var(--space-5);
+  }
+
+  .plc-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .plc-field { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .plc-label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+
+  .plc-optional {
+    font-weight: 400;
+    color: var(--clr-text-muted);
+    font-size: 0.8em;
+  }
+
+  .plc-fieldset { border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .plc-radio-group { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); margin-top: var(--space-2); }
+
+  .plc-radio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    padding: var(--space-2) var(--space-4);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease);
+    user-select: none;
+  }
+
+  .plc-radio input[type="radio"] { display: none; }
+
+  .plc-radio:has(input:checked) {
+    border-color: var(--clr-primary);
+    background: var(--clr-green-light);
+    color: var(--clr-primary-dark);
+    font-weight: 600;
+  }
+
+  .plc-radio:hover { border-color: var(--clr-primary); }
+
+  .plc-select, .plc-input-date {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--space-2) var(--space-3);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease);
+  }
+
+  .plc-select:focus, .plc-input-date:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+  }
+
+  .plc-btn {
+    align-self: flex-start;
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--duration) var(--ease);
+  }
+
+  .plc-btn:hover { background: var(--clr-primary-dark); }
+
+  /* Résultat */
+  .plc-result {
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--clr-border-subtle);
+    padding-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .plc-result__main {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    margin: 0;
+  }
+
+  .plc-result__date {
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .plc-result__rappel {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    padding: var(--space-3) var(--space-4);
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.5;
+  }
+
+  .plc-result__link-wrap {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+  }
+
+  .plc-result__link {
+    color: var(--clr-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .plc-wrapper { padding: var(--space-4); }
+    .plc-select, .plc-input-date { max-width: 100%; }
+    .plc-radio-group { flex-direction: column; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('plc-form') as HTMLFormElement;
+  const resultBox = document.getElementById('plc-result') as HTMLDivElement;
+  const resultMain = document.getElementById('plc-result-main') as HTMLParagraphElement;
+  const resultDate = document.getElementById('plc-result-date') as HTMLParagraphElement;
+
+  function getPreavisMois(type: string, motif: string): number {
+    // Meublé → toujours 1 mois
+    if (type === 'meuble') return 1;
+
+    // Vide
+    if (motif === 'classique') return 3;
+    // Tous les autres motifs → 1 mois
+    return 1;
+  }
+
+  function addMonths(date: Date, months: number): Date {
+    const result = new Date(date);
+    result.setMonth(result.getMonth() + months);
+    return result;
+  }
+
+  function formatDate(date: Date): string {
+    return date.toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  const MOTIF_LABELS: Record<string, string> = {
+    classique: 'départ classique',
+    'zone-tendue': 'zone tendue',
+    mutation: 'mutation professionnelle',
+    'perte-emploi': 'perte d\'emploi',
+    sante: 'état de santé',
+    'rsa-aah': 'bénéficiaire RSA/AAH',
+    'logement-social': 'logement social',
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const type = data.get('type') as string;
+    const motif = data.get('motif') as string;
+    const dateStr = data.get('date') as string;
+
+    const mois = getPreavisMois(type, motif);
+    const motifLabel = MOTIF_LABELS[motif] ?? motif;
+    const typeLabel = type === 'meuble' ? 'meublé' : 'vide';
+
+    resultMain.textContent =
+      `Votre préavis est de ${mois} mois` +
+      ` (logement ${typeLabel} — ${motifLabel}).`;
+
+    if (dateStr) {
+      const start = new Date(dateStr);
+      const end = addMonths(start, mois);
+      resultDate.textContent = `Vous pouvez quitter le logement à partir du ${formatDate(end)}.`;
+      resultDate.hidden = false;
+    } else {
+      resultDate.hidden = true;
+    }
+
+    resultBox.hidden = false;
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

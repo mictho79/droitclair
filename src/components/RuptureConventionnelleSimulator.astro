@@ -1,0 +1,345 @@
+---
+// RuptureConventionnelleSimulator.astro
+// Art. L1237-19 Code du travail — plancher = indemnité légale de licenciement
+// Aucune dépendance externe
+---
+
+<div class="rcs-wrapper" id="rupture-simulator">
+
+  <h3 class="rcs-title">Simulez votre indemnité de rupture conventionnelle</h3>
+
+  <form class="rcs-form" id="rcs-form" novalidate>
+
+    <!-- Salaire -->
+    <div class="rcs-field">
+      <label class="rcs-label" for="rcs-salaire">
+        Salaire brut mensuel moyen
+        <span class="rcs-hint">(sur les 12 ou 3 derniers mois, le plus favorable)</span>
+      </label>
+      <div class="rcs-input-wrap">
+        <input class="rcs-input" type="number" id="rcs-salaire" name="salaire"
+               min="0" step="1" placeholder="2 500" />
+        <span class="rcs-unit">€</span>
+      </div>
+    </div>
+
+    <!-- Ancienneté -->
+    <div class="rcs-field">
+      <span class="rcs-label">Ancienneté dans l'entreprise</span>
+      <div class="rcs-anciennete-row">
+        <div class="rcs-input-wrap rcs-input-wrap--sm">
+          <input class="rcs-input" type="number" id="rcs-annees" name="annees"
+                 min="0" max="50" step="1" placeholder="5" />
+          <span class="rcs-unit">ans</span>
+        </div>
+        <div class="rcs-input-wrap rcs-input-wrap--sm">
+          <input class="rcs-input" type="number" id="rcs-mois" name="mois"
+                 min="0" max="11" step="1" placeholder="3" />
+          <span class="rcs-unit">mois</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="rcs-btn" type="submit">Calculer le minimum légal</button>
+
+  </form>
+
+  <!-- Résultat -->
+  <div class="rcs-result" id="rcs-result" hidden>
+
+    <!-- Comparatif deux colonnes -->
+    <div class="rcs-compare">
+      <div class="rcs-compare__col rcs-compare__col--legal">
+        <span class="rcs-compare__label">Montant minimum légal</span>
+        <span class="rcs-compare__amount" id="rcs-amount-legal"></span>
+        <span class="rcs-compare__sub">L'employeur ne peut pas proposer moins</span>
+      </div>
+      <div class="rcs-compare__col rcs-compare__col--negoc">
+        <span class="rcs-compare__label">Ce que vous pouvez négocier</span>
+        <span class="rcs-compare__amount rcs-compare__amount--muted">Supérieur →</span>
+        <span class="rcs-compare__sub">Convention collective, ancienneté réelle, contexte</span>
+      </div>
+    </div>
+
+    <p class="rcs-result__detail" id="rcs-detail"></p>
+
+    <p class="rcs-result__warning">
+      ⚠️ Ce montant est le <strong>plancher légal</strong> — vous pouvez et devez négocier davantage.
+      Vérifiez votre convention collective (code IDCC sur votre fiche de paie) : elle prévoit parfois
+      une indemnité plus favorable.
+    </p>
+  </div>
+
+  <!-- Message < 8 mois -->
+  <div class="rcs-result rcs-result--info" id="rcs-no-right" hidden>
+    <p>
+      <strong>Pas d'indemnité minimale légale.</strong> L'indemnité de rupture conventionnelle
+      suit le plancher de l'indemnité légale de licenciement, exigible à partir de
+      <strong>8 mois d'ancienneté</strong>. En dessous de ce seuil, votre employeur n'est
+      pas légalement tenu de verser une indemnité — mais peut le faire volontairement.
+    </p>
+  </div>
+
+</div>
+
+<style>
+  .rcs-wrapper {
+    background: #fff;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+    margin-block: var(--space-7);
+  }
+
+  .rcs-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0 0 var(--space-5);
+  }
+
+  .rcs-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .rcs-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rcs-label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+
+  .rcs-hint {
+    font-weight: 400;
+    color: var(--clr-text-muted);
+    font-size: 0.8em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .rcs-anciennete-row {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .rcs-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    max-width: 200px;
+  }
+
+  .rcs-input-wrap--sm { max-width: 120px; }
+
+  .rcs-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease);
+  }
+
+  .rcs-input:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+  }
+
+  .rcs-unit {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+  }
+
+  .rcs-btn {
+    align-self: flex-start;
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--duration) var(--ease);
+  }
+
+  .rcs-btn:hover { background: var(--clr-primary-dark); }
+
+  /* Résultat */
+  .rcs-result {
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--clr-border-subtle);
+    padding-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .rcs-result--info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .rcs-result--info p {
+    margin: 0;
+    font-size: var(--text-base);
+    color: #1E40AF;
+    line-height: var(--leading-relaxed, 1.6);
+  }
+
+  /* Comparatif deux colonnes */
+  .rcs-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .rcs-compare__col {
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rcs-compare__col--legal {
+    background: var(--clr-green-light);
+    border: 1px solid rgba(29, 158, 117, 0.2);
+  }
+
+  .rcs-compare__col--negoc {
+    background: #F8FAFC;
+    border: 1px dashed var(--clr-border);
+  }
+
+  .rcs-compare__label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--clr-primary-dark);
+  }
+
+  .rcs-compare__col--negoc .rcs-compare__label {
+    color: var(--clr-text-muted);
+  }
+
+  .rcs-compare__amount {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--clr-primary-dark);
+    line-height: 1;
+  }
+
+  .rcs-compare__amount--muted {
+    font-size: 1.1rem;
+    color: var(--clr-text-muted);
+    font-weight: 600;
+  }
+
+  .rcs-compare__sub {
+    font-size: 0.78rem;
+    color: var(--clr-text-muted);
+    line-height: 1.4;
+  }
+
+  .rcs-result__detail {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .rcs-result__warning {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  @media (max-width: 600px) {
+    .rcs-wrapper { padding: var(--space-4); }
+    .rcs-compare { grid-template-columns: 1fr; }
+    .rcs-input-wrap { max-width: 100%; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('rcs-form') as HTMLFormElement;
+  const resultBox = document.getElementById('rcs-result') as HTMLDivElement;
+  const noRightBox = document.getElementById('rcs-no-right') as HTMLDivElement;
+  const amountLegal = document.getElementById('rcs-amount-legal') as HTMLSpanElement;
+  const detailEl = document.getElementById('rcs-detail') as HTMLParagraphElement;
+
+  function fmt(n: number): string {
+    return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+  }
+
+  function calcIndemnite(salaire: number, annees: number, moisRest: number): { total: number; detail: string } | null {
+    const ancienneteTotal = annees + moisRest / 12;
+    if (ancienneteTotal < 8 / 12) return null;
+
+    let indemnite = 0;
+    let detail = '';
+
+    if (annees <= 10) {
+      const base = (salaire / 4) * (annees + moisRest / 12);
+      indemnite = base;
+      detail = `${annees} an${annees > 1 ? 's' : ''}${moisRest > 0 ? ` ${moisRest} mois` : ''} × ¼ × ${fmt(salaire)} = ${fmt(base)}`;
+    } else {
+      const base10 = (salaire / 4) * 10;
+      const basePlus = (salaire / 3) * (annees - 10 + moisRest / 12);
+      indemnite = base10 + basePlus;
+      detail =
+        `10 ans × ¼ × ${fmt(salaire)} = ${fmt(base10)}` +
+        ` + ${annees - 10} an${annees - 10 > 1 ? 's' : ''}${moisRest > 0 ? ` ${moisRest} mois` : ''} × ⅓ × ${fmt(salaire)} = ${fmt(basePlus)}`;
+    }
+
+    return { total: Math.round(indemnite * 100) / 100, detail };
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const salaire = parseFloat(data.get('salaire') as string);
+    const annees = parseInt(data.get('annees') as string) || 0;
+    const mois = parseInt(data.get('mois') as string) || 0;
+
+    if (!salaire || salaire <= 0) return;
+
+    const result = calcIndemnite(salaire, annees, mois);
+
+    if (!result) {
+      resultBox.hidden = true;
+      noRightBox.hidden = false;
+      return;
+    }
+
+    amountLegal.textContent = fmt(result.total);
+    detailEl.textContent = `Calcul : ${result.detail}`;
+
+    resultBox.hidden = false;
+    noRightBox.hidden = true;
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

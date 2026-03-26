@@ -1,0 +1,385 @@
+---
+// IndemniteLicenciementCalculator.astro
+// Formule légale art. L1234-9 + R1234-2 Code du travail — aucune dépendance
+---
+
+<div class="ilc-wrapper" id="indemnite-calculator">
+
+  <h3 class="ilc-title">Calculez votre indemnité légale</h3>
+
+  <form class="ilc-form" id="ilc-form" novalidate>
+
+    <!-- Salaire -->
+    <div class="ilc-field">
+      <label class="ilc-label" for="ilc-salaire">
+        Salaire brut mensuel moyen
+        <span class="ilc-hint">(sur les 12 ou 3 derniers mois, le plus favorable)</span>
+      </label>
+      <div class="ilc-input-wrap">
+        <input class="ilc-input" type="number" id="ilc-salaire" name="salaire"
+               min="0" step="1" placeholder="2 500" />
+        <span class="ilc-unit">€</span>
+      </div>
+    </div>
+
+    <!-- Ancienneté -->
+    <div class="ilc-field">
+      <span class="ilc-label">Ancienneté dans l'entreprise</span>
+      <div class="ilc-anciennete-row">
+        <div class="ilc-input-wrap ilc-input-wrap--sm">
+          <input class="ilc-input" type="number" id="ilc-annees" name="annees"
+                 min="0" max="50" step="1" placeholder="8" />
+          <span class="ilc-unit">ans</span>
+        </div>
+        <div class="ilc-input-wrap ilc-input-wrap--sm">
+          <input class="ilc-input" type="number" id="ilc-mois" name="mois"
+                 min="0" max="11" step="1" placeholder="6" />
+          <span class="ilc-unit">mois</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Type de licenciement -->
+    <fieldset class="ilc-fieldset">
+      <legend class="ilc-label">Type de licenciement</legend>
+      <div class="ilc-radio-group">
+        <label class="ilc-radio">
+          <input type="radio" name="type" value="personnel" checked />
+          <span>Licenciement personnel</span>
+        </label>
+        <label class="ilc-radio">
+          <input type="radio" name="type" value="economique" />
+          <span>Licenciement économique</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <button class="ilc-btn" type="submit">Calculer mon indemnité</button>
+
+  </form>
+
+  <!-- Résultat -->
+  <div class="ilc-result" id="ilc-result" hidden>
+    <div class="ilc-result__amount-block">
+      <span class="ilc-result__label">Indemnité légale minimale</span>
+      <span class="ilc-result__amount" id="ilc-amount"></span>
+    </div>
+    <p class="ilc-result__detail" id="ilc-detail"></p>
+    <p class="ilc-result__warning" id="ilc-warning">
+      Il s'agit du <strong>plancher légal</strong>. Votre convention collective ou contrat
+      peut prévoir un montant supérieur — vérifiez avant d'accepter.
+      <a href="/indemnite-licenciement/" class="ilc-result__link">En savoir plus sur l'indemnité de licenciement →</a>
+    </p>
+  </div>
+
+  <!-- Message < 8 mois -->
+  <div class="ilc-result ilc-result--info" id="ilc-no-right" hidden>
+    <p>
+      <strong>Pas d'indemnité légale.</strong> L'indemnité légale de licenciement
+      est due uniquement à partir de <strong>8 mois d'ancienneté</strong> ininterrompue
+      dans l'entreprise (art. L1234-9 Code du travail). En dessous de ce seuil,
+      aucune indemnité légale n'est due — sauf dispositions conventionnelles plus favorables.
+    </p>
+  </div>
+
+</div>
+
+<style>
+  .ilc-wrapper {
+    background: #fff;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+    margin-block: var(--space-7);
+  }
+
+  .ilc-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0 0 var(--space-5);
+  }
+
+  .ilc-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .ilc-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ilc-label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+
+  .ilc-hint {
+    font-weight: 400;
+    color: var(--clr-text-muted);
+    font-size: 0.8em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .ilc-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    max-width: 200px;
+  }
+
+  .ilc-input-wrap--sm {
+    max-width: 120px;
+  }
+
+  .ilc-anciennete-row {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .ilc-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease);
+  }
+
+  .ilc-input:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+  }
+
+  .ilc-unit {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    white-space: nowrap;
+  }
+
+  /* Fieldset radio */
+  .ilc-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ilc-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .ilc-radio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    padding: var(--space-2) var(--space-4);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease),
+                background var(--duration) var(--ease);
+    user-select: none;
+  }
+
+  .ilc-radio input[type="radio"] { display: none; }
+
+  .ilc-radio:has(input:checked) {
+    border-color: var(--clr-primary);
+    background: var(--clr-green-light);
+    color: var(--clr-primary-dark);
+    font-weight: 600;
+  }
+
+  .ilc-radio:hover { border-color: var(--clr-primary); }
+
+  /* Bouton */
+  .ilc-btn {
+    align-self: flex-start;
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--duration) var(--ease);
+  }
+
+  .ilc-btn:hover { background: var(--clr-primary-dark); }
+
+  /* Résultat */
+  .ilc-result {
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--clr-border-subtle);
+    padding-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .ilc-result--info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .ilc-result--info p {
+    margin: 0;
+    font-size: var(--text-base);
+    color: #1E40AF;
+    line-height: var(--leading-relaxed, 1.6);
+  }
+
+  .ilc-result__amount-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    background: var(--clr-green-light);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .ilc-result__label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .ilc-result__amount {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--clr-primary-dark);
+    line-height: 1;
+  }
+
+  .ilc-result__detail {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .ilc-result__warning {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ilc-result__link {
+    color: var(--clr-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-size: var(--text-sm, 0.875rem);
+  }
+
+  @media (max-width: 600px) {
+    .ilc-wrapper { padding: var(--space-4); }
+    .ilc-input-wrap { max-width: 100%; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('ilc-form') as HTMLFormElement;
+  const resultBox = document.getElementById('ilc-result') as HTMLDivElement;
+  const noRightBox = document.getElementById('ilc-no-right') as HTMLDivElement;
+  const amountEl = document.getElementById('ilc-amount') as HTMLSpanElement;
+  const detailEl = document.getElementById('ilc-detail') as HTMLParagraphElement;
+
+  function fmt(n: number): string {
+    return n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+  }
+
+  function calcIndemnite(salaire: number, annees: number, moisRest: number): { total: number; detail: string } | null {
+    const ancienneteTotal = annees + moisRest / 12;
+
+    // Moins de 8 mois → pas d'indemnité légale
+    if (ancienneteTotal < 8 / 12) return null;
+
+    let indemnite = 0;
+    let detail = '';
+
+    if (annees <= 10) {
+      // Tout sur la tranche à 1/4
+      const base = (salaire / 4) * (annees + moisRest / 12);
+      indemnite = base;
+      detail = `${annees} an${annees > 1 ? 's' : ''}${moisRest > 0 ? ` ${moisRest} mois` : ''} × 1/4 × ${fmt(salaire)} = ${fmt(base)}`;
+    } else {
+      // Tranche 1-10 ans à 1/4, au-delà à 1/3
+      const base10 = (salaire / 4) * 10;
+      const basePlus = (salaire / 3) * (annees - 10 + moisRest / 12);
+      indemnite = base10 + basePlus;
+      detail =
+        `10 ans × 1/4 × ${fmt(salaire)} = ${fmt(base10)}` +
+        ` + ${annees - 10} an${annees - 10 > 1 ? 's' : ''}${moisRest > 0 ? ` ${moisRest} mois` : ''} × 1/3 × ${fmt(salaire)} = ${fmt(basePlus)}`;
+    }
+
+    return { total: Math.round(indemnite * 100) / 100, detail };
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const salaire = parseFloat(data.get('salaire') as string);
+    const annees = parseInt(data.get('annees') as string) || 0;
+    const mois = parseInt(data.get('mois') as string) || 0;
+    const type = data.get('type') as string;
+
+    if (!salaire || salaire <= 0) {
+      amountEl.textContent = 'Veuillez saisir un salaire valide.';
+      resultBox.hidden = false;
+      noRightBox.hidden = true;
+      return;
+    }
+
+    const result = calcIndemnite(salaire, annees, mois);
+
+    if (!result) {
+      resultBox.hidden = true;
+      noRightBox.hidden = false;
+      return;
+    }
+
+    amountEl.textContent = fmt(result.total);
+    detailEl.textContent = `Calcul : ${result.detail}`;
+
+    if (type === 'economique') {
+      detailEl.textContent += ' (licenciement économique : même plancher légal — un accord de branche peut prévoir davantage)';
+    }
+
+    resultBox.hidden = false;
+    noRightBox.hidden = true;
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>

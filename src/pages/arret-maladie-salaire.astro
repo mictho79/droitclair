@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro';
+import ArretMaladieCalculator from '../components/ArretMaladieCalculator.astro';
 
 /* ── Structure ─────────────────────────────────────────── */
 const toc = [
@@ -299,6 +300,9 @@ const sidebarLinks = [
     par la CPAM — l'employeur ne verse pas la totalité, il complète jusqu'aux
     pourcentages indiqués.
   </p>
+
+  <!-- OUTIL INTERACTIF -->
+  <ArretMaladieCalculator />
 
   <div class="alert alert--info">
     <div class="alert__icon">💡</div>
