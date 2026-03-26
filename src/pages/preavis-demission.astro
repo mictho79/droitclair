@@ -1,6 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 import CopyBlock from '../components/CopyBlock.astro';
+import PreavisCalculator from '../components/PreavisCalculator.astro';
 
 /* ── Modèle de lettre de demande de dispense ────────────── */
 const dispenseModel = `[Prénom Nom]
@@ -204,6 +205,9 @@ const sidebarLinks = [
       </tr>
     </tbody>
   </table>
+
+  <!-- OUTIL INTERACTIF -->
+  <PreavisCalculator />
 
   <div class="alert alert--info">
     <div class="alert__icon">💡</div>

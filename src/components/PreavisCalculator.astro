@@ -1,0 +1,343 @@
+---
+// PreavisCalculator.astro — Calculateur de préavis de démission
+// Vanilla JS, aucune dépendance externe
+---
+
+<div class="pc-wrapper" id="preavis-calculator">
+
+  <h3 class="pc-title">Calculez votre préavis</h3>
+
+  <form class="pc-form" id="pc-form" novalidate>
+
+    <!-- Catégorie professionnelle -->
+    <fieldset class="pc-fieldset">
+      <legend class="pc-legend">Votre catégorie professionnelle</legend>
+      <div class="pc-radio-group">
+        <label class="pc-radio">
+          <input type="radio" name="categorie" value="ouvrier" required />
+          <span>Ouvrier</span>
+        </label>
+        <label class="pc-radio">
+          <input type="radio" name="categorie" value="employe" />
+          <span>Employé / Technicien</span>
+        </label>
+        <label class="pc-radio">
+          <input type="radio" name="categorie" value="maitrise" />
+          <span>Agent de maîtrise</span>
+        </label>
+        <label class="pc-radio">
+          <input type="radio" name="categorie" value="cadre" />
+          <span>Cadre</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Ancienneté -->
+    <div class="pc-field">
+      <label class="pc-label" for="pc-anciennete">Ancienneté dans l'entreprise</label>
+      <select class="pc-select" id="pc-anciennete" name="anciennete">
+        <option value="">— Sélectionner —</option>
+        <option value="moins6mois">Moins de 6 mois</option>
+        <option value="6mois2ans">6 mois à 2 ans</option>
+        <option value="2ans5ans">2 à 5 ans</option>
+        <option value="plus5ans">Plus de 5 ans</option>
+      </select>
+    </div>
+
+    <!-- Date d'envoi (optionnel) -->
+    <div class="pc-field">
+      <label class="pc-label" for="pc-date">
+        Date d'envoi de la lettre recommandée
+        <span class="pc-optional">(optionnel)</span>
+      </label>
+      <input class="pc-input-date" type="date" id="pc-date" name="date" />
+    </div>
+
+    <button class="pc-btn" type="submit">Calculer mon préavis</button>
+
+  </form>
+
+  <!-- Résultat -->
+  <div class="pc-result" id="pc-result" hidden>
+    <div class="pc-result__inner">
+      <p class="pc-result__main" id="pc-result-main"></p>
+      <p class="pc-result__date" id="pc-result-date" hidden></p>
+      <p class="pc-result__warning">
+        ⚠️ Ces durées sont <strong>indicatives</strong> — vérifiez votre convention collective
+        (code IDCC sur votre fiche de paie) et votre contrat de travail.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .pc-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+    margin-block: var(--space-7);
+  }
+
+  .pc-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0 0 var(--space-5);
+  }
+
+  .pc-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  /* Fieldset radio */
+  .pc-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pc-legend {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-black);
+    margin-bottom: var(--space-3);
+  }
+
+  .pc-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .pc-radio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    padding: var(--space-2) var(--space-4);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    background: #fff;
+    transition: border-color var(--duration) var(--ease),
+                background var(--duration) var(--ease);
+    user-select: none;
+  }
+
+  .pc-radio input[type="radio"] {
+    display: none;
+  }
+
+  .pc-radio:has(input:checked) {
+    border-color: var(--clr-primary);
+    background: var(--clr-green-light);
+    color: var(--clr-primary-dark);
+    font-weight: 600;
+  }
+
+  .pc-radio:hover {
+    border-color: var(--clr-primary);
+  }
+
+  /* Select & date */
+  .pc-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .pc-label {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+
+  .pc-optional {
+    font-weight: 400;
+    color: var(--clr-text-muted);
+    font-size: 0.8em;
+  }
+
+  .pc-select,
+  .pc-input-date {
+    width: 100%;
+    max-width: 320px;
+    padding: var(--space-2) var(--space-3);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    background: #fff;
+    appearance: auto;
+    transition: border-color var(--duration) var(--ease);
+  }
+
+  .pc-select:focus,
+  .pc-input-date:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+  }
+
+  /* Bouton */
+  .pc-btn {
+    align-self: flex-start;
+    background: var(--clr-primary);
+    color: #fff;
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-5);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--duration) var(--ease);
+  }
+
+  .pc-btn:hover {
+    background: var(--clr-primary-dark);
+  }
+
+  /* Résultat */
+  .pc-result {
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--clr-border-subtle);
+    padding-top: var(--space-5);
+  }
+
+  .pc-result__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .pc-result__main {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    margin: 0;
+  }
+
+  .pc-result__date {
+    font-size: var(--text-base);
+    color: var(--clr-text);
+    margin: 0;
+  }
+
+  .pc-result__warning {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--clr-text-muted);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .pc-wrapper {
+      padding: var(--space-4);
+    }
+
+    .pc-radio-group {
+      flex-direction: column;
+    }
+
+    .pc-select,
+    .pc-input-date {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('pc-form') as HTMLFormElement;
+  const resultBox = document.getElementById('pc-result') as HTMLDivElement;
+  const resultMain = document.getElementById('pc-result-main') as HTMLParagraphElement;
+  const resultDate = document.getElementById('pc-result-date') as HTMLParagraphElement;
+
+  // ── Logique de calcul ──────────────────────────────────────────
+  function getPreavis(categorie: string, anciennete: string): { label: string; months: number; days: number } {
+    if (categorie === 'ouvrier') {
+      if (anciennete === 'moins6mois') return { label: '8 jours', months: 0, days: 8 };
+      // 6 mois à 2 ans et au-delà → 1 mois (droit commun, indicatif)
+      return { label: '1 mois', months: 1, days: 0 };
+    }
+
+    if (categorie === 'employe') {
+      return { label: '1 mois', months: 1, days: 0 };
+    }
+
+    if (categorie === 'maitrise') {
+      if (anciennete === 'moins6mois' || anciennete === '6mois2ans') {
+        return { label: '1 mois', months: 1, days: 0 };
+      }
+      return { label: '2 mois', months: 2, days: 0 };
+    }
+
+    if (categorie === 'cadre') {
+      return { label: '3 mois', months: 3, days: 0 };
+    }
+
+    return { label: '—', months: 0, days: 0 };
+  }
+
+  function addPeriod(date: Date, months: number, days: number): Date {
+    const result = new Date(date);
+    if (months > 0) {
+      result.setMonth(result.getMonth() + months);
+    }
+    if (days > 0) {
+      result.setDate(result.getDate() + days);
+    }
+    return result;
+  }
+
+  function formatDate(date: Date): string {
+    return date.toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  // ── Soumission ─────────────────────────────────────────────────
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const categorie = data.get('categorie') as string;
+    const anciennete = data.get('anciennete') as string;
+    const dateStr = data.get('date') as string;
+
+    if (!categorie || !anciennete) {
+      resultMain.textContent = 'Veuillez sélectionner une catégorie et une ancienneté.';
+      resultDate.hidden = true;
+      resultBox.hidden = false;
+      return;
+    }
+
+    const { label, months, days } = getPreavis(categorie, anciennete);
+
+    resultMain.textContent = `Votre préavis est de ${label}.`;
+
+    if (dateStr) {
+      const start = new Date(dateStr);
+      const end = addPeriod(start, months, days);
+      resultDate.textContent = `Votre dernier jour de travail est estimé au ${formatDate(end)}.`;
+      resultDate.hidden = false;
+    } else {
+      resultDate.hidden = true;
+    }
+
+    resultBox.hidden = false;
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>
