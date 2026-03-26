@@ -70,35 +70,46 @@ const popularArticles = [
 const themes = [
   {
     color: 'green',
-    heading: 'Quitter son emploi',
+    heading: 'Démission',
     href: '/demission/',
     links: [
-      { label: 'Lettre de démission',         href: '/lettre-de-demission-cdi/'  },
+      { label: 'Lettre de démission',              href: '/lettre-de-demission-cdi/'  },
       { label: 'Démission pour faute de l\'employeur', href: '/demission-faute-employeur/' },
-      { label: 'Rupture conventionnelle',      href: '/rupture-conventionnelle/'  },
-      { label: 'Licenciement pour faute',      href: '/licenciement-faute-grave/' },
+      { label: 'Rupture conventionnelle',           href: '/rupture-conventionnelle/'  },
+      { label: 'Démission et chômage',              href: '/demission-chomage/'        },
+    ],
+  },
+  {
+    color: 'red',
+    heading: 'Licenciement',
+    href: '/licenciement/',
+    links: [
+      { label: 'Licenciement économique',           href: '/licenciement-economique/'  },
+      { label: 'Licenciement pour faute grave',     href: '/licenciement-faute-grave/' },
+      { label: 'Indemnité de licenciement',         href: '/indemnite-licenciement/'   },
+      { label: 'Contester un licenciement',         href: '/contester-licenciement/'   },
     ],
   },
   {
     color: 'blue',
-    heading: 'Droits en cours de contrat',
+    heading: 'Droits du salarié',
     href: '/droits-salarie/',
     links: [
-      { label: 'Arrêt maladie et salaire',     href: '/arret-maladie-salaire/'    },
-      { label: 'Congés payés : calcul',        href: '/conges-payes-calcul/'      },
-      { label: 'Période d\'essai',             href: '/periode-essai/'            },
-      { label: 'Heures supplémentaires',       href: '/heures-supplementaires/'   },
+      { label: 'Arrêt maladie et salaire',          href: '/arret-maladie-salaire/'    },
+      { label: 'Congés payés : calcul',             href: '/conges-payes-calcul/'      },
+      { label: 'Heures supplémentaires',            href: '/heures-supplementaires/'   },
+      { label: 'Mutuelle obligatoire',              href: '/mutuelle-obligatoire/'     },
     ],
   },
   {
     color: 'orange',
-    heading: 'Logement & contrats',
+    heading: 'Logement',
     href: '/logement/',
     links: [
-      { label: 'Préavis locataire',            href: '/preavis-location/'         },
-      { label: 'Dépôt de garantie',            href: '/depot-de-garantie/'        },
-      { label: 'État des lieux de sortie',     href: '/etat-des-lieux/'           },
-      { label: 'Résiliation de bail',          href: '/resiliation-bail/'         },
+      { label: 'Préavis locataire',                 href: '/preavis-location/'         },
+      { label: 'Dépôt de garantie',                 href: '/depot-de-garantie/'        },
+      { label: 'État des lieux de sortie',          href: '/etat-des-lieux/'           },
+      { label: 'Résiliation de bail',               href: '/resiliation-bail/'         },
     ],
   },
 ];
@@ -261,6 +272,12 @@ const schema = [
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V10.5z"/>
                     <path d="M9 21V12h6v9"/>
+                  </svg>
+                )}
+                {color === 'red' && (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <path d="M14 2v6h6M9 13h6M9 17h4"/>
                   </svg>
                 )}
               </div>
@@ -592,7 +609,7 @@ const schema = [
 
 .themes-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-5);
 }
 
@@ -644,6 +661,11 @@ const schema = [
 .theme-icon--orange {
   background-color: #FFF7ED;
   color: #C2410C;
+}
+
+.theme-icon--red {
+  background-color: #FFF1F2;
+  color: #BE123C;
 }
 
 .theme-block__heading {
