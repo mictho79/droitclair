@@ -396,9 +396,9 @@ small { font-size: var(--text-sm); }
 }
 
 .badge-red {
-  background-color: #FFF1F2;
-  color: #BE123C;
-  border-color: rgba(190, 18, 60, 0.18);
+  background-color: #FEF2F2;
+  color: #991B1B;
+  border-color: rgba(153, 27, 27, 0.16);
 }
 
 /* Alias sémantique (utilisé dans les composants) */
