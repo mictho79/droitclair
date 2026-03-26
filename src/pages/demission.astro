@@ -104,12 +104,33 @@ const articles = [
     readingTime: 4,
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Démission",
+  "description": "Tout sur la démission : lettre de démission, préavis CDI, rupture conventionnelle, solde de tout compte, droit au chômage.",
+  "url": "https://droitclair.fr/demission/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.map((a, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": a.title,
+      "url": `https://droitclair.fr${a.href}`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Démission — Guides et modèles gratuits 2026"
   description="Tout sur la démission : lettre de démission, préavis CDI, rupture conventionnelle, solde de tout compte, droit au chômage. Guides pratiques mis à jour 2026."
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
 
   <!-- En-tête de catégorie -->
   <div class="cat-hero">

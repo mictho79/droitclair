@@ -94,12 +94,33 @@ const articles = [
     readingTime: 7,
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Licenciement",
+  "description": "Licenciement économique, pour faute grave, pour inaptitude, calcul de l'indemnité et comment contester devant les prud'hommes.",
+  "url": "https://droitclair.fr/licenciement/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.map((a, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": a.title,
+      "url": `https://droitclair.fr${a.href}`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Licenciement — Guides et droits du salarié 2026"
   description="Tout sur le licenciement : licenciement économique, pour faute grave, pour inaptitude, calcul de l'indemnité, et comment contester devant les prud'hommes. Guides 2026."
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
 
   <!-- En-tête de catégorie -->
   <div class="cat-hero">

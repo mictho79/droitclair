@@ -184,12 +184,33 @@ const articles = [
     readingTime: 7,
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Droits du salarié",
+  "description": "Arrêt maladie, congés payés, période d'essai, heures supplémentaires, mutuelle — tous vos droits en cours de contrat de travail.",
+  "url": "https://droitclair.fr/droits-salarie/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.map((a, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": a.title,
+      "url": `https://droitclair.fr${a.href}`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Droits du salarié en cours de contrat — Guides 2026"
   description="Arrêt maladie, congés payés, période d'essai, heures supplémentaires, mutuelle — tous vos droits en cours de contrat de travail. Guides pratiques mis à jour 2026."
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
 
   <!-- En-tête de catégorie -->
   <div class="cat-hero">
@@ -199,7 +220,7 @@ const articles = [
         <span aria-hidden="true">›</span>
         <span aria-current="page">Droits du salarié</span>
       </nav>
-      <h1 class="cat-hero__title">Droits en cours de contrat</h1>
+      <h1 class="cat-hero__title">Droits du salarié</h1>
       <p class="cat-hero__desc">
         Tout ce que vous devez savoir sur vos droits pendant l'exécution de votre contrat :
         arrêt maladie, congés payés, heures supplémentaires, période d'essai et mutuelle d'entreprise.

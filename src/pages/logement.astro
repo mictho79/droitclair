@@ -74,12 +74,33 @@ const articles = [
     readingTime: 6,
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Logement",
+  "description": "Préavis de location, dépôt de garantie, expulsion, mise en demeure — guides pratiques pour locataires.",
+  "url": "https://droitclair.fr/logement/",
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": articles.length,
+    "itemListElement": articles.map((a, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": a.title,
+      "url": `https://droitclair.fr${a.href}`,
+    })),
+  },
+};
 ---
 
 <BaseLayout
   title="Logement — Guides locatif et contrats 2026"
   description="Tout sur le droit locatif : préavis de location, dépôt de garantie, expulsion, mise en demeure. Guides pratiques pour locataires, mis à jour 2026."
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
 
   <!-- En-tête de catégorie -->
   <div class="cat-hero">
