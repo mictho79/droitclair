@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page introuvable (404) — DroitClair"
+  description="Cette page n'existe pas ou a été déplacée. Retrouvez tous nos guides sur le droit du travail et le droit locatif."
+  noindex={true}
+>
+
+  <div class="not-found">
+    <div class="not-found__inner">
+
+      <p class="not-found__code">404</p>
+      <h1 class="not-found__title">Page introuvable</h1>
+      <p class="not-found__desc">
+        Cette page n'existe pas ou a été déplacée. Utilisez les liens ci-dessous
+        pour retrouver les guides qui vous intéressent.
+      </p>
+
+      <div class="not-found__links">
+        <a href="/" class="not-found__btn not-found__btn--primary">Retour à l'accueil</a>
+        <a href="/demission/" class="not-found__btn">Démission</a>
+        <a href="/licenciement/" class="not-found__btn">Licenciement</a>
+        <a href="/droits-salarie/" class="not-found__btn">Droits du salarié</a>
+        <a href="/logement/" class="not-found__btn">Logement</a>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-9) var(--space-5);
+  }
+
+  .not-found__inner {
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .not-found__code {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 800;
+    color: var(--clr-green-light);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.04em;
+  }
+
+  .not-found__title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl, 1.75rem);
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .not-found__desc {
+    font-size: var(--text-base);
+    color: var(--clr-text-muted);
+    line-height: var(--leading-relaxed, 1.6);
+    margin: 0;
+  }
+
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  .not-found__btn {
+    padding: var(--space-2) var(--space-4);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius);
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 500;
+    color: var(--clr-text);
+    text-decoration: none;
+    background: #fff;
+    transition: border-color var(--duration) var(--ease),
+                color var(--duration) var(--ease);
+  }
+
+  .not-found__btn:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary-dark);
+  }
+
+  .not-found__btn--primary {
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+    color: #fff;
+  }
+
+  .not-found__btn--primary:hover {
+    background: var(--clr-primary-dark);
+    border-color: var(--clr-primary-dark);
+    color: #fff;
+  }
+</style>

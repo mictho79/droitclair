@@ -21,7 +21,18 @@ const columns = [
       { label: 'Licenciement pour faute',     href: '/licenciement-faute-grave/'   },
       { label: 'Indemnité légale',            href: '/indemnite-licenciement/'     },
       { label: 'Contester son licenciement',  href: '/contester-licenciement/'     },
-      { label: 'Lettre de licenciement',      href: '/licenciement/'               },
+      { label: 'Licenciement pour inaptitude', href: '/licenciement-pour-inaptitude/' },
+    ],
+  },
+  {
+    heading: 'Droits du salarié',
+    href: '/droits-salarie/',
+    links: [
+      { label: 'Arrêt maladie et salaire',     href: '/arret-maladie-salaire/'   },
+      { label: 'Congés payés',                 href: '/conges-payes-calcul/'     },
+      { label: 'Heures supplémentaires',       href: '/heures-supplementaires/'  },
+      { label: 'Mutuelle obligatoire',         href: '/mutuelle-obligatoire/'    },
+      { label: 'Période d\'essai',             href: '/periode-essai/'           },
     ],
   },
   {
@@ -191,7 +202,7 @@ const columns = [
   /* ── Nav colonnes ───────────────────────────────────────────── */
   .footer-nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-7);
   }
 

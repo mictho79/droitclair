@@ -65,7 +65,7 @@ const schemaArticle = {
     '@type': 'Organization',
     name: 'DroitClair',
     url: siteUrl,
-    logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon-32x32.png` },
   },
   datePublished: publishedDate,
   dateModified:  modifiedDate ?? publishedDate,
@@ -91,7 +91,7 @@ const schemaBreadcrumb = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Accueil',   item: `${siteUrl}/`               },
     { '@type': 'ListItem', position: 2, name: category,    item: `${siteUrl}/${categorySlug}/` },
-    { '@type': 'ListItem', position: 3, name: title },
+    { '@type': 'ListItem', position: 3, name: title, item: canonicalUrl },
   ],
 };
 ---
@@ -210,7 +210,7 @@ const schemaBreadcrumb = {
 
             <div class="faq-list">
               {faq.map(({ question, answer }, i) => (
-                <details class="faq-item" {...(i === 0 ? { open: true } : {})}>
+                <details class="faq-item">
                   <summary class="faq-question">
                     <span>{question}</span>
                     <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
