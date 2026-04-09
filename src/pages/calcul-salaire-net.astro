@@ -2,39 +2,53 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'brut-net',   label: 'Salaire brut vs salaire net'         },
-  { id: 'taux',       label: 'Taux de cotisations salariales 2026' },
-  { id: 'exemple',    label: 'Exemples de calcul'                  },
-  { id: 'faq',        label: 'Questions fréquentes'                },
+  { id: 'brut-net',       label: 'Salaire brut vs salaire net'           },
+  { id: 'taux',           label: 'Taux de cotisations salariales 2026'   },
+  { id: 'exemple',        label: 'Exemples de calcul détaillés'          },
+  { id: 'cadre-noncadre', label: 'Différences cadre / non-cadre'         },
+  { id: 'net-imposable',  label: 'Net imposable vs net à payer'          },
+  { id: 'faq',            label: 'Questions fréquentes'                  },
 ];
 
 const summary = [
-  "Le salaire net correspond au salaire brut diminué des cotisations sociales salariales (environ 22 à 25 % du brut selon la situation).",
-  "Depuis 2018, les cotisations chômage et une partie des cotisations maladie ont été supprimées pour les salariés, compensées par une hausse de la CSG.",
-  "Le prélèvement à la source de l'impôt sur le revenu est déduit du net imposable pour obtenir le net à payer.",
+  "Le salaire net correspond au salaire brut diminué des cotisations sociales salariales (environ 22 à 25 % du brut selon la situation et le statut cadre ou non-cadre).",
+  "Depuis 2018, les cotisations chômage et maladie salariales ont été supprimées pour les salariés, compensées par une hausse de la CSG de 1,7 point.",
+  "Le prélèvement à la source (PAS) de l'impôt sur le revenu est déduit du net imposable pour obtenir le net à payer effectivement versé sur le compte bancaire.",
 ];
 
 const faq = [
   {
     question: "Quel est le taux de passage du brut au net en 2026 ?",
-    answer: "En 2026, pour un salarié du privé sans avantages particuliers, le taux de cotisations salariales est d'environ 22 à 25 % du salaire brut selon le niveau de rémunération et la tranche de retraite complémentaire. À titre d'exemple, un salaire brut de 2 000 € correspond à un net imposable d'environ 1 560 € (avant impôt sur le revenu). Ces taux varient selon la convention collective, le statut (cadre/non-cadre) et les garanties de prévoyance.",
+    answer: "En 2026, pour un salarié non cadre du secteur privé, le taux de cotisations salariales est d'environ 22 à 23 % du salaire brut sous le plafond de la Sécurité sociale. Au-delà du plafond (3 925 €/mois en 2025), la tranche 2 AGIRC-ARRCO s'applique et le taux monte à 24-25 %. Pour un cadre, les cotisations sont légèrement plus élevées en raison des garanties de prévoyance supplémentaires. À titre d'exemple, un brut de 2 500 € correspond à un net imposable d'environ 1 945 €.",
   },
   {
     question: "Quelle est la différence entre net imposable et net à payer ?",
-    answer: "Le net imposable est le salaire net avant déduction du prélèvement à la source (PAS) de l'impôt sur le revenu. Il sert de base au calcul de l'impôt et figure sur la déclaration de revenus. Le net à payer est le montant effectivement versé sur le compte bancaire : il correspond au net imposable diminué du montant du PAS. Ces deux montants sont distincts sur le bulletin de paie depuis janvier 2019.",
+    answer: "Le net imposable est le salaire net avant déduction du prélèvement à la source (PAS). Il correspond au salaire brut diminué de toutes les cotisations sociales, sauf la CSG non déductible (2,40 %) et la CRDS (0,50 %) qui restent dans la base imposable. Le net à payer est le montant effectivement versé sur le compte bancaire : net imposable moins le PAS. Ces deux montants figurent distinctement sur le bulletin de paie depuis janvier 2019.",
+  },
+  {
+    question: "Le SMIC net en 2026, c'est combien ?",
+    answer: "Le SMIC brut mensuel est de 1 801,80 € (pour 35h/semaine) depuis novembre 2024. Le SMIC net, après déduction des cotisations salariales et avant PAS, est d'environ 1 426 € net imposable par mois. Le net à payer dépend du taux de prélèvement à la source de chaque salarié (qui varie selon la situation fiscale). Pour un salarié sans enfant avec peu de revenus autres, le PAS sera très faible voire nul sur un SMIC.",
+  },
+  {
+    question: "Mes cotisations retraite figurent-elles bien sur mon bulletin de paie ?",
+    answer: "Oui. Les cotisations retraite apparaissent en deux lignes dans la rubrique 'Retraite' du bulletin simplifié : la retraite de base (CNAV/Sécurité sociale) à 6,90 % sur la tranche 1 plus 0,40 % sur la totalité du brut, et la retraite complémentaire AGIRC-ARRCO à 3,15 % sur la tranche 1 (plus CEG 0,86 %). Ces cotisations génèrent des points de retraite enregistrés sur votre relevé de carrière disponible sur info-retraite.fr.",
+  },
+  {
+    question: "Comment vérifier que mes cotisations ont bien été versées à l'URSSAF ?",
+    answer: "Vous pouvez consulter votre relevé de compte individuel sur le portail info-retraite.fr (rubrique 'Relevé de carrière') pour vérifier que vos salaires et trimestres sont bien enregistrés. En cas de doute sur les cotisations versées à l'URSSAF, vous pouvez contacter votre CPAM pour obtenir un relevé de vos droits. Si vous constatez des oublis ou des erreurs, signalez-les rapidement car certaines prescriptions s'appliquent.",
   },
 ];
 
 const relatedArticles = [
   {
-    title:        'Heures supplémentaires : majoration et droits',
-    href:         '/heures-supplementaires/',
+    title:        'Bulletin de paie : mentions obligatoires et lecture',
+    href:         '/bulletin-paie/',
     category:     'Droits du salarié',
     categorySlug: 'droits-salarie',
   },
   {
-    title:        'Bulletin de paie : mentions obligatoires et lecture',
-    href:         '/bulletin-paie/',
+    title:        'Heures supplémentaires : majoration et droits',
+    href:         '/heures-supplementaires/',
     category:     'Droits du salarié',
     categorySlug: 'droits-salarie',
   },
@@ -47,20 +61,21 @@ const relatedArticles = [
 ];
 
 const sidebarLinks = [
-  { title: 'Bulletin de paie décryptage',  href: '/bulletin-paie/'                                                           },
-  { title: 'URSSAF — Taux de cotisations', href: 'https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html'  },
-  { title: 'Simulateur net-brut URSSAF',   href: 'https://www.urssaf.fr/portail/home/utilitaires/estimateur-de-cotisations.html' },
+  { title: 'Bulletin de paie décryptage',    href: '/bulletin-paie/'                                                          },
+  { title: 'Simulateur net-brut URSSAF',     href: 'https://www.urssaf.fr/portail/home/utilitaires/estimateur-de-cotisations.html' },
+  { title: 'URSSAF — Taux de cotisations',   href: 'https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html'  },
+  { title: 'Info Retraite — Relevé carrière', href: 'https://www.info-retraite.fr'                                            },
 ];
 ---
 
 <ArticleLayout
-  title="Calcul salaire net : taux de cotisations et exemples 2026"
-  description="Comment calculer son salaire net à partir du brut en 2026 : taux de cotisations salariales, CSG/CRDS, retraite complémentaire, prélèvement à la source et exemples chiffrés."
+  title="Calcul salaire net : taux de cotisations et exemples chiffrés 2026"
+  description="Comment calculer son salaire net à partir du brut en 2026 : taux exacts de cotisations salariales, CSG/CRDS, AGIRC-ARRCO, différences cadre/non-cadre, exemples et SMIC net."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Droits du salarié"
   categorySlug="droits-salarie"
-  readingTime={6}
+  readingTime={9}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -71,64 +86,257 @@ const sidebarLinks = [
   <h2 id="brut-net">Salaire brut vs salaire net</h2>
 
   <p>
-    Le <strong>salaire brut</strong> est la rémunération convenue dans le contrat
-    de travail, avant déduction des cotisations sociales. Le <strong>salaire net</strong>
-    est ce qui reste après déduction des cotisations salariales obligatoires.
+    Le <strong>salaire brut</strong> est la rémunération convenue dans le contrat de
+    travail, avant toute déduction. C'est la base sur laquelle sont calculées les
+    cotisations sociales (salariales et patronales) et l'ancienneté.
   </p>
 
   <p>
-    La différence entre brut et net provient des cotisations sociales salariales
-    qui financent la Sécurité sociale, la retraite, la prévoyance et la CSG/CRDS.
-    Ces cotisations représentent environ <strong>22 à 25 % du brut</strong>
-    pour un salarié du secteur privé.
+    Le <strong>salaire net</strong> est ce qui reste après déduction des cotisations
+    sociales salariales. On distingue deux notions :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Net imposable</strong> — le salaire après cotisations, avant prélèvement
+      à la source. C'est la somme à déclarer aux impôts. Elle est légèrement supérieure
+      au net à payer car la CSG non déductible et la CRDS restent dans la base imposable.
+    </li>
+    <li>
+      <strong>Net à payer</strong> — le montant effectivement versé sur votre compte
+      bancaire, après déduction du prélèvement à la source (PAS).
+    </li>
+  </ul>
+
+  <p>
+    La différence entre brut et net provient des cotisations sociales salariales, qui
+    représentent <strong>environ 22 à 25 % du brut</strong> pour la grande majorité
+    des salariés du secteur privé, selon le niveau de rémunération et le statut
+    (cadre ou non-cadre).
   </p>
 
   <h2 id="taux">Taux de cotisations salariales 2026</h2>
 
-  <table>
-    <thead>
-      <tr><th>Cotisation</th><th>Taux salarié</th><th>Assiette</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Assurance maladie</td><td>0 %</td><td>Supprimée pour les salariés depuis 2018</td></tr>
-      <tr><td>Assurance chômage</td><td>0 %</td><td>Supprimée pour les salariés depuis 2018</td></tr>
-      <tr><td>Retraite de base (CNAV)</td><td>6,90 %</td><td>Dans la limite du plafond SS (PMSS)</td></tr>
-      <tr><td>Retraite déplafonnée</td><td>0,40 %</td><td>Totalité du salaire brut</td></tr>
-      <tr><td>Retraite complémentaire T1 (AGIRC-ARRCO)</td><td>3,15 %</td><td>Tranche 1 (≤ 1 PMSS)</td></tr>
-      <tr><td>Retraite complémentaire T2 (AGIRC-ARRCO)</td><td>8,64 %</td><td>Tranche 2 (1 à 8 PMSS)</td></tr>
-      <tr><td>CSG déductible</td><td>6,80 %</td><td>98,25 % du brut</td></tr>
-      <tr><td>CSG non déductible + CRDS</td><td>2,90 %</td><td>98,25 % du brut</td></tr>
-    </tbody>
-  </table>
-
-  <p class="source-ref">
-    Source :
-    <a href="https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html" target="_blank" rel="noopener">
-      URSSAF — Taux de cotisations 2026
-    </a> (à vérifier et mettre à jour avec les taux en vigueur)
+  <p>
+    Les taux ci-dessous s'appliquent aux salariés du secteur privé. Le
+    <strong>Plafond Mensuel de la Sécurité Sociale (PMSS)</strong> est de
+    <strong>3 925 € brut/mois</strong> en 2025 (révisé chaque année au 1er janvier).
   </p>
 
-  <h2 id="exemple">Exemples de calcul</h2>
-
   <table>
     <thead>
-      <tr><th>Salaire brut</th><th>Net imposable estimé</th><th>Écart brut/net</th></tr>
+      <tr>
+        <th>Cotisation</th>
+        <th>Taux salarié</th>
+        <th>Assiette</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td>1 800 € (SMIC brut approx.)</td><td>~1 420 €</td><td>~21 %</td></tr>
-      <tr><td>2 500 €</td><td>~1 950 €</td><td>~22 %</td></tr>
-      <tr><td>3 500 €</td><td>~2 700 €</td><td>~23 %</td></tr>
-      <tr><td>5 000 €</td><td>~3 750 €</td><td>~25 %</td></tr>
+      <tr>
+        <td>Assurance maladie</td>
+        <td><strong>0 %</strong></td>
+        <td>Supprimée pour les salariés depuis le 1er janvier 2018</td>
+      </tr>
+      <tr>
+        <td>Assurance chômage</td>
+        <td><strong>0 %</strong></td>
+        <td>Supprimée pour les salariés depuis le 1er octobre 2018</td>
+      </tr>
+      <tr>
+        <td>Retraite de base CNAV — tranche 1</td>
+        <td><strong>6,90 %</strong></td>
+        <td>Dans la limite du PMSS (3 925 €/mois)</td>
+      </tr>
+      <tr>
+        <td>Retraite de base CNAV — déplafonnée</td>
+        <td><strong>0,40 %</strong></td>
+        <td>Totalité du salaire brut</td>
+      </tr>
+      <tr>
+        <td>Retraite complémentaire AGIRC-ARRCO — T1</td>
+        <td><strong>3,15 %</strong></td>
+        <td>Tranche 1 : de 0 à 1 PMSS (0 à 3 925 €)</td>
+      </tr>
+      <tr>
+        <td>Contribution d'équilibre général (CEG) — T1</td>
+        <td><strong>0,86 %</strong></td>
+        <td>Tranche 1</td>
+      </tr>
+      <tr>
+        <td>Retraite complémentaire AGIRC-ARRCO — T2</td>
+        <td><strong>8,64 %</strong></td>
+        <td>Tranche 2 : de 1 à 8 PMSS (3 925 € à 31 400 €)</td>
+      </tr>
+      <tr>
+        <td>Contribution d'équilibre général (CEG) — T2</td>
+        <td><strong>1,08 %</strong></td>
+        <td>Tranche 2</td>
+      </tr>
+      <tr>
+        <td>CSG déductible</td>
+        <td><strong>6,80 %</strong></td>
+        <td>98,25 % du brut (abattement de 1,75 % pour frais pro)</td>
+      </tr>
+      <tr>
+        <td>CSG non déductible</td>
+        <td><strong>2,40 %</strong></td>
+        <td>98,25 % du brut</td>
+      </tr>
+      <tr>
+        <td>CRDS</td>
+        <td><strong>0,50 %</strong></td>
+        <td>98,25 % du brut</td>
+      </tr>
     </tbody>
   </table>
 
   <div class="alert alert--info">
     <div class="alert__icon">💡</div>
     <div class="alert__body">
-      Ces estimations sont indicatives. Le taux exact dépend du statut cadre/non-cadre,
-      des garanties de prévoyance, des avantages en nature et de la convention collective.
-      Pour un calcul précis, utilisez le simulateur officiel de l'URSSAF.
+      La <strong>CSG + CRDS</strong> est prélevée sur 98,25 % du brut (et non 100 %)
+      pour tenir compte d'un abattement forfaitaire de 1,75 % représentant les frais
+      professionnels. Cet abattement est plafonné à 4 fois le PMSS annuel (187 400 €).
     </div>
   </div>
+
+  <h2 id="exemple">Exemples de calcul détaillés</h2>
+
+  <p>
+    Les exemples ci-dessous concernent un salarié <strong>non-cadre</strong> sans
+    avantages particuliers, avec un salaire mensuel régulier (sans primes ni avantages
+    en nature). Le net à payer est estimé avant PAS, car le taux varie selon la
+    situation fiscale de chaque salarié.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Salaire brut</th>
+        <th>Net imposable estimé</th>
+        <th>Taux de prélèvement</th>
+        <th>Commentaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1 801,80 € (SMIC)</strong></td>
+        <td>~1 426 €</td>
+        <td>~21 %</td>
+        <td>SMIC brut novembre 2024</td>
+      </tr>
+      <tr>
+        <td><strong>2 000 €</strong></td>
+        <td>~1 570 €</td>
+        <td>~21,5 %</td>
+        <td>Inférieur au PMSS</td>
+      </tr>
+      <tr>
+        <td><strong>2 500 €</strong></td>
+        <td>~1 945 €</td>
+        <td>~22,2 %</td>
+        <td>Inférieur au PMSS</td>
+      </tr>
+      <tr>
+        <td><strong>3 500 €</strong></td>
+        <td>~2 700 €</td>
+        <td>~22,9 %</td>
+        <td>Proche du PMSS</td>
+      </tr>
+      <tr>
+        <td><strong>4 500 €</strong></td>
+        <td>~3 390 €</td>
+        <td>~24,7 %</td>
+        <td>Au-dessus du PMSS (T2 AGIRC)</td>
+      </tr>
+      <tr>
+        <td><strong>6 000 €</strong></td>
+        <td>~4 470 €</td>
+        <td>~25,5 %</td>
+        <td>Tranche 2 AGIRC-ARRCO</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Pour un calcul précis tenant compte de votre statut, convention collective et
+    avantages, utilisez le <a href="https://www.urssaf.fr/portail/home/utilitaires/estimateur-de-cotisations.html" target="_blank" rel="noopener">simulateur officiel de l'URSSAF</a>.
+  </p>
+
+  <h2 id="cadre-noncadre">Différences cadre / non-cadre</h2>
+
+  <p>
+    Le statut cadre entraîne des cotisations légèrement plus élevées, notamment en
+    raison de garanties de prévoyance supplémentaires obligatoires :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Prévoyance cadre (ANI 1947)</strong> — les cadres cotisent à une
+      assurance décès/invalidité obligatoire à hauteur de 1,50 % du brut (part patronale
+      minimum), mais une part salariale peut également exister selon la convention collective
+    </li>
+    <li>
+      <strong>Contribution d'équilibre technique (CET)</strong> — 0,14 % à la charge
+      du salarié cadre sur les tranches supérieures à 1 PMSS (T2 à T8), dans le cadre
+      AGIRC-ARRCO
+    </li>
+    <li>
+      <strong>Mutuelle santé</strong> — les cotisations de mutuelle peuvent être
+      différentes selon les accords de branche cadres/non-cadres
+    </li>
+  </ul>
+
+  <p>
+    En pratique, la différence brut/net entre cadres et non-cadres est de l'ordre de
+    0,5 à 1,5 point, plus marquée pour les hauts salaires soumis à la tranche 2 AGIRC-ARRCO.
+  </p>
+
+  <h2 id="net-imposable">Net imposable vs net à payer</h2>
+
+  <p>
+    Ces deux montants, tous deux visibles sur le bulletin de paie depuis 2019, correspondent à
+    deux étapes distinctes du calcul de la rémunération :
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Notion</th><th>Définition</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Net imposable</strong></td>
+        <td>Brut − cotisations sociales salariales déductibles (dont CSG déductible).
+        Comprend la CSG non déductible et la CRDS.</td>
+        <td>Déclaration de revenus aux impôts, case 1AJ</td>
+      </tr>
+      <tr>
+        <td><strong>Net à payer avant PAS</strong></td>
+        <td>Brut − toutes cotisations salariales (y compris CSG non déductible + CRDS)</td>
+        <td>Estimation du salaire sans PAS</td>
+      </tr>
+      <tr>
+        <td><strong>Net à payer</strong></td>
+        <td>Net à payer avant PAS − montant du prélèvement à la source</td>
+        <td>Montant viré sur le compte bancaire</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Le taux du prélèvement à la source est communiqué par l'administration fiscale
+    directement à l'employeur via DSN. Il est recalculé chaque année en septembre sur
+    la base des revenus N-2, puis mis à jour en janvier sur la base de N-1. Vous pouvez
+    modifier votre taux à tout moment sur <a href="https://www.impots.gouv.fr" target="_blank" rel="noopener">impots.gouv.fr</a>.
+  </p>
+
+  <p class="source-ref">
+    Sources :
+    <a href="https://www.urssaf.fr/accueil/taux-et-baremes/taux-des-cotisations.html" target="_blank" rel="noopener">
+      URSSAF — Taux de cotisations
+    </a> —
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F559" target="_blank" rel="noopener">
+      Service-Public.fr — Bulletin de paie
+    </a>
+  </p>
 
 </ArticleLayout>

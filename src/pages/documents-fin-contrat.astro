@@ -2,26 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'liste',    label: 'Les 3 documents obligatoires'    },
-  { id: 'delais',   label: 'Délais de remise'                },
-  { id: 'recours',  label: 'Recours en cas de non-remise'    },
-  { id: 'faq',      label: 'Questions fréquentes'            },
+  { id: 'liste',         label: 'Les 3 documents obligatoires'            },
+  { id: 'delais',        label: 'Délais et modalités de remise'           },
+  { id: 'sommes',        label: 'Les sommes versées à la rupture'         },
+  { id: 'solde',         label: 'Le solde de tout compte en détail'       },
+  { id: 'recours',       label: 'Recours en cas de non-remise'            },
+  { id: 'faq',           label: 'Questions fréquentes'                    },
 ];
 
 const summary = [
   "À la fin de tout contrat de travail, l'employeur doit remettre 3 documents obligatoires : le certificat de travail, l'attestation France Travail et le reçu pour solde de tout compte.",
-  "Ces documents doivent être remis au plus tard le dernier jour de travail effectif, simultanément.",
-  "L'absence ou le retard de remise expose l'employeur à des dommages-intérêts devant le Conseil de prud'hommes.",
+  "Ces documents doivent être remis simultanément le dernier jour de travail effectif. Un retard engage la responsabilité de l'employeur.",
+  "Le solde de tout compte doit être signé de façon éclairée : il peut être contesté dans les 6 mois. Passé ce délai, il devient libératoire pour les sommes qui y sont mentionnées.",
 ];
 
 const faq = [
   {
     question: "L'employeur peut-il retenir les documents de fin de contrat en cas de litige ?",
-    answer: "Non. La remise des documents de fin de contrat est une obligation légale indépendante de tout litige entre les parties. L'employeur ne peut pas conditionner leur remise au paiement d'une dette ou à la signature d'une transaction. Retenir ces documents constitue un manquement grave pouvant engager sa responsabilité civile et exposer le salarié à des préjudices (impossibilité de s'inscrire à France Travail, difficultés à trouver un emploi).",
+    answer: "Non. La remise des documents de fin de contrat est une obligation légale totalement indépendante de tout litige entre les parties. L'employeur ne peut pas conditionner leur remise au paiement d'une dette, à la signature d'une transaction, ou à l'abandon d'une réclamation. Retenir ces documents constitue un manquement grave pouvant engager sa responsabilité civile et exposer le salarié à des préjudices concrets (impossibilité de s'inscrire à France Travail, difficultés à retrouver un emploi).",
   },
   {
     question: "Que faire si le solde de tout compte comporte des erreurs ?",
-    answer: "Vous avez 6 mois à compter de la signature du reçu pour solde de tout compte pour le contester. Passé ce délai, le solde de tout compte devient libératoire pour les sommes qui y sont mentionnées. Pour contester, envoyez une lettre recommandée à votre ancien employeur en précisant les sommes contestées. En cas de refus, saisissez le Conseil de prud'hommes dans le délai de 3 ans pour les créances salariales.",
+    answer: "Vous avez 6 mois à compter de la signature du reçu pour solde de tout compte pour le contester par LRAR. Après ce délai, le solde de tout compte est dit 'libératoire' pour les sommes expressément mentionnées. Pour contester, envoyez une LRAR à votre ancien employeur en précisant les sommes contestées et leur fondement juridique. En cas de refus, saisissez le Conseil de prud'hommes dans le délai de 3 ans pour les créances salariales.",
+  },
+  {
+    question: "Peut-on refuser de signer le solde de tout compte ?",
+    answer: "Oui, vous pouvez refuser de signer le solde de tout compte sans que ce refus affecte vos droits. Un solde non signé (ou signé sous réserve) n'est pas libératoire pour l'employeur : il ne peut pas s'en prévaloir comme d'une quittance de toutes sommes. En pratique, il est souvent préférable de signer 'sous réserve de mes droits' en cas de doute, et de contester dans les 6 mois si nécessaire.",
+  },
+  {
+    question: "Qu'est-ce que la portabilité de la mutuelle et comment en bénéficier ?",
+    answer: "À la fin du contrat, si le salarié bénéficiait d'une mutuelle d'entreprise, il peut maintenir cette couverture à titre gratuit pendant une durée maximale de 12 mois (portabilité, art. L911-8 du Code de la Sécurité sociale), à condition d'être indemnisé par France Travail. L'employeur doit informer l'organisme assureur de la fin du contrat — aucune démarche active n'est requise du salarié. La portabilité cesse dès la reprise d'un emploi.",
+  },
+  {
+    question: "Les documents de fin de contrat sont-ils les mêmes en CDD et en CDI ?",
+    answer: "Oui, les 3 documents obligatoires (certificat de travail, attestation France Travail, solde de tout compte) sont identiques pour les CDD et les CDI. La différence réside dans le contenu du solde de tout compte : à la fin d'un CDD non rompu avant son terme, le salarié perçoit en plus une indemnité de fin de contrat (10 % de la rémunération brute totale du CDD), sauf exception (refus d'un CDI, CDD de remplacement, certains secteurs spécifiques).",
   },
 ];
 
@@ -50,18 +64,19 @@ const sidebarLinks = [
   { title: 'Solde de tout compte',          href: '/solde-de-tout-compte/'                                                    },
   { title: 'Certificat de travail',         href: '/certificat-de-travail/'                                                   },
   { title: 'Attestation France Travail',    href: '/attestation-france-travail/'                                              },
+  { title: 'Portabilité de la mutuelle',    href: '/portabilite-mutuelle/'                                                    },
   { title: 'Service-Public — Fin contrat',  href: 'https://www.service-public.fr/particuliers/vosdroits/F87'                 },
 ];
 ---
 
 <ArticleLayout
-  title="Documents fin de contrat : liste complète et délais en 2026"
-  description="Les 3 documents obligatoires à la fin d'un contrat de travail en 2026 : certificat de travail, attestation France Travail, solde de tout compte — délais, contenu et recours."
+  title="Documents fin de contrat : liste complète, délais et sommes dues en 2026"
+  description="Les 3 documents obligatoires en fin de contrat en 2026 : certificat de travail, attestation France Travail, solde de tout compte — délais, contenu, sommes dues et contestation."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Démission"
   categorySlug="demission"
-  readingTime={5}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -72,10 +87,10 @@ const sidebarLinks = [
   <h2 id="liste">Les 3 documents obligatoires</h2>
 
   <p>
-    Quelle que soit la cause de rupture du contrat (démission, licenciement,
-    rupture conventionnelle, fin de CDD, départ en retraite), l'employeur doit
-    remettre <strong>3 documents obligatoires</strong> à la fin du contrat
-    (art. L1234-19, R1234-9 et L1237-19 du Code du travail) :
+    Quelle que soit la cause de rupture du contrat (démission, licenciement pour quelque
+    motif que ce soit, rupture conventionnelle, fin de CDD, départ en retraite),
+    l'employeur doit remettre <strong>3 documents obligatoires</strong> à la fin du
+    contrat (art. L1234-19, R1234-9 et L1237-19 du Code du travail) :
   </p>
 
   <table>
@@ -89,58 +104,198 @@ const sidebarLinks = [
     <tbody>
       <tr>
         <td><strong>Certificat de travail</strong></td>
-        <td>Atteste la durée et la nature de l'emploi</td>
-        <td>Dernier jour de travail</td>
+        <td>Atteste la durée, la nature et les emplois occupés. Indispensable pour
+        justifier d'une expérience professionnelle auprès d'un futur employeur.</td>
+        <td>Dernier jour de travail effectif</td>
       </tr>
       <tr>
         <td><strong>Attestation France Travail</strong></td>
-        <td>Ouvre les droits à l'ARE (chômage)</td>
-        <td>Dernier jour de travail</td>
+        <td>Permet d'ouvrir les droits à l'allocation chômage (ARE) et d'en calculer
+        le montant. Contient les salaires des 12 derniers mois et le motif de rupture.</td>
+        <td>Dernier jour de travail effectif</td>
       </tr>
       <tr>
         <td><strong>Reçu pour solde de tout compte</strong></td>
-        <td>Récapitule toutes les sommes versées à la rupture</td>
-        <td>Dernier jour de travail</td>
+        <td>Récapitule toutes les sommes versées à la rupture. Sa signature peut
+        être libératoire pour l'employeur si elle n'est pas contestée dans les 6 mois.</td>
+        <td>Dernier jour de travail effectif</td>
       </tr>
     </tbody>
   </table>
 
-  <h2 id="delais">Délais de remise</h2>
+  <h2 id="delais">Délais et modalités de remise</h2>
 
   <p>
-    Ces trois documents doivent être remis <strong>simultanément, au dernier jour
-    de travail effectif</strong> — c'est-à-dire à la fin du préavis si celui-ci
-    est effectué, ou au jour de la dispense de préavis si le salarié en est dispensé.
+    Ces trois documents doivent être remis <strong>simultanément, au dernier jour de
+    travail effectif</strong>. Ce dernier jour est :
+  </p>
+
+  <ul>
+    <li>
+      La <strong>date de fin de préavis</strong> si le salarié effectue son préavis
+    </li>
+    <li>
+      La <strong>date de notification de la dispense de préavis</strong> si l'employeur
+      dispense le salarié (ou la date convenue en cas de dispense demandée par le salarié
+      et accordée par l'employeur)
+    </li>
+    <li>
+      La <strong>date de signature de la convention</strong> de rupture conventionnelle
+      après le délai de rétractation et l'homologation par la DREETS
+    </li>
+    <li>
+      Le <strong>dernier jour d'exécution du CDD</strong> en cas de fin normale de
+      contrat à durée déterminée
+    </li>
+  </ul>
+
+  <p>
+    L'employeur peut remettre les documents en main propre ou les envoyer par courrier
+    (recommandé recommandé). Depuis 2022, l'attestation France Travail peut être
+    transmise directement de façon dématérialisée à France Travail par les employeurs
+    via la DSN (Déclaration Sociale Nominative).
+  </p>
+
+  <h2 id="sommes">Les sommes versées à la rupture</h2>
+
+  <p>
+    Selon la cause de rupture et la situation du salarié, plusieurs sommes peuvent
+    être dues en même temps que les documents de fin de contrat :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Somme</th>
+        <th>Démission</th>
+        <th>Licenciement</th>
+        <th>Rupture conv.</th>
+        <th>Fin CDD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Salaire du mois en cours</td>
+        <td>Oui</td>
+        <td>Oui</td>
+        <td>Oui</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de CP</td>
+        <td>Oui</td>
+        <td>Oui</td>
+        <td>Oui</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td>Indemnité de préavis non effectué</td>
+        <td>Non</td>
+        <td>Si dispensé par l'employeur</td>
+        <td>Non</td>
+        <td>Non (terme naturel)</td>
+      </tr>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>Non</td>
+        <td>Oui (≥ 8 mois ancienneté)</td>
+        <td>Non</td>
+        <td>Non</td>
+      </tr>
+      <tr>
+        <td>Indemnité spécifique de rupture conv.</td>
+        <td>Non</td>
+        <td>Non</td>
+        <td>Oui</td>
+        <td>Non</td>
+      </tr>
+      <tr>
+        <td>Indemnité de fin de CDD (10 %)</td>
+        <td>Non</td>
+        <td>Non</td>
+        <td>Non</td>
+        <td>Oui (en principe)</td>
+      </tr>
+      <tr>
+        <td>Prime de 13e mois / ancienneté proratisée</td>
+        <td>Si prévue</td>
+        <td>Si prévue</td>
+        <td>Si prévue</td>
+        <td>Si prévue</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="solde">Le solde de tout compte en détail</h2>
+
+  <p>
+    Le <strong>reçu pour solde de tout compte</strong> est un document récapitulatif
+    que l'employeur établit lors de la rupture du contrat. Il liste toutes les sommes
+    versées au salarié à l'occasion de la fin du contrat.
+  </p>
+
+  <h3>La valeur libératoire du solde</h3>
+
+  <p>
+    Si le salarié <strong>signe le solde de tout compte</strong>, ce reçu a une valeur
+    libératoire après un délai de <strong>6 mois</strong> à compter de sa signature
+    (art. L1234-20 du Code du travail). Cela signifie que l'employeur peut s'en prévaloir
+    comme d'une quittance pour les sommes qui y sont expressément mentionnées : le salarié
+    ne peut plus les réclamer au-delà de ce délai.
   </p>
 
   <p>
-    L'employeur peut les remettre en main propre ou par courrier. Depuis 2022,
-    l'attestation France Travail peut être transmise directement de façon
-    dématérialisée à France Travail par les employeurs de plus de 10 salariés.
+    Attention : la valeur libératoire ne joue que pour les sommes expressément mentionnées
+    sur le solde de tout compte. Elle ne s'applique pas aux créances non mentionnées
+    (par exemple, une prime oubliée ou des heures supplémentaires non comptabilisées),
+    ni aux actions en contesting la rupture elle-même (qui relèvent d'une prescription
+    distincte de 12 mois pour le licenciement).
   </p>
+
+  <h3>Conseils pour signer</h3>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>En cas de doute :</strong> vous pouvez signer le solde de tout compte
+      en ajoutant la mention <em>"sous réserves de tous mes droits"</em>. Cela neutralise
+      l'effet libératoire et vous laisse 3 ans pour réclamer les sommes manquantes.
+      Vous pouvez également refuser de signer : le salarié ne peut pas être contraint
+      de signer le solde de tout compte.
+    </div>
+  </div>
 
   <h2 id="recours">Recours en cas de non-remise</h2>
 
   <ol>
     <li>
-      <strong>Mise en demeure par LRAR</strong> — demandez la remise sous 8 jours
-      à votre ancien employeur
+      <strong>Mise en demeure par LRAR</strong> — demandez la remise des 3 documents
+      sous 8 jours à votre ancien employeur, en précisant que vous vous réservez le
+      droit de saisir les juridictions compétentes en cas de refus
     </li>
     <li>
-      <strong>Signalement à l'inspection du travail</strong> — elle peut intervenir
-      auprès de l'employeur récalcitrant
+      <strong>Signalement à l'inspection du travail</strong> — elle peut contraindre
+      l'employeur à remettre les documents sous peine de sanctions administratives
     </li>
     <li>
-      <strong>Conseil de prud'hommes</strong> — obtenir la remise sous astreinte
-      journalière et des dommages-intérêts pour le préjudice subi (retard ARE,
-      difficultés à retrouver un emploi)
+      <strong>Inscription à France Travail sans attestation</strong> — France Travail
+      peut vous permettre de vous inscrire provisoirement et de réclamer l'attestation
+      directement à l'employeur
+    </li>
+    <li>
+      <strong>Conseil de prud'hommes</strong> — pour obtenir la remise des documents
+      sous astreinte journalière et des dommages-intérêts pour le préjudice subi
+      (retard ARE, difficultés à retrouver un emploi, délai administratif)
     </li>
   </ol>
 
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F87" target="_blank" rel="noopener">
       Service-Public.fr — Documents remis à la fin du contrat de travail
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901218" target="_blank" rel="noopener">
+      Légifrance — Art. L1234-20 (solde de tout compte)
     </a>
   </p>
 

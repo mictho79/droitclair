@@ -2,32 +2,46 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition',  label: 'Qu\'est-ce que le barème Macron ?' },
-  { id: 'tableau',     label: 'Tableau des planchers et plafonds'  },
-  { id: 'exceptions',  label: 'Cas de nullité hors barème'         },
-  { id: 'faq',         label: 'Questions fréquentes'               },
+  { id: 'definition',  label: 'Qu\'est-ce que le barème Macron ?'        },
+  { id: 'tableau',     label: 'Tableau des planchers et plafonds 2026'    },
+  { id: 'calcul',      label: 'Comment calculer son indemnité estimée'    },
+  { id: 'exceptions',  label: 'Cas de nullité hors barème'                },
+  { id: 'cumul',       label: 'Cumul avec d\'autres indemnités'           },
+  { id: 'faq',         label: 'Questions fréquentes'                      },
 ];
 
 const summary = [
-  "Le barème Macron plafonne les indemnités accordées par le Conseil de prud'hommes en cas de licenciement sans cause réelle et sérieuse, selon l'ancienneté du salarié.",
-  "Il prévoit des planchers et plafonds en mois de salaire brut, avec des seuils réduits pour les entreprises de moins de 11 salariés jusqu'à 10 ans d'ancienneté.",
-  "Certains cas restent hors barème : licenciements nuls (discrimination, harcèlement, violation d'une liberté fondamentale) où le juge peut accorder plus.",
+  "Le barème Macron plafonne les indemnités accordées par le Conseil de prud'hommes en cas de licenciement sans cause réelle et sérieuse, selon l'ancienneté du salarié et la taille de l'entreprise.",
+  "Validé par la Cour de cassation (assemblée plénière, 11 mai 2022), il s'impose obligatoirement aux juges, qui ne peuvent plus s'en écarter au cas par cas.",
+  "Il ne s'applique pas aux licenciements nuls (discrimination, harcèlement, violation d'une liberté fondamentale) où le juge reste libre de fixer l'indemnisation.",
 ];
 
 const faq = [
   {
     question: "Le barème Macron est-il obligatoire pour les juges ?",
-    answer: "Oui, depuis la validation par la Cour de cassation (assemblée plénière, 11 mai 2022) et le Conseil constitutionnel, le barème s'impose aux juges du fond. Ils ne peuvent plus l'écarter au cas par cas pour accorder une indemnisation supérieure au plafond, sauf dans les cas de nullité du licenciement.",
+    answer: "Oui, depuis la validation par la Cour de cassation (assemblée plénière, 11 mai 2022) et le Conseil constitutionnel (décision du 21 mars 2018), le barème s'impose aux juges du fond. Ils ne peuvent plus l'écarter au cas par cas pour accorder une indemnisation supérieure au plafond, sauf dans les cas de nullité du licenciement expressément prévus par l'article L1235-3-1 du Code du travail.",
   },
   {
     question: "Peut-on obtenir plus que le plafond du barème ?",
-    answer: "Oui, mais uniquement dans les cas de licenciement nul : discrimination syndicale, harcèlement moral ou sexuel, violation d'une liberté fondamentale, licenciement d'un salarié protégé irrégulier. Dans ces hypothèses, le juge peut accorder une indemnisation supérieure au plafond du barème.",
+    answer: "Oui, mais uniquement dans les cas de licenciement nul : discrimination syndicale ou liée à une caractéristique personnelle, harcèlement moral ou sexuel, violation d'une liberté fondamentale (droit de grève, droit syndical, liberté d'expression...), licenciement d'un salarié protégé sans autorisation de l'inspection du travail, licenciement d'une femme enceinte, licenciement consécutif à un AT/MP. Dans ces hypothèses, le juge peut accorder une indemnité minimale de 6 mois de salaire, sans plafond.",
+  },
+  {
+    question: "Le barème s'applique-t-il aussi à l'indemnité de licenciement légale ?",
+    answer: "Non. Le barème Macron (art. L1235-3 CT) concerne uniquement les dommages-intérêts accordés par le juge pour licenciement sans cause réelle et sérieuse. L'indemnité légale de licenciement (calculée selon l'ancienneté) est due séparément et s'accumule avec les dommages-intérêts du barème Macron. En cas de licenciement abusif, le salarié peut donc percevoir les deux : l'indemnité légale + les dommages-intérêts dans les limites du barème.",
+  },
+  {
+    question: "Quel est le 'salaire de référence' utilisé pour le barème Macron ?",
+    answer: "Le salaire de référence est le salaire mensuel brut moyen des 12 ou 3 derniers mois (selon ce qui est le plus favorable au salarié), calculé selon les mêmes règles que pour l'indemnité légale de licenciement. Il inclut le salaire de base, les primes mensuelles régulières, mais exclut généralement les remboursements de frais et les primes exceptionnelles.",
+  },
+  {
+    question: "Le barème Macron s'applique-t-il dans les DOM-TOM ?",
+    answer: "Oui. Le barème Macron s'applique sur l'ensemble du territoire français, y compris les départements et régions d'outre-mer (DROM). Les dispositions peuvent toutefois varier selon les conventions collectives locales. Le barème ne s'applique pas dans les collectivités d'outre-mer qui ont leur propre droit du travail (comme la Polynésie française ou la Nouvelle-Calédonie).",
   },
 ];
 
 const relatedArticles = [
   {
-    title:        'Contester son licenciement : délais, procédure et barème',
+    title:        'Contester son licenciement : délais, procédure et indemnités',
     href:         '/contester-licenciement/',
     category:     'Licenciement',
     categorySlug: 'licenciement',
@@ -39,28 +53,30 @@ const relatedArticles = [
     categorySlug: 'licenciement',
   },
   {
-    title:        'Licenciement pour faute grave : procédure et conséquences',
-    href:         '/licenciement-faute-grave/',
+    title:        'Conseil de prud\'hommes : saisine et procédure',
+    href:         '/prudhommes/',
     category:     'Licenciement',
     categorySlug: 'licenciement',
   },
 ];
 
 const sidebarLinks = [
-  { title: 'Conseil de prud\'hommes',          href: '/prudhommes/'            },
-  { title: 'Contester son licenciement',        href: '/contester-licenciement/' },
-  { title: 'Indemnité de licenciement',         href: '/indemnite-licenciement/' },
+  { title: 'Conseil de prud\'hommes',          href: '/prudhommes/'                                                            },
+  { title: 'Contester son licenciement',        href: '/contester-licenciement/'                                               },
+  { title: 'Indemnité de licenciement',         href: '/indemnite-licenciement/'                                               },
+  { title: 'Légifrance — Art. L1235-3',         href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762163'  },
+  { title: 'Légifrance — Art. L1235-3-1',       href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037073358'  },
 ];
 ---
 
 <ArticleLayout
-  title="Barème Macron 2026 : planchers et plafonds d'indemnités prud'homales"
-  description="Barème Macron 2026 : tableau complet des planchers et plafonds d'indemnités en cas de licenciement abusif, cas de nullité hors barème et jurisprudence récente."
+  title="Barème Macron 2026 : tableau complet et calcul des indemnités prud'homales"
+  description="Barème Macron 2026 (art. L1235-3 CT) : tableau des planchers et plafonds en mois de salaire selon ancienneté, cas de nullité hors barème, cumul avec l'indemnité légale de licenciement."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Licenciement"
   categorySlug="licenciement"
-  readingTime={6}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -71,26 +87,40 @@ const sidebarLinks = [
   <h2 id="definition">Qu'est-ce que le barème Macron ?</h2>
 
   <p>
-    Le <strong>barème Macron</strong> est un système de plafonnement des indemnités
-    accordées par le Conseil de prud'hommes lorsqu'un licenciement est jugé
-    <strong>sans cause réelle et sérieuse</strong>. Instauré par l'ordonnance
-    n°2017-1387 du 22 septembre 2017, il est codifié à l'article <strong>L1235-3
-    du Code du travail</strong>.
+    Le <strong>barème Macron</strong> est un système de plafonnement des dommages-intérêts
+    accordés par le Conseil de prud'hommes lorsqu'un licenciement est jugé
+    <strong>sans cause réelle et sérieuse</strong>. Il est codifié à l'article
+    <strong>L1235-3 du Code du travail</strong>, issu de l'ordonnance n°2017-1387 du
+    22 septembre 2017 (ordonnance Macron).
   </p>
 
   <p>
-    Avant ce barème, le juge fixait librement le montant des dommages-intérêts.
-    Désormais, il est tenu par des <strong>planchers et plafonds exprimés en mois
-    de salaire brut</strong>, variables selon l'ancienneté du salarié et la taille
-    de l'entreprise.
+    Avant son instauration, le juge prud'homal était libre de fixer le montant des
+    dommages-intérêts selon l'appréciation du préjudice réel du salarié. Depuis 2017,
+    il est tenu par des <strong>planchers et plafonds</strong> exprimés en mois de
+    salaire brut, qui varient selon :
   </p>
 
-  <h2 id="tableau">Tableau des planchers et plafonds</h2>
+  <ul>
+    <li>L'<strong>ancienneté du salarié</strong> dans l'entreprise</li>
+    <li>La <strong>taille de l'entreprise</strong> (moins de 11 salariés ou 11 et plus)
+    — la distinction ne joue que jusqu'à 10 ans d'ancienneté</li>
+  </ul>
 
   <p>
-    Les montants ci-dessous s'expriment en <strong>mois de salaire brut de référence</strong>.
-    Le plancher « petites entreprises » s'applique aux entreprises de
-    <strong>moins de 11 salariés</strong> jusqu'à 10 ans d'ancienneté.
+    Ce barème a été contesté devant plusieurs juridictions, mais il a été validé par
+    le <strong>Conseil constitutionnel</strong> (21 mars 2018) et par l'<strong>assemblée
+    plénière de la Cour de cassation</strong> (11 mai 2022). Il s'impose désormais
+    impérativement à tous les juges du fond.
+  </p>
+
+  <h2 id="tableau">Tableau des planchers et plafonds 2026</h2>
+
+  <p>
+    Les montants s'expriment en <strong>mois de salaire brut de référence</strong>.
+    Le plancher "petites entreprises" s'applique aux entreprises de
+    <strong>moins de 11 salariés</strong> pour les 10 premières années d'ancienneté.
+    Au-delà de 10 ans, le plancher est identique quelle que soit la taille.
   </p>
 
   <table>
@@ -119,39 +149,116 @@ const sidebarLinks = [
       <tr><td>15 ans</td><td>3 mois</td><td>3 mois</td><td>13 mois</td></tr>
       <tr><td>20 ans</td><td>3 mois</td><td>3 mois</td><td>15,5 mois</td></tr>
       <tr><td>25 ans</td><td>3 mois</td><td>3 mois</td><td>17,5 mois</td></tr>
-      <tr><td>30 ans et +</td><td>3 mois</td><td>3 mois</td><td>20 mois</td></tr>
+      <tr><td>30 ans et plus</td><td>3 mois</td><td>3 mois</td><td>20 mois</td></tr>
     </tbody>
   </table>
 
   <p class="source-ref">
     Source :
     <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762163" target="_blank" rel="noopener">
-      Légifrance — art. L1235-3 Code du travail
+      Légifrance — Art. L1235-3 du Code du travail
     </a>
   </p>
+
+  <h2 id="calcul">Comment calculer son indemnité estimée</h2>
+
+  <p>
+    Le <strong>salaire de référence</strong> utilisé est le salaire brut mensuel moyen
+    des 12 derniers mois (ou des 3 derniers mois si plus favorable), calculé selon
+    les mêmes règles que l'indemnité légale de licenciement.
+  </p>
+
+  <p>Exemple : salarié avec 7 ans d'ancienneté dans une entreprise de 15 salariés,
+  salaire brut de référence de 3 000 €/mois :</p>
+
+  <ul>
+    <li>Plancher : 3 mois × 3 000 € = <strong>9 000 €</strong> minimum</li>
+    <li>Plafond : 8 mois × 3 000 € = <strong>24 000 €</strong> maximum</li>
+    <li>Le juge fixe le montant entre ces bornes, selon l'appréciation du préjudice</li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Ces dommages-intérêts s'ajoutent à l'<strong>indemnité légale de licenciement</strong>
+      (distincte, calculée sur l'ancienneté), à l'indemnité compensatrice de préavis
+      (si le préavis n'a pas été effectué) et à l'indemnité compensatrice de congés
+      payés.
+    </div>
+  </div>
 
   <h2 id="exceptions">Cas de nullité hors barème</h2>
 
   <p>
-    Le barème <strong>ne s'applique pas</strong> aux licenciements prononcés en
-    violation d'une liberté fondamentale ou entachés de nullité.
-    Dans ces cas, le juge peut allouer une indemnisation supérieure au plafond
-    (article <strong>L1235-3-1</strong> du Code du travail).
+    L'article <strong>L1235-3-1 du Code du travail</strong> prévoit que le barème
+    <strong>ne s'applique pas</strong> aux licenciements prononcés en violation d'une
+    liberté fondamentale ou entachés d'une cause de nullité. Dans ces cas :
   </p>
 
   <ul>
-    <li>Licenciement discriminatoire (origine, sexe, âge, religion, handicap…)</li>
-    <li>Harcèlement moral ou sexuel</li>
-    <li>Licenciement en violation d'une liberté fondamentale (droit de grève, liberté d'expression…)</li>
-    <li>Licenciement d'un salarié protégé sans autorisation de l'inspection du travail</li>
-    <li>Licenciement d'une salariée enceinte</li>
-    <li>Licenciement consécutif à un accident du travail ou maladie professionnelle</li>
+    <li>Le juge peut accorder une <strong>indemnité minimale de 6 mois de salaire</strong>, sans plafond</li>
+    <li>La réintégration du salarié peut être ordonnée</li>
   </ul>
 
+  <p>Cas concernés :</p>
+
+  <ul>
+    <li>Licenciement <strong>discriminatoire</strong> (origine, sexe, âge, religion, opinions politiques, appartenance syndicale, handicap, situation de famille, grossesse, orientation sexuelle…)</li>
+    <li>Licenciement lié au <strong>harcèlement moral ou sexuel</strong></li>
+    <li>Licenciement en violation du <strong>droit de grève</strong> ou de la <strong>liberté syndicale</strong></li>
+    <li>Licenciement d'un <strong>salarié protégé</strong> sans autorisation de l'inspection du travail</li>
+    <li>Licenciement d'une <strong>salariée en état de grossesse</strong></li>
+    <li>Licenciement consécutif à un <strong>accident du travail ou maladie professionnelle</strong> (pendant la période de protection)</li>
+    <li>Licenciement en violation d'une <strong>liberté fondamentale</strong> (liberté d'expression, droit d'alerte, etc.)</li>
+  </ul>
+
+  <h2 id="cumul">Cumul avec d'autres indemnités</h2>
+
+  <p>
+    En cas de licenciement sans cause réelle et sérieuse, le salarié peut cumuler
+    plusieurs types d'indemnités :
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Indemnité</th><th>Base légale</th><th>Soumis au barème ?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dommages-intérêts pour licenciement abusif</td>
+        <td>Art. L1235-3 CT</td>
+        <td>Oui (plancher + plafond)</td>
+      </tr>
+      <tr>
+        <td>Indemnité légale de licenciement</td>
+        <td>Art. L1234-9 CT</td>
+        <td>Non (calcul indépendant)</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de préavis</td>
+        <td>Art. L1234-5 CT</td>
+        <td>Non</td>
+      </tr>
+      <tr>
+        <td>Indemnité compensatrice de congés payés</td>
+        <td>Art. L3141-28 CT</td>
+        <td>Non</td>
+      </tr>
+      <tr>
+        <td>Dommages-intérêts pour irrégularité de procédure</td>
+        <td>Art. L1235-2 CT</td>
+        <td>Non (maxi 1 mois)</td>
+      </tr>
+    </tbody>
+  </table>
+
   <p class="source-ref">
-    Source :
+    Sources :
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762163" target="_blank" rel="noopener">
+      Légifrance — Art. L1235-3 (barème)
+    </a> —
     <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037073358" target="_blank" rel="noopener">
-      Légifrance — art. L1235-3-1 Code du travail
+      Légifrance — Art. L1235-3-1 (cas de nullité)
     </a>
   </p>
 

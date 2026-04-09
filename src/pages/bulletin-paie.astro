@@ -2,39 +2,53 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'mentions',     label: 'Mentions obligatoires'                  },
-  { id: 'lecture',      label: 'Comment lire votre bulletin de paie'    },
-  { id: 'conservation', label: 'Conservation et valeur juridique'       },
-  { id: 'faq',          label: 'Questions fréquentes'                   },
+  { id: 'mentions',     label: 'Mentions obligatoires'                          },
+  { id: 'lecture',      label: 'Comment lire votre bulletin de paie'            },
+  { id: 'erreurs',      label: 'Détecter et corriger une erreur'                },
+  { id: 'electronique', label: 'Bulletin de paie électronique'                  },
+  { id: 'conservation', label: 'Conservation et valeur juridique'               },
+  { id: 'faq',          label: 'Questions fréquentes'                           },
 ];
 
 const summary = [
   "Le bulletin de paie doit comporter des mentions obligatoires définies par le Code du travail, dont l'identité des parties, la convention collective, les cotisations et le net à payer.",
-  "Depuis 2017, le bulletin simplifié est obligatoire : il regroupe les cotisations par grandes catégories pour plus de lisibilité.",
-  "Le salarié doit conserver ses bulletins de paie sans limitation de durée — ils sont indispensables pour faire valoir ses droits (retraite, chômage, litiges).",
+  "Depuis janvier 2017, le bulletin simplifié est obligatoire : il regroupe les cotisations par grandes catégories pour plus de lisibilité, tout en indiquant le détail en ligne.",
+  "Le salarié doit conserver ses bulletins de paie sans limitation de durée — ils sont indispensables pour faire valoir ses droits (retraite, chômage, litiges prud'homaux).",
 ];
 
 const faq = [
   {
     question: "Mon employeur peut-il refuser de me remettre un bulletin de paie ?",
-    answer: "Non. La remise du bulletin de paie est une obligation légale (art. L3243-2 du Code du travail). L'employeur qui s'y refuse commet une infraction pénale et s'expose à des poursuites. Si vous ne recevez pas votre bulletin, envoyez une mise en demeure par recommandé. En cas de persistance, saisissez l'inspection du travail ou le Conseil de prud'hommes.",
+    answer: "Non. La remise du bulletin de paie est une obligation légale (art. L3243-2 du Code du travail). L'employeur qui s'y refuse commet une infraction pénale et s'expose à des poursuites. Si vous ne recevez pas votre bulletin, envoyez une mise en demeure par recommandé avec accusé de réception. En cas de persistance, saisissez l'inspection du travail ou le Conseil de prud'hommes. Le préjudice causé par l'absence de bulletin ouvre droit à des dommages-intérêts.",
   },
   {
     question: "Puis-je demander à recevoir mes bulletins de paie par email ?",
-    answer: "Oui, depuis 2017 le bulletin de paie peut être remis sous forme électronique, sauf refus exprès du salarié. L'employeur doit s'assurer de la disponibilité et de l'intégrité du document. Si vous souhaitez recevoir vos bulletins en version papier, vous pouvez vous y opposer à tout moment en informant votre employeur.",
+    answer: "Oui, depuis 2017 le bulletin de paie peut être remis sous forme électronique, sauf refus exprès du salarié. L'employeur doit s'assurer de la disponibilité et de l'intégrité du document (coffre-fort numérique). Si vous souhaitez recevoir vos bulletins en version papier, vous pouvez vous y opposer à tout moment en informant votre employeur par écrit. En pratique, la remise électronique est la norme dans la plupart des entreprises.",
+  },
+  {
+    question: "Comment obtenir mes anciens bulletins de paie si je ne les ai plus ?",
+    answer: "Vous pouvez les réclamer à votre ancien employeur, qui a l'obligation de les conserver pendant 5 ans (prescription de droit commun). Envoyez une lettre recommandée en précisant les mois souhaités. Si l'employeur a disparu (liquidation judiciaire), contactez le greffe du tribunal de commerce pour obtenir les coordonnées du mandataire liquidateur. En dernier recours, les données de salaire figurent sur votre relevé de carrière disponible sur moncompteformation.gouv.fr ou Info Retraite.",
+  },
+  {
+    question: "Que signifie le 'net imposable' sur mon bulletin de paie ?",
+    answer: "Le net imposable est le salaire net avant déduction du prélèvement à la source (PAS). C'est la somme que vous devez déclarer aux impôts chaque année. Il est supérieur au net à payer car la CSG non déductible (2,40 %) et la CRDS (0,50 %) sont déduites de la fiche de paie mais restent dans la base imposable. Le net à payer est le montant effectivement versé sur votre compte bancaire, après déduction du PAS.",
+  },
+  {
+    question: "Mon employeur peut-il modifier mon bulletin de paie rétroactivement ?",
+    answer: "L'employeur peut corriger des erreurs matérielles sur les bulletins de paie passés, mais il ne peut pas modifier rétroactivement un accord sur la rémunération. Si une correction aboutit à un trop-perçu, l'employeur peut en demander le remboursement dans la limite d'un an pour les créances salariales. Si la correction conduit à vous payer davantage (rappel de salaire), le délai de prescription est de 3 ans.",
   },
 ];
 
 const relatedArticles = [
   {
-    title:        'Congés payés : calcul, acquisition et droits',
-    href:         '/conges-payes-calcul/',
+    title:        'Heures supplémentaires : majoration et droits',
+    href:         '/heures-supplementaires/',
     category:     'Droits du salarié',
     categorySlug: 'droits-salarie',
   },
   {
-    title:        'Heures supplémentaires : majoration et droits',
-    href:         '/heures-supplementaires/',
+    title:        'Calcul salaire net : taux de cotisations 2026',
+    href:         '/calcul-salaire-net/',
     category:     'Droits du salarié',
     categorySlug: 'droits-salarie',
   },
@@ -47,20 +61,21 @@ const relatedArticles = [
 ];
 
 const sidebarLinks = [
-  { title: 'Convention collective',         href: '/convention-collective/'                                                    },
-  { title: 'Calcul salaire net',            href: '/calcul-salaire-net/'                                                      },
+  { title: 'Convention collective',          href: '/convention-collective/'                                                   },
+  { title: 'Calcul salaire net',             href: '/calcul-salaire-net/'                                                     },
   { title: 'Service-Public — Bulletin paie', href: 'https://www.service-public.fr/particuliers/vosdroits/F559'               },
+  { title: 'Légifrance — Art. R3243-1',      href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020744'    },
 ];
 ---
 
 <ArticleLayout
-  title="Bulletin de paie : mentions obligatoires et comment le lire en 2026"
-  description="Bulletin de paie 2026 : mentions obligatoires, lecture du bulletin simplifié (salaire brut, cotisations, net à payer), conservation sans limite de durée et recours en cas d'erreur."
+  title="Bulletin de paie : mentions obligatoires, lecture et conservation en 2026"
+  description="Bulletin de paie 2026 : mentions obligatoires (art. R3243-1), lecture du bulletin simplifié, comment détecter une erreur, bulletin électronique et conservation sans limite de durée."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Droits du salarié"
   categorySlug="droits-salarie"
-  readingTime={6}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -71,63 +86,257 @@ const sidebarLinks = [
   <h2 id="mentions">Mentions obligatoires</h2>
 
   <p>
-    Le bulletin de paie doit obligatoirement mentionner (art. <strong>R3243-1
-    du Code du travail</strong>) :
+    Le bulletin de paie doit obligatoirement mentionner un ensemble d'informations
+    définies par l'article <strong>R3243-1 du Code du travail</strong>. Leur absence
+    constitue une infraction pénale passible d'une amende.
   </p>
 
+  <h3>Informations sur l'employeur</h3>
+
   <ul>
-    <li>Nom et adresse de l'employeur, numéro SIRET, code APE/NAF</li>
-    <li>Intitulé et référence de la <strong>convention collective applicable</strong> (code IDCC)</li>
-    <li>Nom, emploi, niveau/coefficient du salarié</li>
-    <li>Période et nombre d'heures travaillées</li>
-    <li>Nature et montant des <strong>éléments de rémunération</strong> (salaire de base, heures sup, primes)</li>
-    <li>Montant des <strong>cotisations et contributions sociales</strong> (part salariale et patronale)</li>
-    <li><strong>Net à payer avant impôt sur le revenu</strong></li>
-    <li>Montant du <strong>prélèvement à la source</strong> (PAS)</li>
-    <li><strong>Net payé</strong> au salarié</li>
-    <li>Date de paiement et cumuls annuels</li>
+    <li><strong>Nom et adresse de l'employeur</strong></li>
+    <li><strong>Numéro SIRET</strong> et code APE/NAF (identifiant de l'activité)</li>
+    <li><strong>Intitulé et référence de la convention collective applicable</strong> — le code IDCC
+    permet d'identifier la convention avec précision</li>
+    <li>Le cas échéant, l'adresse de l'établissement où le salarié est employé</li>
   </ul>
+
+  <h3>Informations sur le salarié</h3>
+
+  <ul>
+    <li><strong>Nom et prénom</strong> du salarié</li>
+    <li><strong>Emploi occupé</strong> (intitulé du poste tel que défini dans le contrat)</li>
+    <li><strong>Niveau ou coefficient hiérarchique</strong> selon la classification de
+    la convention collective</li>
+    <li><strong>Période de paie</strong> concernée</li>
+    <li><strong>Nombre d'heures travaillées</strong> et, le cas échéant, nombre d'heures
+    supplémentaires ou complémentaires effectuées</li>
+  </ul>
+
+  <h3>Éléments de rémunération</h3>
+
+  <ul>
+    <li><strong>Salaire de base brut</strong> correspondant à l'horaire mensuel de référence</li>
+    <li>Nature et montant de tous les <strong>compléments de salaire</strong>
+    (primes, commissions, avantages en nature, heures supplémentaires)</li>
+    <li>Montant de la <strong>rémunération brute totale</strong></li>
+    <li>Montant et taux des <strong>cotisations et contributions sociales</strong>
+    (parts salariale et patronale depuis 2018)</li>
+    <li><strong>Net à payer avant impôt sur le revenu</strong></li>
+    <li>Montant du <strong>prélèvement à la source</strong> (PAS) et taux appliqué</li>
+    <li><strong>Net payé au salarié</strong> (montant viré sur le compte)</li>
+    <li><strong>Date de paiement</strong></li>
+    <li><strong>Cumuls annuels</strong> (salaire brut, net imposable, net à payer)</li>
+  </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Depuis janvier 2018, l'employeur doit également faire figurer le montant total
+      des cotisations et contributions patronales, afin de permettre au salarié de
+      connaître le <strong>coût global de son emploi</strong> pour l'entreprise.
+    </div>
+  </div>
 
   <h2 id="lecture">Comment lire votre bulletin de paie</h2>
 
   <p>
-    Depuis janvier 2017, le <strong>bulletin de paie simplifié</strong> est
-    obligatoire. Il regroupe les cotisations en grandes rubriques pour plus
-    de lisibilité :
+    Depuis janvier 2017, le <strong>bulletin de paie simplifié</strong> est obligatoire
+    (issu du décret du 25 février 2016, pris en application de la loi Rebsamen de 2015).
+    Il regroupe les cotisations en grandes rubriques thématiques pour plus de lisibilité,
+    tout en maintenant le détail consultable sur demande ou sur un document annexe.
   </p>
 
   <table>
     <thead>
-      <tr><th>Rubrique</th><th>Ce qu'elle regroupe</th></tr>
+      <tr><th>Rubrique</th><th>Ce qu'elle regroupe</th><th>Qui cotise ?</th></tr>
     </thead>
     <tbody>
-      <tr><td>Santé</td><td>Assurance maladie, mutuelle, prévoyance</td></tr>
-      <tr><td>Accidents du travail</td><td>Cotisation AT/MP (uniquement patronale)</td></tr>
-      <tr><td>Retraite</td><td>Retraite de base (CNAV), retraite complémentaire (AGIRC-ARRCO)</td></tr>
-      <tr><td>Famille</td><td>Allocations familiales (uniquement patronale)</td></tr>
-      <tr><td>Chômage</td><td>Assurance chômage (uniquement patronale depuis 2018)</td></tr>
-      <tr><td>Autres</td><td>CSG, CRDS, formation professionnelle, taxe d'apprentissage</td></tr>
+      <tr>
+        <td><strong>Santé</strong></td>
+        <td>Assurance maladie, maternité, invalidité, décès, mutuelle, prévoyance</td>
+        <td>Salarié + employeur</td>
+      </tr>
+      <tr>
+        <td><strong>Accidents du travail / Maladies professionnelles</strong></td>
+        <td>Cotisation AT/MP</td>
+        <td>Employeur uniquement</td>
+      </tr>
+      <tr>
+        <td><strong>Retraite</strong></td>
+        <td>Retraite de base (CNAV/Sécurité sociale), retraite complémentaire obligatoire (AGIRC-ARRCO)</td>
+        <td>Salarié + employeur</td>
+      </tr>
+      <tr>
+        <td><strong>Famille</strong></td>
+        <td>Allocations familiales, aide au logement (FNAL)</td>
+        <td>Employeur uniquement</td>
+      </tr>
+      <tr>
+        <td><strong>Assurance chômage</strong></td>
+        <td>Cotisation chômage (ARE) et AGS (garantie des salaires)</td>
+        <td>Employeur uniquement depuis 2018</td>
+      </tr>
+      <tr>
+        <td><strong>Autres contributions dues par l'employeur</strong></td>
+        <td>Formation professionnelle (OPCO), taxe d'apprentissage, dialogue social</td>
+        <td>Employeur uniquement</td>
+      </tr>
+      <tr>
+        <td><strong>CSG / CRDS</strong></td>
+        <td>Contribution Sociale Généralisée et Contribution au Remboursement de la Dette Sociale</td>
+        <td>Salarié uniquement</td>
+      </tr>
     </tbody>
   </table>
+
+  <p>
+    La CSG et la CRDS méritent une attention particulière : elles sont prélevées sur
+    <strong>98,25 % du salaire brut</strong> (et non 100 %) pour tenir compte des frais
+    professionnels forfaitaires. La CSG déductible (6,80 %) vient en déduction du revenu
+    imposable ; la CSG non déductible (2,40 %) et la CRDS (0,50 %) sont imposables.
+  </p>
+
+  <h2 id="erreurs">Détecter et corriger une erreur</h2>
+
+  <p>
+    Les erreurs sur les bulletins de paie sont plus fréquentes qu'on ne le pense :
+    oubli d'heures supplémentaires, majoration incorrecte, prime non versée, coefficient
+    hiérarchique déclassé, ancienneté non prise en compte... Voici comment les repérer
+    et les corriger.
+  </p>
+
+  <h3>Points à vérifier chaque mois</h3>
+
+  <ul>
+    <li><strong>Salaire de base</strong> — correspond-il au salaire contractuel ?
+    A-t-il été revalorisé à la date prévue (augmentation, nouvel accord de branche) ?</li>
+    <li><strong>Convention collective</strong> — le code IDCC affiché est-il le bon ?
+    Votre coefficient correspond-il à votre poste réel ?</li>
+    <li><strong>Heures supplémentaires</strong> — sont-elles toutes comptabilisées ?
+    Les majorations (25 % pour les 8 premières heures, 50 % au-delà) sont-elles correctes ?</li>
+    <li><strong>Primes</strong> — prime d'ancienneté, prime de vacances, 13e mois :
+    vérifiez que les montants correspondent à ceux prévus dans votre contrat ou la
+    convention collective</li>
+    <li><strong>Net à payer</strong> — comparez avec le virement effectivement reçu
+    sur votre compte</li>
+  </ul>
+
+  <h3>Procédure en cas d'erreur</h3>
+
+  <ol>
+    <li>
+      <strong>Signalement à l'employeur</strong> — commencez par un échange écrit
+      (email ou courrier) en exposant l'erreur constatée et en demandant une régularisation
+      sur le prochain bulletin
+    </li>
+    <li>
+      <strong>Mise en demeure par LRAR</strong> — si l'employeur ne donne pas suite
+      sous 15 jours, envoyez une lettre recommandée avec accusé de réception en réclamant
+      le versement des sommes dues et la correction du bulletin
+    </li>
+    <li>
+      <strong>Saisine de l'inspection du travail</strong> — elle peut intervenir et
+      rappeler l'employeur à ses obligations légales
+    </li>
+    <li>
+      <strong>Conseil de prud'hommes</strong> — en cas de refus persistant, le CPH peut
+      condamner l'employeur à payer les sommes dues (rappel de salaire), majorées
+      d'intérêts légaux. Le délai de prescription pour réclamer des salaires impayés
+      est de <strong>3 ans</strong> (art. L3245-1 du Code du travail)
+    </li>
+  </ol>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Attention à la prescription :</strong> vous disposez de 3 ans pour
+      réclamer des salaires impayés devant les prud'hommes. Ne tardez pas à agir
+      si vous constatez des erreurs récurrentes sur plusieurs mois.
+    </div>
+  </div>
+
+  <h2 id="electronique">Bulletin de paie électronique</h2>
+
+  <p>
+    Depuis la loi du 8 août 2016 et le décret du 16 décembre 2016, l'employeur peut
+    remettre le bulletin de paie sous forme <strong>électronique</strong>, sauf si le
+    salarié s'y oppose (art. <strong>L3243-2 du Code du travail</strong>).
+  </p>
+
+  <p>
+    L'employeur doit garantir :
+  </p>
+
+  <ul>
+    <li>La <strong>disponibilité</strong> du bulletin pendant au moins 50 ans ou jusqu'aux
+    75 ans du salarié (via un coffre-fort numérique agréé)</li>
+    <li>L'<strong>intégrité</strong> du document (impossibilité de modification)</li>
+    <li>La <strong>confidentialité</strong> des données</li>
+    <li>L'<strong>accessibilité</strong> pour le salarié à tout moment</li>
+  </ul>
+
+  <p>
+    Si vous quittez l'entreprise, vous conservez l'accès à votre coffre-fort numérique
+    individuel pendant au moins un an après la rupture du contrat. Il est fortement
+    conseillé de <strong>télécharger et sauvegarder</strong> tous vos bulletins avant
+    cette expiration.
+  </p>
 
   <h2 id="conservation">Conservation et valeur juridique</h2>
 
   <p>
-    Le salarié doit conserver ses bulletins de paie <strong>sans limitation de durée</strong>
-    (art. L3243-4 du Code du travail). Ils sont indispensables pour :
+    L'article <strong>L3243-4 du Code du travail</strong> dispose que le salarié peut
+    conserver ses bulletins de paie <strong>sans limitation de durée</strong>. Il s'agit
+    d'un droit, non d'une obligation — mais dans la pratique, les conserver toute votre
+    vie est vivement recommandé pour plusieurs raisons cruciales.
   </p>
 
+  <h3>Pourquoi conserver ses bulletins de paie à vie</h3>
+
   <ul>
-    <li>Calculer et vérifier ses droits à la <strong>retraite</strong></li>
-    <li>Calculer l'indemnité de licenciement ou de rupture conventionnelle</li>
-    <li>Prouver un salaire en cas de litige aux prud'hommes</li>
-    <li>Justifier de revenus pour un crédit ou une location</li>
+    <li>
+      <strong>Retraite</strong> — vos bulletins constituent la preuve de vos salaires
+      cotisés. En cas d'erreur sur votre relevé de carrière (disponible sur
+      info-retraite.fr), seuls vos bulletins permettent de prouver et corriger l'anomalie.
+      Les erreurs de carrière non corrigées peuvent réduire définitivement votre pension.
+    </li>
+    <li>
+      <strong>Litige prud'homal</strong> — en cas de contentieux avec un ancien employeur,
+      les bulletins sont la preuve principale de votre rémunération, ancienneté et statut
+    </li>
+    <li>
+      <strong>Indemnité de licenciement ou rupture conventionnelle</strong> — le calcul
+      se base sur les 12 derniers mois de salaire brut. Des bulletins erronés peuvent
+      conduire à une indemnité sous-évaluée
+    </li>
+    <li>
+      <strong>Allocation chômage (ARE)</strong> — France Travail calcule l'ARE sur la
+      base des salaires des 24 derniers mois : des bulletins détaillés permettent de
+      vérifier et contester un calcul erroné
+    </li>
+    <li>
+      <strong>Dossiers bancaires ou immobiliers</strong> — les bulletins des 3 derniers
+      mois sont exigés pour tout crédit immobilier ou dossier de location
+    </li>
   </ul>
 
+  <h3>Comment bien les conserver</h3>
+
+  <p>
+    Pour les bulletins papier, scannez-les et stockez les fichiers PDF dans plusieurs
+    endroits (cloud sécurisé, disque dur externe). Pour les bulletins électroniques,
+    téléchargez-les depuis votre coffre-fort numérique employeur et sauvegardez-les
+    avant toute fin de contrat. Classez-les chronologiquement par employeur.
+  </p>
+
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F559" target="_blank" rel="noopener">
       Service-Public.fr — Bulletin de paie
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020744" target="_blank" rel="noopener">
+      Légifrance — Art. R3243-1 du Code du travail
     </a>
   </p>
 

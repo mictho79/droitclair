@@ -2,27 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'role',       label: 'Rôle du Conseil de prud\'hommes'   },
-  { id: 'saisine',    label: 'Comment saisir le CPH'             },
-  { id: 'procedure',  label: 'Déroulement de la procédure'       },
-  { id: 'delais',     label: 'Délais et prescription'            },
-  { id: 'faq',        label: 'Questions fréquentes'              },
+  { id: 'role',        label: 'Rôle et compétence du CPH'              },
+  { id: 'saisine',     label: 'Comment saisir le CPH'                  },
+  { id: 'procedure',   label: 'Déroulement de la procédure'            },
+  { id: 'delais',      label: 'Délais de prescription'                 },
+  { id: 'resultats',   label: 'Résultats et exécution du jugement'     },
+  { id: 'faq',         label: 'Questions fréquentes'                   },
 ];
 
 const summary = [
-  "Le Conseil de prud'hommes (CPH) est la juridiction compétente pour régler les litiges individuels entre employeurs et salariés nés du contrat de travail.",
-  "La saisine est gratuite et peut se faire sans avocat, par formulaire Cerfa ou par voie électronique auprès du greffe du tribunal.",
-  "La procédure comporte une phase de conciliation obligatoire puis, en cas d'échec, une audience de jugement devant le bureau de jugement.",
+  "Le Conseil de prud'hommes (CPH) est la juridiction paritaire compétente pour régler les litiges individuels entre employeurs et salariés nés du contrat de travail.",
+  "La saisine est gratuite et peut se faire sans avocat. La procédure comprend une phase de conciliation obligatoire (BCO) puis, en cas d'échec, une audience de jugement.",
+  "Les délais de prescription varient selon la nature du litige : 12 mois pour contester un licenciement, 3 ans pour réclamer des salaires impayés, 5 ans pour les discriminations.",
 ];
 
 const faq = [
   {
     question: "Faut-il un avocat pour aller aux prud'hommes ?",
-    answer: "Non, la représentation par un avocat n'est pas obligatoire devant le Conseil de prud'hommes. Le salarié peut se défendre seul ou se faire assister par un représentant syndical (délégué syndical, défenseur syndical). L'avocat est toutefois conseillé pour les dossiers complexes ou les montants importants. En appel, la représentation par avocat devient obligatoire.",
+    answer: "Non, la représentation par un avocat n'est pas obligatoire devant le Conseil de prud'hommes en première instance. Le salarié peut se défendre seul ou se faire assister par un délégué syndical, un représentant de son syndicat, ou un défenseur syndical (liste disponible en DREETS). L'avocat est toutefois vivement conseillé pour les dossiers complexes, les montants importants, ou si l'employeur est représenté. En appel devant la Cour d'appel, la représentation par avocat devient obligatoire.",
   },
   {
     question: "Quel délai pour contester un licenciement aux prud'hommes ?",
-    answer: "Le délai de prescription est de 12 mois à compter de la notification du licenciement pour contester sa cause réelle et sérieuse (art. L1471-1 du Code du travail). Pour les actions en paiement de salaires, le délai est de 3 ans. Pour les discriminations, il est de 5 ans. Ces délais sont des délais de forclusion : passé ce terme, l'action est irrecevable.",
+    answer: "Le délai de prescription pour contester la cause réelle et sérieuse d'un licenciement est de 12 mois à compter de la notification du licenciement (art. L1471-1 du Code du travail). Ce délai s'applique aussi pour contester la procédure de licenciement. Pour réclamer des salaires impayés, heures supplémentaires ou primes, le délai est de 3 ans. Pour les discriminations et le harcèlement, il est de 5 ans. Ces délais sont des délais de forclusion (extinction du droit).",
+  },
+  {
+    question: "Peut-on saisir le CPH en référé pour obtenir une décision rapide ?",
+    answer: "Oui. Le CPH dispose d'une section référé qui peut statuer en urgence, notamment pour les cas de remise de documents sous astreinte (bulletin de paie, certificat de travail, attestation France Travail), d'exécution d'une obligation claire non sérieusement contestable, ou de cessation d'un trouble manifestement illicite. Le référé peut rendre une décision en quelques semaines, contre 12 à 24 mois pour la procédure normale.",
+  },
+  {
+    question: "Que se passe-t-il si la saisine du CPH révèle un partage des voix ?",
+    answer: "Le Conseil de prud'hommes est composé d'un nombre égal de conseillers employeurs et salariés. En cas de partage des voix lors du délibéré, le bureau de jugement se réunit à nouveau avec un juge départiteur (un magistrat professionnel du tribunal judiciaire), qui tranche définitivement. Cette phase de départition est de plus en plus fréquente dans les dossiers contentieux complexes.",
+  },
+  {
+    question: "Peut-on obtenir l'aide juridictionnelle pour les prud'hommes ?",
+    answer: "Oui. Si vos revenus ne dépassent pas certains plafonds (en 2025 : environ 1 100 € nets/mois pour l'aide totale), vous pouvez obtenir l'aide juridictionnelle totale ou partielle. Elle couvre les honoraires d'avocat et les frais de procédure. La demande se fait auprès du bureau d'aide juridictionnelle du tribunal judiciaire de votre département. En présence d'une protection juridique (souvent incluse dans une assurance habitation), celle-ci peut également couvrir les frais.",
   },
 ];
 
@@ -40,29 +53,30 @@ const relatedArticles = [
     categorySlug: 'licenciement',
   },
   {
-    title:        'Licenciement économique : droits et recours',
-    href:         '/licenciement-economique/',
-    category:     'Licenciement',
-    categorySlug: 'licenciement',
+    title:        'Prise d\'acte de rupture : conditions et risques',
+    href:         '/prise-acte-rupture/',
+    category:     'Démission',
+    categorySlug: 'demission',
   },
 ];
 
 const sidebarLinks = [
-  { title: 'Contester son licenciement',  href: '/contester-licenciement/'                                                        },
-  { title: 'Barème Macron simulateur',    href: '/bareme-macron/'                                                                 },
-  { title: 'Service-Public — CPH',        href: 'https://www.service-public.fr/particuliers/vosdroits/F2360'                     },
-  { title: 'Aide juridictionnelle',       href: 'https://www.service-public.fr/particuliers/vosdroits/F18074'                    },
+  { title: 'Contester son licenciement',   href: '/contester-licenciement/'                                                    },
+  { title: 'Barème Macron',                href: '/bareme-macron/'                                                             },
+  { title: 'Service-Public — CPH',         href: 'https://www.service-public.fr/particuliers/vosdroits/F2360'                 },
+  { title: 'Aide juridictionnelle',        href: 'https://www.service-public.fr/particuliers/vosdroits/F18074'                },
+  { title: 'Défenseur syndical',           href: 'https://www.service-public.fr/particuliers/vosdroits/F32312'               },
 ];
 ---
 
 <ArticleLayout
   title="Conseil de prud'hommes : saisine, procédure et délais en 2026"
-  description="Comment saisir le Conseil de prud'hommes : compétence, formulaire de saisine, phases de la procédure (BCO, bureau de jugement), délais de prescription et résultats possibles."
+  description="Comment saisir le Conseil de prud'hommes en 2026 : compétence, formulaire Cerfa, BCO, bureau de jugement, délais de prescription (12 mois pour licenciement, 3 ans pour salaires)."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Licenciement"
   categorySlug="licenciement"
-  readingTime={7}
+  readingTime={9}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -70,113 +84,199 @@ const sidebarLinks = [
   sidebarLinks={sidebarLinks}
 >
 
-  <h2 id="role">Rôle du Conseil de prud'hommes</h2>
+  <h2 id="role">Rôle et compétence du CPH</h2>
 
   <p>
-    Le <strong>Conseil de prud'hommes (CPH)</strong> est une juridiction paritaire
-    composée de juges élus — représentants des employeurs et des salariés en nombre
-    égal. Il est compétent pour trancher les <strong>litiges individuels nés de
-    l'exécution ou de la rupture du contrat de travail</strong>.
+    Le <strong>Conseil de prud'hommes (CPH)</strong> est une juridiction
+    <strong>paritaire</strong> composée en nombre égal de conseillers élus représentant
+    les employeurs et de conseillers élus représentant les salariés. Il est compétent
+    pour trancher les <strong>litiges individuels nés de l'exécution ou de la rupture
+    du contrat de travail</strong> (art. <strong>L1411-1 du Code du travail</strong>).
   </p>
 
+  <p>Les principaux types de litiges traités par le CPH :</p>
+
   <ul>
-    <li>Contestation d'un licenciement (cause, procédure)</li>
-    <li>Demande de paiement de salaires, primes, heures supplémentaires</li>
+    <li>Contestation d'un licenciement (cause réelle et sérieuse, procédure)</li>
+    <li>Demande de paiement de salaires, primes, heures supplémentaires impayés</li>
     <li>Contestation d'une rupture conventionnelle</li>
     <li>Prise d'acte de rupture aux torts de l'employeur</li>
-    <li>Demandes de dommages-intérêts liés à l'exécution du contrat</li>
+    <li>Résiliation judiciaire du contrat aux torts de l'employeur</li>
+    <li>Demandes de dommages-intérêts pour harcèlement moral ou sexuel</li>
+    <li>Remise de documents de fin de contrat sous astreinte</li>
+    <li>Contestation de sanctions disciplinaires</li>
+    <li>Non-respect des clauses du contrat de travail (clause de non-concurrence, etc.)</li>
   </ul>
+
+  <p>
+    Le CPH est organisé en <strong>sections</strong> spécialisées par secteur d'activité :
+    industrie, commerce et services commerciaux, agriculture, activités diverses,
+    encadrement. Votre dossier est traité par la section correspondant à votre activité.
+  </p>
 
   <h2 id="saisine">Comment saisir le CPH</h2>
 
   <p>
-    La saisine est <strong>gratuite</strong> et s'effectue auprès du greffe
-    du Conseil de prud'hommes du lieu où est situé l'établissement où travaille
-    le salarié (ou du lieu du domicile du salarié si le travail est accompli à
-    domicile ou en dehors de tout établissement).
+    La saisine du Conseil de prud'hommes est <strong>gratuite</strong>. Elle s'effectue
+    auprès du greffe du CPH du lieu où est situé votre établissement de travail
+    (ou du lieu de votre domicile si vous travaillez à domicile ou en dehors de tout
+    établissement fixe).
   </p>
+
+  <h3>Étapes de la saisine</h3>
 
   <ol>
     <li>
-      <strong>Remplir le formulaire Cerfa n°15586</strong> (requête aux fins de
-      saisine du CPH) en indiquant les demandes chiffrées et les pièces justificatives
+      <strong>Préparer votre dossier</strong> — réunissez toutes les pièces justificatives :
+      contrat de travail, bulletins de paie, lettres échangées avec l'employeur, lettres
+      de licenciement, attestations de témoins, emails...
     </li>
     <li>
-      <strong>Déposer ou envoyer la requête au greffe</strong> — en personne,
-      par courrier recommandé ou via le portail numérique du tribunal
+      <strong>Chiffrer vos demandes</strong> — le formulaire de requête vous demande
+      d'indiquer le montant de chaque demande. Soyez précis et documenté.
     </li>
     <li>
-      <strong>Recevoir la convocation</strong> à l'audience de conciliation
-      (bureau de conciliation et d'orientation — BCO)
+      <strong>Remplir le formulaire Cerfa n°15586</strong> (requête aux fins de saisine
+      du Conseil de prud'hommes) en indiquant l'identité des parties, l'objet du
+      litige et le montant des demandes chiffrées
+    </li>
+    <li>
+      <strong>Déposer ou envoyer la requête</strong> au greffe — en personne,
+      par courrier recommandé avec AR, ou via le portail numérique du tribunal
+      (portalis.justice.fr dans certains tribunaux)
+    </li>
+    <li>
+      <strong>Recevoir la convocation</strong> à l'audience du Bureau de Conciliation
+      et d'Orientation (BCO)
     </li>
   </ol>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Si vous êtes membre d'un syndicat, votre syndicat peut vous aider à constituer
+      votre dossier et vous représenter aux prud'hommes. Des permanences juridiques
+      gratuites existent aussi dans de nombreuses maisons de justice et du droit.
+    </div>
+  </div>
 
   <h2 id="procedure">Déroulement de la procédure</h2>
 
-  <ol>
-    <li>
-      <strong>Bureau de conciliation et d'orientation (BCO)</strong><br>
-      Première étape obligatoire. Les parties tentent un accord amiable.
-      En cas d'échec, le BCO oriente l'affaire vers le bureau de jugement
-      ou un juge départiteur. Délai moyen : <strong>3 à 6 mois</strong> après saisine.
-    </li>
-    <li>
-      <strong>Bureau de jugement</strong><br>
-      Audience contradictoire où chaque partie expose ses arguments et remet ses
-      pièces. Le jugement est rendu dans un délai variable selon le rôle du tribunal.
-      Délai moyen : <strong>12 à 24 mois</strong> après la saisine.
-    </li>
-    <li>
-      <strong>Appel</strong><br>
-      La décision du CPH peut être frappée d'appel dans un délai d'<strong>1 mois</strong>
-      suivant la notification du jugement, devant la Cour d'appel.
-      La représentation par avocat devient alors obligatoire.
-    </li>
-  </ol>
+  <h3>Phase 1 : Bureau de Conciliation et d'Orientation (BCO)</h3>
 
-  <h2 id="delais">Délais et prescription</h2>
+  <p>
+    La <strong>conciliation est obligatoire</strong> et préalable à tout jugement.
+    Le BCO est composé d'un conseiller employeur et d'un conseiller salarié.
+    Cette audience se déroule généralement dans les <strong>3 à 6 mois</strong>
+    après la saisine.
+  </p>
+
+  <ul>
+    <li>Les parties tentent de trouver un accord amiable</li>
+    <li>Si accord : le procès-verbal de conciliation a force de chose jugée</li>
+    <li>Si échec : le BCO oriente l'affaire vers le Bureau de Jugement (BJ) ou, si le dossier le permet, décide de le juger en formation restreinte ou en département</li>
+    <li>Le BCO peut aussi désigner un médiateur</li>
+  </ul>
+
+  <h3>Phase 2 : Bureau de Jugement</h3>
+
+  <p>
+    En cas d'échec de la conciliation, l'affaire est plaidée devant le Bureau de Jugement
+    (formation plénière ou restreinte). Délai moyen : <strong>12 à 24 mois</strong>
+    après la saisine (variable selon les CPH et la complexité du dossier).
+  </p>
+
+  <p>À l'audience, chaque partie expose ses arguments et remet ses pièces. Le jugement
+  est rendu à l'issue du délibéré.</p>
+
+  <h3>Phase 3 : Départition (si nécessaire)</h3>
+
+  <p>
+    En cas de <strong>partage des voix</strong> entre conseillers employeurs et salariés,
+    un juge départiteur (magistrat professionnel du tribunal judiciaire) préside une
+    nouvelle audience et tranche.
+  </p>
+
+  <h3>Appel</h3>
+
+  <p>
+    La décision du CPH peut être frappée d'appel dans un délai d'<strong>1 mois</strong>
+    suivant la notification du jugement, devant la <strong>Cour d'appel</strong>.
+    La représentation par avocat devient alors <strong>obligatoire</strong>.
+  </p>
+
+  <h2 id="delais">Délais de prescription</h2>
 
   <table>
     <thead>
       <tr>
         <th>Type d'action</th>
-        <th>Délai de prescription</th>
+        <th>Délai</th>
         <th>Point de départ</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Contestation du licenciement</td>
-        <td>12 mois</td>
+        <td><strong>12 mois</strong></td>
         <td>Notification du licenciement</td>
       </tr>
       <tr>
-        <td>Paiement de salaires / primes</td>
-        <td>3 ans</td>
+        <td>Prise d'acte / résiliation judiciaire</td>
+        <td><strong>12 mois</strong></td>
+        <td>Date de la rupture</td>
+      </tr>
+      <tr>
+        <td>Paiement de salaires / primes / heures supp.</td>
+        <td><strong>3 ans</strong></td>
         <td>Date d'exigibilité des sommes</td>
       </tr>
       <tr>
         <td>Discrimination</td>
-        <td>5 ans</td>
+        <td><strong>5 ans</strong></td>
         <td>Révélation des faits discriminatoires</td>
       </tr>
       <tr>
-        <td>Harcèlement moral</td>
-        <td>5 ans</td>
+        <td>Harcèlement moral ou sexuel</td>
+        <td><strong>5 ans</strong></td>
         <td>Derniers faits de harcèlement</td>
       </tr>
       <tr>
         <td>Appel du jugement CPH</td>
-        <td>1 mois</td>
+        <td><strong>1 mois</strong></td>
         <td>Notification du jugement</td>
       </tr>
     </tbody>
   </table>
 
+  <h2 id="resultats">Résultats et exécution du jugement</h2>
+
+  <p>
+    Si le salarié obtient gain de cause, le jugement peut prévoir :
+  </p>
+
+  <ul>
+    <li><strong>Dommages-intérêts</strong> pour licenciement sans cause réelle et sérieuse
+    (dans les limites du barème Macron, sauf cas de nullité)</li>
+    <li><strong>Rappel de salaires</strong> impayés avec intérêts légaux</li>
+    <li><strong>Remise de documents sous astreinte</strong></li>
+    <li><strong>Réintégration</strong> dans l'entreprise (en cas de licenciement nul)</li>
+  </ul>
+
+  <p>
+    Si l'employeur ne s'exécute pas spontanément, le salarié peut faire <strong>exécuter
+    le jugement</strong> par voie d'huissier (commandement de payer, saisie sur compte
+    bancaire, saisie des biens). Le jugement prud'homal est exécutoire à titre provisoire
+    dès le premier degré pour certaines sommes (salaires).
+  </p>
+
   <p class="source-ref">
-    Source :
+    Sources :
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F2360" target="_blank" rel="noopener">
+      Service-Public.fr — Conseil de prud'hommes
+    </a> —
     <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020261" target="_blank" rel="noopener">
-      Légifrance — art. L1471-1 Code du travail
+      Légifrance — Art. L1471-1 (délais de prescription)
     </a>
   </p>
 

@@ -2,26 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition',  label: 'Qu\'est-ce que la visite de reprise ?'   },
-  { id: 'quand',       label: 'Quand est-elle obligatoire ?'             },
-  { id: 'inaptitude',  label: 'Si le médecin conclut à l\'inaptitude'   },
-  { id: 'faq',         label: 'Questions fréquentes'                     },
+  { id: 'definition',    label: 'Qu\'est-ce que la visite de reprise ?'     },
+  { id: 'quand',         label: 'Quand est-elle obligatoire ?'               },
+  { id: 'organisation',  label: 'Qui l\'organise et dans quel délai'         },
+  { id: 'pre-reprise',   label: 'La visite de pré-reprise'                   },
+  { id: 'inaptitude',    label: 'Si le médecin conclut à l\'inaptitude'      },
+  { id: 'faq',           label: 'Questions fréquentes'                       },
 ];
 
 const summary = [
-  "La visite de reprise est une visite médicale auprès du médecin du travail, obligatoire après certains arrêts de travail, qui détermine l'aptitude du salarié à reprendre son poste.",
-  "Elle est obligatoire après tout arrêt pour accident du travail, maladie professionnelle, maternité, ou arrêt maladie d'au moins 30 jours.",
-  "En cas d'avis d'inaptitude du médecin du travail, l'employeur doit proposer un reclassement avant de pouvoir licencier le salarié.",
+  "La visite de reprise est une visite médicale obligatoire auprès du médecin du travail, à organiser par l'employeur dans les 8 jours suivant le retour du salarié après certains arrêts de travail.",
+  "Elle est obligatoire après tout arrêt pour accident du travail (≥ 30 jours), maladie professionnelle, congé maternité, ou arrêt maladie ordinaire d'au moins 60 jours.",
+  "En cas d'avis d'inaptitude, l'employeur doit rechercher un reclassement avant de pouvoir licencier — le licenciement sans recherche préalable est nul.",
 ];
 
 const faq = [
   {
     question: "Qui doit organiser la visite de reprise ?",
-    answer: "C'est l'employeur qui doit organiser la visite de reprise dès qu'il est informé de la date de fin d'arrêt du salarié. Il doit prendre rendez-vous avec le service de santé au travail. Le salarié peut également demander lui-même la visite. La visite doit avoir lieu dans les 8 jours qui suivent la reprise du travail (ou avant pour certains cas comme la maternité ou l'accident du travail).",
+    answer: "C'est l'employeur qui a l'obligation d'organiser la visite de reprise dès qu'il est informé de la date de fin d'arrêt du salarié (art. R4624-32 du Code du travail). Il doit prendre rendez-vous avec le service de santé au travail. Si l'employeur manque à cette obligation, le salarié peut lui-même contacter le médecin du travail pour demander la visite. L'absence de visite de reprise engage la responsabilité civile de l'employeur.",
   },
   {
-    question: "Peut-on reprendre le travail sans visite de reprise ?",
-    answer: "Formellement, le contrat de travail reste suspendu jusqu'à la visite de reprise après les cas qui l'exigent obligatoirement. En pratique, le salarié peut reprendre physiquement son poste, mais l'employeur prend un risque : si le salarié est victime d'un accident avant la visite, la responsabilité de l'employeur peut être engagée pour ne pas avoir organisé la visite préalablement.",
+    question: "Peut-on reprendre le travail sans passer la visite de reprise ?",
+    answer: "Le contrat de travail reste juridiquement suspendu jusqu'à la date de la visite de reprise dans les cas où elle est obligatoire. En pratique, le salarié peut reprendre physiquement son activité avant la visite (dans les 8 jours), mais l'employeur prend un risque : si un accident survient entre la reprise et la visite non encore effectuée, sa responsabilité peut être engagée. Il est donc conseillé de réaliser la visite au plus tôt.",
+  },
+  {
+    question: "Que se passe-t-il si l'employeur ne fait pas passer la visite de reprise ?",
+    answer: "L'absence de visite de reprise constitue un manquement à l'obligation de sécurité de l'employeur. Si le salarié est déclaré inapte lors d'une visite ultérieure, et que l'absence de visite de reprise a retardé cette constatation, l'employeur peut être condamné à des dommages-intérêts. De plus, le salarié peut invoquer ce manquement pour obtenir la résiliation judiciaire de son contrat aux torts de l'employeur, avec les indemnités correspondantes.",
+  },
+  {
+    question: "La visite de reprise est-elle obligatoire après un arrêt de moins de 60 jours ?",
+    answer: "Non, pas pour la maladie ordinaire. Pour un arrêt maladie ordinaire de moins de 60 jours, la visite de reprise n'est pas légalement obligatoire. Elle reste obligatoire quel que soit la durée en cas d'accident du travail reconnu ayant entraîné un arrêt d'au moins 30 jours, de maladie professionnelle reconnue, ou de congé maternité. Dans tous les autres cas, le salarié peut demander une visite à la demande s'il estime que son état de santé a évolué.",
+  },
+  {
+    question: "Peut-on être licencié si l'on refuse de passer la visite de reprise ?",
+    answer: "Le refus de se soumettre à la visite de reprise obligatoire peut être considéré comme une faute du salarié, dans la mesure où la visite conditionne juridiquement la reprise du contrat. En pratique, les employeurs engagent rarement une procédure disciplinaire sur ce seul fondement. Il est cependant fortement conseillé de se rendre à la visite : elle peut conduire à des aménagements de poste favorables au salarié, ou permettre de constater une inaptitude ouvrant droit à des indemnités.",
   },
 ];
 
@@ -47,20 +61,22 @@ const relatedArticles = [
 ];
 
 const sidebarLinks = [
-  { title: 'Médecin du travail',               href: '/medecin-du-travail/'                                                   },
-  { title: 'Licenciement pour inaptitude',     href: '/licenciement-pour-inaptitude/'                                         },
-  { title: 'Service-Public — Visite reprise',  href: 'https://www.service-public.fr/particuliers/vosdroits/F2882'            },
+  { title: 'Médecin du travail',                href: '/medecin-du-travail/'                                                   },
+  { title: 'Mi-temps thérapeutique',            href: '/mi-temps-therapeutique/'                                               },
+  { title: 'Licenciement pour inaptitude',      href: '/licenciement-pour-inaptitude/'                                         },
+  { title: 'Service-Public — Visite reprise',   href: 'https://www.service-public.fr/particuliers/vosdroits/F2882'            },
+  { title: 'Légifrance — Art. R4624-31',        href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034894680'  },
 ];
 ---
 
 <ArticleLayout
   title="Visite de reprise : obligation, délais et conséquences en 2026"
-  description="Visite de reprise en 2026 : quand est-elle obligatoire (AT, maladie 30 jours+), délai pour l'organiser, rôle du médecin du travail et procédure en cas d'avis d'inaptitude."
+  description="Visite de reprise en 2026 : cas obligatoires (AT ≥ 30 j, maladie ≥ 60 j, maternité, MP), délai de 8 jours, qui l'organise, visite de pré-reprise et procédure en cas d'inaptitude."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Droits du salarié"
   categorySlug="droits-salarie"
-  readingTime={5}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -72,62 +88,203 @@ const sidebarLinks = [
 
   <p>
     La <strong>visite de reprise</strong> est un examen médical réalisé par le
-    <strong>médecin du travail</strong> au retour du salarié après un arrêt de
-    travail. Elle a pour objet de vérifier que le salarié est <strong>apte à
-    reprendre son poste</strong> ou de proposer des adaptations si son état de
-    santé l'exige (art. <strong>R4624-31 du Code du travail</strong>).
+    <strong>médecin du travail</strong> au retour du salarié après un arrêt de travail.
+    Elle est régie par l'article <strong>R4624-31 et suivants du Code du travail</strong>.
+  </p>
+
+  <p>
+    Cette visite a un double objet :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Vérifier l'aptitude du salarié</strong> à reprendre son poste de travail
+      dans les conditions habituelles d'exercice
+    </li>
+    <li>
+      <strong>Préconiser des aménagements</strong> si l'état de santé du salarié
+      exige une adaptation du poste, une réduction du temps de travail (mi-temps
+      thérapeutique) ou un reclassement sur un autre emploi
+    </li>
+  </ul>
+
+  <p>
+    La visite de reprise met fin à la <strong>suspension du contrat de travail</strong>
+    due à l'arrêt. C'est à compter de cet examen que l'employeur retrouve pleinement
+    ses obligations vis-à-vis du salarié (paiement du salaire, respect des conditions
+    de travail normales).
   </p>
 
   <h2 id="quand">Quand est-elle obligatoire ?</h2>
 
   <table>
     <thead>
-      <tr><th>Cas</th><th>Délai pour organiser la visite</th></tr>
+      <tr>
+        <th>Cas d'arrêt</th>
+        <th>Durée minimale</th>
+        <th>Visite de reprise obligatoire ?</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td>Accident du travail (arrêt ≥ 30 jours)</td><td>Dans les 8 jours suivant la reprise</td></tr>
-      <tr><td>Maladie professionnelle</td><td>Dans les 8 jours suivant la reprise</td></tr>
-      <tr><td>Congé maternité</td><td>Avant la reprise effective</td></tr>
-      <tr><td>Arrêt maladie ordinaire ≥ 60 jours</td><td>Dans les 8 jours suivant la reprise</td></tr>
-      <tr><td>Absence pour longue maladie ou longue durée</td><td>Dans les 8 jours suivant la reprise</td></tr>
+      <tr>
+        <td><strong>Accident du travail (AT)</strong></td>
+        <td>Arrêt ≥ 30 jours</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td><strong>Maladie professionnelle (MP)</strong></td>
+        <td>Quelle que soit la durée</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td><strong>Congé maternité</strong></td>
+        <td>Quelle que soit la durée</td>
+        <td>Oui (avant la reprise)</td>
+      </tr>
+      <tr>
+        <td><strong>Congé pathologique maternité</strong></td>
+        <td>Quelle que soit la durée</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td><strong>Arrêt maladie ordinaire</strong></td>
+        <td>Arrêt ≥ 60 jours</td>
+        <td>Oui</td>
+      </tr>
+      <tr>
+        <td><strong>Arrêt maladie ordinaire</strong></td>
+        <td>Arrêt &lt; 60 jours</td>
+        <td>Non (visite à la demande possible)</td>
+      </tr>
     </tbody>
   </table>
 
   <div class="alert alert--info">
     <div class="alert__icon">💡</div>
     <div class="alert__body">
-      Pour les arrêts maladie ordinaires de moins de 60 jours, la visite de reprise
-      n'est pas légalement obligatoire, mais le salarié peut en demander une s'il
-      estime que son état de santé a évolué et pourrait affecter son aptitude au poste.
+      Avant 2017, la visite de reprise était obligatoire dès 30 jours d'arrêt pour
+      maladie ordinaire. Le décret du 27 décembre 2016 a porté ce seuil à
+      <strong>60 jours</strong> pour la maladie ordinaire, tout en maintenant le
+      seuil de 30 jours pour les accidents du travail.
     </div>
   </div>
+
+  <h2 id="organisation">Qui l'organise et dans quel délai</h2>
+
+  <p>
+    C'est l'<strong>employeur qui a l'initiative</strong> de la visite de reprise.
+    Il doit prendre contact avec le service de santé au travail dès qu'il est informé
+    de la date de fin d'arrêt du salarié.
+  </p>
+
+  <p>
+    La visite doit avoir lieu <strong>dans les 8 jours qui suivent la reprise effective</strong>
+    du travail. Exception pour le congé maternité : la visite doit intervenir
+    <strong>avant la reprise</strong> (avant que la salariée reprenne physiquement son poste).
+  </p>
+
+  <p>
+    Si l'employeur ne prend pas l'initiative, le salarié peut lui-même contacter le
+    médecin du travail pour demander la visite. Dans ce cas, il doit en informer son
+    employeur. Le salarié ne peut pas être sanctionné pour avoir sollicité lui-même
+    cet examen.
+  </p>
+
+  <h3>Pendant la visite</h3>
+
+  <p>Le médecin du travail peut rendre plusieurs types d'avis :</p>
+
+  <ul>
+    <li>
+      <strong>Apte</strong> — le salarié peut reprendre son poste sans restriction
+    </li>
+    <li>
+      <strong>Apte avec réserves ou aménagements</strong> — le médecin préconise
+      des adaptations (port de charges limité, travail à mi-temps thérapeutique,
+      évitement de certaines tâches ou expositions)
+    </li>
+    <li>
+      <strong>Inapte</strong> — le salarié ne peut pas reprendre son poste ni aucun
+      poste similaire dans les conditions actuelles
+    </li>
+  </ul>
+
+  <h2 id="pre-reprise">La visite de pré-reprise</h2>
+
+  <p>
+    Distincte de la visite de reprise, la <strong>visite de pré-reprise</strong> est
+    facultative. Elle peut être demandée par :
+  </p>
+
+  <ul>
+    <li>Le salarié lui-même</li>
+    <li>Le médecin traitant</li>
+    <li>Le médecin conseil de la CPAM</li>
+  </ul>
+
+  <p>
+    Elle peut avoir lieu dès lors que l'arrêt de travail dure depuis au moins
+    <strong>30 jours</strong>. Son objectif est de préparer le retour en emploi :
+    identifier les postes de reclassement envisageables, préconiser des formations
+    professionnelles, anticiper les aménagements nécessaires.
+  </p>
+
+  <p>
+    L'employeur n'est pas informé de la tenue de cette visite, sauf si le médecin
+    du travail l'estime nécessaire pour préparer le reclassement. En pratique, il est
+    conseillé au salarié d'en informer lui-même son employeur pour engager un dialogue
+    anticipé sur les conditions de reprise.
+  </p>
 
   <h2 id="inaptitude">Si le médecin conclut à l'inaptitude</h2>
 
   <p>
-    Si le médecin du travail conclut à l'<strong>inaptitude du salarié à son poste</strong>,
-    l'employeur a l'obligation de :
+    Un avis d'inaptitude à l'issue de la visite de reprise crée des obligations strictes
+    pour l'employeur, définies aux articles <strong>L1226-2 et L1226-10 du Code du
+    travail</strong> selon l'origine de l'inaptitude :
   </p>
 
   <ol>
     <li>
-      <strong>Rechercher un reclassement</strong> adapté à l'état de santé du salarié,
-      en tenant compte des préconisations du médecin du travail
+      <strong>Recherche sérieuse de reclassement</strong> — l'employeur doit proposer
+      au salarié un ou plusieurs postes appropriés à ses capacités, en tenant compte
+      des préconisations du médecin du travail. Cette recherche doit être effective et
+      documentée (consultations des RH, des managers, du groupe le cas échéant).
     </li>
     <li>
-      <strong>Consulter les représentants du personnel</strong> sur le reclassement envisagé
+      <strong>Consultation des représentants du personnel</strong> — le CSE doit être
+      consulté sur le reclassement envisagé avant toute proposition au salarié.
     </li>
     <li>
-      Si aucun reclassement n'est possible (ou si le salarié refuse les postes proposés),
-      engager une <strong>procédure de licenciement pour inaptitude</strong>,
-      avec versement d'une indemnité spéciale de licenciement doublée
+      <strong>Proposition écrite de reclassement</strong> — si un poste est disponible,
+      l'employeur doit le proposer par écrit. Le salarié dispose d'un délai raisonnable
+      pour accepter ou refuser.
+    </li>
+    <li>
+      <strong>Licenciement pour inaptitude</strong> — si aucun poste n'est disponible,
+      si le médecin du travail indique que tout maintien est impossible, ou si le salarié
+      refuse les postes proposés, l'employeur peut engager la procédure de licenciement.
     </li>
   </ol>
 
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      <strong>Indemnité doublée en cas d'origine professionnelle :</strong> si l'inaptitude
+      résulte d'un accident du travail ou d'une maladie professionnelle, l'indemnité spéciale
+      de licenciement est égale au <strong>double de l'indemnité légale</strong>
+      (art. L1226-14 du Code du travail). Ce doublement est impératif et ne peut pas
+      être réduit par accord.
+    </div>
+  </div>
+
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F2882" target="_blank" rel="noopener">
       Service-Public.fr — Visite de reprise
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000033024155/" target="_blank" rel="noopener">
+      Légifrance — Art. R4624-31 et suivants du Code du travail
     </a>
   </p>
 

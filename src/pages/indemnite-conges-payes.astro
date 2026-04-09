@@ -2,26 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition', label: 'Qu\'est-ce que l\'indemnité de CP ?'   },
-  { id: 'calcul',     label: 'Les deux méthodes de calcul'           },
-  { id: 'depart',     label: 'Quand est-elle due ?'                  },
-  { id: 'faq',        label: 'Questions fréquentes'                  },
+  { id: 'definition', label: 'Qu\'est-ce que l\'indemnité compensatrice ?'  },
+  { id: 'calcul',     label: 'Les deux méthodes de calcul'                  },
+  { id: 'exemples',   label: 'Exemples chiffrés'                            },
+  { id: 'depart',     label: 'À quelle rupture s\'applique-t-elle ?'        },
+  { id: 'faute',      label: 'Faute grave, faute lourde : et les CP ?'      },
+  { id: 'faq',        label: 'Questions fréquentes'                         },
 ];
 
 const summary = [
-  "L'indemnité compensatrice de congés payés est due à tout salarié quittant l'entreprise avec des congés payés acquis mais non pris.",
-  "Son montant est calculé selon la méthode la plus favorable pour le salarié : 1/10e de la rémunération annuelle brute ou maintien de salaire.",
-  "Elle est due quelle que soit la cause de rupture du contrat : démission, licenciement, rupture conventionnelle, départ en retraite.",
+  "L'indemnité compensatrice de congés payés (ICCP) est due à tout salarié quittant l'entreprise avec des congés payés acquis mais non pris, quelle que soit la cause de rupture.",
+  "Son montant est calculé selon la méthode la plus favorable au salarié : règle du dixième (1/10e de la rémunération annuelle brute) ou maintien de salaire.",
+  "Depuis une décision de la Cour de cassation de septembre 2023 alignant le droit français sur le droit de l'UE, l'ICCP est due même en cas de faute lourde.",
 ];
 
 const faq = [
   {
-    question: "L'indemnité de CP est-elle imposable ?",
-    answer: "Oui, l'indemnité compensatrice de congés payés est intégralement soumise à l'impôt sur le revenu et aux cotisations sociales. Elle est versée dans le solde de tout compte et figure sur le dernier bulletin de paie. Contrairement à certaines indemnités de licenciement, elle ne bénéficie d'aucune exonération fiscale ou sociale spécifique.",
+    question: "L'indemnité compensatrice de CP est-elle imposable ?",
+    answer: "Oui, l'indemnité compensatrice de congés payés est intégralement soumise à l'impôt sur le revenu et aux cotisations sociales (part salariale et patronale). Elle est versée dans le solde de tout compte et figure sur le dernier bulletin de paie. Contrairement à certaines indemnités de licenciement, elle ne bénéficie d'aucune exonération fiscale ou sociale spécifique.",
   },
   {
     question: "Peut-on renoncer à ses congés payés non pris contre rémunération ?",
-    answer: "En principe, non : le Code du travail interdit le rachat des congés payés légaux (5 semaines). Toutefois, les jours de CP au-delà de 24 jours ouvrables (congés supplémentaires conventionnels ou contractuels) peuvent, dans certaines conditions, faire l'objet d'une monétisation, notamment via le CET (Compte Épargne Temps). À la rupture du contrat, tous les CP acquis non pris doivent obligatoirement être indemnisés.",
+    answer: "En principe non : le Code du travail interdit le rachat des congés payés légaux (les 5 semaines ou 30 jours ouvrables). C'est une règle d'ordre public à laquelle ni l'employeur ni le salarié ne peuvent déroger pendant l'exécution du contrat. En revanche, les jours de congés au-delà des 30 jours ouvrables légaux (jours conventionnels supplémentaires) peuvent être monétisés via un Compte Épargne Temps (CET). À la rupture du contrat, tous les CP acquis non pris sont obligatoirement indemnisés.",
+  },
+  {
+    question: "Comment connaître le nombre de jours de congés acquis non pris ?",
+    answer: "Le nombre de jours de congés payés acquis figure sur le bulletin de paie depuis 2016 (la mention est obligatoire). En cas de doute, votre employeur doit pouvoir vous fournir un état récapitulatif. L'année de référence pour les CP va du 1er juin au 31 mai (dans la plupart des cas). Les CP acquis se prennent en priorité du 1er mai au 31 octobre (période légale de congé principal).",
+  },
+  {
+    question: "Que faire si l'employeur ne verse pas l'ICCP dans le solde de tout compte ?",
+    answer: "Si l'ICCP n'est pas versée ou est sous-évaluée dans le solde de tout compte, vous disposez de 6 mois pour contester le reçu pour solde de tout compte par LRAR. Passé ce délai, le solde de tout compte devient libératoire pour les sommes qui y sont expressément mentionnées. Vous pouvez ensuite saisir le Conseil de prud'hommes dans le délai général de 3 ans pour les créances salariales (art. L3245-1 du Code du travail).",
+  },
+  {
+    question: "L'employeur peut-il imposer la prise de congés pendant le préavis ?",
+    answer: "L'employeur peut imposer au salarié de prendre ses congés payés acquis pendant le préavis, à condition que les dates aient été fixées selon les règles légales. Si l'employeur fixe les congés après la notification de la démission, ceux-ci ne suspendent pas le préavis (ils se confondent avec lui). Les CP non pris à la fin du préavis ouvrent droit à l'ICCP versée dans le solde de tout compte.",
   },
 ];
 
@@ -47,20 +61,21 @@ const relatedArticles = [
 ];
 
 const sidebarLinks = [
-  { title: 'Congés payés : calcul complet',    href: '/conges-payes-calcul/'                                                  },
-  { title: 'Solde de tout compte',             href: '/solde-de-tout-compte/'                                                 },
-  { title: 'Service-Public — Congés payés',    href: 'https://www.service-public.fr/particuliers/vosdroits/F2416'            },
+  { title: 'Congés payés : calcul complet',  href: '/conges-payes-calcul/'                                                   },
+  { title: 'Solde de tout compte',           href: '/solde-de-tout-compte/'                                                  },
+  { title: 'Service-Public — Congés payés',  href: 'https://www.service-public.fr/particuliers/vosdroits/F2416'             },
+  { title: 'Légifrance — Art. L3141-28',     href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033024289'   },
 ];
 ---
 
 <ArticleLayout
   title="Indemnité compensatrice de congés payés : calcul et règles 2026"
-  description="Indemnité compensatrice de congés payés en 2026 : deux méthodes de calcul (1/10e ou maintien de salaire), cas d'application à la rupture du contrat, imposition et versement."
+  description="Indemnité compensatrice de congés payés en 2026 : deux méthodes (1/10e ou maintien de salaire), exemples chiffrés, règles en cas de faute grave ou lourde, délai de contestation."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Droits du salarié"
   categorySlug="droits-salarie"
-  readingTime={5}
+  readingTime={7}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -71,65 +86,188 @@ const sidebarLinks = [
   <h2 id="definition">Qu'est-ce que l'indemnité compensatrice de congés payés ?</h2>
 
   <p>
-    L'<strong>indemnité compensatrice de congés payés</strong> est la somme versée
-    au salarié à la rupture de son contrat pour les jours de congés payés acquis
-    mais non pris (art. <strong>L3141-28 du Code du travail</strong>).
+    L'<strong>indemnité compensatrice de congés payés (ICCP)</strong> est la somme
+    versée au salarié à la rupture de son contrat pour les jours de congés payés
+    acquis mais non encore pris. Elle est prévue par l'article
+    <strong>L3141-28 du Code du travail</strong>.
   </p>
 
   <p>
-    Elle est obligatoire quelle que soit la cause de rupture et est versée dans le
-    cadre du <strong>solde de tout compte</strong>, en même temps que les autres
-    sommes dues à la rupture.
+    Elle est due <strong>quelle que soit la cause de rupture</strong> du contrat et
+    quel que soit le mode de calcul de la rémunération (mensuel, horaire, au forfait).
+    Elle est versée dans le cadre du <strong>solde de tout compte</strong>, en même
+    temps que les autres sommes dues à la rupture (indemnité de licenciement, rappels
+    de salaire, prime de fin d'année proratisée, etc.).
+  </p>
+
+  <p>
+    L'ICCP couvre les congés payés <strong>acquis mais non utilisés</strong> à la date
+    de rupture. Elle ne couvre pas les congés de l'année en cours qui ne sont pas encore
+    "acquis" selon les règles de la période de référence — sauf disposition conventionnelle
+    ou contractuelle plus favorable.
   </p>
 
   <h2 id="calcul">Les deux méthodes de calcul</h2>
 
   <p>
-    L'employeur doit retenir la méthode qui donne le résultat <strong>le plus
-    favorable au salarié</strong> :
+    L'employeur doit retenir la méthode qui donne le résultat <strong>le plus favorable
+    au salarié</strong> et appliquer celle-ci systématiquement — il ne peut pas choisir
+    la méthode défavorable au salarié.
+  </p>
+
+  <h3>Méthode 1 : La règle du dixième (1/10e)</h3>
+
+  <p>
+    L'indemnité est égale au dixième de la <strong>rémunération brute totale perçue
+    pendant la période de référence</strong>, multiplié par le nombre de jours de CP
+    non pris rapporté au nombre total de jours de CP acquis.
+  </p>
+
+  <p>
+    <strong>Formule :</strong> Rémunération brute des 12 derniers mois × 1/10 ×
+    (jours CP non pris ÷ jours CP total acquis sur la période)
+  </p>
+
+  <p>
+    La rémunération brute prise en compte comprend le salaire de base, les primes
+    (sauf celles expressément exclues par la jurisprudence comme les remboursements
+    de frais), les commissions, les avantages en nature, les majorations pour heures
+    supplémentaires.
+  </p>
+
+  <h3>Méthode 2 : Le maintien de salaire</h3>
+
+  <p>
+    L'indemnité est égale au salaire que le salarié <strong>aurait perçu s'il avait
+    continué à travailler</strong> pendant les jours de congés non pris. On calcule
+    un salaire journalier de référence et on le multiplie par le nombre de jours
+    ouvrables de congés non pris.
+  </p>
+
+  <p>
+    <strong>Formule :</strong> Salaire mensuel brut habituel ÷ nombre de jours ouvrables
+    dans le mois × nombre de jours ouvrables de CP non pris
+  </p>
+
+  <h2 id="exemples">Exemples chiffrés</h2>
+
+  <p>
+    Exemple pour un salarié avec un salaire fixe de <strong>2 500 € brut/mois</strong>,
+    15 jours ouvrables de congés non pris sur 30 jours acquis :
   </p>
 
   <table>
     <thead>
-      <tr><th>Méthode</th><th>Formule</th><th>Quand avantageuse ?</th></tr>
+      <tr>
+        <th>Méthode</th>
+        <th>Calcul</th>
+        <th>Résultat</th>
+      </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>1/10e de la rémunération annuelle</strong></td>
-        <td>Total brut des 12 derniers mois × 1/10 × (jours CP non pris / jours CP acquis)</td>
-        <td>Si le salarié a perçu des primes ou commissions importantes</td>
+        <td><strong>Règle du dixième</strong></td>
+        <td>30 000 € (12 mois × 2 500 €) × 1/10 × (15/30)</td>
+        <td><strong>1 500 €</strong></td>
       </tr>
       <tr>
         <td><strong>Maintien de salaire</strong></td>
-        <td>Salaire journalier × nombre de jours CP non pris</td>
-        <td>Si le salaire est régulier sans éléments variables importants</td>
+        <td>2 500 € ÷ 26 jours ouvrables × 15 jours</td>
+        <td><strong>1 442 €</strong></td>
       </tr>
     </tbody>
   </table>
 
-  <h2 id="depart">Quand est-elle due ?</h2>
+  <p>
+    L'employeur doit retenir <strong>1 500 € (règle du dixième)</strong> car c'est
+    le montant le plus favorable au salarié.
+  </p>
+
+  <p>
+    En revanche, si le salarié avait perçu des primes variables importantes dans
+    l'année (par exemple 5 000 € de commissions), la règle du dixième donne un
+    résultat encore plus élevé (35 000 € × 1/10 × 1/2 = 1 750 €), ce qui renforce
+    l'intérêt de cette méthode pour les salariés à rémunération variable.
+  </p>
+
+  <h2 id="depart">À quelle rupture s'applique-t-elle ?</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cause de rupture</th>
+        <th>ICCP due ?</th>
+        <th>Particularité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Démission</td>
+        <td>Oui</td>
+        <td>CP acquis non pris indemnisés</td>
+      </tr>
+      <tr>
+        <td>Licenciement (toute cause)</td>
+        <td>Oui</td>
+        <td>Y compris licenciement pour faute grave</td>
+      </tr>
+      <tr>
+        <td>Rupture conventionnelle</td>
+        <td>Oui</td>
+        <td>Incluse dans le solde de tout compte</td>
+      </tr>
+      <tr>
+        <td>Fin de CDD</td>
+        <td>Oui</td>
+        <td>En plus de l'indemnité de fin de CDD (10 %)</td>
+      </tr>
+      <tr>
+        <td>Départ ou mise à la retraite</td>
+        <td>Oui</td>
+        <td>CP acquis non pris indemnisés</td>
+      </tr>
+      <tr>
+        <td>Décès du salarié</td>
+        <td>Oui</td>
+        <td>Versée aux ayants droit</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="faute">Faute grave, faute lourde : et les congés payés ?</h2>
+
+  <p>
+    Pendant longtemps, la jurisprudence française distinguait les cas selon la gravité
+    de la faute :
+  </p>
 
   <ul>
-    <li><strong>Démission</strong> — les CP acquis non pris sont indemnisés</li>
-    <li><strong>Licenciement</strong> — idem, quelle que soit la cause</li>
-    <li><strong>Rupture conventionnelle</strong> — idem</li>
-    <li><strong>Fin de CDD</strong> — idem, plus l'indemnité de fin de CDD (10 %)</li>
-    <li><strong>Départ ou mise à la retraite</strong> — idem</li>
+    <li>
+      <strong>Faute grave</strong> — l'ICCP était due (pas d'indemnité de licenciement,
+      mais les CP doivent toujours être payés)
+    </li>
+    <li>
+      <strong>Faute lourde</strong> — jusqu'en 2023, l'ICCP n'était pas due selon la
+      jurisprudence française traditionnelle
+    </li>
   </ul>
 
-  <div class="alert alert--info">
-    <div class="alert__icon">💡</div>
-    <div class="alert__body">
-      En cas de <strong>faute lourde</strong>, l'indemnité compensatrice de CP
-      reste due depuis l'arrêt de la Cour de cassation de 2024 alignant le droit
-      français sur le droit européen.
-    </div>
-  </div>
+  <p>
+    Par des arrêts du <strong>13 septembre 2023</strong>, la Cour de cassation a opéré
+    un revirement majeur en alignant le droit français sur le droit de l'Union européenne
+    (directive 2003/88/CE) : le droit aux congés payés est un droit fondamental qui ne
+    peut pas être supprimé du fait d'une faute, même lourde.
+    <strong>L'ICCP est donc désormais due en toutes circonstances</strong>, y compris
+    en cas de faute lourde du salarié.
+  </p>
 
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F2416" target="_blank" rel="noopener">
       Service-Public.fr — Congés payés non pris à la rupture du contrat
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033024289" target="_blank" rel="noopener">
+      Légifrance — Art. L3141-28 du Code du travail
     </a>
   </p>
 

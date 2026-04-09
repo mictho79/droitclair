@@ -2,27 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition',  label: 'Caution vs dépôt de garantie'   },
-  { id: 'types',       label: 'Caution simple et solidaire'     },
-  { id: 'acte',        label: 'L\'acte de cautionnement'        },
-  { id: 'engagement',  label: 'Engagement du garant'            },
-  { id: 'faq',         label: 'Questions fréquentes'            },
+  { id: 'definition',   label: 'Caution vs dépôt de garantie'    },
+  { id: 'types',        label: 'Caution simple et solidaire'      },
+  { id: 'acte',         label: 'L\'acte de cautionnement'         },
+  { id: 'engagement',   label: 'Engagement et durée'              },
+  { id: 'alternatives', label: 'Alternatives à la caution'        },
+  { id: 'faq',          label: 'Questions fréquentes'             },
 ];
 
 const summary = [
   "La caution locative est une garantie fournie par un tiers (garant) qui s'engage à payer le loyer et les charges si le locataire est défaillant.",
   "Elle est distincte du dépôt de garantie : la caution est une personne physique ou morale, le dépôt de garantie est une somme d'argent versée à l'entrée.",
-  "L'acte de cautionnement doit respecter un formalisme strict (mentions manuscrites obligatoires) sous peine de nullité.",
+  "L'acte de cautionnement doit respecter un formalisme strict depuis la loi du 6 juillet 1989 (art. 22-1) — mentions obligatoires sous peine de nullité de l'engagement.",
 ];
 
 const faq = [
   {
     question: "Un propriétaire peut-il exiger à la fois une caution et une assurance loyers impayés ?",
-    answer: "Non, depuis la loi ALUR (2014), le propriétaire ne peut pas cumuler une caution personnelle et une assurance loyers impayés (GLI), sauf si le locataire est étudiant ou apprenti. Cette interdiction vise à éviter une double garantie qui pénaliserait les locataires.",
+    answer: "Non, depuis la loi ALUR (24 mars 2014), le propriétaire ne peut pas cumuler une caution personnelle (physique) et une assurance loyers impayés (GLI), sauf si le locataire est étudiant ou apprenti. Cette interdiction vise à éviter une double garantie qui pénaliserait les locataires. En revanche, une caution bancaire (personne morale) peut être cumulée avec une assurance loyers impayés.",
   },
   {
     question: "Jusqu'à quand s'engage le garant ?",
-    answer: "Le garant s'engage pour la durée du bail et ses renouvellements, dans la limite prévue à l'acte de cautionnement. Il peut résilier son engagement à l'issue de chaque période annuelle du bail (si mention dans l'acte) par lettre recommandée. La résiliation ne prend effet qu'à la prochaine échéance annuelle du bail et ne libère pas le garant des dettes antérieures.",
+    answer: "Le garant s'engage pour la durée du bail et ses renouvellements, dans la limite prévue à l'acte de cautionnement. Depuis la loi ELAN (23 novembre 2018), le garant peut résilier son engagement à tout moment en cours de bail, par lettre recommandée avec accusé de réception, si la durée de l'engagement n'est pas précisée dans l'acte. La résiliation prend effet à la fin du contrat de bail en cours. Elle ne libère pas le garant des dettes antérieures à la résiliation.",
+  },
+  {
+    question: "Le garant peut-il limiter son engagement en montant ?",
+    answer: "Oui. L'acte de cautionnement peut prévoir un plafond : par exemple, la caution peut être limitée à 12 mois de loyer charges comprises. Dans ce cas, le garant n'est tenu qu'à hauteur du plafond fixé. Cette limitation doit être expressément mentionnée dans l'acte manuscrit. À défaut de plafond, la caution est illimitée — le garant couvre toutes les dettes locatives, y compris les réparations et indemnités d'occupation.",
+  },
+  {
+    question: "La caution solidaire est-elle plus risquée pour le garant ?",
+    answer: "Oui. En caution solidaire, le propriétaire peut se retourner directement contre le garant dès le premier loyer impayé, sans avoir à poursuivre le locataire au préalable (pas de bénéfice de discussion ni de division). C'est la forme exigée par la grande majorité des bailleurs en pratique. La caution simple, plus protectrice pour le garant, est rare car elle impose au bailleur d'épuiser les voies de recours contre le locataire avant d'actionner le garant.",
+  },
+  {
+    question: "Que se passe-t-il si le locataire ne paie pas et que le garant est actionné ?",
+    answer: "Le bailleur adresse une mise en demeure de payer au locataire et, si la caution est solidaire, peut simultanément ou immédiatement après mettre en demeure le garant par lettre recommandée. Si le garant paie à la place du locataire, il dispose d'un recours subrogatoire contre le locataire pour se faire rembourser. Si le garant refuse de payer malgré la mise en demeure, le bailleur peut saisir le tribunal judiciaire pour obtenir un titre exécutoire contre le garant.",
   },
 ];
 
@@ -51,17 +64,18 @@ const sidebarLinks = [
   { title: 'Dépôt de garantie',           href: '/depot-de-garantie/'                                               },
   { title: 'Service-Public — Caution',     href: 'https://www.service-public.fr/particuliers/vosdroits/F31267'      },
   { title: 'Visale (caution gratuite)',    href: 'https://www.visale.fr'                                             },
+  { title: 'Légifrance — Art. 22-1 loi 1989', href: 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028807561' },
 ];
 ---
 
 <ArticleLayout
-  title="Caution locative : acte de cautionnement, types et engagement du garant"
-  description="Caution locative en 2026 : différence avec le dépôt de garantie, caution simple vs solidaire, mentions obligatoires de l'acte, durée d'engagement et résiliation."
+  title="Caution locative : acte de cautionnement, types et engagement du garant en 2026"
+  description="Caution locative en 2026 : différence avec le dépôt de garantie, caution simple vs solidaire, mentions manuscrites obligatoires de l'acte (loi 6 juillet 1989), durée d'engagement et alternatives (Visale, GLI)."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Logement"
   categorySlug="logement"
-  readingTime={5}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -72,62 +86,202 @@ const sidebarLinks = [
   <h2 id="definition">Caution vs dépôt de garantie</h2>
 
   <p>
-    Ces deux termes sont souvent confondus mais désignent des mécanismes distincts :
+    Ces deux termes sont souvent confondus dans le langage courant, mais ils
+    désignent des mécanismes juridiques totalement distincts :
   </p>
 
   <table>
     <thead>
-      <tr><th>Caractéristique</th><th>Caution locative</th><th>Dépôt de garantie</th></tr>
+      <tr>
+        <th>Caractéristique</th>
+        <th>Caution locative</th>
+        <th>Dépôt de garantie</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td>Nature</td><td>Personne physique ou morale (garant)</td><td>Somme d'argent versée à l'entrée</td></tr>
-      <tr><td>Qui paie</td><td>Le garant, en cas de défaillance du locataire</td><td>Le locataire, dès la signature du bail</td></tr>
-      <tr><td>Montant</td><td>Illimité (toutes dettes locatives)</td><td>1 mois de loyer hors charges (non meublé)</td></tr>
-      <tr><td>Restitution</td><td>Non applicable</td><td>Dans 1 ou 2 mois après remise des clés</td></tr>
+      <tr>
+        <td>Nature</td>
+        <td>Personne physique ou morale (garant)</td>
+        <td>Somme d'argent versée à l'entrée dans les lieux</td>
+      </tr>
+      <tr>
+        <td>Qui paie</td>
+        <td>Le garant, en cas de défaillance du locataire</td>
+        <td>Le locataire, dès la signature du bail</td>
+      </tr>
+      <tr>
+        <td>Montant</td>
+        <td>Illimité (toutes dettes locatives, sauf plafond prévu dans l'acte)</td>
+        <td>1 mois de loyer hors charges (logement vide) ou 2 mois (meublé)</td>
+      </tr>
+      <tr>
+        <td>Restitution</td>
+        <td>Non applicable — le garant récupère auprès du locataire s'il a payé</td>
+        <td>Dans 1 mois (état des lieux conformes) ou 2 mois (dégradations)</td>
+      </tr>
+      <tr>
+        <td>Base légale</td>
+        <td>Art. 22-1 de la loi du 6 juillet 1989</td>
+        <td>Art. 22 de la loi du 6 juillet 1989</td>
+      </tr>
     </tbody>
   </table>
 
+  <p>
+    Dans le langage courant, on dit souvent "donner sa caution" pour parler du
+    dépôt de garantie — c'est un abus de langage. La caution au sens juridique
+    désigne uniquement la personne qui se porte garante.
+  </p>
+
   <h2 id="types">Caution simple et caution solidaire</h2>
+
+  <p>
+    Il existe deux formes de cautionnement, avec des conséquences très différentes
+    pour le garant et le bailleur :
+  </p>
 
   <ul>
     <li>
       <strong>Caution simple</strong> — le propriétaire doit d'abord poursuivre le
-      locataire avant de se retourner contre le garant (bénéfice de discussion)
+      locataire et épuiser les voies de recours contre lui avant de se retourner
+      contre le garant (bénéfice de discussion et de division). Cette forme est
+      rare en pratique car peu protectrice pour le bailleur.
     </li>
     <li>
       <strong>Caution solidaire</strong> — le propriétaire peut directement réclamer
-      le paiement au garant sans avoir à poursuivre le locataire d'abord.
-      C'est la forme la plus répandue et la plus protectrice pour le bailleur.
+      le paiement au garant sans avoir à poursuivre le locataire d'abord. Il n'y a
+      pas de bénéfice de discussion. C'est la forme la plus répandue, exigée par la
+      quasi-totalité des bailleurs professionnels. Le garant est aussi exposé que
+      le locataire lui-même.
     </li>
   </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      En cas de colocation, chaque locataire peut avoir son propre garant, ou un
+      garant peut se porter caution pour tous les colocataires. Si la caution est
+      solidaire et que le bail comporte une clause de solidarité entre colocataires,
+      le bailleur peut réclamer la totalité des loyers impayés à n'importe lequel
+      des garants.
+    </div>
+  </div>
 
   <h2 id="acte">L'acte de cautionnement</h2>
 
   <p>
     L'acte de cautionnement doit comporter des <strong>mentions manuscrites obligatoires</strong>
-    (art. 22-1 de la loi du 6 juillet 1989), sous peine de nullité :
+    prévues par l'article 22-1 de la loi du 6 juillet 1989, sous peine de nullité
+    de l'engagement. Ces mentions visent à s'assurer que le garant a bien compris
+    l'étendue de son engagement.
+  </p>
+
+  <h3>Mentions obligatoires (à écrire de la main du garant)</h3>
+
+  <ul>
+    <li>
+      <strong>Montant du loyer en chiffres et en lettres</strong> — pour s'assurer
+      que le garant connaît précisément la somme sur laquelle il s'engage
+    </li>
+    <li>
+      <strong>Conditions de révision du loyer</strong> — clause d'indexation, indice
+      de référence des loyers (IRL) applicable
+    </li>
+    <li>
+      <strong>Durée de l'engagement</strong> — préciser si l'engagement est limité
+      dans le temps ou couvre les renouvellements successifs
+    </li>
+    <li>
+      <strong>Reproduction intégrale de l'art. 22-1 alinéa 3</strong> de la loi
+      du 6 juillet 1989 (mise en garde légale sur la portée de l'engagement)
+    </li>
+    <li>
+      <strong>Mention expresse</strong> que le garant a bien pris connaissance du
+      bail et de ses conditions
+    </li>
+    <li>
+      Pour la caution solidaire : <strong>mention expresse de la solidarité</strong>
+      et du renoncement au bénéfice de discussion
+    </li>
+  </ul>
+
+  <p>
+    Depuis la loi ELAN du 23 novembre 2018, un acte de cautionnement dactylographié
+    (non manuscrit) est valide à condition que le garant appose sa signature
+    précédée de la mention « Lu et approuvé ». La jurisprudence est plus souple qu'avant
+    sur la forme, mais le fond (informations mentionnées) reste obligatoire.
+  </p>
+
+  <h2 id="engagement">Engagement et durée</h2>
+
+  <p>
+    Le garant s'engage à couvrir toutes les dettes locatives du locataire :
+    <strong>loyers, charges locatives, réparations locatives, indemnités
+    d'occupation</strong> (en cas de maintien dans les lieux après la fin du bail).
+  </p>
+
+  <p>
+    Concernant la durée de l'engagement :
   </p>
 
   <ul>
-    <li>Montant du loyer en chiffres et en lettres</li>
-    <li>Conditions de révision du loyer</li>
-    <li>Durée de l'engagement</li>
-    <li>Reproduction intégrale de l'art. 22-1 de la loi du 6 juillet 1989</li>
-    <li>Mention expresse que le garant a bien pris connaissance du bail</li>
+    <li>
+      Si une durée est expressément prévue dans l'acte, le garant est engagé pour
+      cette durée uniquement
+    </li>
+    <li>
+      Si aucune durée n'est précisée, le garant peut résilier son engagement à tout
+      moment par LRAR. La résiliation prend effet à la fin du contrat de bail en cours
+      (loi ELAN 2018)
+    </li>
+    <li>
+      La résiliation ne libère pas le garant des dettes nées avant la résiliation —
+      il reste tenu des loyers et charges impayés antérieurs
+    </li>
   </ul>
 
-  <h2 id="engagement">Engagement du garant</h2>
+  <h2 id="alternatives">Alternatives à la caution</h2>
 
   <p>
-    Le garant s'engage à couvrir toutes les dettes locatives : <strong>loyers, charges,
-    réparations locatives, indemnités d'occupation</strong>. Cet engagement peut être
-    limité dans le temps ou en montant si l'acte le prévoit expressément.
+    Pour les locataires qui ne peuvent pas trouver de garant personnel, plusieurs
+    alternatives existent :
   </p>
 
+  <ul>
+    <li>
+      <strong>Visale (Visa pour le Logement et l'Emploi)</strong> — caution gratuite
+      accordée par Action Logement aux salariés de moins de 30 ans et aux salariés
+      ayant signé un CDI ou CDD de plus de 3 mois dans les 6 derniers mois.
+      Elle couvre jusqu'à 36 mois de loyers impayés (hors charges).
+      Disponible sur <strong>visale.fr</strong>.
+    </li>
+    <li>
+      <strong>Garantie Loca-Pass</strong> — caution accordée par Action Logement
+      sous forme d'avance remboursable pour certains salariés.
+    </li>
+    <li>
+      <strong>Assurance loyers impayés (GLI)</strong> — souscrite par le bailleur
+      (pas le locataire), qui se fait rembourser par l'assureur en cas d'impayés.
+      Ne peut pas être cumulée avec une caution personnelle (sauf étudiant ou apprenti).
+    </li>
+    <li>
+      <strong>Caution bancaire</strong> — dépôt d'une somme sur un compte bloqué
+      auprès d'une banque, qui se porte garante. Solution coûteuse mais efficace.
+    </li>
+    <li>
+      <strong>Fonds de Solidarité pour le Logement (FSL)</strong> — pour les
+      personnes en difficulté, le FSL peut apporter une garantie dans certains
+      départements, sous conditions de ressources.
+    </li>
+  </ul>
+
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F31267" target="_blank" rel="noopener">
       Service-Public.fr — Caution locative
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028807561" target="_blank" rel="noopener">
+      Légifrance — Art. 22-1 loi du 6 juillet 1989
     </a>
   </p>
 

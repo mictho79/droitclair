@@ -2,14 +2,16 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'motifs',   label: 'Motifs de contestation'          },
-  { id: 'delais',   label: 'Délais et prescription'          },
-  { id: 'procedure', label: 'Procédure de contestation'      },
-  { id: 'faq',      label: 'Questions fréquentes'            },
+  { id: 'retractation', label: 'Rétractation vs contestation'         },
+  { id: 'motifs',       label: 'Motifs de contestation'               },
+  { id: 'delais',       label: 'Délais et prescription'               },
+  { id: 'procedure',    label: 'Procédure de contestation'            },
+  { id: 'consequences', label: 'Conséquences d\'une annulation'       },
+  { id: 'faq',          label: 'Questions fréquentes'                 },
 ];
 
 const summary = [
-  "Une rupture conventionnelle peut être contestée devant le Conseil de prud'hommes dans un délai de 12 mois à compter de son homologation.",
+  "Une rupture conventionnelle peut être contestée devant le Conseil de prud'hommes dans un délai de 12 mois à compter de son homologation par la DREETS.",
   "Les principaux motifs sont le vice du consentement (pression, harcèlement, erreur, dol) et les irrégularités de procédure (absence d'entretien, délai de rétractation non respecté).",
   "En cas d'annulation, la rupture conventionnelle peut être requalifiée en licenciement sans cause réelle et sérieuse, ouvrant droit aux indemnités correspondantes.",
 ];
@@ -20,8 +22,20 @@ const faq = [
     answer: "Oui, la signature ne vaut pas renonciation à tout recours. Le délai de prescription est de 12 mois à compter de l'homologation de la rupture conventionnelle par la DREETS (art. L1237-14 du Code du travail). Pendant la procédure de contestation, l'exécution de la rupture conventionnelle n'est pas suspendue — le contrat est rompu à la date prévue. Si le juge annule la rupture, il peut ordonner la réintégration ou condamner l'employeur à des dommages-intérêts.",
   },
   {
-    question: "Quels éléments prouver un vice du consentement ?",
+    question: "Quels éléments prouvent un vice du consentement ?",
     answer: "Le vice du consentement peut être prouvé par tout moyen : emails, SMS, témoignages, attestations de collègues, arrêts de travail pour maladie liés au contexte, rapport médical du médecin du travail. La situation de harcèlement moral avant la signature, les pressions répétées de l'employeur pour obtenir la signature, ou la vulnérabilité psychologique du salarié au moment de la signature sont des éléments appréciés par les juges pour caractériser un consentement vicié.",
+  },
+  {
+    question: "La DREETS peut-elle refuser d'homologuer une rupture conventionnelle ?",
+    answer: "Oui. La DREETS dispose de 15 jours ouvrables pour instruire le dossier. Elle peut refuser l'homologation si les conditions légales ne sont pas respectées : absence d'entretien ou entretien fictif, délai de rétractation non respecté, indemnité inférieure au minimum légal, ou salarié protégé n'ayant pas bénéficié de la procédure d'autorisation de l'inspection du travail. Sans réponse dans le délai de 15 jours, l'homologation est réputée accordée.",
+  },
+  {
+    question: "Une rupture conventionnelle conclue pendant un harcèlement moral est-elle automatiquement nulle ?",
+    answer: "Non, pas automatiquement. La rupture conventionnelle n'est pas nulle du seul fait qu'elle a été signée dans un contexte de harcèlement moral. Mais si le harcèlement a vicié le consentement — c'est-à-dire si le salarié a signé sous l'effet des pressions et n'aurait pas signé en leur absence — le juge peut prononcer l'annulation. La preuve du lien de causalité entre le harcèlement et la signature est essentielle.",
+  },
+  {
+    question: "Que se passe-t-il si la DREETS refuse l'homologation ?",
+    answer: "En cas de refus d'homologation par la DREETS, la rupture conventionnelle n'est pas valide et le contrat de travail se poursuit. L'employeur peut corriger les irrégularités et soumettre un nouveau formulaire, ou les parties peuvent convenir d'une autre forme de rupture. Le refus de la DREETS n'est pas susceptible de recours administratif de la part du salarié, mais le salarié peut saisir le CPH pour contester la régularité de la procédure.",
   },
 ];
 
@@ -50,6 +64,7 @@ const sidebarLinks = [
   { title: 'Rupture conventionnelle',        href: '/rupture-conventionnelle/'                                                },
   { title: 'Conseil de prud\'hommes',        href: '/prudhommes/'                                                            },
   { title: 'Service-Public — RC',            href: 'https://www.service-public.fr/particuliers/vosdroits/F19030'            },
+  { title: 'Légifrance — Art. L1237-14',     href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029146095'  },
 ];
 ---
 
@@ -57,16 +72,59 @@ const sidebarLinks = [
   title="Contester une rupture conventionnelle : motifs, délais et procédure"
   description="Comment contester une rupture conventionnelle en 2026 : vice du consentement, irrégularité de procédure, délai de 12 mois, saisine du CPH et conséquences d'une annulation."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Démission"
   categorySlug="demission"
-  readingTime={6}
+  readingTime={9}
   summary={summary}
   toc={toc}
   faq={faq}
   relatedArticles={relatedArticles}
   sidebarLinks={sidebarLinks}
 >
+
+  <h2 id="retractation">Rétractation vs contestation : deux voies distinctes</h2>
+
+  <p>
+    Il faut distinguer deux recours aux délais très différents :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Voie</th>
+        <th>Délai</th>
+        <th>Moment</th>
+        <th>Effet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Rétractation</strong></td>
+        <td>15 jours calendaires</td>
+        <td>Après la signature du formulaire, avant homologation</td>
+        <td>La rupture n'a pas lieu — le contrat se poursuit</td>
+      </tr>
+      <tr>
+        <td><strong>Contestation judiciaire</strong></td>
+        <td>12 mois</td>
+        <td>À compter du lendemain de l'homologation par la DREETS</td>
+        <td>Annulation judiciaire + indemnités si le juge fait droit à la demande</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    La <strong>rétractation</strong> s'exerce par lettre recommandée avec accusé de
+    réception adressée à l'autre partie dans les 15 jours calendaires suivant la
+    signature. Elle est sans motif à justifier et sans conséquence financière. C'est
+    la voie la plus simple si le salarié regrette sa décision avant l'homologation.
+  </p>
+
+  <p>
+    La <strong>contestation judiciaire</strong> intervient après l'homologation et
+    nécessite de démontrer un vice du consentement ou une irrégularité de procédure.
+  </p>
 
   <h2 id="motifs">Motifs de contestation</h2>
 
@@ -77,27 +135,64 @@ const sidebarLinks = [
   </p>
 
   <h3>Vices du consentement</h3>
+
   <ul>
-    <li><strong>Violence / pression</strong> — menaces, harcèlement moral ou psychologique ayant conduit le salarié à signer</li>
-    <li><strong>Dol</strong> — manœuvres frauduleuses de l'employeur pour obtenir la signature</li>
-    <li><strong>Erreur</strong> — sur un élément essentiel (ex. : montant de l'indemnité mal calculé)</li>
-    <li><strong>État de vulnérabilité</strong> — signature pendant un arrêt maladie lié à un harcèlement</li>
+    <li>
+      <strong>Violence / pression</strong> — menaces, harcèlement moral ou psychologique
+      ayant conduit le salarié à signer. La Cour de cassation admet que des pressions
+      exercées sur le salarié pour le forcer à accepter une rupture conventionnelle
+      constituent un vice du consentement (Cass. soc., 23 mai 2013).
+    </li>
+    <li>
+      <strong>Dol</strong> — manœuvres frauduleuses de l'employeur pour obtenir la
+      signature : informations mensongères sur les droits du salarié, dissimulation
+      d'une procédure de licenciement en cours, fausses promesses.
+    </li>
+    <li>
+      <strong>Erreur</strong> — sur un élément essentiel, notamment le montant de
+      l'indemnité de rupture si elle a été présentée de manière trompeuse ou incorrecte.
+    </li>
+    <li>
+      <strong>État de vulnérabilité psychologique</strong> — signature pendant un arrêt
+      maladie consécutif à un harcèlement ou en état de détresse psychologique documenté.
+      La jurisprudence est nuancée : la simple coïncidence avec un arrêt maladie ne
+      suffit pas, il faut démontrer que cet état a altéré le discernement.
+    </li>
   </ul>
 
   <h3>Irrégularités de procédure</h3>
+
   <ul>
-    <li>Absence d'entretien préalable</li>
-    <li>Non-respect du délai de rétractation de 15 jours</li>
-    <li>Absence de remise d'un exemplaire du formulaire au salarié</li>
-    <li>Signature avant l'expiration du délai de rétractation</li>
+    <li><strong>Absence d'entretien préalable</strong> — au moins un entretien est
+    obligatoire (art. L1237-12 CT)</li>
+    <li><strong>Non-respect du délai de rétractation</strong> — rupture effective avant
+    l'expiration des 15 jours calendaires</li>
+    <li><strong>Absence de remise d'un exemplaire du formulaire</strong> au salarié</li>
+    <li><strong>Signature avant l'expiration du délai de rétractation</strong></li>
+    <li><strong>Indemnité inférieure au minimum légal</strong> (1/4 de mois de salaire
+    par année d'ancienneté jusqu'à 10 ans, 1/3 au-delà)</li>
+    <li><strong>Salarié protégé</strong> (délégué syndical, membre du CSE) ayant signé
+    sans autorisation préalable de l'inspection du travail</li>
   </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      Depuis un arrêt de la Cour de cassation du <strong>1er février 2023</strong>,
+      l'absence d'entretien préalable n'entraîne plus systématiquement la nullité de
+      la rupture conventionnelle. Le juge apprécie si cette irrégularité a effectivement
+      vicié le consentement du salarié.
+    </div>
+  </div>
 
   <h2 id="delais">Délais et prescription</h2>
 
   <p>
     Le délai de contestation est de <strong>12 mois</strong> à compter du
     <strong>lendemain de l'homologation</strong> par la DREETS
-    (art. <strong>L1237-14 du Code du travail</strong>).
+    (art. <strong>L1237-14 du Code du travail</strong>). Ce délai est un
+    délai de prescription (et non de forclusion) depuis la loi du 14 juin 2013 :
+    il peut être suspendu en cas d'obstacle à l'exercice du droit.
   </p>
 
   <div class="alert alert--warning">
@@ -105,7 +200,7 @@ const sidebarLinks = [
     <div class="alert__body">
       Passé le délai de 12 mois, la rupture conventionnelle devient définitive
       et incontestable. Ce délai est d'ordre public : aucune convention ne peut
-      le rallonger.
+      le rallonger ou le réduire.
     </div>
   </div>
 
@@ -114,31 +209,75 @@ const sidebarLinks = [
   <ol>
     <li>
       <strong>Rassembler les preuves</strong> — emails, SMS, arrêts maladie,
-      attestations de collègues, relevés de soins psychologiques
+      attestations de collègues, relevés de soins psychologiques, échanges avec
+      le médecin du travail, éventuels constats d'huissier
     </li>
     <li>
-      <strong>Consultation d'un avocat ou défenseur syndical</strong> (recommandé)
+      <strong>Consultation d'un avocat ou défenseur syndical</strong> — fortement
+      recommandé pour évaluer les chances de succès et rédiger la requête
     </li>
     <li>
       <strong>Saisine du Conseil de prud'hommes</strong> par requête écrite
-      avant l'expiration du délai de 12 mois
+      avant l'expiration du délai de 12 mois (formulaire Cerfa n°15586)
     </li>
     <li>
-      <strong>Phase de conciliation (BCO)</strong> puis, en cas d'échec,
-      <strong>bureau de jugement</strong>
+      <strong>Phase de conciliation (BCO)</strong> — obligatoire, les parties tentent
+      un accord amiable devant deux conseillers (1 employeur + 1 salarié)
+    </li>
+    <li>
+      En cas d'échec : <strong>bureau de jugement</strong> — délai moyen de 12 à
+      24 mois après la saisine selon le CPH
     </li>
   </ol>
 
+  <h2 id="consequences">Conséquences d'une annulation</h2>
+
   <p>
-    En cas d'annulation, le juge peut prononcer la <strong>réintégration</strong>
-    ou condamner l'employeur à des <strong>dommages-intérêts</strong> équivalents
-    à ceux d'un licenciement sans cause réelle et sérieuse (barème Macron).
+    Si le juge prononce l'annulation de la rupture conventionnelle, plusieurs
+    situations sont possibles selon les faits :
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Motif d'annulation</th>
+        <th>Requalification</th>
+        <th>Conséquences</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vice du consentement (pression simple)</td>
+        <td>Licenciement sans cause réelle et sérieuse</td>
+        <td>Dommages-intérêts barème Macron + indemnité légale + préavis (si non effectué)</td>
+      </tr>
+      <tr>
+        <td>Harcèlement moral ou discrimination</td>
+        <td>Licenciement nul</td>
+        <td>Indemnité ≥ 6 mois de salaire sans plafond + réintégration possible</td>
+      </tr>
+      <tr>
+        <td>Irrégularité de procédure (selon impact sur consentement)</td>
+        <td>Variable selon l'appréciation du juge</td>
+        <td>Dommages-intérêts proportionnels au préjudice subi</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    En cas de réintégration ordonnée par le juge, si le salarié ne souhaite pas
+    reprendre son poste, il peut demander une indemnité compensatrice en lieu et place.
+    Les indemnités perçues lors de la rupture conventionnelle sont déduites des sommes
+    allouées par le juge.
   </p>
 
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029146095" target="_blank" rel="noopener">
-      Légifrance — art. L1237-14 Code du travail
+      Légifrance — Art. L1237-14 Code du travail
+    </a> —
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F19030" target="_blank" rel="noopener">
+      Service-Public.fr — Rupture conventionnelle
     </a>
   </p>
 

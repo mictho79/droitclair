@@ -2,27 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition',  label: 'Définition et reconnaissance'       },
-  { id: 'declaration', label: 'Déclaration et démarches'           },
-  { id: 'droits',      label: 'Droits du salarié victime'          },
-  { id: 'inaptitude',  label: 'Inaptitude et retour au travail'    },
-  { id: 'faq',         label: 'Questions fréquentes'               },
+  { id: 'definition',  label: 'Définition et présomption d\'imputabilité'  },
+  { id: 'declaration', label: 'Déclaration et démarches urgentes'           },
+  { id: 'droits',      label: 'Droits et protections du salarié victime'    },
+  { id: 'ij',          label: 'Indemnités journalières AT : calcul'         },
+  { id: 'inaptitude',  label: 'Retour au travail et inaptitude'             },
+  { id: 'faq',         label: 'Questions fréquentes'                        },
 ];
 
 const summary = [
-  "Un accident du travail est tout accident survenu par le fait ou à l'occasion du travail, quelle qu'en soit la cause, entraînant une lésion corporelle ou psychique.",
-  "Le salarié victime bénéficie d'une prise en charge à 100 % des soins, d'indemnités journalières majorées et d'une protection renforcée contre le licenciement.",
-  "L'employeur doit déclarer l'accident à la CPAM dans les 48 heures, et le salarié doit informer son employeur dans la journée.",
+  "Un accident du travail est tout accident survenu par le fait ou à l'occasion du travail, bénéficiant d'une présomption d'imputabilité favorable au salarié dès lors qu'il survient sur le lieu et pendant le temps de travail.",
+  "Le salarié victime bénéficie d'une prise en charge à 100 % des soins, d'indemnités journalières sans délai de carence et d'une protection renforcée contre le licenciement pendant l'arrêt.",
+  "L'employeur doit déclarer l'accident à la CPAM dans les 48 heures ouvrées sous peine de sanctions, et le salarié doit l'informer dans la journée de l'accident.",
 ];
 
 const faq = [
   {
     question: "L'accident de trajet est-il assimilé à un accident du travail ?",
-    answer: "Oui, l'accident de trajet bénéficie du même régime de prise en charge que l'accident du travail, avec quelques différences : il est défini comme l'accident survenu pendant le trajet aller-retour entre le lieu de travail et le domicile (ou le lieu habituel de restauration). La protection contre le licenciement en cas d'accident de trajet est toutefois moins étendue qu'en cas d'accident du travail proprement dit.",
+    answer: "Oui, l'accident de trajet (art. L411-2 CSS) bénéficie du même régime de prise en charge que l'accident du travail, avec quelques différences. Il est défini comme l'accident survenu pendant le trajet aller-retour entre le domicile et le lieu de travail (ou le lieu habituel de restauration), dès lors que ce trajet n'a pas été interrompu ou détourné pour un motif personnel. La protection contre le licenciement est moins étendue que pour un AT proprement dit.",
   },
   {
     question: "Peut-on être licencié pendant un arrêt pour accident du travail ?",
-    answer: "Le licenciement est interdit pendant la période de suspension du contrat consécutive à un accident du travail (sauf faute grave ou impossibilité de maintenir le contrat). Cette protection s'applique également pendant les 12 mois suivant la reprise du travail si la rechute est liée à l'accident. Tout licenciement prononcé en violation de cette protection est nul.",
+    answer: "Le licenciement est interdit pendant la période de suspension du contrat consécutive à un accident du travail, sauf faute grave du salarié ou impossibilité de maintenir le contrat pour un motif étranger à l'accident (art. L1226-9 du Code du travail). Cette protection s'applique de la date de l'accident jusqu'à la consolidation ou la déclaration d'inaptitude. Tout licenciement prononcé en violation de cette protection est nul de plein droit.",
+  },
+  {
+    question: "Que faire si l'employeur conteste l'accident du travail ?",
+    answer: "L'employeur peut émettre des réserves lors de la déclaration d'accident. La CPAM instruit alors le dossier et peut reconnaître le caractère professionnel de l'accident malgré les réserves. Si la CPAM reconnaît l'AT, l'employeur peut contester cette décision devant le tribunal judiciaire. En cas de refus de la CPAM, le salarié peut contester le refus devant la même juridiction. Il est conseillé de se faire assister par un avocat en droit du travail.",
+  },
+  {
+    question: "Qu'est-ce que la faute inexcusable de l'employeur ?",
+    answer: "La faute inexcusable est caractérisée lorsque l'employeur avait ou aurait dû avoir conscience du danger auquel était exposé le salarié, et n'a pas pris les mesures nécessaires pour l'en préserver (Cass. Soc. 28 fév. 2002). Elle permet au salarié victime d'obtenir une majoration de sa rente AT/MP et des indemnités complémentaires. La faute inexcusable peut être reconnue par la CPAM (via une transaction) ou par le tribunal judiciaire. Les héritiers du salarié décédé peuvent également l'invoquer.",
+  },
+  {
+    question: "Les accidents survenus en télétravail sont-ils des accidents du travail ?",
+    answer: "Oui. Depuis la loi du 22 mars 2012, l'accident survenu sur le lieu de télétravail pendant les heures de travail bénéficie de la présomption d'accident du travail, au même titre qu'un accident survenu dans les locaux de l'entreprise. Le salarié en télétravail doit informer son employeur dans les 24 heures et l'employeur déclare l'AT à la CPAM dans les 48 heures. La présomption peut être renversée si l'accident est survenu lors d'une activité personnelle sans lien avec le travail.",
   },
 ];
 
@@ -34,22 +47,23 @@ const relatedArticles = [
     categorySlug: 'droits-salarie',
   },
   {
+    title:        'Visite de reprise : obligation et conséquences',
+    href:         '/visite-reprise/',
+    category:     'Droits du salarié',
+    categorySlug: 'droits-salarie',
+  },
+  {
     title:        'Licenciement pour inaptitude : droits du salarié',
     href:         '/licenciement-pour-inaptitude/',
     category:     'Licenciement',
     categorySlug: 'licenciement',
-  },
-  {
-    title:        'Visite de reprise : quand et pourquoi',
-    href:         '/visite-reprise/',
-    category:     'Droits du salarié',
-    categorySlug: 'droits-salarie',
   },
 ];
 
 const sidebarLinks = [
   { title: 'Arrêt maladie et salaire',       href: '/arret-maladie-salaire/'                                                 },
   { title: 'Visite de reprise',              href: '/visite-reprise/'                                                        },
+  { title: 'Mi-temps thérapeutique',         href: '/mi-temps-therapeutique/'                                                },
   { title: 'Ameli — Accident du travail',    href: 'https://www.ameli.fr/assure/remboursements/accidents-du-travail-maladies-professionnelles/accident-du-travail' },
   { title: 'Service-Public — AT',            href: 'https://www.service-public.fr/particuliers/vosdroits/F175'              },
 ];
@@ -57,12 +71,12 @@ const sidebarLinks = [
 
 <ArticleLayout
   title="Accident du travail : reconnaissance, droits et démarches en 2026"
-  description="Accident du travail en 2026 : définition, déclaration dans les 48h, prise en charge à 100 %, indemnités journalières majorées et protection contre le licenciement."
+  description="Accident du travail en 2026 : définition, présomption d'imputabilité, déclaration dans les 48h, IJ sans délai de carence, protection contre le licenciement et faute inexcusable."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Droits du salarié"
   categorySlug="droits-salarie"
-  readingTime={7}
+  readingTime={9}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -70,80 +84,203 @@ const sidebarLinks = [
   sidebarLinks={sidebarLinks}
 >
 
-  <h2 id="definition">Définition et reconnaissance</h2>
+  <h2 id="definition">Définition et présomption d'imputabilité</h2>
 
   <p>
     Est considéré comme accident du travail, quelle qu'en soit la cause,
     <strong>tout accident survenu par le fait ou à l'occasion du travail</strong>
-    à toute personne salariée (art. <strong>L411-1 du Code de la Sécurité sociale</strong>).
+    à toute personne salariée ou travaillant pour un ou plusieurs employeurs
+    (art. <strong>L411-1 du Code de la Sécurité sociale</strong>).
   </p>
 
-  <p>Deux conditions cumulatives sont nécessaires :</p>
+  <p>Deux éléments constitutifs sont nécessaires :</p>
+
   <ul>
-    <li>Un <strong>événement soudain</strong> et identifiable dans le temps</li>
-    <li>Une <strong>lésion</strong> corporelle ou psychique résultant de cet événement</li>
+    <li>
+      Un <strong>fait accidentel soudain</strong> — un événement identifiable
+      dans le temps et dans l'espace (une chute, un choc, une coupure, un choc
+      émotionnel soudain), par opposition à une maladie professionnelle qui se
+      développe progressivement
+    </li>
+    <li>
+      Une <strong>lésion corporelle ou psychique</strong> résultant de cet événement
+      — la lésion peut être physique (fracture, brûlure, plaie) ou psychologique
+      (état de choc, syndrome de stress post-traumatique)
+    </li>
   </ul>
 
-  <p>La qualification en accident du travail est présumée lorsque l'accident survient
-  sur le lieu et pendant le temps de travail. C'est à l'employeur ou à la CPAM de
-  renverser cette présomption.</p>
+  <p>
+    La loi institue une <strong>présomption d'imputabilité</strong> : lorsque
+    l'accident survient sur le lieu et pendant le temps de travail, il est présumé
+    être un accident du travail. C'est à l'employeur ou à la CPAM de renverser
+    cette présomption en apportant la preuve que l'accident est étranger au travail
+    (cause personnelle, acte volontaire du salarié...).
+  </p>
 
-  <h2 id="declaration">Déclaration et démarches</h2>
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      <strong>Les accidents survenus en télétravail</strong> bénéficient de la même
+      présomption d'accident du travail, à condition qu'ils aient lieu pendant les
+      horaires de travail habituels et sur le lieu de télétravail déclaré.
+    </div>
+  </div>
+
+  <h2 id="declaration">Déclaration et démarches urgentes</h2>
+
+  <p>
+    La gestion d'un accident du travail implique des délais stricts qu'il est important
+    de respecter :
+  </p>
 
   <ol>
     <li>
-      <strong>Le salarié informe l'employeur</strong> dans la journée de l'accident
-      (ou dès que possible)
+      <strong>Le salarié informe son employeur</strong> dans la journée de l'accident,
+      ou dès que possible si son état ne le permet pas. Cette information peut être
+      faite verbalement, mais il est recommandé de la confirmer par écrit
+    </li>
+    <li>
+      <strong>Consultation médicale</strong> — le salarié consulte un médecin (médecin
+      traitant ou urgences) qui établit un <strong>certificat médical initial (CMI)</strong>
+      décrivant précisément les lésions constatées. Ce certificat est le document
+      fondateur du dossier AT
     </li>
     <li>
       <strong>L'employeur déclare l'accident à la CPAM</strong> dans les
-      <strong>48 heures</strong> (jours ouvrés), via le formulaire S6200 ou en ligne
-      sur net-entreprises.fr
+      <strong>48 heures ouvrées</strong> (hors dimanches et jours fériés) via le
+      formulaire S6200 ou en ligne sur net-entreprises.fr. En cas de non-déclaration,
+      l'employeur s'expose à une pénalité et le salarié peut lui-même déclarer l'AT
+      dans un délai de <strong>2 ans</strong>
     </li>
     <li>
-      <strong>Le salarié consulte un médecin</strong> qui établit un certificat
-      médical initial (CMI) décrivant les lésions
-    </li>
-    <li>
-      <strong>La CPAM statue</strong> dans un délai de 30 jours (ou 90 jours si
-      instruction complémentaire) sur la reconnaissance de l'accident
+      <strong>La CPAM instruit le dossier</strong> dans un délai de 30 jours (ou 90
+      jours si une enquête complémentaire est nécessaire) et notifie sa décision au
+      salarié et à l'employeur
     </li>
   </ol>
 
-  <h2 id="droits">Droits du salarié victime</h2>
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      L'employeur peut émettre des <strong>réserves motivées</strong> sur le caractère
+      professionnel de l'accident lors de la déclaration. Ces réserves déclenchent une
+      instruction approfondie de la CPAM. Le salarié sera auditionné et peut apporter
+      tous éléments de preuve (témoignages, photos, rapport de la médecine du travail).
+    </div>
+  </div>
+
+  <h2 id="droits">Droits et protections du salarié victime</h2>
+
+  <p>
+    Le régime accidents du travail / maladies professionnelles (AT/MP) offre des
+    protections nettement supérieures au régime maladie ordinaire :
+  </p>
 
   <ul>
-    <li><strong>Prise en charge à 100 %</strong> des soins médicaux sans avance de frais</li>
     <li>
-      <strong>Indemnités journalières (IJ) majorées</strong> : 60 % du salaire journalier
-      de référence du 1er au 28e jour, puis 80 % à partir du 29e jour
-      (sans délai de carence, contrairement à la maladie ordinaire)
-    </li>
-    <li><strong>Protection contre le licenciement</strong> pendant l'arrêt</li>
-    <li>
-      <strong>Indemnisation complémentaire</strong> en cas d'incapacité permanente
-      (rente AT proportionnelle au taux d'incapacité)
+      <strong>Prise en charge à 100 % des soins</strong> — tous les frais médicaux,
+      chirurgicaux, pharmaceutiques et de rééducation sont pris en charge intégralement
+      par la CPAM, sans avance de frais (tiers payant intégral)
     </li>
     <li>
-      <strong>Faute inexcusable de l'employeur</strong> — si l'employeur avait ou
-      aurait dû avoir conscience du danger, la rente et les dommages-intérêts peuvent
-      être majorés
+      <strong>Indemnités journalières (IJ) sans délai de carence</strong> — contrairement
+      à la maladie ordinaire (3 jours de carence), les IJ AT débutent dès le premier
+      jour d'arrêt qui suit l'accident
+    </li>
+    <li>
+      <strong>Protection contre le licenciement</strong> — le licenciement est interdit
+      pendant l'arrêt consécutif à l'AT, sauf faute grave ou impossibilité de maintenir
+      le contrat pour un motif étranger à l'accident (art. L1226-9 CT)
+    </li>
+    <li>
+      <strong>Rente AT en cas d'incapacité permanente</strong> — si l'accident laisse
+      des séquelles permanentes (taux d'incapacité permanente partielle - IPP), une
+      rente viagère est versée par la CPAM, proportionnelle au taux d'IPP et au salaire
+      de référence
+    </li>
+    <li>
+      <strong>Capital décès majoré</strong> en cas d'accident mortel, versé aux ayants droit
     </li>
   </ul>
 
-  <h2 id="inaptitude">Inaptitude et retour au travail</h2>
+  <h2 id="ij">Indemnités journalières AT : calcul</h2>
 
   <p>
-    À l'issue d'un arrêt pour accident du travail, le salarié doit passer une
-    <strong>visite de reprise</strong> obligatoire auprès du médecin du travail.
-    Si celui-ci constate une inaptitude à reprendre le poste, l'employeur a l'obligation
-    de rechercher un reclassement avant tout licenciement pour inaptitude.
+    Les <strong>indemnités journalières (IJ) AT</strong> sont calculées sur la base
+    du salaire journalier de référence (SJR), correspondant au salaire brut du mois
+    précédant l'arrêt divisé par 30,42 (nombre moyen de jours par mois).
   </p>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Période d'arrêt</th>
+        <th>Taux de l'IJ</th>
+        <th>Remarque</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Du 1er au 28e jour d'arrêt</td>
+        <td><strong>60 % du SJR</strong></td>
+        <td>Sans délai de carence (dès le 1er jour)</td>
+      </tr>
+      <tr>
+        <td>À partir du 29e jour d'arrêt</td>
+        <td><strong>80 % du SJR</strong></td>
+        <td>Majoration automatique</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Le SJR est plafonné à <strong>1/730e du plafond annuel de la Sécurité sociale</strong>
+    (PASS 2025 : 46 368 €), soit environ 63,51 €/jour. L'IJ maximale est donc de
+    ~38 €/jour sur la première période et ~50,8 €/jour sur la seconde.
+  </p>
+
+  <p>
+    Dans la plupart des entreprises, la <strong>convention collective prévoit un maintien
+    de salaire complémentaire</strong> de l'employeur qui s'ajoute aux IJ de la CPAM.
+    Vérifiez votre convention collective sur ce point.
+  </p>
+
+  <h2 id="inaptitude">Retour au travail et inaptitude</h2>
+
+  <p>
+    À l'issue d'un arrêt pour accident du travail d'au moins <strong>30 jours</strong>,
+    le salarié doit obligatoirement passer une <strong>visite de reprise</strong> auprès
+    du médecin du travail, à organiser par l'employeur dans les 8 jours suivant la reprise.
+  </p>
+
+  <p>
+    Si le médecin du travail conclut à une <strong>inaptitude consécutive à un AT</strong>,
+    le régime est particulièrement protecteur pour le salarié :
+  </p>
+
+  <ul>
+    <li>
+      L'employeur doit proposer un reclassement en tenant compte des préconisations
+      du médecin du travail
+    </li>
+    <li>
+      Si le licenciement pour inaptitude est prononcé, l'<strong>indemnité spéciale
+      de licenciement est doublée</strong> par rapport à l'indemnité légale habituelle
+      (art. <strong>L1226-14 du Code du travail</strong>)
+    </li>
+    <li>
+      Le salarié perçoit également une <strong>indemnité compensatrice de préavis</strong>
+      (équivalent du préavis), même s'il n'est pas en mesure de l'effectuer
+    </li>
+  </ul>
+
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F175" target="_blank" rel="noopener">
       Service-Public.fr — Accident du travail
+    </a> —
+    <a href="https://www.ameli.fr/assure/remboursements/accidents-du-travail-maladies-professionnelles/accident-du-travail" target="_blank" rel="noopener">
+      Ameli.fr — Accident du travail : démarches et indemnisations
     </a>
   </p>
 

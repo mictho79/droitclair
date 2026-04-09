@@ -25,16 +25,18 @@ Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expr
 [Prénom Nom]`;
 
 const toc = [
-  { id: 'role',      label: 'Rôle de la lettre'              },
-  { id: 'modele',    label: 'Modèle de demande'              },
-  { id: 'suite',     label: 'Suite de la procédure'          },
-  { id: 'faq',       label: 'Questions fréquentes'           },
+  { id: 'role',         label: 'Rôle de la lettre'              },
+  { id: 'modele',       label: 'Modèle de demande'              },
+  { id: 'suite',        label: 'Suite de la procédure'          },
+  { id: 'negociation',  label: 'Négocier les conditions'        },
+  { id: 'homologation', label: 'Homologation DREETS'            },
+  { id: 'faq',          label: 'Questions fréquentes'           },
 ];
 
 const summary = [
-  "La rupture conventionnelle ne requiert pas de lettre formelle obligatoire : la demande peut être verbale ou écrite, et c'est le formulaire Cerfa qui constitue le document officiel.",
+  "La rupture conventionnelle ne requiert pas de lettre formelle obligatoire : la demande peut être verbale ou écrite, et c'est le formulaire Cerfa n°14598 qui constitue le document officiel.",
   "Envoyer une lettre de demande par écrit est néanmoins conseillé pour garder une trace de la démarche et marquer la date du début de la procédure.",
-  "L'employeur n'est pas obligé d'accepter une demande de rupture conventionnelle du salarié.",
+  "L'employeur n'est pas obligé d'accepter une demande de rupture conventionnelle du salarié — et le salarié peut se rétracter dans les 15 jours suivant la signature du Cerfa.",
 ];
 
 const faq = [
@@ -45,6 +47,18 @@ const faq = [
   {
     question: "Faut-il envoyer la lettre de demande en recommandé ?",
     answer: "La loi n'impose pas l'envoi en recommandé pour la demande initiale de rupture conventionnelle. Cependant, il est vivement conseillé de le faire pour conserver une preuve de la date de la demande. La procédure officielle commence à partir du premier entretien et se conclut par la signature du formulaire Cerfa, qui lui doit obligatoirement être homologué par la DREETS.",
+  },
+  {
+    question: "Quel est le montant minimum de l'indemnité spécifique de rupture conventionnelle ?",
+    answer: "L'indemnité spécifique de rupture conventionnelle ne peut pas être inférieure à l'indemnité légale de licenciement : 1/4 de mois de salaire brut par année d'ancienneté pour les 10 premières années, et 1/3 de mois par année au-delà (art. L1237-13 CT). La convention collective peut prévoir un montant plus élevé — le calcul doit retenir le plus avantageux pour le salarié. Cette indemnité est exonérée de charges sociales dans la limite de 2 fois le PASS (92 736 € en 2025).",
+  },
+  {
+    question: "Que se passe-t-il si on se rétracte après la signature du Cerfa ?",
+    answer: "Chaque partie dispose d'un délai de 15 jours calendaires à compter du lendemain de la signature du formulaire Cerfa pour se rétracter, sans motif à justifier. La rétractation s'exerce par lettre recommandée avec accusé de réception adressée à l'autre partie. En cas de rétractation, la procédure est annulée et le contrat de travail se poursuit dans les conditions habituelles — comme si rien ne s'était passé.",
+  },
+  {
+    question: "La rupture conventionnelle est-elle possible pendant un arrêt maladie ?",
+    answer: "Oui, la rupture conventionnelle peut être conclue pendant un arrêt de travail pour maladie ordinaire (Cass. soc., 30 sept. 2013). En revanche, elle ne peut pas être conclue pendant un arrêt consécutif à un accident du travail ou une maladie professionnelle — le salarié bénéficiant d'une protection renforcée pendant cette période. La jurisprudence est attentive aux conditions dans lesquelles la signature intervient pendant un arrêt, notamment pour vérifier l'absence de vice du consentement.",
   },
 ];
 
@@ -73,17 +87,18 @@ const sidebarLinks = [
   { title: 'Rupture conventionnelle',        href: '/rupture-conventionnelle/'                                                },
   { title: 'Contester une rupture conv.',    href: '/contester-rupture-conventionnelle/'                                     },
   { title: 'Service-Public — RC',            href: 'https://www.service-public.fr/particuliers/vosdroits/F19030'            },
+  { title: 'Légifrance — Art. L1237-11',     href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019068100'  },
 ];
 ---
 
 <ArticleLayout
   title="Lettre de demande de rupture conventionnelle : modèle 2026"
-  description="Modèle gratuit de lettre de demande de rupture conventionnelle en 2026, étapes de la procédure après envoi, délai de rétractation et homologation par la DREETS."
+  description="Modèle gratuit de lettre de demande de rupture conventionnelle en 2026, conditions de l'indemnité minimum, étapes de la procédure, délai de rétractation de 15 jours et homologation par la DREETS."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Démission"
   categorySlug="demission"
-  readingTime={5}
+  readingTime={8}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -98,7 +113,7 @@ const sidebarLinks = [
     les articles <strong>L1237-11 et suivants du Code du travail</strong>.
     Elle ne nécessite pas de lettre de démission — c'est le formulaire
     <strong>Cerfa n°14598</strong> signé par les deux parties qui constitue
-    l'acte officiel.
+    l'acte officiel de la rupture.
   </p>
 
   <p>
@@ -106,45 +121,110 @@ const sidebarLinks = [
   </p>
 
   <ul>
-    <li>Formaliser le déclenchement de la démarche par écrit</li>
-    <li>Conserver une preuve de la date de la demande</li>
+    <li>Formaliser le déclenchement de la démarche par écrit et conserver une preuve de la date</li>
     <li>Montrer le caractère volontaire et non contraint de la démarche</li>
+    <li>Laisser un délai à l'employeur pour organiser les entretiens</li>
+    <li>Se ménager une trace en cas de contestation ultérieure</li>
   </ul>
+
+  <div class="alert alert--info">
+    <div class="alert__icon">💡</div>
+    <div class="alert__body">
+      La rupture conventionnelle est <strong>réservée aux CDI</strong>. Elle n'est pas
+      possible en CDD, ni pour les salariés en période d'essai. Les salariés protégés
+      (membres du CSE, délégués syndicaux) peuvent en bénéficier, mais la procédure
+      nécessite une autorisation préalable de l'inspection du travail.
+    </div>
+  </div>
 
   <h2 id="modele">Modèle de demande de rupture conventionnelle</h2>
 
-  <CopyBlock title="Modèle — Demande de rupture conventionnelle" content={modele} />
+  <CopyBlock label="Modèle — Demande de rupture conventionnelle" content={modele} />
 
   <h2 id="suite">Suite de la procédure</h2>
 
   <ol>
     <li>
       <strong>Entretien(s) préalable(s)</strong> — au moins un entretien entre l'employeur
-      et le salarié pour négocier les conditions de la rupture (date, indemnité)
+      et le salarié pour négocier les conditions de la rupture (date de départ, montant
+      de l'indemnité). Le salarié peut se faire assister par un salarié de l'entreprise
+      ou, si l'entreprise dispose d'institutions représentatives du personnel, par un
+      représentant du personnel.
     </li>
     <li>
-      <strong>Signature du formulaire Cerfa</strong> — les deux parties signent le
-      document de rupture conventionnelle
+      <strong>Signature du formulaire Cerfa n°14598</strong> — les deux parties signent
+      la convention de rupture. Chaque partie en reçoit un exemplaire signé.
     </li>
     <li>
-      <strong>Délai de rétractation : 15 jours calendaires</strong> — chaque partie
-      peut se rétracter par LRAR dans les 15 jours suivant la signature
+      <strong>Délai de rétractation : 15 jours calendaires</strong> — à compter du
+      lendemain de la signature, chaque partie peut se rétracter par LRAR, sans motif
+      ni pénalité
     </li>
     <li>
-      <strong>Demande d'homologation à la DREETS</strong> — après le délai de
-      rétractation, le formulaire est envoyé à la DREETS qui dispose de 15 jours
-      ouvrables pour valider ou refuser
+      <strong>Demande d'homologation à la DREETS</strong> — après l'expiration du délai
+      de rétractation, le formulaire est envoyé à la DREETS (Direction Régionale de
+      l'Économie, de l'Emploi, du Travail et des Solidarités) qui dispose de
+      <strong>15 jours ouvrables</strong> pour valider ou refuser
     </li>
     <li>
       <strong>Rupture effective</strong> — après homologation, à la date convenue
-      dans le formulaire
+      dans le formulaire (qui ne peut pas être antérieure au lendemain de l'homologation)
     </li>
   </ol>
 
+  <h2 id="negociation">Négocier les conditions</h2>
+
+  <p>
+    Plusieurs éléments sont négociables lors des entretiens de rupture conventionnelle :
+  </p>
+
+  <ul>
+    <li>
+      <strong>Le montant de l'indemnité</strong> — au moins égale à l'indemnité légale
+      de licenciement (plancher légal), mais librement négociable à la hausse. La
+      convention collective peut prévoir un plancher conventionnel plus élevé.
+    </li>
+    <li>
+      <strong>La date de rupture</strong> — fixée d'un commun accord, elle doit
+      être postérieure à la fin du délai de rétractation et à l'homologation.
+      Le salarié peut négocier un départ rapide ou différé selon ses projets.
+    </li>
+    <li>
+      <strong>Les conditions de préavis</strong> — la rupture conventionnelle n'est
+      pas soumise à l'obligation de préavis. Le salarié peut continuer à travailler
+      jusqu'à la date de rupture ou être dispensé d'activité sur accord.
+    </li>
+    <li>
+      <strong>Les avantages complémentaires</strong> — maintien temporaire de la
+      mutuelle (distinct de la portabilité légale), équipements professionnels, etc.
+    </li>
+  </ul>
+
+  <h2 id="homologation">Homologation DREETS</h2>
+
+  <p>
+    La DREETS vérifie lors de l'homologation :
+  </p>
+
+  <ul>
+    <li>La liberté de consentement des deux parties (absence de contrainte apparente)</li>
+    <li>Le respect de la procédure : au moins un entretien tenu, délai de rétractation respecté</li>
+    <li>Le montant de l'indemnité : supérieur ou égal au minimum légal</li>
+    <li>Pour les salariés protégés : l'existence d'une autorisation de l'inspection du travail</li>
+  </ul>
+
+  <p>
+    Sans réponse de la DREETS à l'issue du délai de 15 jours ouvrables,
+    l'<strong>homologation est réputée accordée</strong> (accord tacite).
+  </p>
+
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F19030" target="_blank" rel="noopener">
       Service-Public.fr — Rupture conventionnelle
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019068100" target="_blank" rel="noopener">
+      Légifrance — Art. L1237-11 CT (rupture conventionnelle)
     </a>
   </p>
 

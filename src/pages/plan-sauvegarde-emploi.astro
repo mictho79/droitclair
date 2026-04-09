@@ -2,27 +2,40 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 
 const toc = [
-  { id: 'definition',  label: 'Qu\'est-ce qu\'un PSE ?'            },
-  { id: 'seuils',      label: 'Seuils d\'obligation'               },
-  { id: 'contenu',     label: 'Contenu obligatoire du PSE'         },
-  { id: 'droits',      label: 'Droits des salariés concernés'      },
-  { id: 'faq',         label: 'Questions fréquentes'               },
+  { id: 'definition',  label: 'Qu\'est-ce qu\'un PSE ?'                    },
+  { id: 'seuils',      label: 'Seuils d\'obligation'                        },
+  { id: 'elaboration', label: 'Élaboration et validation'                   },
+  { id: 'contenu',     label: 'Contenu obligatoire du PSE'                  },
+  { id: 'droits',      label: 'Droits des salariés concernés'               },
+  { id: 'faq',         label: 'Questions fréquentes'                        },
 ];
 
 const summary = [
   "Le Plan de Sauvegarde de l'Emploi (PSE) est obligatoire dans toute entreprise d'au moins 50 salariés envisageant de licencier au moins 10 salariés sur 30 jours pour motif économique.",
   "Il doit prévoir des mesures pour éviter ou réduire les licenciements et faciliter le reclassement des salariés dont le licenciement ne peut être évité.",
-  "Le PSE est élaboré en concertation avec les représentants du personnel et doit être validé ou homologué par la DREETS avant la mise en œuvre des licenciements.",
+  "Le PSE est élaboré avec le CSE et doit être validé (si accord collectif) ou homologué (si document unilatéral) par la DREETS avant la mise en œuvre des licenciements.",
 ];
 
 const faq = [
   {
     question: "Que se passe-t-il si l'entreprise ne respecte pas l'obligation de PSE ?",
-    answer: "Les licenciements prononcés en l'absence de PSE obligatoire sont nuls de plein droit. Les salariés dont le licenciement est nul ont droit à la réintégration dans l'entreprise ou, s'ils ne le souhaitent pas, à une indemnité minimale de 12 mois de salaire brut. L'employeur s'expose également à des poursuites pénales. La DREETS peut bloquer les licenciements si le PSE n'est pas conforme.",
+    answer: "Les licenciements prononcés en l'absence de PSE obligatoire, ou en présence d'un PSE insuffisant, sont nuls de plein droit (art. L1235-10 du Code du travail). Les salariés licenciés ont droit à la réintégration dans l'entreprise ou, s'ils ne le souhaitent pas, à une indemnité minimale de 12 mois de salaire brut — sans préjudice des autres indemnités. L'employeur s'expose également à des poursuites pénales (art. L1238-3 CT).",
   },
   {
     question: "Un salarié peut-il refuser le PSE et rester dans l'entreprise ?",
-    answer: "Le salarié peut refuser les mesures de reclassement proposées dans le PSE (par exemple une mobilité géographique ou fonctionnelle), mais ce refus ne le protège pas automatiquement du licenciement économique. Si l'entreprise ne peut pas lui proposer un poste de reclassement compatible sans modification de son contrat, le licenciement économique peut être prononcé même en cas de refus des mesures du PSE.",
+    answer: "Le salarié peut refuser les mesures de reclassement proposées dans le PSE (mobilité géographique, reconversion, formation). Mais ce refus ne le protège pas automatiquement du licenciement économique. Si l'entreprise ne peut pas proposer de poste de reclassement compatible sans modification du contrat, le licenciement économique peut être prononcé malgré le refus des mesures du PSE. Le salarié reçoit alors l'ensemble des indemnités légales et conventionnelles.",
+  },
+  {
+    question: "Le salarié peut-il contester le PSE devant le tribunal ?",
+    answer: "Oui. Le PSE peut être contesté devant le tribunal administratif (compétent depuis la loi de sécurisation de l'emploi de 2013) dans un délai de 2 mois suivant la décision de validation ou d'homologation de la DREETS. Le CSE peut également saisir le tribunal pour irrégularité de la procédure de consultation. L'employeur ne peut pas mettre en œuvre les licenciements pendant la procédure de contestation si le tribunal suspend l'exécution.",
+  },
+  {
+    question: "Qu'est-ce que le congé de reclassement prévu dans les PSE ?",
+    answer: "Le congé de reclassement est une mesure d'accompagnement obligatoire dans les entreprises de plus de 1 000 salariés (art. L1233-71 CT). Il permet au salarié de bénéficier d'un maintien partiel de salaire (au moins 65 % du salaire brut) pendant une durée allant de 4 à 12 mois pour réaliser un bilan de compétences, des formations ou une prestation de validation des acquis. Le congé s'impute sur le préavis, et si sa durée dépasse le préavis, le contrat de travail est maintenu pendant cet excédent.",
+  },
+  {
+    question: "Qu'est-ce que le Contrat de Sécurisation Professionnelle (CSP) dans le cadre d'un PSE ?",
+    answer: "Le CSP est proposé aux salariés des entreprises de moins de 1 000 salariés licenciés pour motif économique dans le cadre d'un PSE (ou d'un licenciement économique sans PSE). C'est une alternative au congé de reclassement : le salarié accepte de quitter l'entreprise immédiatement contre une indemnisation majorée et un accompagnement renforcé par France Travail. L'indemnisation CSP est de 75 % du salaire brut de référence pendant 12 mois maximum.",
   },
 ];
 
@@ -48,20 +61,21 @@ const relatedArticles = [
 ];
 
 const sidebarLinks = [
-  { title: 'Licenciement économique',         href: '/licenciement-economique/'                                              },
-  { title: 'Priorité de réembauche',          href: '/priorite-reembauche/'                                                  },
-  { title: 'Service-Public — PSE',            href: 'https://www.service-public.fr/particuliers/vosdroits/F2811'            },
+  { title: 'Licenciement économique',          href: '/licenciement-economique/'                                               },
+  { title: 'Priorité de réembauche',           href: '/priorite-reembauche/'                                                   },
+  { title: 'Service-Public — PSE',             href: 'https://www.service-public.fr/particuliers/vosdroits/F2811'             },
+  { title: 'Légifrance — Art. L1233-61',       href: 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762186'   },
 ];
 ---
 
 <ArticleLayout
   title="Plan de sauvegarde de l'emploi (PSE) : obligations et droits des salariés"
-  description="PSE en 2026 : seuils d'obligation (50 salariés / 10 licenciements), contenu obligatoire, validation par la DREETS, droits des salariés et nullité des licenciements sans PSE."
+  description="PSE en 2026 : seuils d'obligation, élaboration avec le CSE, validation DREETS, contenu obligatoire (reclassement, congé de reclassement, CSP) et droits des salariés concernés."
   publishedDate="2026-03-20"
-  modifiedDate="2026-03-25"
+  modifiedDate="2026-04-09"
   category="Licenciement"
   categorySlug="licenciement"
-  readingTime={7}
+  readingTime={9}
   summary={summary}
   toc={toc}
   faq={faq}
@@ -73,56 +87,197 @@ const sidebarLinks = [
 
   <p>
     Le <strong>Plan de Sauvegarde de l'Emploi (PSE)</strong> est une procédure
-    obligatoire encadrée par les articles <strong>L1233-61 et suivants du Code
-    du travail</strong>. Il s'impose aux entreprises qui envisagent des
-    licenciements économiques collectifs au-delà de certains seuils.
+    obligatoire encadrée par les articles <strong>L1233-61 et suivants du Code du
+    travail</strong>. Il s'impose aux entreprises qui envisagent des licenciements
+    économiques collectifs au-delà de certains seuils, dans le but de limiter les
+    suppressions d'emploi et d'organiser le reclassement des salariés concernés.
   </p>
 
   <p>
-    Son objectif est double : <strong>éviter ou limiter les suppressions de postes</strong>
-    et <strong>faciliter le reclassement</strong> des salariés dont le licenciement
-    ne peut être évité.
+    Son objectif est double :
   </p>
+
+  <ul>
+    <li>
+      <strong>Éviter ou limiter les suppressions de postes</strong> — en explorant
+      toutes les alternatives (réduction du temps de travail, mobilité interne,
+      départs volontaires, formation)
+    </li>
+    <li>
+      <strong>Faciliter le reclassement</strong> des salariés dont le licenciement
+      ne peut être évité, en leur proposant des mesures d'accompagnement (congé
+      de reclassement, CSP, aide à la création d'entreprise, formation professionnelle)
+    </li>
+  </ul>
 
   <h2 id="seuils">Seuils d'obligation</h2>
 
   <table>
     <thead>
-      <tr><th>Taille de l'entreprise</th><th>Nombre de licenciements envisagés sur 30 jours</th><th>PSE obligatoire ?</th></tr>
+      <tr>
+        <th>Taille de l'entreprise</th>
+        <th>Nombre de licenciements sur 30 jours</th>
+        <th>PSE obligatoire ?</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td>50 salariés et plus</td><td>10 et plus</td><td>✅ Oui</td></tr>
-      <tr><td>Moins de 50 salariés</td><td>Peu importe</td><td>❌ Non (procédure simplifiée)</td></tr>
-      <tr><td>50 salariés et plus</td><td>Moins de 10</td><td>❌ Non (procédure simplifiée)</td></tr>
+      <tr>
+        <td>50 salariés et plus</td>
+        <td>10 et plus</td>
+        <td>Oui (art. L1233-61 CT)</td>
+      </tr>
+      <tr>
+        <td>Moins de 50 salariés</td>
+        <td>Peu importe</td>
+        <td>Non (procédure simplifiée)</td>
+      </tr>
+      <tr>
+        <td>50 salariés et plus</td>
+        <td>Moins de 10</td>
+        <td>Non (procédure simplifiée)</td>
+      </tr>
     </tbody>
   </table>
 
+  <p>
+    Pour les entreprises en redressement ou liquidation judiciaire, des règles
+    particulières s'appliquent : le PSE peut être imposé par le tribunal de commerce
+    dans des délais accélérés, sous le contrôle du mandataire judiciaire.
+  </p>
+
+  <h2 id="elaboration">Élaboration et validation</h2>
+
+  <p>
+    Depuis la loi de sécurisation de l'emploi du 14 juin 2013, le PSE peut être
+    élaboré selon deux voies :
+  </p>
+
+  <h3>Par accord collectif majoritaire</h3>
+
+  <p>
+    L'employeur négocie un accord avec les syndicats représentatifs dans l'entreprise.
+    Cet accord doit être signé par des syndicats représentant au moins 50 % des suffrages
+    exprimés lors des dernières élections professionnelles. Il est ensuite soumis à
+    <strong>validation</strong> de la DREETS (Direction Régionale de l'Économie, de
+    l'Emploi, du Travail et des Solidarités), qui dispose de 15 jours pour se prononcer.
+  </p>
+
+  <h3>Par document unilatéral de l'employeur</h3>
+
+  <p>
+    En l'absence d'accord, l'employeur élabore seul le PSE après avoir consulté le
+    <strong>Comité Social et Économique (CSE)</strong> selon une procédure encadrée.
+    Le document est soumis à l'<strong>homologation</strong> de la DREETS, qui dispose
+    de 21 jours pour se prononcer et vérifie la conformité de la procédure et l'adéquation
+    des mesures.
+  </p>
+
+  <div class="alert alert--warning">
+    <div class="alert__icon">⚠️</div>
+    <div class="alert__body">
+      L'employeur <strong>ne peut pas mettre en œuvre les licenciements</strong> avant
+      d'avoir obtenu la validation ou l'homologation de la DREETS. Tout licenciement
+      prononcé sans cette décision est nul de plein droit.
+    </div>
+  </div>
+
   <h2 id="contenu">Contenu obligatoire du PSE</h2>
 
-  <p>Le PSE doit impérativement prévoir :</p>
+  <p>
+    Le PSE doit impérativement prévoir un ensemble de mesures définies par la loi :
+  </p>
+
+  <h3>Mesures d'évitement des licenciements</h3>
 
   <ul>
-    <li><strong>Mesures d'évitement</strong> — réduction du temps de travail, formation, mobilité interne, départs volontaires</li>
-    <li><strong>Reclassement interne</strong> — liste des postes disponibles dans l'entreprise et le groupe</li>
-    <li><strong>Mesures d'accompagnement</strong> — congé de reclassement, CSP, aide à la création d'entreprise, formation professionnelle</li>
-    <li><strong>Calendrier de mise en œuvre</strong></li>
-    <li><strong>Indemnités supra-légales</strong> (si négociées)</li>
+    <li>
+      <strong>Réduction ou aménagement du temps de travail</strong> — recours à
+      l'activité partielle, horaires réduits, passage au temps partiel volontaire
+    </li>
+    <li>
+      <strong>Départs volontaires</strong> — appel au volontariat avec indemnités
+      négociées supérieures au légal
+    </li>
+    <li>
+      <strong>Mobilité interne</strong> — transferts volontaires vers d'autres postes
+      dans l'entreprise ou le groupe
+    </li>
+    <li>
+      <strong>Formation professionnelle</strong> — reconversions permettant le maintien
+      dans l'emploi
+    </li>
   </ul>
+
+  <h3>Mesures de reclassement</h3>
+
+  <ul>
+    <li>
+      <strong>Liste des postes disponibles</strong> dans l'entreprise et dans le groupe,
+      avec les qualifications requises
+    </li>
+    <li>
+      <strong>Congé de reclassement</strong> (entreprises ≥ 1 000 salariés) — maintien
+      partiel de salaire pendant 4 à 12 mois pour formation ou bilan de compétences
+    </li>
+    <li>
+      <strong>Contrat de Sécurisation Professionnelle (CSP)</strong> (entreprises &lt;
+      1 000 salariés) — accompagnement renforcé France Travail, indemnisation à 75 %
+      du salaire brut pendant 12 mois
+    </li>
+    <li>
+      <strong>Aide à la création ou reprise d'entreprise</strong>
+    </li>
+    <li>
+      <strong>Mesures de formation et de validation des acquis (VAE)</strong>
+    </li>
+    <li>
+      <strong>Indemnités supra-légales</strong> — si négociées avec les syndicats
+    </li>
+  </ul>
+
+  <h3>Calendrier prévisionnel</h3>
+
+  <p>
+    Le PSE doit fixer un <strong>calendrier précis</strong> des suppressions de postes
+    prévues et des reclassements envisagés. Ce calendrier est contraignant : l'employeur
+    ne peut pas accélérer les licenciements au-delà du calendrier sans procédure complémentaire.
+  </p>
 
   <h2 id="droits">Droits des salariés concernés</h2>
 
+  <p>
+    Les salariés touchés par un PSE bénéficient d'un ensemble de droits spécifiques :
+  </p>
+
   <ul>
-    <li><strong>Information et consultation du CSE</strong> (ex-CHSCT/CE) avant et pendant l'élaboration du PSE</li>
-    <li><strong>Congé de reclassement</strong> (dans les grandes entreprises) — maintien partiel de salaire pendant la recherche d'emploi</li>
-    <li><strong>CSP (Contrat de Sécurisation Professionnelle)</strong> — accompagnement intensif de France Travail</li>
-    <li><strong>Priorité de réembauche</strong> pendant 1 an</li>
-    <li><strong>Contester le PSE</strong> devant le tribunal administratif (dans les 2 mois suivant la validation/homologation)</li>
+    <li>
+      <strong>Information et consultation du CSE</strong> — le comité doit être informé
+      et consulté sur le projet de licenciements et sur le PSE, avec un délai minimal
+      de 2 à 4 mois selon le nombre de licenciements
+    </li>
+    <li>
+      <strong>Indemnité légale de licenciement</strong> (au moins 8 mois d'ancienneté),
+      majorée d'éventuelles indemnités supra-légales négociées dans le PSE
+    </li>
+    <li>
+      <strong>Priorité de réembauche</strong> pendant 12 mois suivant la rupture du
+      contrat (sur demande expresse du salarié)
+    </li>
+    <li>
+      <strong>Contestation possible</strong> — le salarié peut contester le PSE devant
+      le tribunal administratif dans les 2 mois suivant la décision de la DREETS, ou
+      contester son licenciement individuel devant le Conseil de prud'hommes dans les
+      12 mois
+    </li>
   </ul>
 
   <p class="source-ref">
-    Source :
+    Sources :
     <a href="https://www.service-public.fr/particuliers/vosdroits/F2811" target="_blank" rel="noopener">
       Service-Public.fr — Plan de sauvegarde de l'emploi (PSE)
+    </a> —
+    <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762186" target="_blank" rel="noopener">
+      Légifrance — Art. L1233-61 du Code du travail
     </a>
   </p>
 
