@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
 
 interface TocItem       { id: string; label: string }
 interface FaqItem       { question: string; answer: string }
@@ -201,6 +202,9 @@ const schemaBreadcrumb = {
             </ul>
           </div>
 
+          <!-- Ad in-article : après le résumé, avant le contenu -->
+          <AdSlot slot="6377820635" variant="in-article" />
+
           <!-- Prose injectée par la page -->
           <div class="prose al-prose">
             <slot />
@@ -226,6 +230,9 @@ const schemaBreadcrumb = {
               ))}
             </div>
           </section>
+
+          <!-- Ad fin d'article : entre FAQ et articles liés -->
+          <AdSlot slot="4811027485" variant="in-article" />
 
           <!-- ── Articles liés ── -->
           <section class="al-related" aria-labelledby="related-heading">
@@ -259,8 +266,8 @@ const schemaBreadcrumb = {
                 </li>
               ))}
             </ul>
-            <!-- Espace publicitaire réservé -->
-            <div class="sidebar-ad-slot" aria-hidden="true"></div>
+            <!-- Ad sidebar -->
+            <AdSlot slot="7437190826" variant="sidebar" />
           </div>
         </aside>
 
@@ -688,21 +695,6 @@ const schemaBreadcrumb = {
 .sidebar-link:hover {
   color: var(--clr-green);
   background: var(--clr-green-light);
-}
-
-/* Espace pub réservé */
-.sidebar-ad-slot {
-  margin-top: var(--space-5);
-  height: 200px;
-  border: 1.5px dashed var(--clr-border);
-  border-radius: var(--radius);
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 6px,
-    var(--clr-border-subtle) 6px,
-    var(--clr-border-subtle) 7px
-  );
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
